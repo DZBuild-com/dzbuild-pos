@@ -27,9 +27,9 @@ Dependabot (`.github/dependabot.yml`) only opens pull requests for security advi
 version updates are turned off (`open-pull-requests-limit: 0`); the maintainers update dependencies
 in batches.
 
-While the repository is **private**: CodeQL uploads and dependency review need GitHub Code
-Security, so they report but do not fail; Scorecard is skipped. All three work on their own once
-the repository is public. Every third-party action is pinned to a release tag.
+While the repository is **private**: CodeQL is skipped (code scanning needs GitHub Code Security),
+dependency review reports but does not fail, and Scorecard is skipped. All three work on their own
+once the repository is public. Every third-party action is pinned to a release tag.
 
 ## The release, step by step
 

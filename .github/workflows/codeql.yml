@@ -23,10 +23,12 @@ jobs:
       contents: read
       actions: read
       security-events: write
-    # Code scanning on a private repository needs GitHub Code Security: until the repository is
-    # public a refused upload does not fail the run. Rust is analysed on Linux without a build
-    # (the app is Windows-only), so a partial Rust extraction never blocks a pull request.
-    continue-on-error: ${{ github.event.repository.private == true || matrix.language == 'rust' }}
+    # Code scanning needs GitHub Code Security, which a private repository on the free plan does
+    # not have: the job is skipped until the repository is public, so no minutes are spent on an
+    # upload that would be refused. Rust is analysed on Linux without a build (the app is
+    # Windows-only), so a partial Rust extraction never fails the run.
+    if: ${{ !github.event.repository.private }}
+    continue-on-error: ${{ matrix.language == 'rust' }}
     strategy:
       fail-fast: false
       matrix:
