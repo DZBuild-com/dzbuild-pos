@@ -1,6 +1,6 @@
-# Weekly dependency updates. Minor and patch updates of one ecosystem come as one grouped pull
-# request; a major update comes alone, so its breaking changes get their own review.
-# Security updates (Dependabot alerts) are opened as soon as an advisory appears.
+# Dependabot opens pull requests only for security advisories. Routine version updates are
+# turned off (open-pull-requests-limit: 0): the maintainers update dependencies in batches
+# and run the checks once, instead of one build per package.
 version: 2
 updates:
   - package-ecosystem: npm
@@ -9,7 +9,7 @@ updates:
       interval: weekly
       day: monday
       timezone: Africa/Algiers
-    open-pull-requests-limit: 10
+    open-pull-requests-limit: 0
     labels: [dependencies]
     commit-message:
       prefix: "chore(deps)"
@@ -23,7 +23,7 @@ updates:
       interval: weekly
       day: monday
       timezone: Africa/Algiers
-    open-pull-requests-limit: 10
+    open-pull-requests-limit: 0
     labels: [dependencies]
     commit-message:
       prefix: "chore(deps)"
@@ -40,6 +40,7 @@ updates:
     labels: [dependencies, ci]
     commit-message:
       prefix: "ci(deps)"
+    open-pull-requests-limit: 0
     groups:
       github-actions:
         patterns: ["*"]

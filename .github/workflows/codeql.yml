@@ -5,10 +5,6 @@ name: CodeQL
 on:
   push:
     branches: [main]
-  pull_request:
-    branches: [main]
-  schedule:
-    - cron: "17 3 * * 1" # Mondays 04:17 in Algiers
   workflow_dispatch:
 
 concurrency:

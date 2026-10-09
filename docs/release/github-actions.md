@@ -3,23 +3,29 @@
 This page lists the GitHub workflows of DZBuild POS, the secrets a release needs and how to add
 them safely, the runner minutes a release uses, and how to start a build by hand.
 The workflows live in `.github/workflows/`; `scripts/release/workflows.test.mjs` checks their key
-properties on every pull request.
+properties with the other tooling tests.
 
 ## The workflows
 
 | Workflow | When | What it does |
 |---|---|---|
-| `ci.yml` | every pull request, every push to `main`, by hand; called by `release.yml` | **frontend** (Ubuntu): `pnpm install --frozen-lockfile`, ESLint, TypeScript, Vitest, the tooling tests (`scripts/**/*.test.mjs`), the ar/fr/en parity check, Prettier, the frontend build and the POS bundle budget. **rust** (Windows): `cargo fmt --check`, Clippy with `-D warnings`, `cargo test --workspace`, and a `cargo check` of the 32-bit target `i686-pc-windows-msvc`. **deny** (Ubuntu): `cargo deny check advisories bans licenses sources` with `deny.toml`. **build** (Windows, pushes to `main` only): `pnpm tauri build --no-bundle`. A new push cancels the run it replaces. |
+| `ci.yml` | every push to `main`, or by hand; called by `release.yml` | **frontend** (Ubuntu): `pnpm install --frozen-lockfile`, ESLint, TypeScript, Vitest, the tooling tests (`scripts/**/*.test.mjs`), the ar/fr/en parity check, Prettier, the frontend build and the POS bundle budget. **rust** (Windows): `cargo fmt --check`, Clippy with `-D warnings`, `cargo test --workspace`, and a `cargo check` of the 32-bit target `i686-pc-windows-msvc`. **deny** (Ubuntu): `cargo deny check advisories bans licenses sources` with `deny.toml`. **build** (Windows, pushes to `main` only): `pnpm tauri build --no-bundle`. A new push cancels the run it replaces. |
 | `release.yml` | a pushed `v*` tag, or by hand | Checks that the tag is `v<version>`, runs the CI gates, then builds the installers of **x64 and x86 in parallel** (`pnpm release:build --arch <arch>`), gathers them with one `SHA256SUMS.txt`, writes the update manifests when it can (below) and creates or refreshes a **draft** GitHub release. It never publishes anything to shops. |
-| `nightly.yml` | every night at 02:30 Algiers time, or by hand | The Playwright end-to-end suite on Edge (screenshots in the three languages as an artifact), the performance budgets, `pnpm audit` and `cargo deny check advisories`. |
-| `codeql.yml` | pull requests, pushes to `main`, weekly | CodeQL code scanning (`security-extended` queries) of the TypeScript, the Rust and the workflows themselves. |
-| `secret-scan.yml` | pull requests, pushes to `main`, weekly | TruffleHog on the working tree and on the git history (the weekly run scans every commit); only **verified** live credentials fail the run. |
+| `nightly.yml` | by hand only | The Playwright end-to-end suite on Edge (screenshots in the three languages as an artifact), the performance budgets, `pnpm audit` and `cargo deny check advisories`. |
+| `codeql.yml` | pushes to `main`, or by hand | CodeQL code scanning (`security-extended` queries) of the TypeScript, the Rust and the workflows themselves. |
+| `secret-scan.yml` | pushes to `main`, or by hand | TruffleHog on the working tree and on the git history; only **verified** live credentials fail the run. |
 | `dependency-review.yml` | pull requests | Refuses a new dependency with a known vulnerability (moderate or worse) or a licence that does not fit GPL-3.0-or-later. |
-| `scorecard.yml` | pushes to `main`, weekly | OpenSSF Scorecard of the repository's security practices, published for the README badge. |
+| `scorecard.yml` | by hand only | OpenSSF Scorecard of the repository's security practices, published for the README badge. |
 | `labeler.yml` | pull requests | Labels a pull request from the paths it changes (`.github/labeler.yml`). It never checks out the pull request's code. |
 
-Dependabot (`.github/dependabot.yml`) opens one grouped pull request a week per ecosystem (npm,
-Cargo, GitHub Actions) for minor and patch updates, and one pull request per major update.
+Nothing runs on a timer and no build starts for a pull request: the two workflows that do run on a
+pull request (`dependency-review.yml`, `labeler.yml`) finish in seconds. A maintainer who wants the
+checks on a branch starts `CI` from the Actions tab with that branch selected. This keeps the
+runner minutes for the pushes to `main` and the releases.
+
+Dependabot (`.github/dependabot.yml`) only opens pull requests for security advisories. Routine
+version updates are turned off (`open-pull-requests-limit: 0`); the maintainers update dependencies
+in batches.
 
 While the repository is **private**: CodeQL uploads and dependency review need GitHub Code
 Security, so they report but do not fail; Scorecard is skipped. All three work on their own once

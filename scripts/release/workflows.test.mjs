@@ -8,9 +8,10 @@ const workflows = readdirSync(WORKFLOWS)
   .filter((f) => f.endsWith(".yml"))
   .map((f) => ({ file: f, text: read(`${WORKFLOWS}/${f}`) }));
 
-test("every pull request runs the frontend, Rust and cargo-deny gates side by side", () => {
+test("a push to main runs the frontend, Rust and cargo-deny gates side by side, never a pull request", () => {
   const ci = read(`${WORKFLOWS}/ci.yml`);
-  assert.match(ci, /pull_request:/);
+  assert.doesNotMatch(ci, /pull_request:/, "pull requests are built by hand, not automatically");
+  assert.match(ci, /branches: \[main\]/);
   assert.match(ci, /workflow_call:/, "release.yml reuses the CI gates");
   for (const job of ["frontend:", "rust:", "deny:"]) assert.ok(ci.includes(`\n  ${job}`), job);
   for (const step of [
@@ -90,9 +91,10 @@ test("security scanning: CodeQL, TruffleHog, Scorecard, dependency review, label
   assert.match(read("deny.toml"), /\[licenses\]/);
 });
 
-test("the night runs the E2E suite, the budgets and the audits", () => {
+test("the nightly suite runs the E2E suite, the budgets and the audits, only when started by hand", () => {
   const nightly = read(`${WORKFLOWS}/nightly.yml`);
-  assert.match(nightly, /schedule:/);
+  assert.doesNotMatch(nightly, /schedule:/, "nothing runs on a timer");
+  assert.match(nightly, /workflow_dispatch:/);
   assert.match(nightly, /pnpm e2e/);
   assert.match(nightly, /e2e-artifacts/);
   assert.match(nightly, /budget_/);
