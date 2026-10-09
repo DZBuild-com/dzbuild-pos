@@ -19,7 +19,7 @@ pos-docs = { path = "crates/pos-docs" }
 pos-server = { path = "crates/pos-server" }
 pos-license = { path = "crates/pos-license" }
 # M9: licences are Ed25519-signed and verified offline (the owner's choice: ed25519-dalek 2).
-ed25519-dalek = "2.2.0"
+ed25519-dalek = "3.0.0"
 serde = { version = "1.0.229", features = ["derive"] }
 serde_json = "1.0.151"
 thiserror = "2.0.21"
