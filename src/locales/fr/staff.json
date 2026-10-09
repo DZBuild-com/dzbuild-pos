@@ -1,0 +1,80 @@
+{
+  "title": "Personnel",
+  "intro": "Les fiches des employés, leurs avances sur salaire et leurs services à la caisse.",
+  "back": "Retour au personnel",
+  "notFound": "Cet employé n'existe pas. Choisissez-le dans la liste du personnel.",
+  "empty": "Aucun employé. Ajoutez les utilisateurs dans Réglages › Utilisateurs et rôles.",
+  "inactive": "Inactif",
+  "columns": {
+    "name": "Employé",
+    "role": "Rôle",
+    "phone": "Téléphone",
+    "hireDate": "Embauche",
+    "salary": "Salaire mensuel",
+    "commission": "Commission",
+    "owed": "Avances dues"
+  },
+  "reports": {
+    "title": "Rapports du personnel",
+    "commissions": "Commissions sur les ventes",
+    "advances": "Avances sur salaire"
+  },
+  "profile": {
+    "title": "Fiche de l'employé",
+    "phone": "Téléphone",
+    "hireDate": "Date d'embauche",
+    "salary": "Salaire mensuel",
+    "commission": "Commission sur les ventes (%)",
+    "commissionHint": "Calculée sur ses ventes HT dans le rapport des commissions (0 à 50 %).",
+    "note": "Note",
+    "save": "Enregistrer la fiche",
+    "saved": "Fiche enregistrée"
+  },
+  "ledger": {
+    "title": "Avances et remboursements",
+    "advance": "Avance",
+    "repayment": "Remboursement",
+    "salary_deduction": "Retenue sur salaire",
+    "adjustment": "Ajustement",
+    "owed": "Reste dû : {{amount}}",
+    "empty": "Aucune avance pour cet employé.",
+    "date": "Date",
+    "kind": "Opération",
+    "amount": "Montant",
+    "method": "Mode",
+    "month": "Mois",
+    "note": "Note",
+    "by": "Par"
+  },
+  "advance": {
+    "give": "Avance sur salaire",
+    "amount": "Montant",
+    "fromTill": "Payée depuis la caisse",
+    "fromTillHint": "L'argent sort de la caisse ouverte de ce poste ; sinon, choisissez comment il est versé.",
+    "method": "Mode de versement",
+    "note": "Note",
+    "submit": "Verser l'avance",
+    "given": "Avance versée et notée dans les dépenses (salaires)",
+    "repay": "Remboursement",
+    "repayHint": "En espèces, l'argent entre dans la caisse ouverte de ce poste.",
+    "repaySubmit": "Enregistrer le remboursement",
+    "repaid": "Remboursement enregistré",
+    "deduct": "Retenue sur salaire",
+    "deductHint": "Aucun argent ne sort de la caisse : l'avance est retenue sur la paie de ce mois.",
+    "month": "Mois de salaire",
+    "deductSubmit": "Enregistrer la retenue",
+    "deducted": "Retenue enregistrée"
+  },
+  "shifts": {
+    "title": "Services",
+    "terminal": "Caisse",
+    "opened": "Ouverture",
+    "closed": "Clôture",
+    "duration": "Durée",
+    "tickets": "Tickets",
+    "sales": "Ventes",
+    "running": "En cours",
+    "hours": "{{hours}} h {{minutes}} min",
+    "empty": "Aucun service sur cette période."
+  }
+}

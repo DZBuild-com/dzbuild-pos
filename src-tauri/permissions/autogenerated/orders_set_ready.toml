@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-orders-set-ready"
+description = "Enables the orders_set_ready command without any pre-configured scope."
+commands.allow = ["orders_set_ready"]
+
+[[permission]]
+identifier = "deny-orders-set-ready"
+description = "Denies the orders_set_ready command without any pre-configured scope."
+commands.deny = ["orders_set_ready"]

@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-rounds-close-preview"
+description = "Enables the rounds_close_preview command without any pre-configured scope."
+commands.allow = ["rounds_close_preview"]
+
+[[permission]]
+identifier = "deny-rounds-close-preview"
+description = "Denies the rounds_close_preview command without any pre-configured scope."
+commands.deny = ["rounds_close_preview"]

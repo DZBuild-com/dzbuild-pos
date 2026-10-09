@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-documents-arabic-guard"
+description = "Enables the documents_arabic_guard command without any pre-configured scope."
+commands.allow = ["documents_arabic_guard"]
+
+[[permission]]
+identifier = "deny-documents-arabic-guard"
+description = "Denies the documents_arabic_guard command without any pre-configured scope."
+commands.deny = ["documents_arabic_guard"]

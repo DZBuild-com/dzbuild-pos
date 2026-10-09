@@ -1,0 +1,113 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "./tokens.css";
+@import "./print.css";
+@import "./light.css";
+
+/* Only the DZBuild palette exists: no stray Tailwind colours. */
+@theme {
+  --color-*: initial;
+  --color-white: #fff;
+  --color-black: #000;
+  --radius-control: 8px;
+  --radius-card: 12px;
+  --shadow-overlay: 0 12px 32px rgba(28, 25, 23, 0.18);
+  --default-transition-duration: 150ms;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--line);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-brand: var(--brand);
+  --color-brand-ink: var(--brand-ink);
+  --color-brand-soft: var(--brand-soft);
+  --color-ok: var(--ok);
+  --color-ok-soft: var(--ok-soft);
+  --color-warn: var(--warn);
+  --color-warn-soft: var(--warn-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-info: var(--info);
+  --color-info-soft: var(--info-soft);
+  --color-focus: var(--focus);
+  /* shadcn/ui names mapped onto the same tokens */
+  --color-background: var(--bg);
+  --color-foreground: var(--ink);
+  --color-card: var(--surface);
+  --color-card-foreground: var(--ink);
+  --color-popover: var(--surface);
+  --color-popover-foreground: var(--ink);
+  --color-primary: var(--brand);
+  --color-primary-foreground: var(--brand-ink);
+  --color-secondary: var(--surface-2);
+  --color-secondary-foreground: var(--ink);
+  --color-muted: var(--surface-2);
+  --color-muted-foreground: var(--ink-2);
+  --color-accent: var(--surface-2);
+  --color-accent-foreground: var(--ink);
+  --color-destructive: var(--danger);
+  --color-border: var(--line);
+  --color-input: var(--line);
+  --color-ring: var(--focus);
+  --font-sans: var(--font-stack);
+}
+
+@layer base {
+  :root {
+    --font-stack: Inter, Cairo, system-ui, sans-serif;
+  }
+
+  :root[lang="ar"] {
+    --font-stack: Cairo, Inter, system-ui, sans-serif;
+  }
+
+  html {
+    font-family: var(--font-stack);
+    font-variant-numeric: tabular-nums;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--ink);
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* `window.print()` from a dialog (the online backup's recovery code) prints only its
+     `.print-only-area`; documents print through the print host, which has its own sheet. */
+  @media print {
+    body * {
+      visibility: hidden;
+    }
+
+    .print-only-area,
+    .print-only-area * {
+      visibility: visible;
+    }
+
+    .print-only-area {
+      position: absolute;
+      inset-inline-start: 0;
+      inset-block-start: 0;
+    }
+  }
+}

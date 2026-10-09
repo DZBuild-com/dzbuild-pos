@@ -1,0 +1,927 @@
+{
+  "title": "Settings",
+  "sections": {
+    "shop": "Shop",
+    "activity": "Activity and modules",
+    "documents": "Documents",
+    "sales": "Sales and cash",
+    "users": "Users and roles",
+    "hardware": "Hardware",
+    "backups": "Backups",
+    "dzbuild": "DZBuild",
+    "updates": "Updates",
+    "audit": "Action log",
+    "about": "About",
+    "data": "Data",
+    "expenseCategories": "Expense categories",
+    "network": "Network",
+    "diagnostics": "Diagnostic",
+    "display": "Display",
+    "license": "Licence"
+  },
+  "shop": {
+    "identity": "Identity",
+    "nameAr": "Name in Arabic",
+    "nameFr": "Name in French",
+    "nameEn": "Name in English",
+    "legalForm": "Legal form",
+    "capital": "Share capital (DA)",
+    "contact": "Address and contact",
+    "address": "Address",
+    "email": "Email",
+    "legal": "Legal identifiers",
+    "rc": "Trade register number (RC)",
+    "nif": "Tax ID (NIF, 15 or 18 digits)",
+    "nis": "Statistical ID (NIS, 15 or 18 digits)",
+    "nin": "National ID (NIN, 18 digits)",
+    "ai": "Tax article (AI)",
+    "rib": "Bank account (RIB)",
+    "tax": "Taxes and prices",
+    "docLang": "Default language of documents",
+    "priceModeLocked": "Cannot change once a product has a price or a ticket has a number: all saved prices would be read the wrong way.",
+    "receipt": "Receipt texts",
+    "headerAr": "Receipt header in Arabic",
+    "headerFr": "Receipt header in French",
+    "headerEn": "Receipt header in English",
+    "footerAr": "Receipt footer in Arabic",
+    "footerFr": "Receipt footer in French",
+    "footerEn": "Receipt footer in English",
+    "social": {
+      "title": "Social media",
+      "facebook": "Facebook",
+      "instagram": "Instagram",
+      "tiktok": "TikTok",
+      "website": "Website"
+    },
+    "save": "Save the shop",
+    "saved": "Shop information saved.",
+    "logo": "Logo",
+    "logoHint": "A PNG or JPEG image of at most 512 KB, printed on receipts and invoices. It is saved as soon as you choose it.",
+    "logoNone": "No logo yet.",
+    "logoSet": "A logo is saved.",
+    "logoChoose": "Choose an image",
+    "logoRemove": "Remove the logo",
+    "logoSaved": "Logo saved.",
+    "logoRemoved": "Logo removed."
+  },
+  "salesRules": {
+    "payments": "Taking payment",
+    "maxChange": "Maximum change",
+    "maxChangeHint": "The change handed back never goes above this amount. 0: no limit.",
+    "cashRounding": "Rounding of totals paid in cash",
+    "rounding": {
+      "0": "No rounding",
+      "500": "To the nearest 5 DA",
+      "1000": "To the nearest 10 DA"
+    },
+    "chequeRequiresCustomer": "A cheque payment needs a named customer",
+    "stampDuty": "Stamp duty",
+    "stampModes": {
+      "charge_customer": "Added to the amount due",
+      "absorb": "Paid by the shop",
+      "off": "Not computed"
+    },
+    "stampOffWarning": "Stamp duty will no longer be computed. Choose this only if your shop is exempt from it.",
+    "cash": "Cash close",
+    "varianceThreshold": "Accepted difference at the close",
+    "varianceThresholdHint": "Above this difference, the close needs a manager's approval.",
+    "blindClose": "Blind close: the cashier counts the drawer without seeing the expected cash",
+    "stock": "Stock",
+    "negativePolicy": "Selling without stock",
+    "negative": {
+      "allow": "Allow",
+      "warn": "Warn",
+      "block": "Block"
+    },
+    "expiredLots": "Expired lots",
+    "expired": {
+      "warn": "Warn",
+      "block": "Block"
+    },
+    "expiryAlertDays": "Expiry alert (days before the date)",
+    "products": "Products",
+    "eanPrefix": "Prefix of in-store barcodes",
+    "eanPrefixHint": "3 digits starting with 2: the barcodes the shop makes itself (EAN-13) start with them.",
+    "soldes": "Seasonal sale",
+    "soldesHint": "The seasonal sale periods set by the wali, 12 at most. A seasonal sale promotion applies only during these periods.",
+    "soldesNone": "No seasonal sale period.",
+    "soldesWindow": "Period {{n}}",
+    "soldesAdd": "Add a period",
+    "soldesRemove": "Remove period {{n}}",
+    "save": "Save the rules",
+    "saved": "Rules saved."
+  },
+  "users": {
+    "title": "Users",
+    "add": "Add a user",
+    "edit": "Edit the user",
+    "displayName": "Name shown on the tile",
+    "username": "Login name",
+    "role": "Role",
+    "discountLimit": "Maximum discount without approval (%)",
+    "pin": "PIN code (4 to 8 digits)",
+    "pinConfirm": "Type the PIN again",
+    "changePin": "Change the PIN",
+    "pinChanged": "PIN changed.",
+    "deactivate": "Deactivate",
+    "reactivate": "Reactivate",
+    "created": "User created.",
+    "updated": "User saved.",
+    "save": "Save the user",
+    "autoLock": "Lock the screen after (minutes, 0 = never)",
+    "autoLockSaved": "Automatic lock saved.",
+    "saveAutoLock": "Save the automatic lock",
+    "columns": {
+      "name": "Name",
+      "role": "Role",
+      "language": "Language",
+      "status": "Status",
+      "lastLogin": "Last login",
+      "actions": "Actions"
+    }
+  },
+  "roles": {
+    "title": "Roles",
+    "add": "New role",
+    "edit": "Edit the role",
+    "nameAr": "Role name in Arabic",
+    "nameFr": "Role name in French",
+    "nameEn": "Role name in English",
+    "permissions": "What this role can do",
+    "ownerAll": "The owner can do everything. This role cannot be changed.",
+    "system": "Built-in",
+    "usersCount_zero": "No user",
+    "usersCount_one": "{{count}} user",
+    "usersCount_two": "{{count}} users",
+    "usersCount_few": "{{count}} users",
+    "usersCount_many": "{{count}} users",
+    "usersCount_other": "{{count}} users",
+    "activeCount_zero": "none active",
+    "activeCount_one": "{{count}} active",
+    "activeCount_two": "{{count}} active",
+    "activeCount_few": "{{count}} active",
+    "activeCount_many": "{{count}} active",
+    "activeCount_other": "{{count}} active",
+    "usersSummary": "{{users}} ({{active}})",
+    "save": "Save the role",
+    "saved": "Role saved.",
+    "remove": "Remove the role",
+    "removed": "Role removed."
+  },
+  "backups": {
+    "intro": "A backup is made automatically every day and before each update. Keep a copy on a USB key too.",
+    "now": "Back up now",
+    "done": "Backup created.",
+    "empty": "No backup yet. Make the first one now.",
+    "openFolder": "Open the backups folder",
+    "columns": { "date": "Date", "kind": "Type", "size": "Size", "actions": "Actions" },
+    "kinds": {
+      "auto": "Automatic",
+      "manual": "Manual",
+      "pre_migration": "Before an update",
+      "pre_restore": "Before a restore",
+      "pre_pairing": "Network change"
+    },
+    "restore": "Restore",
+    "restoreTitle": "Restore this backup?",
+    "restoreBody": "The current data will be replaced by the backup of {{date}}. A safety backup of the current data is made first, then DZBuild POS restarts.",
+    "restoreOtherPc": "If this backup comes from another PC, stop selling on the old PC: both would number the same tickets. For a second till, link the PCs on a network (Settings › Network).",
+    "restorePin": "Your owner PIN",
+    "restoreConfirm": "Restore this backup",
+    "restarting": "Restoring… DZBuild POS restarts in a moment.",
+    "ownerOnly": "Only the owner can restore a backup.",
+    "previewAction": "Preview and restore",
+    "schedule": {
+      "title": "When to back up",
+      "daily": "Every day at the first start.",
+      "zClose": "At every cash close (Z).",
+      "beforeUpdate": "Before every software update.",
+      "onClose": "Back up when the app closes",
+      "keepDaily": "Keep one copy a day for",
+      "keepWeekly": "Then one copy a week for",
+      "keepMonthly": "Then one copy a month for",
+      "none": "None",
+      "days_zero": "{{count}} days",
+      "days_one": "{{count}} day",
+      "days_two": "{{count}} days",
+      "days_few": "{{count}} days",
+      "days_many": "{{count}} days",
+      "days_other": "{{count}} days",
+      "weeks_zero": "{{count}} weeks",
+      "weeks_one": "{{count}} week",
+      "weeks_two": "{{count}} weeks",
+      "weeks_few": "{{count}} weeks",
+      "weeks_many": "{{count}} weeks",
+      "weeks_other": "{{count}} weeks",
+      "months_zero": "{{count}} months",
+      "months_one": "{{count}} month",
+      "months_two": "{{count}} months",
+      "months_few": "{{count}} months",
+      "months_many": "{{count}} months",
+      "months_other": "{{count}} months",
+      "retentionNote": "Only the oldest automatic copies are deleted. Your sales always stay in the shop's data: the law asks you to keep them for 10 years."
+    },
+    "mirror": {
+      "title": "Second copy (USB stick or folder)",
+      "intro": "Every backup is also copied here and checked. If the PC's disk fails, your data is on the stick.",
+      "none": "No second copy is made.",
+      "choose": "Choose a USB stick or a folder",
+      "change": "Change folder",
+      "stop": "Stop making a second copy",
+      "available": "Plugged in",
+      "unavailable": "Stick missing",
+      "lastCopy": "Last copy: {{date}}",
+      "never": "No copy yet",
+      "free": "Free space: {{size}}",
+      "toDrive": {
+        "title": "Back up to a USB stick now",
+        "none": "Plug in a USB stick: it will show here.",
+        "action": "Copy to {{drive}} ({{mount}})",
+        "done": "Backup copied to the stick {{drive}}."
+      },
+      "demo": "The demo shop keeps its backups in its own folder: it never copies to your real shop's USB stick or folder."
+    },
+    "integrity": {
+      "title": "Check the shop's data for damage",
+      "body": "Reads all the shop's data to find damage (disk fault, power cut). It can take a minute.",
+      "action": "Check now",
+      "ok": "No damage found: the shop's data is intact.",
+      "damaged": "The shop's data is damaged. Stop selling and restore the last good backup."
+    },
+    "export": {
+      "title": "Export my data",
+      "body": "A .dzpos file holds your whole shop: keep it somewhere safe or import it on another PC.",
+      "action": "Export a backup (.dzpos)",
+      "allData": "All the data as spreadsheets",
+      "done": "Backup exported."
+    },
+    "preview": {
+      "title": "What the backup holds",
+      "company": "Shop",
+      "lastTicket": "Last receipt",
+      "noTicket": "No receipt",
+      "documents": "Validated documents",
+      "products": "Products",
+      "customers": "Customers",
+      "lastActivity": "Last operation",
+      "invalid": "This backup is damaged: it cannot be restored.",
+      "newer": "This backup comes from a newer version of DZBuild POS. Install the latest version before restoring it.",
+      "ownerOnly": "Only the owner can restore a backup.",
+      "origin": "Copy of",
+      "demo": "DEMO – the demo shop",
+      "tillCopy": "till {{code}} of \"{{host}}\": it joins its main PC again, it is never restored",
+      "mainCopy_zero": "a main PC",
+      "mainCopy_one": "a main PC with {{count}} till: it is never restored behind it",
+      "mainCopy_two": "a main PC with {{count}} tills: it is never restored behind them",
+      "mainCopy_few": "a main PC with {{count}} tills: it is never restored behind them",
+      "mainCopy_many": "a main PC with {{count}} tills: it is never restored behind them",
+      "mainCopy_other": "a main PC with {{count}} tills: it is never restored behind them"
+    }
+  },
+  "updates": {
+    "title": "Updates",
+    "installed": "Installed version",
+    "channel": "Update channel",
+    "stable": "Stable",
+    "stableHint": "Recommended for the till.",
+    "beta": "Beta",
+    "betaHint": "New features early, for testing.",
+    "autoCheck": "Check for updates every day",
+    "autoDownload": "Download automatically when the till is closed",
+    "checkNow": "Check now",
+    "lastCheck": "Last check: {{date}}",
+    "neverChecked": "No check yet",
+    "upToDate": "DZBuild POS is up to date.",
+    "available": "Version {{version}} available",
+    "download": "Download",
+    "downloading": "Downloading…",
+    "install": "Install now",
+    "blocked": "Till {{terminal}} is open (by {{user}} since {{time}}): close it first.",
+    "confirmTitle": "Install the update",
+    "confirmBody": "DZBuild POS will close, install version {{version}}, then restart (1 to 2 minutes). A backup is made first.",
+    "confirm": "Install and restart",
+    "paused": "DZBuild has paused this version for now: nothing to do, keep working.",
+    "notYet": "This version reaches shops little by little: this PC will get it in the coming days.",
+    "tooOld": "This version is too old to update by itself.",
+    "fullInstaller": "Download the full installer",
+    "whatsNew": "What's new in this version",
+    "rollback": "If something goes wrong, reinstall the previous version from dzbuild.com/pos: your data stays, and the backup made before the update is in Settings › Backups.",
+    "mainPcFirst": "This till takes the main PC's version ({{version}}): update the main PC first, then this till gets it from there.",
+    "mainPcUnreachable": "This till takes the main PC's version, and the main PC is not answering right now. Try again once it is on."
+  },
+  "diagnostics": {
+    "thisPc": "This PC",
+    "version": "Version",
+    "webview": "WebView2",
+    "windows": "Windows",
+    "memory": "Total / available memory",
+    "appMemory": "Memory used by DZBuild POS",
+    "coldStart": "Start-up",
+    "coldStartValue": "{{seconds}} s",
+    "diskFree": "Free space on the data disk",
+    "crashDumps": "Recorded crashes",
+    "lastCrash": "Last crash: {{at}} — {{message}}",
+    "noCrash": "No crash recorded",
+    "sendTitle": "Send a diagnostic to support",
+    "sendBody": "The file holds the version, the settings, the printer list and the technical logs (a record of what the software did). It holds neither your customers, nor your sales, nor your codes. Nothing is sent automatically: you send it yourself.",
+    "export": "Export the diagnostic (.zip)",
+    "exported_zero": "Diagnostic saved ({{count}} files).",
+    "exported_one": "Diagnostic saved ({{count}} file).",
+    "exported_two": "Diagnostic saved ({{count}} files).",
+    "exported_few": "Diagnostic saved ({{count}} files).",
+    "exported_many": "Diagnostic saved ({{count}} files).",
+    "exported_other": "Diagnostic saved ({{count}} files).",
+    "openLogs": "Open the logs",
+    "logLevel": "Technical log detail",
+    "logLevelHint": "\"Detailed\" only when support asks for it.",
+    "levels": {
+      "warn": "Reduced",
+      "info": "Normal",
+      "debug": "Detailed"
+    }
+  },
+  "display": {
+    "light": "Light mode (slow PC)",
+    "lightHint": "Fewer animations and smaller tiles: faster on a Celeron or with 4 GB of memory.",
+    "textSize": "Text size",
+    "normal": "Normal (100 %)",
+    "large": "Large (115 %)",
+    "larger": "Larger (130 %)",
+    "osk": "On-screen keyboard (touch screen without a keyboard)",
+    "thisPc": "These choices apply to this PC only."
+  },
+  "support": {
+    "title": "Support",
+    "whatsapp": "Message {{name}} on WhatsApp",
+    "web": "Open the support page",
+    "defaultName": "support",
+    "label": "Name of your support (reseller, technician)",
+    "number": "WhatsApp number (international format, e.g. 213550123456)",
+    "url": "Support web page (https://…)",
+    "save": "Save the contact",
+    "saved": "Support contact saved."
+  },
+  "audit": {
+    "intro": "Every important action is written here. Each line is locked to the one before it, so no line can be changed or removed without it showing.",
+    "verify": "Check the log",
+    "intact": "Lines checked: {{n}}. Nothing was changed.",
+    "broken": "Line no. {{seq}} of the log was changed. Stop selling on this PC and contact DZBuild support.",
+    "empty": "No entry yet.",
+    "system": "System",
+    "filter": "Show",
+    "families": {
+      "all": "All",
+      "sale": "Sales",
+      "return": "Returns",
+      "cash": "Cash",
+      "drawer": "Drawer",
+      "document": "Receipts",
+      "product": "Products",
+      "stock": "Stock",
+      "auth": "Sign-ins"
+    },
+    "columns": {
+      "seq": "No.",
+      "at": "Date and time",
+      "user": "User",
+      "action": "Action",
+      "details": "Details"
+    },
+    "actions": {
+      "setup": { "completed": "First setup completed" },
+      "auth": {
+        "login": "Logged in",
+        "login_failed": "Wrong PIN",
+        "logout": "Logged out",
+        "override": "Manager approval",
+        "override_failed": "Manager approval refused"
+      },
+      "company": { "updated": "Shop information changed", "logo_changed": "Shop logo changed" },
+      "settings": { "updated": "Setting changed" },
+      "user": {
+        "created": "User created",
+        "updated": "User changed",
+        "pin_changed": "PIN changed",
+        "deactivated": "User deactivated",
+        "language_changed": "Language changed",
+        "duplicated": "User created from a template"
+      },
+      "role": {
+        "created": "Role created",
+        "updated": "Role changed",
+        "archived": "Role removed",
+        "duplicated": "Role duplicated"
+      },
+      "backup": {
+        "created": "Backup made",
+        "restore_scheduled": "Restore requested",
+        "restored": "Backup restored",
+        "exported": "Backup exported to a file",
+        "imported": "Backup imported from a file",
+        "mirrored": "Second copy made",
+        "mirror_failed": "Second copy failed"
+      },
+      "local": { "updated": "This PC's setting changed" },
+      "app": { "updated": "New version started" },
+      "clock": { "moved_back": "PC clock set back" },
+      "diagnostics": { "exported": "Diagnostic exported" },
+      "update": { "downloaded": "Update downloaded", "install_started": "Update installation started" },
+      "demo": { "entered": "Demo shop opened", "left": "Demo left", "erased": "Demo erased" },
+      "license": {
+        "activated": "Licence activated",
+        "expired": "Trial ended",
+        "removed": "Licence removed",
+        "tampered": "Licence data altered",
+        "repaired": "Licence copy repaired"
+      },
+      "db": {
+        "unclean_shutdown": "Restart after an unexpected stop (power cut)",
+        "integrity_checked": "Shop data checked for damage"
+      },
+      "unit": { "created": "Unit created", "updated": "Unit changed" },
+      "tax_rate": { "synced": "VAT rates updated from the regulatory data", "updated": "VAT rate changed" },
+      "price_level": {
+        "created": "Price level created",
+        "updated": "Price level changed",
+        "archived": "Price level archived"
+      },
+      "category": {
+        "created": "Category created",
+        "updated": "Category changed",
+        "archived": "Category archived"
+      },
+      "product": {
+        "created": "Product created",
+        "updated": "Product changed",
+        "price_changed": "Price changed",
+        "archived": "Product archived",
+        "restored": "Product restored",
+        "extras_updated": "Product details updated",
+        "price_breaks_changed": "Quantity prices changed",
+        "variants_generated": "Variants created",
+        "prices_bulk_updated": "Prices changed in bulk",
+        "bulk_edited": "Products edited in bulk",
+        "image_changed": "Product photo changed",
+        "regulation_set": "Product regulated price changed",
+        "modifiers_set": "Product modifiers changed"
+      },
+      "stock_location": { "created": "Stock location created" },
+      "stock": {
+        "adjusted": "Stock adjusted",
+        "levels_rebuilt": "Stock recalculated from the movements",
+        "count_started": "Stock count started",
+        "count_closed": "Stock count closed",
+        "count_cancelled": "Stock count cancelled",
+        "transferred": "Stock transferred",
+        "minimums_set": "Minimum stock changed"
+      },
+      "document": {
+        "cancelled": "Draft cancelled",
+        "reprinted": "Document reprinted (duplicate)",
+        "printed": "Document printed (original)",
+        "exported": "Document exported to PDF",
+        "draft_saved": "Document draft saved",
+        "converted": "Document converted"
+      },
+      "quote": { "validated": "Quote validated" },
+      "proforma": { "validated": "Proforma invoice validated" },
+      "delivery_note": { "validated": "Delivery note validated" },
+      "invoice": { "validated": "Invoice validated", "from_ticket": "Invoice made from a receipt" },
+      "credit_note": { "created": "Credit note issued" },
+      "fiscal": { "archive_exported": "Fiscal archive exported" },
+      "cloud": {
+        "linked": "DZBuild store linked",
+        "unlinked": "DZBuild store unlinked",
+        "relink_required": "DZBuild link needs to be redone",
+        "revoked": "DZBuild link cancelled from DZBuild",
+        "order_claimed": "Online order claimed",
+        "order_released": "Online order put back",
+        "order_prepared": "Online order prepared",
+        "order_fulfilled": "Online order sold or shipped",
+        "order_refused": "Online order refused",
+        "pulled": "Changes received from DZBuild",
+        "backup_key_created": "Online backup key created",
+        "backup_uploaded": "Backup sent to DZBuild",
+        "publish_changed": "Products published online changed",
+        "backup_downloaded": "Online backup downloaded",
+        "personal_data_purged": "Online buyers' details erased (retention period over)"
+      },
+      "lan": {
+        "reconciled": "Corrected by the main PC",
+        "notice_acknowledged": "Network alert acknowledged",
+        "replayed": "Till operation recorded on the main PC",
+        "pairing_code_issued": "Pairing code shown",
+        "till_paired": "Till added",
+        "till_revoked": "Till removed",
+        "paired": "This PC became a till",
+        "host_enabled": "Main PC enabled",
+        "host_disabled": "Back to a single PC",
+        "promoted": "Till made the main PC",
+        "left": "Till left the network",
+        "clock_skew": "PC clock differs from the main PC",
+        "replay_rejected": "Till operation refused",
+        "item_rejected": "Operation refused by the main PC",
+        "replay_retried": "Refused operation sent to the main PC again",
+        "journal_adopted": "A till's log taken over by this main PC",
+        "till_rejoined": "Till joined again after its data was damaged"
+      },
+      "cash": {
+        "session_opened": "Register opened",
+        "paid_in": "Cash paid in",
+        "paid_out": "Cash paid out",
+        "dropped": "Cash dropped to the safe",
+        "expense": "Expense paid from the till",
+        "close_refused": "Close refused: variance needs approval",
+        "session_closed": "Register closed (Z)",
+        "host_share": "Cash of an operation recorded on the main PC for this register"
+      },
+      "sale": {
+        "created": "Sale",
+        "held": "Ticket held",
+        "recalled": "Held ticket recalled",
+        "held_discarded": "Held ticket discarded",
+        "line_voided": "Line voided",
+        "cancelled": "Sale abandoned",
+        "qty_reduced": "Line quantity reduced"
+      },
+      "return": { "created": "Goods returned" },
+      "hardware": { "updated": "Hardware settings changed" },
+      "drawer": { "opened": "Cash drawer opened without a sale" },
+      "ledger": { "balances_rebuilt": "Account balances recalculated" },
+      "customer": {
+        "created": "Customer created",
+        "updated": "Customer updated",
+        "blocked": "Customer blocked",
+        "unblocked": "Customer unblocked",
+        "archived": "Customer archived",
+        "restored": "Customer restored"
+      },
+      "credit": {
+        "opening_set": "Kridi opening balance recorded",
+        "adjusted": "Kridi adjusted",
+        "collected": "Kridi payment collected",
+        "receipt_reprinted": "Payment receipt reprinted (duplicate)"
+      },
+      "promotion": {
+        "created": "Promotion created",
+        "updated": "Promotion updated",
+        "archived": "Promotion archived"
+      },
+      "serial": {
+        "sold": "Serial number sold",
+        "returned": "Serial number returned",
+        "registered": "Serial numbers recorded"
+      },
+      "supplier": {
+        "created": "Supplier created",
+        "updated": "Supplier updated",
+        "archived": "Supplier archived",
+        "restored": "Supplier restored",
+        "opening_set": "Supplier opening balance recorded",
+        "adjusted": "Supplier account adjusted",
+        "paid": "Supplier paid"
+      },
+      "purchase_order": {
+        "saved": "Purchase order saved",
+        "validated": "Purchase order sent"
+      },
+      "goods_receipt": {
+        "validated": "Goods received"
+      },
+      "supplier_invoice": {
+        "validated": "Supplier invoice recorded"
+      },
+      "supplier_return": {
+        "validated": "Goods returned to supplier"
+      },
+      "expense": { "recorded": "Expense recorded", "reversed": "Expense reversed" },
+      "expense_category": {
+        "created": "Expense category created",
+        "updated": "Expense category updated",
+        "archived": "Expense category archived"
+      },
+      "import": {
+        "applied": "Import applied",
+        "undone": "Import undone"
+      },
+      "data": { "exported": "Data exported" },
+      "labels": {
+        "printed": "Labels printed",
+        "dismissed": "Labels marked up to date",
+        "barcodes_assigned": "In-store barcodes assigned"
+      },
+      "scale": { "item_set": "Scale settings of a product" },
+      "recovery": {
+        "set_aside": "Damaged data files set aside",
+        "fresh_start": "New shop created although backups existed"
+      },
+      "packs": {
+        "template_applied": "Activity template applied",
+        "modules_set": "Modules changed",
+        "till_mode_set": "Till mode changed"
+      },
+      "department_key": {
+        "created": "Department key created",
+        "updated": "Department key changed",
+        "archived": "Department key archived"
+      },
+      "dining": {
+        "room_saved": "Dining room saved",
+        "room_archived": "Dining room archived",
+        "table_saved": "Table saved",
+        "table_archived": "Table archived",
+        "ticket_opened": "Table ticket opened",
+        "line_added": "Line added to a table ticket",
+        "line_changed": "Table ticket quantity changed",
+        "line_removed": "Line removed before the kitchen",
+        "ticket_updated": "Table ticket changed",
+        "ticket_transferred": "Ticket moved to another table",
+        "tickets_merged": "Table tickets merged",
+        "menu_set": "Daily menu set",
+        "kitchen_sent": "Sent to the kitchen",
+        "kitchen_printed": "Kitchen ticket reprinted",
+        "line_voided": "Line voided with a reason",
+        "line_comped": "Line offered",
+        "ticket_voided": "Table ticket voided",
+        "bill_printed": "Bill printed",
+        "ticket_split": "Table ticket split",
+        "ticket_paid": "Table ticket paid"
+      },
+      "modifier_group": {
+        "saved": "Modifier group saved",
+        "archived": "Modifier group archived"
+      },
+      "kitchen_station": {
+        "saved": "Station saved",
+        "archived": "Station archived"
+      },
+      "pharmacy": {
+        "product_set": "Medicine details changed",
+        "register_recorded": "Controlled medicines register entry",
+        "chifa_applied": "Chifa list imported"
+      },
+      "butcher": {
+        "yield_template_saved": "Cutting template saved",
+        "yield_template_archived": "Cutting template archived",
+        "yield_run": "Carcass cut"
+      },
+      "flexy": {
+        "float_purchased": "Top-up float bought",
+        "operators_seeded": "Top-up operators set up"
+      },
+      "deposit": {
+        "taken": "Deposit taken",
+        "refunded": "Deposit refunded"
+      },
+      "service": {
+        "intake": "Service ticket opened",
+        "status_set": "Service ticket status changed",
+        "assigned": "Technician assigned",
+        "items_set": "Parts and labour changed",
+        "delivered": "Item delivered to the customer"
+      },
+      "instalments": {
+        "signed": "Instalment contract signed",
+        "guarantee_added": "Supporting document added",
+        "reminder_noted": "Instalment reminder noted",
+        "level_seeded": "Instalment price level created"
+      },
+      "wholesale": {
+        "price_set": "Customer price changed",
+        "min_order_set": "Minimum order changed",
+        "pack_created": "Pack created"
+      },
+      "rounds": {
+        "created": "Round created",
+        "stops_set": "Round stops changed",
+        "started": "Round started",
+        "stop_reported": "Round stop reported",
+        "closed": "Round closed",
+        "van_created": "Delivery van created"
+      },
+      "orders": {
+        "created": "Customer order recorded",
+        "ready": "Order ready",
+        "fulfilled": "Order fulfilled at the till",
+        "delivered": "Order delivered (note or invoice)",
+        "closed": "Order closed"
+      },
+      "appointments": {
+        "booked": "Appointment booked",
+        "updated": "Appointment changed",
+        "status_set": "Appointment status"
+      },
+      "loyalty": {
+        "enrolled": "Customer enrolled in loyalty",
+        "card_blocked": "Loyalty card blocked",
+        "redeemed": "Points redeemed for a voucher",
+        "adjusted": "Points adjusted",
+        "expired": "Points expired"
+      },
+      "vouchers": {
+        "sold": "Gift voucher sold",
+        "expired": "Vouchers expired"
+      },
+      "jewellery": {
+        "piece_set": "Jewel details changed",
+        "metal_price_set": "Price per gram changed",
+        "repriced": "Jewellery repriced"
+      },
+      "staff": {
+        "profile_set": "Employee file changed",
+        "advance_given": "Salary advance paid",
+        "advance_repaid": "Advance repaid",
+        "salary_deducted": "Advance deducted from salary"
+      },
+      "zakat": {
+        "saved": "Zakat calculation saved"
+      },
+      "payment_type": {
+        "created": "Payment type created",
+        "updated": "Payment type changed",
+        "archived": "Payment type archived"
+      },
+      "datapack": {
+        "installed": "Regulatory pack installed"
+      },
+      "privacy": {
+        "consent_set": "Customer consent recorded",
+        "accessed": "Customer file opened",
+        "exported": "Customer data exported",
+        "anonymised": "Customer anonymised"
+      },
+      "till": {
+        "key_map_set": "Till keys changed"
+      },
+      "registers": {
+        "host_booked": "A till's entries recorded on the main PC (registers and balances)"
+      }
+    }
+  },
+  "integrity": {
+    "verify": "Check receipts and closes",
+    "chainIntact": "{{type}} {{series}}: {{n}} documents checked, nothing was changed.",
+    "chainBroken": "{{type}} {{series}}: a change was found from {{number}}. Stop selling on this computer and contact DZBuild support.",
+    "closuresIntact": "Z closes: {{n}} checked, nothing was changed.",
+    "closuresBroken": "Z closes: a change was found at report {{z}}. Contact DZBuild support.",
+    "receiptsIntact": "Payment receipts: {{n}} checked, nothing was changed.",
+    "receiptsBroken": "Payment receipts: a change was found at receipt {{number}}. Contact DZBuild support.",
+    "tillJournalIntact": "Log of till {{code}}: {{n}} lines checked, nothing was changed.",
+    "tillJournalBroken": "Log of till {{code}}: a change was found from line {{seq}}. Contact DZBuild support.",
+    "tillMergeBroken": "The tills' logs gathered on this main PC: a change was found. Contact DZBuild support."
+  },
+  "history": {
+    "title": "History of {{name}}",
+    "empty": "No change recorded."
+  },
+  "about": {
+    "version": "Version",
+    "dataFolder": "Data folder",
+    "schema": "Data format version",
+    "os": "Operating system",
+    "terminal": "Terminal",
+    "openData": "Open the data folder",
+    "openLogs": "Open the technical logs",
+    "tagline": "DZBuild POS works without internet and keeps your data on this PC.",
+    "free": "DZBuild POS is free: no licence, no key, no subscription. Updates are free too.",
+    "grow": {
+      "title": "Grow with DZBuild",
+      "website": { "text": "Create your website and sell to all of Algeria.", "action": "Create my website" },
+      "link": {
+        "text": "Link this shop to your DZBuild account to publish your catalogue and receive online orders.",
+        "action": "Open the DZBuild link"
+      },
+      "blog": { "text": "Tips and guides for shop owners.", "action": "Read the blog" }
+    },
+    "lastCrash": "Last crash: {{at}}",
+    "openDiagnostics": "Open the diagnostic"
+  },
+  "data": {
+    "exportAllTitle": "Your data belongs to you",
+    "exportAllHelp": "All your data as CSV files (one file per list: products, customers, sales…), gathered in one zip file that Excel and other software can read.",
+    "exportAll": "Export all the data (zip)",
+    "exportAllDone": "Data exported. Rows: {{rows}}.",
+    "backupTitle": "Backup file",
+    "backupHelp": "A .dzpos file holds all the shop's data. Keep it on a USB stick to restore the shop on this PC or another one.",
+    "exportBackup": "Export a backup file (.dzpos)",
+    "exportBackupDone": "Backup file saved.",
+    "importBackup": "Import a backup file",
+    "importBackupHelp": "The file is added to the list of backups, where the owner can restore it. Nothing is replaced until it is restored.",
+    "importBackupDone": "Backup of {{date}} added to the list of backups.",
+    "imports": "Import data",
+    "importsHelp": "From an Excel or CSV file, with a check before every import."
+  },
+  "expenseCategories": {
+    "intro": "The categories offered for each expense. The group says on which line of the Z report the expenses paid with money from the drawer appear.",
+    "new": "New category",
+    "edit": "Edit the category",
+    "showArchived": "Show archived",
+    "columns": {
+      "order": "Order",
+      "code": "Code",
+      "name": "Name",
+      "cashGroup": "Group in the register",
+      "status": "Status",
+      "actions": "Actions"
+    },
+    "fields": {
+      "code": "Code",
+      "cashGroup": "Group in the register",
+      "sortOrder": "Order"
+    },
+    "save": "Save the category",
+    "saved": "Category saved.",
+    "archive": "Archive",
+    "archiveTitle": "Archive this category?",
+    "archiveBody": "“{{name}}” will no longer be offered for new expenses. The expenses already recorded keep it.",
+    "archived": "Archived"
+  },
+  "documents": {
+    "layout": {
+      "title": "Layout",
+      "accent": "Accent colour",
+      "accents": {
+        "brand": "Brand",
+        "ink": "Ink",
+        "info": "Blue",
+        "ok": "Green"
+      },
+      "logo": "Shop logo on documents",
+      "paper": "Paper size",
+      "papers": {
+        "a4": "A4",
+        "a5": "A5"
+      },
+      "secondLang": "Second language of new documents",
+      "secondLangNone": "None",
+      "deliveryPrices": "Prices on delivery notes",
+      "stampBox": "“Stamp and signature” box on quotes and notes",
+      "save": "Save the layout"
+    },
+    "texts": {
+      "title": "Document texts",
+      "header": "Header ({{lang}})",
+      "footer": "Footer ({{lang}})",
+      "terms": "Terms of sale ({{lang}})",
+      "warranty": "Warranty terms ({{lang}})",
+      "count": "{{used}} / {{max}}",
+      "save": "Save the texts"
+    },
+    "identity": {
+      "title": "Tax identity",
+      "activity": "Activity ({{lang}})",
+      "activityHint": "Printed on invoices: the activity registered in the trade register.",
+      "aeCard": "Auto-entrepreneur card",
+      "aeCardHint": "Replaces the RC on an auto-entrepreneur's documents.",
+      "save": "Save the identity"
+    },
+    "rules": {
+      "title": "Rules",
+      "quoteDays": "Quote validity (days)",
+      "dueDays": "Credit invoice due date (days)",
+      "save": "Save the rules"
+    },
+    "arabic": {
+      "title": "Arabic on labels and documents",
+      "hint": "Consumer information is given mainly in Arabic (executive decree 13-378). The software warns you before printing without Arabic.",
+      "documents": "Documents without Arabic",
+      "guards": {
+        "off": "Never warn",
+        "consumer": "Warn for any document to a consumer",
+        "categories": "Warn for the chosen categories"
+      },
+      "documentCategories": "Document categories",
+      "labels": "Labels without Arabic",
+      "labelModes": {
+        "activity": "According to the shop's activity",
+        "categories": "Only the chosen categories"
+      },
+      "labelActivityHint": "Every category for general food, cosmetics, food service and wholesale; none for the other activities.",
+      "labelCategories": "Label categories",
+      "noCategories": "No categories yet. Create them in Products.",
+      "save": "Save the Arabic rules"
+    },
+    "printers": {
+      "title": "A4 printers of this PC",
+      "hint": "These choices stay on this PC; each PC has its own.",
+      "default": "Default A4 printer",
+      "windowsDefault": "Windows default printer",
+      "margins": "Margins (mm)",
+      "printerFor": "Printer — {{kind}}",
+      "paperFor": "Paper — {{kind}}",
+      "copiesFor": "Copies — {{kind}}",
+      "save": "Save the printers",
+      "saved": "Printers of this PC saved."
+    },
+    "preview": "Preview with a sample invoice",
+    "previewHint": "The sample uses a made-up seller, customer and lines. It shows your settings and texts before you save them.",
+    "saved": "Document settings saved."
+  },
+  "demoCard": {
+    "title": "Demo shop",
+    "body": "A sample shop to practise on, kept apart from your data.",
+    "open": "Open the demo shop",
+    "confirm": "DZBuild POS will restart on the demo shop. Your real data is not touched.",
+    "erase": "Erase the demo"
+  }
+}

@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-purchases-cost-history"
+description = "Enables the purchases_cost_history command without any pre-configured scope."
+commands.allow = ["purchases_cost_history"]
+
+[[permission]]
+identifier = "deny-purchases-cost-history"
+description = "Denies the purchases_cost_history command without any pre-configured scope."
+commands.deny = ["purchases_cost_history"]

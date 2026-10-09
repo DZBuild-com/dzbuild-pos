@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-documents-convert"
+description = "Enables the documents_convert command without any pre-configured scope."
+commands.allow = ["documents_convert"]
+
+[[permission]]
+identifier = "deny-documents-convert"
+description = "Denies the documents_convert command without any pre-configured scope."
+commands.deny = ["documents_convert"]

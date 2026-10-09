@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-payment-type-archive"
+description = "Enables the payment_type_archive command without any pre-configured scope."
+commands.allow = ["payment_type_archive"]
+
+[[permission]]
+identifier = "deny-payment-type-archive"
+description = "Denies the payment_type_archive command without any pre-configured scope."
+commands.deny = ["payment_type_archive"]

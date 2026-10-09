@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-expenses-categories"
+description = "Enables the expenses_categories command without any pre-configured scope."
+commands.allow = ["expenses_categories"]
+
+[[permission]]
+identifier = "deny-expenses-categories"
+description = "Denies the expenses_categories command without any pre-configured scope."
+commands.deny = ["expenses_categories"]

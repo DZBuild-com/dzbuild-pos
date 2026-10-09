@@ -1,0 +1,29 @@
+---
+source: src-tauri/src/slips.rs
+expression: printed
+---
+** Supérette El Amel
+12 rue Larbi Ben M'hidi, Alger
+Tél. 023 45 67 89
+NIF 000116001234567
+--------
+* Reçu de versement
+N° RV2026-000001
+Date 28/09/2026 12:00 Poste C1
+Caissier Yacine
+--------
+Client Karim Benali
+Solde précédent 3 000,00
+Versement 2 000,00
+Droit de timbre 20,00
+** Montant reçu 2 020,00 DA
+Mode de paiement Espèces
+--------
+* Nouveau solde 1 000,00
+--------
+* Ventes réglées
+TK2026-C1-000012 1 500,00
+--------
+Arrêté à la somme de : deux mille vingt dinars
+* Merci de votre confiance
+(feed 1)

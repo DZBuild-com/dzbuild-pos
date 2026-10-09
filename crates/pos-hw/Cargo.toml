@@ -1,0 +1,46 @@
+[package]
+name = "pos-hw"
+description = "DZBuild POS hardware: ESC/POS, Arabic raster, labels, scales, drawer, pole display."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+publish.workspace = true
+
+[dependencies]
+pos-core.workspace = true
+pos-docs.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+specta.workspace = true
+thiserror.workspace = true
+tracing.workspace = true
+serialport = { version = "4.10.1", default-features = false }
+cosmic-text = { version = "0.19.0", default-features = false, features = ["std", "swash"] }
+image = { version = "0.25.10", default-features = false, features = ["png", "jpeg"] }
+barcoders = { version = "2.0.0", default-features = false, features = ["std"] }
+qrcode = { version = "0.14.1", default-features = false }
+base64 = "0.23.1"
+
+[target.'cfg(windows)'.dependencies]
+windows = { version = "0.62.2", features = [
+  "Win32_Foundation",
+  "Win32_Graphics_Gdi",
+  "Win32_Graphics_Printing",
+  "Win32_Security",
+] }
+
+[dev-dependencies]
+pos-core = { workspace = true, features = ["testkit"] }
+hex.workspace = true
+sha2.workspace = true
+insta.workspace = true
+proptest.workspace = true
+tempfile.workspace = true
+png = "0.18.1"
+
+[lints]
+workspace = true

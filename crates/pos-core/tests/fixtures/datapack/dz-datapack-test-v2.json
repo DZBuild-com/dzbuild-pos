@@ -1,0 +1,825 @@
+{
+  "id": "dz-2026.2-test",
+  "version": 2,
+  "validFrom": "2026-09-01",
+  "notes": [
+    "Wilaya names 01-58 transcribed from loi 84-09 (as amended) and loi 19-12: verify spelling against the Journal officiel before release.",
+    "Wilayas 59-69: loi 26-06 du 4 avril 2026 (JO n° 25); names and seats per décret présidentiel 26-206 (JO n° 40/2026).",
+    "Amounts are centimes, rates are basis points. Ship a new pack instead of changing code.",
+    "NIF: 15 digits, 18 for a secondary establishment (feature spec CFG-004).",
+    "G50 boxes 1-12 follow the G50 notice; the block that receives exempt turnover is an interpretation to confirm against the notice before release.",
+    "Scale barcode layouts (scaleBarcodes) are the scale makers' defaults, not a GS1 Algeria convention: check them against each shop's scale at installation."
+  ],
+  "currency": { "code": "DZD", "minorUnits": 2, "symbolAr": "دج", "symbolFr": "DA", "symbolEn": "DA" },
+  "nifLengths": [15, 18],
+  "vat": {
+    "rates": [
+      {
+        "code": "TVA19",
+        "rateBp": 1900,
+        "nameAr": "الرسم على القيمة المضافة 19%",
+        "nameFr": "TVA 19 %",
+        "nameEn": "VAT 19%",
+        "source": "CTCA art. 21"
+      },
+      {
+        "code": "TVA9",
+        "rateBp": 900,
+        "nameAr": "الرسم على القيمة المضافة 9%",
+        "nameFr": "TVA 9 %",
+        "nameEn": "VAT 9%",
+        "source": "CTCA art. 23; LF 2026 art. 53"
+      },
+      {
+        "code": "EXO",
+        "rateBp": 0,
+        "nameAr": "معفى من الرسم",
+        "nameFr": "Exonéré de TVA",
+        "nameEn": "VAT exempt",
+        "source": "CTCA art. 8-13; LF 2026 art. 112"
+      }
+    ]
+  },
+  "stampDuty": {
+    "exemptUpTo": 30000,
+    "tranche": 10000,
+    "minimum": 500,
+    "brackets": [
+      { "upTo": 3000000, "perTranche": 100 },
+      { "upTo": 10000000, "perTranche": 150 },
+      { "upTo": null, "perTranche": 200 }
+    ],
+    "progressive": false,
+    "exemptTenders": ["card_cib", "edahabia", "baridimob", "cheque", "transfer", "credit"],
+    "source": "Code du timbre art. 100-I (LF 2025 art. 46); DGI circulaire n° 14/MF/DGI/LF.2025 du 05/03/2025"
+  },
+  "ifu": {
+    "threshold": 800000000,
+    "autoEntrepreneurThreshold": 500000000,
+    "goodsRateBp": 500,
+    "servicesRateBp": 1200,
+    "autoEntrepreneurRateBp": 50,
+    "minimum": 3000000,
+    "autoEntrepreneurMinimum": 1000000,
+    "source": "CIDTA art. 282 bis-sexies; DGI page IFU (20/09/2026); LF 2025 art. 29; circulaire n° 29/2026"
+  },
+  "zakat": {
+    "nisab": 229500000,
+    "hijriYear": 1447,
+    "rateBp": 250,
+    "source": "Ministère des Affaires religieuses et des Wakfs, marw.dz, lu le 2026-09-28"
+  },
+  "regulated": {
+    "source": "Décret 11-108 modifié par le décret 21-383 (huile), décret 11-108 (sucre), décret 01-50 modifié par le décret 22-186 (lait en sachet), décret 07-402 modifié par le décret 20-242 (semoule) — research 09 §5.3, lu le 2026-09-28. Taux de TVA à vérifier avec un comptable.",
+    "items": [
+      {
+        "code": "oil_1l",
+        "nameAr": "زيت المائدة المكرر المدعم 1 ل",
+        "nameFr": "Huile de table raffinée subventionnée 1 L",
+        "nameEn": "Subsidised refined table oil 1 L",
+        "unit": "pc",
+        "ceiling": 13000,
+        "retailMargin": null,
+        "taxCode": "TVA9"
+      },
+      {
+        "code": "oil_2l",
+        "nameAr": "زيت المائدة المكرر المدعم 2 ل",
+        "nameFr": "Huile de table raffinée subventionnée 2 L",
+        "nameEn": "Subsidised refined table oil 2 L",
+        "unit": "pc",
+        "ceiling": 25000,
+        "retailMargin": null,
+        "taxCode": "TVA9"
+      },
+      {
+        "code": "oil_5l",
+        "nameAr": "زيت المائدة المكرر المدعم 5 ل",
+        "nameFr": "Huile de table raffinée subventionnée 5 L",
+        "nameEn": "Subsidised refined table oil 5 L",
+        "unit": "pc",
+        "ceiling": 65000,
+        "retailMargin": null,
+        "taxCode": "TVA9"
+      },
+      {
+        "code": "sugar_bulk_kg",
+        "nameAr": "سكر أبيض سائب (كلغ)",
+        "nameFr": "Sucre blanc en vrac (kg)",
+        "nameEn": "White sugar, loose (kg)",
+        "unit": "kg",
+        "ceiling": 9000,
+        "retailMargin": null,
+        "taxCode": "TVA9"
+      },
+      {
+        "code": "sugar_packed_kg",
+        "nameAr": "سكر أبيض معبأ 1 كلغ",
+        "nameFr": "Sucre blanc préemballé 1 kg",
+        "nameEn": "White sugar, packed 1 kg",
+        "unit": "pc",
+        "ceiling": 9500,
+        "retailMargin": null,
+        "taxCode": "TVA9"
+      },
+      {
+        "code": "milk_sachet_1l",
+        "nameAr": "حليب مبستر في كيس 1 ل",
+        "nameFr": "Lait pasteurisé en sachet 1 L",
+        "nameEn": "Pasteurised milk, sachet 1 L",
+        "unit": "pc",
+        "ceiling": 2500,
+        "retailMargin": null,
+        "taxCode": "EXO"
+      },
+      {
+        "code": "semolina_standard_1kg",
+        "nameAr": "سميد عادي 1 كلغ",
+        "nameFr": "Semoule courante 1 kg",
+        "nameEn": "Standard semolina 1 kg",
+        "unit": "pc",
+        "ceiling": 3850,
+        "retailMargin": 200,
+        "taxCode": "EXO"
+      },
+      {
+        "code": "semolina_standard_2kg",
+        "nameAr": "سميد عادي 2 كلغ",
+        "nameFr": "Semoule courante 2 kg",
+        "nameEn": "Standard semolina 2 kg",
+        "unit": "pc",
+        "ceiling": 7600,
+        "retailMargin": 400,
+        "taxCode": "EXO"
+      },
+      {
+        "code": "semolina_standard_5kg",
+        "nameAr": "سميد عادي 5 كلغ",
+        "nameFr": "Semoule courante 5 kg",
+        "nameEn": "Standard semolina 5 kg",
+        "unit": "pc",
+        "ceiling": 18750,
+        "retailMargin": 1000,
+        "taxCode": "EXO"
+      },
+      {
+        "code": "semolina_standard_10kg",
+        "nameAr": "سميد عادي 10 كلغ",
+        "nameFr": "Semoule courante 10 kg",
+        "nameEn": "Standard semolina 10 kg",
+        "unit": "pc",
+        "ceiling": 37000,
+        "retailMargin": 2000,
+        "taxCode": "EXO"
+      },
+      {
+        "code": "semolina_extra_1kg",
+        "nameAr": "سميد رفيع 1 كلغ",
+        "nameFr": "Semoule extra 1 kg",
+        "nameEn": "Extra semolina 1 kg",
+        "unit": "pc",
+        "ceiling": 4250,
+        "retailMargin": 300,
+        "taxCode": "EXO"
+      },
+      {
+        "code": "semolina_extra_2kg",
+        "nameAr": "سميد رفيع 2 كلغ",
+        "nameFr": "Semoule extra 2 kg",
+        "nameEn": "Extra semolina 2 kg",
+        "unit": "pc",
+        "ceiling": 8400,
+        "retailMargin": 600,
+        "taxCode": "EXO"
+      },
+      {
+        "code": "semolina_extra_5kg",
+        "nameAr": "سميد رفيع 5 كلغ",
+        "nameFr": "Semoule extra 5 kg",
+        "nameEn": "Extra semolina 5 kg",
+        "unit": "pc",
+        "ceiling": 20750,
+        "retailMargin": 1500,
+        "taxCode": "EXO"
+      },
+      {
+        "code": "semolina_extra_10kg",
+        "nameAr": "سميد رفيع 10 كلغ",
+        "nameFr": "Semoule extra 10 kg",
+        "nameEn": "Extra semolina 10 kg",
+        "unit": "pc",
+        "ceiling": 41000,
+        "retailMargin": 3000,
+        "taxCode": "EXO"
+      }
+    ]
+  },
+  "mobileOperators": [
+    { "code": "ooredoo", "nameAr": "أوريدو", "nameFr": "Ooredoo", "nameEn": "Ooredoo", "prefixes": ["05"] },
+    { "code": "mobilis", "nameAr": "موبيليس", "nameFr": "Mobilis", "nameEn": "Mobilis", "prefixes": ["06"] },
+    { "code": "djezzy", "nameAr": "جازي", "nameFr": "Djezzy", "nameEn": "Djezzy", "prefixes": ["07"] }
+  ],
+  "fiscal": {
+    "g50": {
+      "form": "Série G n° 50",
+      "boxes": {
+        "caHt9": "1",
+        "exempt9": "2",
+        "taxable9": "3",
+        "tva9": "4",
+        "caHt19": "5",
+        "exempt19": "6",
+        "taxable19": "7",
+        "tva19": "8",
+        "caHtTotal": "9",
+        "exemptTotal": "10",
+        "taxableTotal": "11",
+        "tvaTotal": "12",
+        "stampDuty": "§4"
+      },
+      "exemptBlock": "19",
+      "source": "Notice G50 (mfdgi.gov.dz/files/521/Formulaires-de-declaration/63/Notice-comment-remplir-GN50.pdf); research 04 §3.4"
+    },
+    "cashDeductionLimit": 100000000,
+    "retentionYears": 10,
+    "source": "CTCA art. 30 (no deduction on an invoice above 1 000 000 DA TTC paid in cash); CPF art. 64 as amended by LF 2026 art. 82"
+  },
+  "scaleBarcodes": {
+    "source": "GS1 General Specifications: prefixes 20-29 are restricted-circulation numbers whose layout each GS1 member organisation sets; GS1 Algeria publishes none (docs/research/05 §4.2), so these are the default layouts of the Rongta RLS, ACLAS LS and Dibal scales sold in Algeria. Prefix 20 stays for in-store product codes (products.internal_ean_prefix).",
+    "defaultLayouts": [
+      {
+        "prefix": "21",
+        "pluDigits": 5,
+        "verifier": false,
+        "value": "weight",
+        "valueDigits": 5,
+        "decimals": 3
+      },
+      {
+        "prefix": "22",
+        "pluDigits": 5,
+        "verifier": false,
+        "value": "price",
+        "valueDigits": 5,
+        "decimals": 0
+      },
+      {
+        "prefix": "27",
+        "pluDigits": 5,
+        "verifier": false,
+        "value": "weight",
+        "valueDigits": 5,
+        "decimals": 3
+      },
+      {
+        "prefix": "28",
+        "pluDigits": 5,
+        "verifier": false,
+        "value": "price",
+        "valueDigits": 5,
+        "decimals": 0
+      },
+      { "prefix": "29", "pluDigits": 4, "verifier": true, "value": "weight", "valueDigits": 5, "decimals": 3 }
+    ]
+  },
+  "wilayas": [
+    {
+      "code": "01",
+      "nameFr": "Adrar",
+      "nameAr": "أدرار",
+      "nameEn": "Adrar",
+      "since": 1974,
+      "splitFrom": null
+    },
+    {
+      "code": "02",
+      "nameFr": "Chlef",
+      "nameAr": "الشلف",
+      "nameEn": "Chlef",
+      "since": 1974,
+      "splitFrom": null
+    },
+    {
+      "code": "03",
+      "nameFr": "Laghouat",
+      "nameAr": "الأغواط",
+      "nameEn": "Laghouat",
+      "since": 1974,
+      "splitFrom": null
+    },
+    {
+      "code": "04",
+      "nameFr": "Oum El Bouaghi",
+      "nameAr": "أم البواقي",
+      "nameEn": "Oum El Bouaghi",
+      "since": 1974,
+      "splitFrom": null
+    },
+    {
+      "code": "05",
+      "nameFr": "Batna",
+      "nameAr": "باتنة",
+      "nameEn": "Batna",
+      "since": 1974,
+      "splitFrom": null
+    },
+    {
+      "code": "06",
+      "nameFr": "Béjaïa",
+      "nameAr": "بجاية",
+      "nameEn": "Bejaia",
+      "since": 1974,
+      "splitFrom": null
+    },
+    {
+      "code": "07",
+      "nameFr": "Biskra",
+      "nameAr": "بسكرة",
+      "nameEn": "Biskra",
+      "since": 1974,
+      "splitFrom": null
+    },
+    {
+      "code": "08",
+      "nameFr": "Béchar",
+      "nameAr": "بشار",
+      "nameEn": "Bechar",
+      "since": 1974,
+      "splitFrom": null
+    },
+    {
+      "code": "09",
+      "nameFr": "Blida",
+      "nameAr": "البليدة",
+      "nameEn": "Blida",
+      "since": 1974,
+      "splitFrom": null
+    },
+    {
+      "code": "10",
+      "nameFr": "Bouira",
+      "nameAr": "البويرة",
+      "nameEn": "Bouira",
+      "since": 1974,
+      "splitFrom": null
+    },
+    {
+      "code": "11",
+      "nameFr": "Tamanrasset",
+      "nameAr": "تمنراست",
+      "nameEn": "Tamanrasset",
+      "since": 1974,
+      "splitFrom": null
+    },
+    {
+      "code": "12",
+      "nameFr": "Tébessa",
+      "nameAr": "تبسة",
+      "nameEn": "Tebessa",
+      "since": 1974,
+      "splitFrom": null
+    },
+    {
+      "code": "13",
+      "nameFr": "Tlemcen",
+      "nameAr": "تلمسان",
+      "nameEn": "Tlemcen",
+      "since": 1974,
+      "splitFrom": null
+    },
+    {
+      "code": "14",
+      "nameFr": "Tiaret",
+      "nameAr": "تيارت",
+      "nameEn": "Tiaret",
+      "since": 1974,
+      "splitFrom": null
+    },
+    {
+      "code": "15",
+      "nameFr": "Tizi Ouzou",
+      "nameAr": "تيزي وزو",
+      "nameEn": "Tizi Ouzou",
+      "since": 1974,
+      "splitFrom": null
+    },
+    {
+      "code": "16",
+      "nameFr": "Alger",
+      "nameAr": "الجزائر",
+      "nameEn": "Algiers",
+      "since": 1974,
+      "splitFrom": null
+    },
+    {
+      "code": "17",
+      "nameFr": "Djelfa",
+      "nameAr": "الجلفة",
+      "nameEn": "Djelfa",
+      "since": 1974,
+      "splitFrom": null
+    },
+    {
+      "code": "18",
+      "nameFr": "Jijel",
+      "nameAr": "جيجل",
+      "nameEn": "Jijel",
+      "since": 1974,
+      "splitFrom": null
+    },
+    {
+      "code": "19",
+      "nameFr": "Sétif",
+      "nameAr": "سطيف",
+      "nameEn": "Setif",
+      "since": 1974,
+      "splitFrom": null
+    },
+    {
+      "code": "20",
+      "nameFr": "Saïda",
+      "nameAr": "سعيدة",
+      "nameEn": "Saida",
+      "since": 1974,
+      "splitFrom": null
+    },
+    {
+      "code": "21",
+      "nameFr": "Skikda",
+      "nameAr": "سكيكدة",
+      "nameEn": "Skikda",
+      "since": 1974,
+      "splitFrom": null
+    },
+    {
+      "code": "22",
+      "nameFr": "Sidi Bel Abbès",
+      "nameAr": "سيدي بلعباس",
+      "nameEn": "Sidi Bel Abbes",
+      "since": 1974,
+      "splitFrom": null
+    },
+    {
+      "code": "23",
+      "nameFr": "Annaba",
+      "nameAr": "عنابة",
+      "nameEn": "Annaba",
+      "since": 1974,
+      "splitFrom": null
+    },
+    {
+      "code": "24",
+      "nameFr": "Guelma",
+      "nameAr": "قالمة",
+      "nameEn": "Guelma",
+      "since": 1974,
+      "splitFrom": null
+    },
+    {
+      "code": "25",
+      "nameFr": "Constantine",
+      "nameAr": "قسنطينة",
+      "nameEn": "Constantine",
+      "since": 1974,
+      "splitFrom": null
+    },
+    {
+      "code": "26",
+      "nameFr": "Médéa",
+      "nameAr": "المدية",
+      "nameEn": "Medea",
+      "since": 1974,
+      "splitFrom": null
+    },
+    {
+      "code": "27",
+      "nameFr": "Mostaganem",
+      "nameAr": "مستغانم",
+      "nameEn": "Mostaganem",
+      "since": 1974,
+      "splitFrom": null
+    },
+    {
+      "code": "28",
+      "nameFr": "M'Sila",
+      "nameAr": "المسيلة",
+      "nameEn": "M'Sila",
+      "since": 1974,
+      "splitFrom": null
+    },
+    {
+      "code": "29",
+      "nameFr": "Mascara",
+      "nameAr": "معسكر",
+      "nameEn": "Mascara",
+      "since": 1974,
+      "splitFrom": null
+    },
+    {
+      "code": "30",
+      "nameFr": "Ouargla",
+      "nameAr": "ورقلة",
+      "nameEn": "Ouargla",
+      "since": 1974,
+      "splitFrom": null
+    },
+    { "code": "31", "nameFr": "Oran", "nameAr": "وهران", "nameEn": "Oran", "since": 1974, "splitFrom": null },
+    {
+      "code": "32",
+      "nameFr": "El Bayadh",
+      "nameAr": "البيض",
+      "nameEn": "El Bayadh",
+      "since": 1984,
+      "splitFrom": null
+    },
+    {
+      "code": "33",
+      "nameFr": "Illizi",
+      "nameAr": "إليزي",
+      "nameEn": "Illizi",
+      "since": 1984,
+      "splitFrom": null
+    },
+    {
+      "code": "34",
+      "nameFr": "Bordj Bou Arréridj",
+      "nameAr": "برج بوعريريج",
+      "nameEn": "Bordj Bou Arreridj",
+      "since": 1984,
+      "splitFrom": null
+    },
+    {
+      "code": "35",
+      "nameFr": "Boumerdès",
+      "nameAr": "بومرداس",
+      "nameEn": "Boumerdes",
+      "since": 1984,
+      "splitFrom": null
+    },
+    {
+      "code": "36",
+      "nameFr": "El Tarf",
+      "nameAr": "الطارف",
+      "nameEn": "El Tarf",
+      "since": 1984,
+      "splitFrom": null
+    },
+    {
+      "code": "37",
+      "nameFr": "Tindouf",
+      "nameAr": "تندوف",
+      "nameEn": "Tindouf",
+      "since": 1984,
+      "splitFrom": null
+    },
+    {
+      "code": "38",
+      "nameFr": "Tissemsilt",
+      "nameAr": "تيسمسيلت",
+      "nameEn": "Tissemsilt",
+      "since": 1984,
+      "splitFrom": null
+    },
+    {
+      "code": "39",
+      "nameFr": "El Oued",
+      "nameAr": "الوادي",
+      "nameEn": "El Oued",
+      "since": 1984,
+      "splitFrom": null
+    },
+    {
+      "code": "40",
+      "nameFr": "Khenchela",
+      "nameAr": "خنشلة",
+      "nameEn": "Khenchela",
+      "since": 1984,
+      "splitFrom": null
+    },
+    {
+      "code": "41",
+      "nameFr": "Souk Ahras",
+      "nameAr": "سوق أهراس",
+      "nameEn": "Souk Ahras",
+      "since": 1984,
+      "splitFrom": null
+    },
+    {
+      "code": "42",
+      "nameFr": "Tipaza",
+      "nameAr": "تيبازة",
+      "nameEn": "Tipaza",
+      "since": 1984,
+      "splitFrom": null
+    },
+    { "code": "43", "nameFr": "Mila", "nameAr": "ميلة", "nameEn": "Mila", "since": 1984, "splitFrom": null },
+    {
+      "code": "44",
+      "nameFr": "Aïn Defla",
+      "nameAr": "عين الدفلى",
+      "nameEn": "Ain Defla",
+      "since": 1984,
+      "splitFrom": null
+    },
+    {
+      "code": "45",
+      "nameFr": "Naâma",
+      "nameAr": "النعامة",
+      "nameEn": "Naama",
+      "since": 1984,
+      "splitFrom": null
+    },
+    {
+      "code": "46",
+      "nameFr": "Aïn Témouchent",
+      "nameAr": "عين تموشنت",
+      "nameEn": "Ain Temouchent",
+      "since": 1984,
+      "splitFrom": null
+    },
+    {
+      "code": "47",
+      "nameFr": "Ghardaïa",
+      "nameAr": "غرداية",
+      "nameEn": "Ghardaia",
+      "since": 1984,
+      "splitFrom": null
+    },
+    {
+      "code": "48",
+      "nameFr": "Relizane",
+      "nameAr": "غليزان",
+      "nameEn": "Relizane",
+      "since": 1984,
+      "splitFrom": null
+    },
+    {
+      "code": "49",
+      "nameFr": "Timimoun",
+      "nameAr": "تيميمون",
+      "nameEn": "Timimoun",
+      "since": 2019,
+      "splitFrom": "01"
+    },
+    {
+      "code": "50",
+      "nameFr": "Bordj Badji Mokhtar",
+      "nameAr": "برج باجي مختار",
+      "nameEn": "Bordj Badji Mokhtar",
+      "since": 2019,
+      "splitFrom": "01"
+    },
+    {
+      "code": "51",
+      "nameFr": "Ouled Djellal",
+      "nameAr": "أولاد جلال",
+      "nameEn": "Ouled Djellal",
+      "since": 2019,
+      "splitFrom": "07"
+    },
+    {
+      "code": "52",
+      "nameFr": "Béni Abbès",
+      "nameAr": "بني عباس",
+      "nameEn": "Beni Abbes",
+      "since": 2019,
+      "splitFrom": "08"
+    },
+    {
+      "code": "53",
+      "nameFr": "In Salah",
+      "nameAr": "عين صالح",
+      "nameEn": "In Salah",
+      "since": 2019,
+      "splitFrom": "11"
+    },
+    {
+      "code": "54",
+      "nameFr": "In Guezzam",
+      "nameAr": "عين قزام",
+      "nameEn": "In Guezzam",
+      "since": 2019,
+      "splitFrom": "11"
+    },
+    {
+      "code": "55",
+      "nameFr": "Touggourt",
+      "nameAr": "تقرت",
+      "nameEn": "Touggourt",
+      "since": 2019,
+      "splitFrom": "30"
+    },
+    {
+      "code": "56",
+      "nameFr": "Djanet",
+      "nameAr": "جانت",
+      "nameEn": "Djanet",
+      "since": 2019,
+      "splitFrom": "33"
+    },
+    {
+      "code": "57",
+      "nameFr": "El M'Ghair",
+      "nameAr": "المغير",
+      "nameEn": "El M'Ghair",
+      "since": 2019,
+      "splitFrom": "39"
+    },
+    {
+      "code": "58",
+      "nameFr": "El Meniaa",
+      "nameAr": "المنيعة",
+      "nameEn": "El Meniaa",
+      "since": 2019,
+      "splitFrom": "47"
+    },
+    {
+      "code": "59",
+      "nameFr": "Aflou",
+      "nameAr": "أفلو",
+      "nameEn": "Aflou",
+      "since": 2026,
+      "splitFrom": "03"
+    },
+    {
+      "code": "60",
+      "nameFr": "Barika",
+      "nameAr": "بريكة",
+      "nameEn": "Barika",
+      "since": 2026,
+      "splitFrom": "05"
+    },
+    {
+      "code": "61",
+      "nameFr": "El Kantara",
+      "nameAr": "القنطرة",
+      "nameEn": "El Kantara",
+      "since": 2026,
+      "splitFrom": "07"
+    },
+    {
+      "code": "62",
+      "nameFr": "Bir El Ater",
+      "nameAr": "بئر العاتر",
+      "nameEn": "Bir El Ater",
+      "since": 2026,
+      "splitFrom": "12"
+    },
+    {
+      "code": "63",
+      "nameFr": "El Aricha",
+      "nameAr": "العريشة",
+      "nameEn": "El Aricha",
+      "since": 2026,
+      "splitFrom": "13"
+    },
+    {
+      "code": "64",
+      "nameFr": "Ksar Chellala",
+      "nameAr": "قصر الشلالة",
+      "nameEn": "Ksar Chellala",
+      "since": 2026,
+      "splitFrom": "14"
+    },
+    {
+      "code": "65",
+      "nameFr": "Aïn Ouessara",
+      "nameAr": "عين وسارة",
+      "nameEn": "Ain Oussera",
+      "since": 2026,
+      "splitFrom": "17"
+    },
+    {
+      "code": "66",
+      "nameFr": "Messaad",
+      "nameAr": "مسعد",
+      "nameEn": "Messaad",
+      "since": 2026,
+      "splitFrom": "17"
+    },
+    {
+      "code": "67",
+      "nameFr": "Ksar El Boukhari",
+      "nameAr": "قصر البخاري",
+      "nameEn": "Ksar El Boukhari",
+      "since": 2026,
+      "splitFrom": "26"
+    },
+    {
+      "code": "68",
+      "nameFr": "Bou Saâda",
+      "nameAr": "بوسعادة",
+      "nameEn": "Bou Saada",
+      "since": 2026,
+      "splitFrom": "28"
+    },
+    {
+      "code": "69",
+      "nameFr": "El Abiodh Sidi Cheikh",
+      "nameAr": "الأبيض سيدي الشيخ",
+      "nameEn": "El Abiodh Sidi Cheikh",
+      "since": 2026,
+      "splitFrom": "32"
+    }
+  ]
+}

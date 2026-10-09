@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-hardware-retry-print"
+description = "Enables the hardware_retry_print command without any pre-configured scope."
+commands.allow = ["hardware_retry_print"]
+
+[[permission]]
+identifier = "deny-hardware-retry-print"
+description = "Denies the hardware_retry_print command without any pre-configured scope."
+commands.deny = ["hardware_retry_print"]

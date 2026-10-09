@@ -1,0 +1,16 @@
+{
+  "title": "Help centre",
+  "search": "Search the help",
+  "noResult": "No page matches.",
+  "groups": {
+    "start": "Getting started",
+    "sell": "Selling",
+    "manage": "Managing",
+    "settings": "Settings",
+    "safety": "Data safety"
+  },
+  "print": "Print the quick card",
+  "openFull": "Open the full help",
+  "needHelp": "Need help? Contact support",
+  "back": "Back to the help centre"
+}

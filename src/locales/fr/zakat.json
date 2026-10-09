@@ -1,0 +1,48 @@
+{
+  "title": "Zakat",
+  "intro": "Une estimation de la zakat sur vos marchandises : les chiffres que le logiciel connaît, plus ce que vous ajoutez.",
+  "inputs": "Ce que vous ajoutez",
+  "day": "Date du calcul",
+  "hijri": "Date hégirienne",
+  "valuation": {
+    "label": "Valeur du stock",
+    "cost": "au prix de revient",
+    "sale_price": "au prix de vente"
+  },
+  "bank": "Banque et CCP",
+  "otherAssets": "Autres avoirs",
+  "otherDebts": "Autres dettes",
+  "note": "Note",
+  "preview": "Calcul",
+  "computing": "Calcul en cours…",
+  "lines": {
+    "stock": "Stock ({{valuation}})",
+    "cash": "Espèces en caisse",
+    "bank": "Banque et CCP",
+    "otherAssets": "Autres avoirs",
+    "receivables": "Ce que les clients vous doivent",
+    "payables": "Ce que vous devez aux fournisseurs",
+    "otherDebts": "Autres dettes"
+  },
+  "base": "Assiette",
+  "nisab": "Nissab",
+  "nisabSource": "Source : {{source}}",
+  "rate": "Taux",
+  "due": "Zakat due",
+  "belowNisab": "L'assiette est inférieure au nissab : aucune zakat n'est due.",
+  "disclaimer": "Calcul indicatif établi par le logiciel. Il ne constitue pas une fatwa ; en cas de doute, consultez un savant ou la direction des affaires religieuses de votre wilaya.",
+  "save": "Enregistrer le calcul",
+  "recorded": "Calcul {{number}} enregistré",
+  "saved": "Calculs enregistrés",
+  "savedEmpty": "Aucun calcul enregistré. Enregistrez celui du jour pour le garder et l'imprimer.",
+  "print": "Imprimer",
+  "printed": "Calcul de la zakat envoyé à l'imprimante.",
+  "columns": {
+    "number": "N°",
+    "day": "Date",
+    "base": "Assiette",
+    "due": "Zakat",
+    "by": "Par"
+  },
+  "mainPcOnly": "Les calculs sont enregistrés et gardés sur le poste principal."
+}

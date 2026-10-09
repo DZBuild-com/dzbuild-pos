@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-lan-promote"
+description = "Enables the lan_promote command without any pre-configured scope."
+commands.allow = ["lan_promote"]
+
+[[permission]]
+identifier = "deny-lan-promote"
+description = "Denies the lan_promote command without any pre-configured scope."
+commands.deny = ["lan_promote"]

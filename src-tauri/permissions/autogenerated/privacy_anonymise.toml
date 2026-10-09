@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-privacy-anonymise"
+description = "Enables the privacy_anonymise command without any pre-configured scope."
+commands.allow = ["privacy_anonymise"]
+
+[[permission]]
+identifier = "deny-privacy-anonymise"
+description = "Denies the privacy_anonymise command without any pre-configured scope."
+commands.deny = ["privacy_anonymise"]

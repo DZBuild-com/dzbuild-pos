@@ -1,0 +1,139 @@
+{
+  "lang": "fr",
+  "rtl": false,
+  "title": "Bon de route",
+  "number": "TR2026-000001",
+  "date": "28/09/2026",
+  "seller": {
+    "name": "Supérette El Amel",
+    "nameAlt": "مغازة الأمل",
+    "legalForm": "SARL",
+    "activity": "Commerce de détail en alimentation générale",
+    "activityAlt": "تجارة التجزئة للمواد الغذائية العامة",
+    "capital": 100000000,
+    "address": "12 rue Larbi Ben M'hidi, Alger",
+    "wilaya": "Alger",
+    "phone": "023 45 67 89",
+    "email": null,
+    "ids": [
+      {
+        "kind": "rc",
+        "value": "16/00-1234567B26"
+      },
+      {
+        "kind": "nif",
+        "value": "000116001234567"
+      },
+      {
+        "kind": "nis",
+        "value": "000116001234567"
+      },
+      {
+        "kind": "ai",
+        "value": "16012345678"
+      },
+      {
+        "kind": "rib",
+        "value": "00799999001234567890"
+      }
+    ],
+    "vatExemptRef": null
+  },
+  "driver": "Rachid",
+  "plate": "01234-116-16",
+  "van": null,
+  "stops": [
+    {
+      "seq": 1,
+      "customer": "Épicerie Amine",
+      "address": "Cité 200 logements, Bab Ezzouar",
+      "phone": "0555123456",
+      "document": "FA2026-000004",
+      "amountDue": 500000,
+      "collected": 500000,
+      "status": "Livré"
+    },
+    {
+      "seq": 2,
+      "customer": "Supérette Nour",
+      "address": "Cité 200 logements, Bab Ezzouar",
+      "phone": "0555123456",
+      "document": "BL2026-000007",
+      "amountDue": 1000000,
+      "collected": 0,
+      "status": "À livrer"
+    }
+  ],
+  "totalDue": 1500000,
+  "totalCollected": 500000,
+  "labels": {
+    "driver": "Chauffeur",
+    "plate": "Immatriculation",
+    "van": "Véhicule (stock)",
+    "customer": "Client",
+    "address": "Adresse",
+    "phone": "Téléphone",
+    "document": "Document",
+    "amountDue": "À encaisser",
+    "collected": "Encaissé",
+    "status": "État",
+    "signature": "Signature client"
+  },
+  "partyLabels": {
+    "number": "N°",
+    "date": "Date",
+    "validUntil": "Valable jusqu'au",
+    "dueDate": "Date de règlement",
+    "seller": "Vendeur",
+    "customer": "Client",
+    "supplier": "Fournisseur",
+    "legalForm": "Forme juridique",
+    "activity": "Activité",
+    "capital": "Capital social",
+    "address": "Adresse",
+    "phone": "Tél.",
+    "email": "E-mail",
+    "rc": "RC",
+    "aeCard": "Carte AE",
+    "nif": "NIF",
+    "nis": "NIS",
+    "ai": "AI",
+    "nin": "NIN",
+    "rib": "RIB",
+    "designation": "Désignation",
+    "qty": "Qté",
+    "unit": "Unité",
+    "unitPriceHt": "P.U. HT",
+    "unitPriceTtc": "P.U. TTC",
+    "discount": "Remise",
+    "vatRate": "TVA",
+    "totalHt": "Montant HT",
+    "totalTtc": "Montant TTC",
+    "subtotalHt": "Total HT",
+    "discountTotal": "Total des remises",
+    "totalTtcLabel": "Total TTC",
+    "stampDuty": "Droit de timbre",
+    "stampAbsorbed": "Droit de timbre pris en charge par le vendeur",
+    "rounding": "Arrondi",
+    "netToPay": "Net à payer",
+    "paymentMode": "Mode de paiement",
+    "paid": "Payé",
+    "remaining": "Reste dû",
+    "references": "Documents cités",
+    "stampBox": "Cachet et signature",
+    "page": "Page",
+    "printedAt": "Imprimé le",
+    "from": "De",
+    "to": "Vers",
+    "driver": "Chauffeur",
+    "vehicle": "Véhicule",
+    "note": "Observations",
+    "terms": "Conditions",
+    "reason": "Motif",
+    "receivedBy": "Reçu par"
+  },
+  "signatures": [
+    "Le chauffeur",
+    "Le magasin"
+  ]
+}

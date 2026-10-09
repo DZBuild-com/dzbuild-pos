@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-instalments-collect"
+description = "Enables the instalments_collect command without any pre-configured scope."
+commands.allow = ["instalments_collect"]
+
+[[permission]]
+identifier = "deny-instalments-collect"
+description = "Denies the instalments_collect command without any pre-configured scope."
+commands.deny = ["instalments_collect"]

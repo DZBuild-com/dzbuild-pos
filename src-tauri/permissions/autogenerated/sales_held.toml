@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-sales-held"
+description = "Enables the sales_held command without any pre-configured scope."
+commands.allow = ["sales_held"]
+
+[[permission]]
+identifier = "deny-sales-held"
+description = "Denies the sales_held command without any pre-configured scope."
+commands.deny = ["sales_held"]

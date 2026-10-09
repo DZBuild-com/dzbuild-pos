@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-orders-get"
+description = "Enables the orders_get command without any pre-configured scope."
+commands.allow = ["orders_get"]
+
+[[permission]]
+identifier = "deny-orders-get"
+description = "Denies the orders_get command without any pre-configured scope."
+commands.deny = ["orders_get"]

@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-rounds-list"
+description = "Enables the rounds_list command without any pre-configured scope."
+commands.allow = ["rounds_list"]
+
+[[permission]]
+identifier = "deny-rounds-list"
+description = "Denies the rounds_list command without any pre-configured scope."
+commands.deny = ["rounds_list"]

@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-deposits-refund"
+description = "Enables the deposits_refund command without any pre-configured scope."
+commands.allow = ["deposits_refund"]
+
+[[permission]]
+identifier = "deny-deposits-refund"
+description = "Denies the deposits_refund command without any pre-configured scope."
+commands.deny = ["deposits_refund"]

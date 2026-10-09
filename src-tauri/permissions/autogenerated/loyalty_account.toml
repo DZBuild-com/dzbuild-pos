@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-loyalty-account"
+description = "Enables the loyalty_account command without any pre-configured scope."
+commands.allow = ["loyalty_account"]
+
+[[permission]]
+identifier = "deny-loyalty-account"
+description = "Denies the loyalty_account command without any pre-configured scope."
+commands.deny = ["loyalty_account"]

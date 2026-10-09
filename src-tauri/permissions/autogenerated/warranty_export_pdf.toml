@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-warranty-export-pdf"
+description = "Enables the warranty_export_pdf command without any pre-configured scope."
+commands.allow = ["warranty_export_pdf"]
+
+[[permission]]
+identifier = "deny-warranty-export-pdf"
+description = "Denies the warranty_export_pdf command without any pre-configured scope."
+commands.deny = ["warranty_export_pdf"]

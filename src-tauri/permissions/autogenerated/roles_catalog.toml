@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-roles-catalog"
+description = "Enables the roles_catalog command without any pre-configured scope."
+commands.allow = ["roles_catalog"]
+
+[[permission]]
+identifier = "deny-roles-catalog"
+description = "Denies the roles_catalog command without any pre-configured scope."
+commands.deny = ["roles_catalog"]

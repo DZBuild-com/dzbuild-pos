@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-hardware-save"
+description = "Enables the hardware_save command without any pre-configured scope."
+commands.allow = ["hardware_save"]
+
+[[permission]]
+identifier = "deny-hardware-save"
+description = "Denies the hardware_save command without any pre-configured scope."
+commands.deny = ["hardware_save"]

@@ -1,0 +1,44 @@
+name: Translation fix
+description: A wrong, unclear or awkward word in Arabic, French or English.
+title: "[i18n]: "
+labels: ["area/i18n", "status/needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        You can also send a pull request that edits `src/locales/{ar,fr,en}/*.json` (printed documents: `crates/pos-docs/locales/`).
+  - type: dropdown
+    id: language
+    attributes:
+      label: Language
+      options:
+        - العربية (Arabic)
+        - Français
+        - English
+    validations:
+      required: true
+  - type: input
+    id: where
+    attributes:
+      label: Where it appears
+      description: The screen, the button, or the printed document (receipt, invoice, label…).
+      placeholder: "Till › Payment dialog"
+    validations:
+      required: true
+  - type: textarea
+    id: current
+    attributes:
+      label: Current text
+    validations:
+      required: true
+  - type: textarea
+    id: proposed
+    attributes:
+      label: Proposed text
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why (optional)
+      description: The word shops really use, a legal term, a typo, a right-to-left problem…

@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-rounds-create"
+description = "Enables the rounds_create command without any pre-configured scope."
+commands.allow = ["rounds_create"]
+
+[[permission]]
+identifier = "deny-rounds-create"
+description = "Denies the rounds_create command without any pre-configured scope."
+commands.deny = ["rounds_create"]

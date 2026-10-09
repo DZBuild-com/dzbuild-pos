@@ -1,0 +1,37 @@
+{
+  "title": "ملخص المبيعات",
+  "subtitle": "من 01/09/2026 إلى 30/09/2026",
+  "lang": "ar",
+  "rtl": true,
+  "shop": "مغازة الأمل",
+  "nif": "000116001234567",
+  "nifLabel": "رقم التعريف الجبائي",
+  "columns": [
+    {
+      "key": "period",
+      "label": "الفترة",
+      "kind": "date",
+      "tag": null
+    },
+    {
+      "key": "netTtc",
+      "label": "الصافي بكل الرسوم",
+      "kind": "money",
+      "tag": null
+    }
+  ],
+  "rows": [
+    [
+      "2026-09-01",
+      1200000
+    ]
+  ],
+  "totals": [
+    null,
+    1200000
+  ],
+  "tagLabels": {},
+  "totalLabel": "المجموع",
+  "printedAt": "28/09/2026 10:15",
+  "pageLabel": "صفحة"
+}

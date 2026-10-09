@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-cloud-orders-quote"
+description = "Enables the cloud_orders_quote command without any pre-configured scope."
+commands.allow = ["cloud_orders_quote"]
+
+[[permission]]
+identifier = "deny-cloud-orders-quote"
+description = "Denies the cloud_orders_quote command without any pre-configured scope."
+commands.deny = ["cloud_orders_quote"]

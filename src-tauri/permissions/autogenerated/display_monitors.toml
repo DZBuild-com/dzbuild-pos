@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-display-monitors"
+description = "Enables the display_monitors command without any pre-configured scope."
+commands.allow = ["display_monitors"]
+
+[[permission]]
+identifier = "deny-display-monitors"
+description = "Denies the display_monitors command without any pre-configured scope."
+commands.deny = ["display_monitors"]

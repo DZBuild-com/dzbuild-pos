@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-reports-dashboard"
+description = "Enables the reports_dashboard command without any pre-configured scope."
+commands.allow = ["reports_dashboard"]
+
+[[permission]]
+identifier = "deny-reports-dashboard"
+description = "Denies the reports_dashboard command without any pre-configured scope."
+commands.deny = ["reports_dashboard"]

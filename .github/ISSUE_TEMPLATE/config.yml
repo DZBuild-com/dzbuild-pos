@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Questions and ideas
+    url: https://github.com/DZBuild-com/dzbuild-pos/discussions
+    about: Ask a question or discuss an idea with the community.
+  - name: Report a security vulnerability
+    url: https://github.com/DZBuild-com/dzbuild-pos/security/advisories/new
+    about: Please report security problems privately, never in a public issue.
+  - name: Download and help for shops
+    url: https://dzbuild.com/pos
+    about: Download DZBuild POS and get help using it in your shop.

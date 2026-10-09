@@ -1,0 +1,34 @@
+/* A help page printed from WebView2 (the quick card): only its sheet reaches the A4 page. */
+@media print {
+  /* No page margin: Chromium prints its header and footer (date, title, address, page number)
+     inside the @page margin, so with none it prints neither; the 12 mm live on the sheet. The
+     print preview still uses the printer's default paper (Letter on an en-US PC) and fits the A4
+     sheet into it; a fixed A4 whatever the printer needs the print host's settings
+     (src-tauri/src/webview_print.rs). */
+  @page {
+    size: A4;
+    margin: 0;
+  }
+  body * {
+    visibility: hidden;
+  }
+  .print-sheet,
+  .print-sheet * {
+    visibility: visible;
+  }
+  .print-sheet {
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    inline-size: 100%;
+    max-inline-size: none;
+    box-sizing: border-box;
+    padding: 12mm;
+    /* the 12 mm again at the top and bottom of every page when a sheet runs over one */
+    box-decoration-break: clone;
+  }
+  /* the page's own buttons stay off paper; its links print as their words */
+  .print-sheet button:not([data-help-link]) {
+    display: none;
+  }
+}

@@ -1,0 +1,21 @@
+/* Light mode (Réglages › Affichage), for a slow PC (Celeron, 4 GB): no animation, transition or
+   shadow anywhere, smaller till tiles, and the till grid shows initials instead of photos
+   (`useLightMode`). Fewer paints and less memory. */
+
+[data-light="1"] *,
+[data-light="1"] *::before,
+[data-light="1"] *::after {
+  animation: none !important;
+  transition: none !important;
+  box-shadow: none !important;
+  scroll-behavior: auto !important;
+}
+
+[data-light="1"] {
+  --pos-tile: 6rem;
+}
+
+/* The focus stays visible (spec §10.1): the few rings drawn with a shadow become the outline. */
+[data-light="1"] :focus-visible {
+  outline: 3px solid var(--focus) !important;
+}

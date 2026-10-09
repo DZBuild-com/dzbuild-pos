@@ -1,0 +1,60 @@
+{
+  "title": "Installation de DZBuild POS",
+  "progress": "Étape {{step}} sur {{total}}",
+  "steps": {
+    "language": "Langue",
+    "shop": "Boutique",
+    "owner": "Propriétaire",
+    "printer": "Imprimante",
+    "scale": "Balance"
+  },
+  "language": {
+    "title": "Choisissez la langue du logiciel",
+    "hint": "Vous pourrez la changer à tout moment ; chaque utilisateur peut avoir la sienne."
+  },
+  "shop": {
+    "title": "Votre boutique",
+    "name": "Nom de la boutique",
+    "activity": "Activité",
+    "regime": "Régime fiscal",
+    "regimeIfu": "IFU (impôt forfaitaire unique : un seul impôt, pas de TVA)",
+    "regimeIfuHint": "Prix toutes taxes comprises, pas de TVA sur vos documents.",
+    "regimeReel": "Régime du réel (TVA)",
+    "regimeReelHint": "Les factures affichent la TVA de chaque taux.",
+    "priceMode": "Les prix sont saisis",
+    "priceTtc": "Toutes taxes comprises (TTC)",
+    "priceHt": "Hors taxes (HT)",
+    "wilaya": "Wilaya",
+    "wilayaNone": "Choisir plus tard",
+    "phone": "Téléphone",
+    "optional": "(facultatif)"
+  },
+  "owner": {
+    "title": "Le compte du propriétaire",
+    "hint": "Le propriétaire peut tout faire et gère les autres utilisateurs.",
+    "name": "Votre nom",
+    "pin": "Code PIN (4 à 8 chiffres)",
+    "pinConfirm": "Retapez le code PIN"
+  },
+  "printer": {
+    "title": "Imprimante de tickets",
+    "hint": "Branchez et allumez l'imprimante, puis détectez-la. Vous pourrez la changer dans Réglages › Matériel.",
+    "none": "Aucune imprimante trouvée. Installez son pilote Windows, puis détectez de nouveau, ou passez cette étape.",
+    "likely": "Imprimante de tickets probable",
+    "skip": "Passer pour l'instant"
+  },
+  "skip": "Passer",
+  "finish": "Terminer et ouvrir le logiciel",
+  "free": {
+    "note": "DZBuild POS est gratuit pour toujours. Envie d'un site pour votre boutique aussi ?",
+    "link": "dzbuild.com/register"
+  },
+  "first": {
+    "demo": "Découvrir avec une boutique de démonstration",
+    "import": "Transférer ma boutique depuis un autre PC (fichier .dzpos)",
+    "tour": "Regarder la visite (2 minutes)",
+    "openingDemo": "Ouverture de la démonstration…",
+    "restoring": "Restauration de votre boutique…",
+    "importHint": "N'encaissez plus sur l'ancien PC : les deux numéroteraient les mêmes tickets. Pour une deuxième caisse, choisissez « Poste de caisse d'une boutique »."
+  }
+}

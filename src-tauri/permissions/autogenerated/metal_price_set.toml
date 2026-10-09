@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-metal-price-set"
+description = "Enables the metal_price_set command without any pre-configured scope."
+commands.allow = ["metal_price_set"]
+
+[[permission]]
+identifier = "deny-metal-price-set"
+description = "Denies the metal_price_set command without any pre-configured scope."
+commands.deny = ["metal_price_set"]

@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-rounds-report-stop"
+description = "Enables the rounds_report_stop command without any pre-configured scope."
+commands.allow = ["rounds_report_stop"]
+
+[[permission]]
+identifier = "deny-rounds-report-stop"
+description = "Denies the rounds_report_stop command without any pre-configured scope."
+commands.deny = ["rounds_report_stop"]

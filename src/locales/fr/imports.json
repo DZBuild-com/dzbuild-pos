@@ -1,0 +1,152 @@
+{
+  "title": "Importer",
+  "entity": "Données à importer",
+  "entities": {
+    "products": "Produits",
+    "categories": "Catégories",
+    "customers": "Clients",
+    "suppliers": "Fournisseurs",
+    "opening_stock": "Stock d'ouverture",
+    "customer_balances": "Soldes d'ouverture des clients",
+    "supplier_balances": "Soldes d'ouverture des fournisseurs",
+    "count_lines": "Quantités d'inventaire"
+  },
+  "steps": {
+    "label": "Étapes de l'import",
+    "file": "Fichier",
+    "mapping": "Colonnes",
+    "check": "Vérification",
+    "import": "Import"
+  },
+  "file": {
+    "intro": "Choisissez un fichier Excel (xlsx, xls, ods) ou CSV. Les titres des colonnes peuvent être en arabe, en français ou en anglais. Le modèle montre les colonnes attendues.",
+    "choose": "Choisir le fichier",
+    "template": "Télécharger le modèle",
+    "templateSaved": "Modèle enregistré.",
+    "name": "Fichier",
+    "sheet": "Feuille",
+    "sheetOption": "{{name}} ({{rows}} lignes)",
+    "encoding": "Encodage",
+    "delimiter": "Séparateur",
+    "reading": "Lecture du fichier…"
+  },
+  "mapping": {
+    "intro": "Indiquez ce que contient chaque colonne du fichier. Les champs suivis de * sont obligatoires.",
+    "column": "Colonne {{n}}",
+    "untitled": "Sans titre",
+    "samples": "Premières valeurs",
+    "ignore": "Ignorer",
+    "required": "{{label}} *",
+    "missing": "Champs obligatoires sans colonne : {{fields}}.",
+    "headerRow": "Ligne des titres",
+    "headerRowHelp": "Trouvée automatiquement. Les lignes au-dessus sont ignorées.",
+    "policy": "Fiches déjà enregistrées",
+    "policies": {
+      "create_only": "Créer seulement",
+      "upsert": "Créer et mettre à jour",
+      "sync": "Aligner la liste sur le fichier"
+    },
+    "policyHelp": {
+      "create_only": "Seules les nouvelles fiches sont créées. Une ligne qui correspond à une fiche existante est ignorée et signalée.",
+      "upsert": "Les nouvelles fiches sont créées, les fiches existantes sont mises à jour avec les valeurs du fichier.",
+      "sync": "Comme « Créer et mettre à jour », puis les produits absents du fichier sont archivés (jamais supprimés)."
+    },
+    "posting": "Chaque ligne ajoute une écriture d'ouverture. Rien n'est modifié ni supprimé, et l'import peut être annulé le jour même.",
+    "location": "Emplacement",
+    "defaultLocation": "Emplacement par défaut",
+    "locationHelp": "Reçoit les lignes du fichier qui n'ont pas de colonne d'emplacement.",
+    "count": "Inventaire",
+    "countChoose": "Choisissez un inventaire",
+    "countNone": "Aucun inventaire ouvert. Commencez un inventaire dans Stock › Inventaires.",
+    "countOption": "{{location}}, commencé le {{date}}"
+  },
+  "check": {
+    "intro": "La vérification lit tout le fichier sans rien enregistrer.",
+    "run": "Vérifier le fichier",
+    "changed": "Les colonnes ont changé depuis la vérification. Vérifiez le fichier à nouveau.",
+    "counts": {
+      "label": "Résultat de la vérification",
+      "total": "Lignes",
+      "create": "À créer",
+      "update": "À mettre à jour",
+      "skip": "Ignorées",
+      "fail": "Refusées",
+      "archive": "À archiver"
+    },
+    "problems": "Problèmes",
+    "none": "Aucun problème : le fichier est prêt à être importé.",
+    "row": "Ligne {{row}}",
+    "columns": {
+      "row": "Ligne",
+      "field": "Colonne",
+      "value": "Valeur",
+      "problem": "Problème"
+    },
+    "report": "Télécharger le rapport d'erreurs",
+    "reportSaved": "Rapport d'erreurs enregistré.",
+    "truncated": "Seuls les premiers problèmes sont listés. Corrigez-les, puis vérifiez le fichier à nouveau.",
+    "stockKept": "Produits absents du fichier gardés pour leur stock (non archivés) : {{n}}. Mettez leur stock à zéro pour pouvoir les archiver.",
+    "stockKeptMore": "Et d'autres : voyez les niveaux de stock."
+  },
+  "apply": {
+    "run": "Importer",
+    "needsCheck": "Vérifiez le fichier avec ces colonnes avant d'importer.",
+    "ready": "Les lignes refusées ne seront pas importées.",
+    "progress": "Import en cours",
+    "progressRows": "{{done}} lignes sur {{total}}",
+    "another": "Importer un autre fichier"
+  },
+  "done": {
+    "summary": "{{created}} créés, {{updated}} mis à jour, {{skipped}} ignorés, {{failed}} refusés",
+    "failed": "L'import s'est arrêté avant la fin. Les lignes déjà importées sont gardées ; vous pouvez annuler cet import.",
+    "undo": "Annuler cet import",
+    "undoTitle": "Annuler cet import ?",
+    "undoBody": "Les fiches créées par l'import seront archivées, les fiches modifiées retrouveront leurs valeurs d'avant, et les soldes d'ouverture seront annulés.",
+    "keep": "Garder l'import",
+    "undone": "Import annulé."
+  },
+  "jobs": {
+    "title": "Imports précédents",
+    "empty": "Aucun import pour le moment.",
+    "columns": {
+      "date": "Date",
+      "entity": "Données",
+      "file": "Fichier",
+      "status": "État",
+      "result": "Résultat",
+      "actions": "Actions"
+    },
+    "status": {
+      "running": "En cours",
+      "done": "Terminé",
+      "failed": "Arrêté",
+      "undone": "Annulé"
+    }
+  },
+  "problems": {
+    "required": "Cette colonne est obligatoire et la case est vide.",
+    "too_long": "Texte trop long.",
+    "number_invalid": "Ce n'est pas un nombre valable.",
+    "too_many_decimals": "Trop de chiffres après la virgule.",
+    "ambiguous_separator": "Séparateur ambigu : virgule décimale ou séparateur de milliers ? Écrivez 1234,50 sans séparateur de milliers.",
+    "negative": "Une valeur négative n'est pas permise ici.",
+    "date_invalid": "Date non valable : écrivez JJ/MM/AAAA.",
+    "choice_invalid": "Valeur inconnue : choisissez une valeur de la liste de l'aide.",
+    "bool_invalid": "Écrivez oui ou non.",
+    "phone_invalid": "Numéro de téléphone algérien non valable.",
+    "nif_invalid": "NIF non valable.",
+    "email_invalid": "Adresse e-mail non valable.",
+    "not_found": "Aucun article, client ou fournisseur ne correspond à cette ligne.",
+    "duplicate_in_file": "Cette ligne répète une ligne précédente du fichier.",
+    "already_exists": "Existe déjà : ligne ignorée (création seulement).",
+    "unit_not_found": "Unité inconnue.",
+    "tax_rate_not_found": "Taux de TVA inconnu.",
+    "location_not_found": "Emplacement inconnu.",
+    "barcode_taken": "Ce code-barres appartient déjà à un autre article.",
+    "reference_taken": "Cette référence appartient déjà à un autre article.",
+    "phone_taken": "Ce téléphone appartient déjà à un autre client.",
+    "opening_already_set": "Le solde d'ouverture est déjà saisi.",
+    "value_invalid": "Valeur non valable.",
+    "rejected": "Ligne refusée."
+  }
+}

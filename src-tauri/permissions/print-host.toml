@@ -1,0 +1,4 @@
+[[permission]]
+identifier = "print-host-commands"
+description = "The hidden print window reads its job and says when it has rendered. Nothing else."
+commands.allow = ["print_host_next", "print_host_rendered"]

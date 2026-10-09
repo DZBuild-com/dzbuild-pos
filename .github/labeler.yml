@@ -1,0 +1,156 @@
+# actions/labeler (v5+ format; the workflow is .github/workflows/labeler.yml): labels a pull request
+# from the paths it changes. Every label here is defined in .github/labels.yml.
+area/till:
+  - changed-files:
+      - any-glob-to-any-file:
+          - crates/pos-core/src/sales/**
+          - crates/pos-core/src/returns/**
+          - crates/pos-core/src/returns.rs
+          - crates/pos-core/src/cash/**
+          - crates/pos-core/src/till.rs
+          - crates/pos-core/src/payments.rs
+          - crates/pos-core/src/payment_types.rs
+          - src-tauri/src/closing.rs
+          - src/features/pos/**
+          - src/features/cash/**
+
+area/stock:
+  - changed-files:
+      - any-glob-to-any-file:
+          - crates/pos-core/src/stock/**
+          - crates/pos-core/src/stock.rs
+          - crates/pos-core/src/catalog/**
+          - src/features/stock/**
+          - src/features/products/**
+
+area/customers-kridi:
+  - changed-files:
+      - any-glob-to-any-file:
+          - crates/pos-core/src/customers/**
+          - crates/pos-core/src/ledger.rs
+          - crates/pos-core/src/instalments.rs
+          - crates/pos-core/src/loyalty.rs
+          - src/features/customers/**
+          - src/features/instalments/**
+          - src/features/loyalty/**
+
+area/purchases:
+  - changed-files:
+      - any-glob-to-any-file:
+          - crates/pos-core/src/purchases/**
+          - crates/pos-core/src/suppliers.rs
+          - src/features/purchases/**
+
+area/documents-fiscal:
+  - changed-files:
+      - any-glob-to-any-file:
+          - crates/pos-core/src/tax*
+          - crates/pos-core/src/tax/**
+          - crates/pos-core/src/fiscal/**
+          - crates/pos-core/src/documents/**
+          - crates/pos-core/src/numbering.rs
+          - crates/pos-core/src/audit.rs
+          - crates/pos-docs/src/a4/**
+          - crates/pos-docs/src/fiscal_archive.rs
+          - src/features/fiscal/**
+          - src/features/documents/**
+          - src/documents/**
+
+area/printing-hardware:
+  - changed-files:
+      - any-glob-to-any-file:
+          - crates/pos-hw/**
+          - src-tauri/src/print*.rs
+          - src-tauri/src/webview_print.rs
+          - src-tauri/src/devices.rs
+          - src-tauri/src/customer_display.rs
+          - src/features/labels/**
+          - src/customer-display/**
+          - src/print-host/**
+
+area/lan:
+  - changed-files:
+      - any-glob-to-any-file:
+          - crates/pos-server/**
+          - crates/pos-core/src/sync/**
+          - src-tauri/src/lan/**
+          - src/features/network/**
+
+area/dzbuild-link:
+  - changed-files:
+      - any-glob-to-any-file:
+          - crates/pos-core/src/cloud/**
+          - src-tauri/src/cloud.rs
+
+area/i18n:
+  - changed-files:
+      - any-glob-to-any-file:
+          - src/locales/**
+          - crates/pos-docs/locales/**
+
+area/import-export:
+  - changed-files:
+      - any-glob-to-any-file:
+          - crates/pos-core/src/imports/**
+          - crates/pos-docs/src/import.rs
+          - crates/pos-docs/src/sheet.rs
+          - src-tauri/src/backups.rs
+          - src/features/imports/**
+
+area/updater:
+  - changed-files:
+      - any-glob-to-any-file:
+          - crates/pos-core/src/updates.rs
+          - src-tauri/src/updates.rs
+          - src/features/updates/**
+
+area/packs:
+  - changed-files:
+      - any-glob-to-any-file:
+          - crates/pos-core/src/packs/**
+          - crates/pos-core/src/butcher/**
+          - crates/pos-core/src/pharmacy/**
+          - crates/pos-core/src/restaurant/**
+          - crates/pos-core/src/wholesale/**
+          - crates/pos-core/src/jewellery*.rs
+          - src/features/packs/**
+          - src/features/butcher/**
+          - src/features/pharmacy/**
+          - src/features/restaurant/**
+          - src/features/wholesale/**
+          - src/features/jewellery/**
+          - src/features/phones/**
+
+area/ui:
+  - changed-files:
+      - any-glob-to-any-file:
+          - src/components/**
+          - src/styles/**
+          - src/app/**
+
+documentation:
+  - changed-files:
+      - any-glob-to-any-file:
+          - docs/**
+          - "*.md"
+
+ci:
+  - changed-files:
+      - any-glob-to-any-file:
+          - .github/**
+
+dependencies:
+  - changed-files:
+      - any-glob-to-any-file:
+          - package.json
+          - pnpm-lock.yaml
+          - Cargo.lock
+
+release:
+  - changed-files:
+      - any-glob-to-any-file:
+          - scripts/release/**
+          - src/release-notes/**
+          - src-tauri/windows/**
+          - src-tauri/tauri*.conf.json
+          - .github/workflows/release.yml

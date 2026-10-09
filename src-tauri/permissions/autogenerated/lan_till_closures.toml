@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-lan-till-closures"
+description = "Enables the lan_till_closures command without any pre-configured scope."
+commands.allow = ["lan_till_closures"]
+
+[[permission]]
+identifier = "deny-lan-till-closures"
+description = "Denies the lan_till_closures command without any pre-configured scope."
+commands.deny = ["lan_till_closures"]

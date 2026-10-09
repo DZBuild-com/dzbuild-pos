@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-documents-links"
+description = "Enables the documents_links command without any pre-configured scope."
+commands.allow = ["documents_links"]
+
+[[permission]]
+identifier = "deny-documents-links"
+description = "Denies the documents_links command without any pre-configured scope."
+commands.deny = ["documents_links"]

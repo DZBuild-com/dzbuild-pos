@@ -1,0 +1,125 @@
+{
+  "lang": "fr",
+  "rtl": false,
+  "title": "Registre des activités de traitement",
+  "seller": {
+    "name": "Supérette El Amel",
+    "nameAlt": "مغازة الأمل",
+    "legalForm": "SARL",
+    "activity": "Commerce de détail en alimentation générale",
+    "activityAlt": "تجارة التجزئة للمواد الغذائية العامة",
+    "capital": 100000000,
+    "address": "12 rue Larbi Ben M'hidi, Alger",
+    "wilaya": "Alger",
+    "phone": "023 45 67 89",
+    "email": null,
+    "ids": [
+      {
+        "kind": "rc",
+        "value": "16/00-1234567B26"
+      },
+      {
+        "kind": "nif",
+        "value": "000116001234567"
+      },
+      {
+        "kind": "nis",
+        "value": "000116001234567"
+      },
+      {
+        "kind": "ai",
+        "value": "16012345678"
+      },
+      {
+        "kind": "rib",
+        "value": "00799999001234567890"
+      }
+    ],
+    "vatExemptRef": null
+  },
+  "dpo": "Nadia Ferhat — dpo@exemple.dz",
+  "activities": [
+    [
+      "Gestion des clients et du crédit",
+      "Exécution du contrat de vente et obligation légale (factures conservées 10 ans)",
+      "Identité, coordonnées, NIF, RC et AI, achats, dettes (crédit)",
+      "10 ans pour les documents de vente ; 3 ans après le dernier achat pour la fiche de contact"
+    ],
+    [
+      "Programme de fidélité",
+      "Consentement du client",
+      "Points, carte de fidélité, achats qui ont donné des points",
+      "Jusqu'au retrait du consentement ou 3 ans sans achat"
+    ],
+    [
+      "Registre des médicaments contrôlés",
+      "Obligation légale ; données de santé (loi 18-07, art. 18)",
+      "Prescripteur, patient, ordonnance, médicament délivré",
+      "Durée de conservation légale du registre"
+    ]
+  ],
+  "security": "Données conservées sur le PC du magasin, accès par code PIN et droits par rôle, journal inaltérable, sauvegardes chiffrées au choix du propriétaire.",
+  "date": "28/09/2026",
+  "labels": {
+    "activity": "Traitement",
+    "basis": "Base légale",
+    "data": "Données traitées",
+    "retention": "Durée de conservation",
+    "security": "Mesures de sécurité",
+    "dpo": "Délégué à la protection des données",
+    "noDpo": "Non désigné"
+  },
+  "partyLabels": {
+    "number": "N°",
+    "date": "Date",
+    "validUntil": "Valable jusqu'au",
+    "dueDate": "Date de règlement",
+    "seller": "Vendeur",
+    "customer": "Client",
+    "supplier": "Fournisseur",
+    "legalForm": "Forme juridique",
+    "activity": "Activité",
+    "capital": "Capital social",
+    "address": "Adresse",
+    "phone": "Tél.",
+    "email": "E-mail",
+    "rc": "RC",
+    "aeCard": "Carte AE",
+    "nif": "NIF",
+    "nis": "NIS",
+    "ai": "AI",
+    "nin": "NIN",
+    "rib": "RIB",
+    "designation": "Désignation",
+    "qty": "Qté",
+    "unit": "Unité",
+    "unitPriceHt": "P.U. HT",
+    "unitPriceTtc": "P.U. TTC",
+    "discount": "Remise",
+    "vatRate": "TVA",
+    "totalHt": "Montant HT",
+    "totalTtc": "Montant TTC",
+    "subtotalHt": "Total HT",
+    "discountTotal": "Total des remises",
+    "totalTtcLabel": "Total TTC",
+    "stampDuty": "Droit de timbre",
+    "stampAbsorbed": "Droit de timbre pris en charge par le vendeur",
+    "rounding": "Arrondi",
+    "netToPay": "Net à payer",
+    "paymentMode": "Mode de paiement",
+    "paid": "Payé",
+    "remaining": "Reste dû",
+    "references": "Documents cités",
+    "stampBox": "Cachet et signature",
+    "page": "Page",
+    "printedAt": "Imprimé le",
+    "from": "De",
+    "to": "Vers",
+    "driver": "Chauffeur",
+    "vehicle": "Véhicule",
+    "note": "Observations",
+    "terms": "Conditions",
+    "reason": "Motif",
+    "receivedBy": "Reçu par"
+  }
+}

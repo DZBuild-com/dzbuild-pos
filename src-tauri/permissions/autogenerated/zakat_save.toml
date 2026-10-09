@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-zakat-save"
+description = "Enables the zakat_save command without any pre-configured scope."
+commands.allow = ["zakat_save"]
+
+[[permission]]
+identifier = "deny-zakat-save"
+description = "Denies the zakat_save command without any pre-configured scope."
+commands.deny = ["zakat_save"]

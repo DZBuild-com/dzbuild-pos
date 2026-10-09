@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-documents-warranty-lines"
+description = "Enables the documents_warranty_lines command without any pre-configured scope."
+commands.allow = ["documents_warranty_lines"]
+
+[[permission]]
+identifier = "deny-documents-warranty-lines"
+description = "Denies the documents_warranty_lines command without any pre-configured scope."
+commands.deny = ["documents_warranty_lines"]

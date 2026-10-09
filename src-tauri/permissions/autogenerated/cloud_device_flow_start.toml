@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-cloud-device-flow-start"
+description = "Enables the cloud_device_flow_start command without any pre-configured scope."
+commands.allow = ["cloud_device_flow_start"]
+
+[[permission]]
+identifier = "deny-cloud-device-flow-start"
+description = "Denies the cloud_device_flow_start command without any pre-configured scope."
+commands.deny = ["cloud_device_flow_start"]

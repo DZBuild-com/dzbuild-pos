@@ -1,0 +1,82 @@
+{
+  "tabs": {
+    "yield": "Découpe",
+    "waste": "Pertes du jour"
+  },
+  "yield": {
+    "title": "Découpe",
+    "template": "Modèle de découpe",
+    "choose": "Choisissez un modèle",
+    "noTemplate": "Créez d'abord un modèle de découpe : la carcasse et ses morceaux.",
+    "carcass": "Carcasse : {{name}}",
+    "weight": "Poids de la carcasse (kg)",
+    "cost": "Coût de la carcasse",
+    "costHint": "Vide : le coût moyen d'achat de la carcasse (CMUP) × son poids.",
+    "method": "Répartir le coût",
+    "methods": {
+      "value": "selon la valeur de vente",
+      "weight": "selon le poids"
+    },
+    "cuts": "Morceaux",
+    "cutWeight": "{{name}} (kg)",
+    "weigh": "Peser",
+    "weighOf": "Peser : {{name}}",
+    "preview": "Résultat de la découpe",
+    "columns": {
+      "cut": "Morceau",
+      "weight": "Poids (kg)",
+      "expected": "Attendu (kg)",
+      "yield": "Rendement",
+      "cost": "Coût",
+      "unitCost": "Coût au kg"
+    },
+    "loss": "Perte {{rate}} %",
+    "lossQty": "Os, gras et perte : {{qty}} kg",
+    "inputCost": "Coût de la carcasse : {{amount}}",
+    "run": "Valider la découpe",
+    "done": "Découpe {{number}} enregistrée",
+    "doneTitle": "Découpe enregistrée",
+    "number": "N° de découpe",
+    "again": "Nouvelle découpe"
+  },
+  "templates": {
+    "title": "Modèles de découpe",
+    "new": "Nouveau modèle",
+    "edit": "Modifier : {{name}}",
+    "name": "Nom du modèle",
+    "carcass": "Carcasse",
+    "carcassOf": "Carcasse : {{name}}",
+    "cuts": "Morceaux",
+    "expected": "Rendement attendu (%)",
+    "expectedOf": "Rendement attendu (%) : {{name}}",
+    "remove": "Retirer {{name}}",
+    "save": "Enregistrer le modèle",
+    "archive": "Archiver le modèle",
+    "saved": "Modèle de découpe enregistré.",
+    "archived": "Modèle archivé.",
+    "empty": "Aucun modèle de découpe.",
+    "missing": "Choisissez la carcasse, donnez un nom et au moins un morceau."
+  },
+  "waste": {
+    "title": "Pertes du jour",
+    "product": "Produit",
+    "qty": "Quantité",
+    "qtyOf": "Quantité : {{name}}",
+    "reason": "Raison",
+    "reasonOf": "Raison : {{name}}",
+    "reasons": {
+      "damage": "Casse",
+      "expiry": "Péremption",
+      "loss": "Perte",
+      "own_use": "Consommation interne"
+    },
+    "remove": "Retirer {{name}}",
+    "save": "Enregistrer",
+    "saved": "Pertes enregistrées.",
+    "nothing": "Ajoutez au moins un produit avec sa quantité.",
+    "day": "Pertes enregistrées aujourd'hui",
+    "empty": "Aucune perte enregistrée aujourd'hui.",
+    "cost": "Coût",
+    "total": "Total au coût : {{amount}}"
+  }
+}

@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-counts-list"
+description = "Enables the counts_list command without any pre-configured scope."
+commands.allow = ["counts_list"]
+
+[[permission]]
+identifier = "deny-counts-list"
+description = "Denies the counts_list command without any pre-configured scope."
+commands.deny = ["counts_list"]

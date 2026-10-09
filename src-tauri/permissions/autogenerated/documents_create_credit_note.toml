@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-documents-create-credit-note"
+description = "Enables the documents_create_credit_note command without any pre-configured scope."
+commands.allow = ["documents_create_credit_note"]
+
+[[permission]]
+identifier = "deny-documents-create-credit-note"
+description = "Denies the documents_create_credit_note command without any pre-configured scope."
+commands.deny = ["documents_create_credit_note"]

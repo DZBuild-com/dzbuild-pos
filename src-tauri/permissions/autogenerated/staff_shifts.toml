@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-staff-shifts"
+description = "Enables the staff_shifts command without any pre-configured scope."
+commands.allow = ["staff_shifts"]
+
+[[permission]]
+identifier = "deny-staff-shifts"
+description = "Denies the staff_shifts command without any pre-configured scope."
+commands.deny = ["staff_shifts"]

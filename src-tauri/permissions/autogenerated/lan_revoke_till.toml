@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-lan-revoke-till"
+description = "Enables the lan_revoke_till command without any pre-configured scope."
+commands.allow = ["lan_revoke_till"]
+
+[[permission]]
+identifier = "deny-lan-revoke-till"
+description = "Denies the lan_revoke_till command without any pre-configured scope."
+commands.deny = ["lan_revoke_till"]

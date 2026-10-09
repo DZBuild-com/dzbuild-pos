@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-backup-mirror-choose"
+description = "Enables the backup_mirror_choose command without any pre-configured scope."
+commands.allow = ["backup_mirror_choose"]
+
+[[permission]]
+identifier = "deny-backup-mirror-choose"
+description = "Denies the backup_mirror_choose command without any pre-configured scope."
+commands.deny = ["backup_mirror_choose"]

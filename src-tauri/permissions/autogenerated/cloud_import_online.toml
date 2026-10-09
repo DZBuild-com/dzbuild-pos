@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-cloud-import-online"
+description = "Enables the cloud_import_online command without any pre-configured scope."
+commands.allow = ["cloud_import_online"]
+
+[[permission]]
+identifier = "deny-cloud-import-online"
+description = "Denies the cloud_import_online command without any pre-configured scope."
+commands.deny = ["cloud_import_online"]

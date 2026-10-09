@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-documents-payment-preview"
+description = "Enables the documents_payment_preview command without any pre-configured scope."
+commands.allow = ["documents_payment_preview"]
+
+[[permission]]
+identifier = "deny-documents-payment-preview"
+description = "Denies the documents_payment_preview command without any pre-configured scope."
+commands.deny = ["documents_payment_preview"]

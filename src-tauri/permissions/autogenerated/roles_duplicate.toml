@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-roles-duplicate"
+description = "Enables the roles_duplicate command without any pre-configured scope."
+commands.allow = ["roles_duplicate"]
+
+[[permission]]
+identifier = "deny-roles-duplicate"
+description = "Denies the roles_duplicate command without any pre-configured scope."
+commands.deny = ["roles_duplicate"]

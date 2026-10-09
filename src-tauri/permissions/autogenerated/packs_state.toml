@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-packs-state"
+description = "Enables the packs_state command without any pre-configured scope."
+commands.allow = ["packs_state"]
+
+[[permission]]
+identifier = "deny-packs-state"
+description = "Denies the packs_state command without any pre-configured scope."
+commands.deny = ["packs_state"]

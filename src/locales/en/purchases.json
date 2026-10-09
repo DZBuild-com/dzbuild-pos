@@ -1,0 +1,202 @@
+{
+  "title": "Purchases",
+  "tabs": {
+    "orders": "Orders",
+    "receipts": "Receipts",
+    "invoices": "Supplier invoices",
+    "suppliers": "Suppliers"
+  },
+  "status": {
+    "draft": "Draft",
+    "sent": "Sent",
+    "partial": "Partly received",
+    "received": "Received",
+    "validated": "Validated",
+    "cancelled": "Cancelled"
+  },
+  "filters": {
+    "allSuppliers": "All suppliers",
+    "allStatuses": "All statuses"
+  },
+  "columns": {
+    "number": "No.",
+    "type": "Document",
+    "date": "Date",
+    "supplier": "Supplier",
+    "supplierRef": "Supplier's no.",
+    "status": "Status",
+    "totalHt": "Total excl. tax (HT)",
+    "tax": "VAT (TVA)",
+    "totalTtc": "Total incl. tax (TTC)"
+  },
+  "empty": "No document matches. Change the period or the filters.",
+  "exportHint": "Excel and CSV export the purchases by supplier over the chosen period.",
+  "lineField": "{{field}} — {{name}}",
+  "chooseSupplier": {
+    "title": "Choose the supplier",
+    "placeholder": "Choose the supplier"
+  },
+  "lines": {
+    "search": "Add a product",
+    "searchHint": "Type a name or a reference, or scan a barcode (a carton's barcode adds one pack).",
+    "results": "Products found",
+    "notFound": "No product has the code {{code}}. Check the code or create the product.",
+    "product": "Product",
+    "qty": "Quantity",
+    "packs": "Number of packs",
+    "pack": "Units per pack",
+    "cost": "Unit cost (HT)",
+    "packCost": "Pack cost (HT)",
+    "removeOf": "Remove {{name}}"
+  },
+  "order": {
+    "new": "New order",
+    "newTitle": "New order",
+    "draftTitle": "Purchase order",
+    "back": "All orders",
+    "supplierRef": "Supplier's reference",
+    "note": "Note",
+    "lines": "Order lines",
+    "noLines": "Add at least one product to the order.",
+    "save": "Save the draft",
+    "saved": "Draft saved.",
+    "validate": "Validate the order",
+    "validated": "Order {{number}} validated.",
+    "cancel": "Cancel the order",
+    "cancelled": "Order cancelled.",
+    "totals": "Totals",
+    "totalsAfterSave": "The totals show once the draft is saved.",
+    "unsaved": "Totals as last saved: save to update them.",
+    "ordered": "Ordered",
+    "received": "Received",
+    "remaining": "Still to receive",
+    "receive": "Receive"
+  },
+  "receive": {
+    "new": "New goods receipt",
+    "title": "Goods from {{name}}",
+    "fromOrder": "The quantities still awaited are proposed: correct them to what is delivered.",
+    "free": "Goods receipt without an order: add the products delivered.",
+    "skipHint": "Enter 0 for a line that is not delivered.",
+    "awaited": "(awaited: {{qty}})",
+    "allReceived": "Every line of this order has been received.",
+    "qty": "Quantity received",
+    "cost": "Unit cost (HT)",
+    "lot": "Lot number",
+    "expiry": "Expiry",
+    "serials": "Serial numbers",
+    "serialsHint": "Scan or type each number, then Enter.",
+    "serialRemove": "Remove {{serial}}",
+    "serialsCount": "Numbers entered: {{count}} for a quantity of {{qty}}. Enter one number per piece.",
+    "supplierRef": "Supplier's delivery note no.",
+    "note": "Note",
+    "invoiceNow": "Invoice received with the goods",
+    "invoiceNumberMissing": "Enter the number of the invoice received, or untick the box.",
+    "nothing": "Enter at least one quantity received.",
+    "confirm": "Validate the receipt",
+    "done": "Goods receipt {{number}} validated.",
+    "doneTitle": "Goods receipt {{number}} validated",
+    "invoiced": "Supplier invoice {{number}} recorded with the receipt.",
+    "recordInvoice": "Record the invoice",
+    "cmupTitle": "New average cost",
+    "cmup": "Average cost",
+    "becomes": "becomes"
+  },
+  "invoice": {
+    "new": "Record an invoice",
+    "title": "Invoice from {{name}}",
+    "number": "Supplier's invoice no.",
+    "dateHint": "The invoice is recorded on today's date.",
+    "note": "Note",
+    "receipts": "Goods receipts invoiced",
+    "noReceipts": "No goods receipt from this supplier.",
+    "noReceipt": "Tick at least one goods receipt.",
+    "payNow": "Pay this invoice now",
+    "confirm": "Record the invoice",
+    "done": "Invoice {{number}} recorded.",
+    "doneTitle": "Invoice {{number}} recorded",
+    "paid": "Paid:"
+  },
+  "pay": {
+    "new": "Pay the supplier",
+    "title": "Payment to {{name}}",
+    "amount": "Amount paid",
+    "method": "Payment method",
+    "fromTill": "Paid in cash taken from the cash drawer",
+    "openInvoices": "Unpaid invoices",
+    "allocateOldest": "Settle the oldest invoices first",
+    "allocateChosen": "Choose the invoices to settle",
+    "note": "Note",
+    "confirm": "Record the payment",
+    "done": "Payment of {{amount}} recorded. Still owed: {{balance}}."
+  },
+  "return": {
+    "new": "Supplier return",
+    "title": "Return to {{name}}",
+    "qty": "Quantity returned",
+    "reason": "Reason",
+    "reasons": {
+      "expired": "Expired",
+      "damaged": "Damaged",
+      "wrong_item": "Wrong delivery",
+      "other": "Other reason"
+    },
+    "fefo": "Automatic (soonest expiry)",
+    "lotWithExpiry": "{{lot}} (expires {{date}})",
+    "credit": "The supplier takes this return off what the shop owes them",
+    "nothing": "Add at least one product to return.",
+    "confirm": "Validate the return",
+    "done": "Return {{number}} validated.",
+    "doneTitle": "Return {{number}} validated",
+    "value": "Value of the return:",
+    "notCredited": "The supplier's account has not changed."
+  },
+  "supplier": {
+    "new": "New supplier",
+    "newTitle": "New supplier",
+    "editTitle": "Edit {{name}}",
+    "back": "All suppliers",
+    "terms": "Payment",
+    "fields": {
+      "rib": "Bank details (RIB)",
+      "paymentTerms": "Payment terms (days)"
+    },
+    "paymentTermsHint": "Empty: paid on delivery.",
+    "save": "Save the supplier",
+    "saved": "Supplier saved.",
+    "balance": "Owed to the supplier",
+    "filters": {
+      "owed": "We owe them",
+      "archived": "Archived"
+    },
+    "empty": "No supplier matches. Change the search or create the supplier.",
+    "archived": "Archived supplier: restore it to order from it or pay it.",
+    "days_zero": "On delivery",
+    "days_one": "{{count}} day",
+    "days_two": "{{count}} days",
+    "days_few": "{{count}} days",
+    "days_many": "{{count}} days",
+    "days_other": "{{count}} days",
+    "tabs": {
+      "entries": "Account entries",
+      "payments": "Payments",
+      "documents": "Documents",
+      "statement": "Statement"
+    },
+    "noEntries": "No entry on this account.",
+    "statementExportHint": "Excel and CSV export the purchases from this supplier over the period."
+  },
+  "aging": {
+    "current": "0 to 30 days",
+    "days3160": "31 to 60 days",
+    "days6190": "61 to 90 days",
+    "over90": "Over 90 days",
+    "advance": "Advances paid"
+  },
+  "opening": {
+    "title": "Supplier opening balance",
+    "hint": "What the shop owed this supplier when it started with DZBuild POS, entered once.",
+    "owed": "The shop owes the supplier",
+    "advance": "The supplier owes the shop (advance)"
+  }
+}

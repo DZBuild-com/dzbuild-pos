@@ -1,0 +1,38 @@
+[package]
+name = "pos-license-cli"
+description = "dzpos-license: the owner's tool to make the licence signing key and issue DZBuild POS licences (never shipped in an installer)."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+publish.workspace = true
+
+[lib]
+name = "pos_license_cli"
+path = "src/lib.rs"
+
+[[bin]]
+name = "dzpos-license"
+path = "src/main.rs"
+
+[dependencies]
+pos-core.workspace = true
+pos-license.workspace = true
+ed25519-dalek.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+hex.workspace = true
+getrandom.workspace = true
+age.workspace = true
+# The passphrase is typed without being shown (Windows console).
+rpassword = "7.5.4"
+
+[dev-dependencies]
+pos-license = { workspace = true, features = ["testkit"] }
+tempfile.workspace = true
+
+[lints]
+workspace = true

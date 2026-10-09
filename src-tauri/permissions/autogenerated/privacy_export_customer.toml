@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-privacy-export-customer"
+description = "Enables the privacy_export_customer command without any pre-configured scope."
+commands.allow = ["privacy_export_customer"]
+
+[[permission]]
+identifier = "deny-privacy-export-customer"
+description = "Denies the privacy_export_customer command without any pre-configured scope."
+commands.deny = ["privacy_export_customer"]

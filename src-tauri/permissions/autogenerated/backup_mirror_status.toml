@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-backup-mirror-status"
+description = "Enables the backup_mirror_status command without any pre-configured scope."
+commands.allow = ["backup_mirror_status"]
+
+[[permission]]
+identifier = "deny-backup-mirror-status"
+description = "Denies the backup_mirror_status command without any pre-configured scope."
+commands.deny = ["backup_mirror_status"]

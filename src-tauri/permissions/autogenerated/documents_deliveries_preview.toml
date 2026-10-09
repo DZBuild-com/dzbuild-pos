@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-documents-deliveries-preview"
+description = "Enables the documents_deliveries_preview command without any pre-configured scope."
+commands.allow = ["documents_deliveries_preview"]
+
+[[permission]]
+identifier = "deny-documents-deliveries-preview"
+description = "Denies the documents_deliveries_preview command without any pre-configured scope."
+commands.deny = ["documents_deliveries_preview"]

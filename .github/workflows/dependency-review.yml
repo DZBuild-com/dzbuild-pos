@@ -1,0 +1,33 @@
+# Every pull request: no dependency with a known vulnerability (moderate or worse) and no
+# licence incompatible with GPL-3.0-or-later enters through package.json, Cargo.toml or a
+# workflow. The licence policy of the Rust crates is also enforced by cargo-deny (deny.toml).
+name: Dependency review
+
+on:
+  pull_request:
+
+concurrency:
+  group: dependency-review-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  review:
+    name: Dependency review
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    # The dependency graph of a private repository needs GitHub Code Security: until the
+    # repository is public a refused review does not block the pull request.
+    continue-on-error: ${{ github.event.repository.private == true }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/dependency-review-action@v5
+        with:
+          fail-on-severity: moderate
+          deny-licenses: AGPL-1.0-only, AGPL-1.0-or-later, SSPL-1.0, BUSL-1.1, CC-BY-NC-4.0
+          comment-summary-in-pr: on-failure

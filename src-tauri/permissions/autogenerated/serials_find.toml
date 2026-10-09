@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-serials-find"
+description = "Enables the serials_find command without any pre-configured scope."
+commands.allow = ["serials_find"]
+
+[[permission]]
+identifier = "deny-serials-find"
+description = "Denies the serials_find command without any pre-configured scope."
+commands.deny = ["serials_find"]

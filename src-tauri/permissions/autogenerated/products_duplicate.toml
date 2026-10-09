@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-products-duplicate"
+description = "Enables the products_duplicate command without any pre-configured scope."
+commands.allow = ["products_duplicate"]
+
+[[permission]]
+identifier = "deny-products-duplicate"
+description = "Denies the products_duplicate command without any pre-configured scope."
+commands.deny = ["products_duplicate"]

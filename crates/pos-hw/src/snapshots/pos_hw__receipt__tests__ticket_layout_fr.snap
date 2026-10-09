@@ -1,0 +1,201 @@
+---
+source: crates/pos-hw/src/receipt.rs
+expression: "receipt_layout(&ticket(Lang::Fr), None)"
+---
+Layout {
+    rtl: false,
+    rows: [
+        Logo,
+        Text {
+            text: "Supérette El Amel",
+            align: Center,
+            large: true,
+            bold: true,
+        },
+        Text {
+            text: "EURL",
+            align: Center,
+            large: false,
+            bold: false,
+        },
+        Text {
+            text: "12 rue Larbi Ben M'hidi, Alger",
+            align: Center,
+            large: false,
+            bold: false,
+        },
+        Text {
+            text: "Tél. 0550 12 34 56",
+            align: Center,
+            large: false,
+            bold: false,
+        },
+        Text {
+            text: "RC 16/00-1234567 B 22",
+            align: Center,
+            large: false,
+            bold: false,
+        },
+        Text {
+            text: "NIF 001216098765432",
+            align: Center,
+            large: false,
+            bold: false,
+        },
+        Rule,
+        Text {
+            text: "Ticket de caisse",
+            align: Center,
+            large: false,
+            bold: true,
+        },
+        Text {
+            text: "N° TK2026-C1-000123",
+            align: Start,
+            large: false,
+            bold: false,
+        },
+        Pair {
+            start: "Date 28/09/2026 12:00",
+            end: "Caisse C1",
+            large: false,
+            bold: false,
+        },
+        Text {
+            text: "Caissier Yacine",
+            align: Start,
+            large: false,
+            bold: false,
+        },
+        Rule,
+        Text {
+            text: "Lait Candia 1 L",
+            align: Start,
+            large: false,
+            bold: false,
+        },
+        Pair {
+            start: "  2 × 150,00",
+            end: "300,00",
+            large: false,
+            bold: false,
+        },
+        Text {
+            text: "Huile Elio 5 L",
+            align: Start,
+            large: false,
+            bold: false,
+        },
+        Pair {
+            start: "  1 × 650,00",
+            end: "617,50",
+            large: false,
+            bold: false,
+        },
+        Pair {
+            start: "  Remise",
+            end: "-32,50",
+            large: false,
+            bold: false,
+        },
+        Text {
+            text: "Tomates",
+            align: Start,
+            large: false,
+            bold: false,
+        },
+        Pair {
+            start: "  1,25 kg × 120,00",
+            end: "150,00",
+            large: false,
+            bold: false,
+        },
+        Rule,
+        Pair {
+            start: "Articles",
+            end: "4,25",
+            large: false,
+            bold: false,
+        },
+        Pair {
+            start: "Total HT",
+            end: "931,75",
+            large: false,
+            bold: false,
+        },
+        Pair {
+            start: "TVA 19 % (518,91)",
+            end: "98,59",
+            large: false,
+            bold: false,
+        },
+        Pair {
+            start: "TVA 9 % (412,84)",
+            end: "37,16",
+            large: false,
+            bold: false,
+        },
+        Pair {
+            start: "Total TTC",
+            end: "1 067,50",
+            large: false,
+            bold: true,
+        },
+        Pair {
+            start: "Droit de timbre",
+            end: "11,00",
+            large: false,
+            bold: false,
+        },
+        Pair {
+            start: "Net à payer",
+            end: "1 078,50 DA",
+            large: true,
+            bold: true,
+        },
+        Rule,
+        Pair {
+            start: "Espèces",
+            end: "1 200,00",
+            large: false,
+            bold: false,
+        },
+        Pair {
+            start: "Monnaie rendue",
+            end: "121,50",
+            large: false,
+            bold: true,
+        },
+        Pair {
+            start: "Vous avez économisé",
+            end: "32,50",
+            large: false,
+            bold: false,
+        },
+        Rule,
+        Text {
+            text: "Arrêté à la somme de : mille soixante-dix-huit dinars et cinquante centimes",
+            align: Start,
+            large: false,
+            bold: false,
+        },
+        Text {
+            text: "Ouvert 7j/7 de 7h à 22h",
+            align: Center,
+            large: false,
+            bold: false,
+        },
+        Text {
+            text: "Merci de votre visite",
+            align: Center,
+            large: false,
+            bold: true,
+        },
+        Feed {
+            lines: 1,
+        },
+        Barcode {
+            data: "TK2026-C1-000123",
+        },
+    ],
+}

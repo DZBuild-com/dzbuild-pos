@@ -1,0 +1,81 @@
+[workspace]
+members = ["crates/*", "src-tauri"]
+resolver = "3"
+
+[workspace.package]
+version = "1.0.0"
+edition = "2024"
+rust-version = "1.95"
+authors = ["DZBuild"]
+license = "GPL-3.0-or-later"
+repository = "https://github.com/DZBuild-com/dzbuild-pos"
+homepage = "https://dzbuild.com/pos"
+publish = false
+
+[workspace.dependencies]
+pos-core = { path = "crates/pos-core" }
+pos-hw = { path = "crates/pos-hw" }
+pos-docs = { path = "crates/pos-docs" }
+pos-server = { path = "crates/pos-server" }
+pos-license = { path = "crates/pos-license" }
+# M9: licences are Ed25519-signed and verified offline (the owner's choice: ed25519-dalek 2).
+ed25519-dalek = "2.2.0"
+serde = { version = "1.0.229", features = ["derive"] }
+serde_json = "1.0.151"
+thiserror = "2.0.21"
+specta = { version = "=2.0.0-rc.25", features = ["derive"] }
+tracing = "0.1.44"
+rusqlite = { version = "0.40.2", features = ["bundled", "backup"] }
+rusqlite_migration = "2.6.0"
+uuid = { version = "1.26.1", features = ["v7"] }
+chrono = { version = "0.4.45", default-features = false, features = ["std", "clock"] }
+crossbeam-channel = "0.5.17"
+sha2 = "0.11.0"
+hex = "0.4.3"
+getrandom = "0.4.3"
+argon2 = "0.6.0"
+unicode-normalization = "0.1.25"
+proptest = "1.11.0"
+tempfile = "3.27.0"
+insta = { version = "1.48.0", features = ["json"] }
+url = "2.5.8"
+toml = "1.1.6"
+# One version for the workspace; each crate adds the features it uses (pos-core: TLS, blocking,
+# forms and the system proxy for DZBuild; pos-server: streamed bodies on the LAN).
+reqwest = { version = "0.13.5", default-features = false, features = ["json", "query"] }
+tiny_http = "0.12.0"
+base64 = "0.23.1"
+keyring-core = "1.0.0"
+windows-native-keyring-store = { version = "1.1.0", default-features = false }
+age = { version = "0.12.1", default-features = false }
+wiremock = "0.6.5"
+tracing-subscriber = { version = "0.3.23", features = ["fmt"] }
+axum = { version = "0.8.9", default-features = false, features = ["http1", "json", "query", "tokio", "ws", "matched-path"] }
+tokio = "1.53.1"
+tokio-util = { version = "0.7.19", features = ["io"] }
+tokio-tungstenite = "0.29.0"
+futures-util = { version = "0.3.34", default-features = false, features = ["sink", "std"] }
+mdns-sd = { version = "0.21.4", default-features = false }
+
+[workspace.lints.rust]
+unsafe_code = "deny"
+
+[workspace.lints.clippy]
+unwrap_used = "deny"
+expect_used = "deny"
+dbg_macro = "deny"
+
+[profile.release]
+lto = "fat"
+codegen-units = 1
+strip = true
+panic = "abort"
+# M9: spelled out, pinned by `contract_tests::the_release_profile_is_hardened`.
+opt-level = 3
+
+# Argon2 is unusably slow unoptimised; keep PIN tests fast in debug builds.
+[profile.dev.package.argon2]
+opt-level = 3
+
+[profile.dev.package.blake2]
+opt-level = 3

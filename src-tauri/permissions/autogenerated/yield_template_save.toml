@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-yield-template-save"
+description = "Enables the yield_template_save command without any pre-configured scope."
+commands.allow = ["yield_template_save"]
+
+[[permission]]
+identifier = "deny-yield-template-save"
+description = "Denies the yield_template_save command without any pre-configured scope."
+commands.deny = ["yield_template_save"]

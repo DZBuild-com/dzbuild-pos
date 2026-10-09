@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-wholesale-prices"
+description = "Enables the wholesale_prices command without any pre-configured scope."
+commands.allow = ["wholesale_prices"]
+
+[[permission]]
+identifier = "deny-wholesale-prices"
+description = "Denies the wholesale_prices command without any pre-configured scope."
+commands.deny = ["wholesale_prices"]

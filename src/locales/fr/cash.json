@@ -1,0 +1,147 @@
+{
+  "title": "Caisse",
+  "status": { "open": "Caisse ouverte", "closed": "Caisse fermée" },
+  "closedTitle": "La caisse est fermée",
+  "closedHint": "Comptez le fond de caisse, puis ouvrez la caisse pour commencer à vendre.",
+  "openedBy": "Ouverte par {{name}} le",
+  "open": {
+    "button": "Ouvrir la caisse",
+    "title": "Ouvrir la caisse",
+    "hint": "Saisissez l'argent présent dans le tiroir avant la première vente.",
+    "float": "Fond de caisse",
+    "count": "Compter les billets et les pièces",
+    "submit": "Ouvrir la caisse avec ce fond"
+  },
+  "count": { "note": "Billets de {{value}} DA", "coin": "Pièces de {{value}} DA", "total": "Total compté" },
+  "move": {
+    "amount": "Montant",
+    "note": "Motif",
+    "paid_in": { "button": "Entrée d'argent", "title": "Entrée d'argent", "submit": "Enregistrer l'entrée" },
+    "paid_out": {
+      "button": "Sortie d'argent",
+      "title": "Sortie d'argent",
+      "submit": "Enregistrer la sortie"
+    },
+    "drop": {
+      "button": "Versement au coffre",
+      "title": "Versement au coffre",
+      "submit": "Enregistrer le versement"
+    }
+  },
+  "expense": {
+    "button": "Dépense",
+    "category": "Catégorie",
+    "note": "Détail",
+    "submit": "Enregistrer la dépense",
+    "categories": {
+      "rent": "Loyer",
+      "electricity": "Électricité",
+      "water": "Eau",
+      "wages": "Salaires",
+      "transport": "Transport",
+      "supplies": "Fournitures",
+      "maintenance": "Entretien",
+      "other": "Autre dépense"
+    }
+  },
+  "movements": {
+    "empty": "Aucun mouvement depuis l'ouverture.",
+    "time": "Heure",
+    "kind": "Mouvement",
+    "note": "Motif",
+    "kinds": {
+      "float": "Fond de caisse",
+      "sale": "Vente",
+      "refund": "Remboursement",
+      "paid_in": "Entrée d'argent",
+      "paid_out": "Sortie d'argent",
+      "expense": "Dépense",
+      "credit_payment": "Versement client",
+      "drop": "Versement au coffre"
+    }
+  },
+  "report": {
+    "x": "Rapport X",
+    "z": "Rapport Z",
+    "xButton": "Rapport X",
+    "tickets": "Tickets",
+    "sales": "Ventes",
+    "returns": "Retours",
+    "invoices": "Factures ({{number}})",
+    "creditNotes": "Avoirs ({{number}})",
+    "net": "Net",
+    "stampDuty": "Droit de timbre",
+    "float": "Fond de caisse",
+    "paidIn": "Entrées d'argent",
+    "paidOut": "Sorties d'argent",
+    "creditPayments": "Versements kridi en espèces",
+    "expenses": "Dépenses",
+    "expected": "Espèces attendues",
+    "counted": "Espèces comptées",
+    "variance": "Écart",
+    "intact": "Tickets et journal des opérations vérifiés : rien n'a été modifié.",
+    "broken": "Le journal des opérations ou les tickets ont été modifiés. Ne vendez plus sur ce poste et contactez le support DZBuild.",
+    "printX": "Imprimer le rapport X",
+    "printZ": "Réimprimer le rapport Z",
+    "blind": "Clôture à l'aveugle : les montants de la caisse ne sont pas affichés. Comptez le tiroir, l'écart sera calculé à la clôture."
+  },
+  "close": {
+    "button": "Clôturer la caisse",
+    "title": "Clôturer la caisse",
+    "hint": "Comptez tout l'argent du tiroir, billet par billet. Le rapport Z ne pourra plus être modifié.",
+    "notes": "Remarque",
+    "submit": "Clôturer et imprimer le Z",
+    "recount": "L'écart dépasse le seuil autorisé. Recomptez la caisse, billet par billet.",
+    "done": "Caisse clôturée",
+    "zPrinted": "Rapport Z imprimé",
+    "backupFailed": "La caisse est clôturée, mais la sauvegarde automatique a échoué. Faites une sauvegarde depuis Réglages › Sauvegardes."
+  },
+  "history": {
+    "title": "Clôtures précédentes",
+    "empty": "Aucune clôture pour le moment.",
+    "z": "N° Z",
+    "date": "Clôturée le",
+    "show": "Voir le rapport Z"
+  },
+  "tabs": {
+    "label": "Rubriques de la caisse",
+    "session": "Session de caisse",
+    "expenses": "Dépenses",
+    "flexy": "Flexy"
+  },
+  "expenses": {
+    "title": "Dépenses",
+    "new": "Nouvelle dépense",
+    "allCategories": "Toutes les catégories",
+    "chooseCategory": "Choisissez une catégorie",
+    "method": "Mode de paiement",
+    "fromTill": "Payée avec l'argent du tiroir",
+    "fromTillHint": "L'argent sort du tiroir de ce poste et apparaît sur le rapport Z.",
+    "tillClosed": "La caisse est fermée : la dépense est payée hors du tiroir.",
+    "day": "Jour de la dépense",
+    "dayHint": "Un jour de l'année en cours, aujourd'hui au plus tard.",
+    "reference": "Référence (facture, reçu)",
+    "noSupplier": "Aucun fournisseur",
+    "saved": "Dépense enregistrée.",
+    "totals": "Total par catégorie",
+    "totalsEmpty": "Aucune dépense sur cette période.",
+    "empty": "Aucune dépense sur cette période. Enregistrez-en une avec « Nouvelle dépense ».",
+    "columns": {
+      "date": "Jour",
+      "category": "Catégorie",
+      "amount": "Montant",
+      "method": "Paiement",
+      "reference": "Référence",
+      "note": "Détail",
+      "status": "État"
+    },
+    "tillTag": "Tiroir",
+    "reversed": "Annulée",
+    "reversal": "Annulation",
+    "reverse": "Annuler la dépense",
+    "reverseBody": "La dépense de {{amount}} ({{category}}) reste dans l'historique : une écriture négative du même montant l'annule.",
+    "reverseTill": "L'argent n'est pas remis dans le tiroir : faites une entrée d'argent s'il y revient.",
+    "reverseNote": "Motif de l'annulation",
+    "reversedDone": "Dépense annulée."
+  }
+}

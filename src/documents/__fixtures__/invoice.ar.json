@@ -1,0 +1,261 @@
+{
+  "docType": "invoice",
+  "lang": "ar",
+  "rtl": true,
+  "title": "فاتورة",
+  "number": "FA2026-000045",
+  "date": "28/09/2026",
+  "validUntil": null,
+  "dueDate": "28/10/2026",
+  "seller": {
+    "name": "مغازة الأمل",
+    "nameAlt": "مغازة الأمل",
+    "legalForm": "SARL",
+    "activity": "تجارة التجزئة للمواد الغذائية العامة",
+    "activityAlt": "تجارة التجزئة للمواد الغذائية العامة",
+    "capital": 100000000,
+    "address": "12 rue Larbi Ben M'hidi, Alger",
+    "wilaya": "الجزائر",
+    "phone": "023 45 67 89",
+    "email": null,
+    "ids": [
+      {
+        "kind": "rc",
+        "value": "16/00-1234567B26"
+      },
+      {
+        "kind": "nif",
+        "value": "000116001234567"
+      },
+      {
+        "kind": "nis",
+        "value": "000116001234567"
+      },
+      {
+        "kind": "ai",
+        "value": "16012345678"
+      },
+      {
+        "kind": "rib",
+        "value": "00799999001234567890"
+      }
+    ],
+    "vatExemptRef": null
+  },
+  "counterpart": {
+    "name": "SARL Amine",
+    "nameAlt": null,
+    "legalForm": "SARL",
+    "activity": "Quincaillerie",
+    "activityAlt": null,
+    "capital": null,
+    "address": "5 rue Didouche Mourad, Alger",
+    "wilaya": "الجزائر",
+    "phone": null,
+    "email": null,
+    "ids": [
+      {
+        "kind": "rc",
+        "value": "16/00-7654321B26"
+      },
+      {
+        "kind": "nif",
+        "value": "000016001234567"
+      },
+      {
+        "kind": "nis",
+        "value": "000016007654321"
+      },
+      {
+        "kind": "ai",
+        "value": "16098765432"
+      }
+    ],
+    "vatExemptRef": null
+  },
+  "counterpartRole": "customer",
+  "showPrices": true,
+  "priceBasisHt": true,
+  "showTax": true,
+  "ifuMention": null,
+  "exemptMention": null,
+  "lines": [
+    {
+      "no": 1,
+      "description": "Ciment 25 kg",
+      "descriptionAlt": null,
+      "qty": 10000,
+      "unit": "قطعة",
+      "unitPriceHt": 100000,
+      "unitPriceTtc": 119000,
+      "discount": 59500,
+      "discountBp": 500,
+      "rateBp": 1900,
+      "totalHt": 950000,
+      "totalTtc": 1130500,
+      "components": [],
+      "note": null
+    },
+    {
+      "no": 2,
+      "description": "Sable 1 m3",
+      "descriptionAlt": null,
+      "qty": 2000,
+      "unit": "قطعة",
+      "unitPriceHt": 500000,
+      "unitPriceTtc": 545000,
+      "discount": 0,
+      "discountBp": 0,
+      "rateBp": 900,
+      "totalHt": 1000000,
+      "totalTtc": 1090000,
+      "components": [],
+      "note": null
+    },
+    {
+      "no": 3,
+      "description": "Transport Alger – Blida",
+      "descriptionAlt": null,
+      "qty": 1000,
+      "unit": "قطعة",
+      "unitPriceHt": 100000,
+      "unitPriceTtc": 119000,
+      "discount": 0,
+      "discountBp": 0,
+      "rateBp": 1900,
+      "totalHt": 100000,
+      "totalTtc": 119000,
+      "components": [],
+      "note": null
+    }
+  ],
+  "totals": {
+    "subtotalHt": 2050000,
+    "discountTotal": 59500,
+    "taxes": [
+      {
+        "rateBp": 1900,
+        "label": "الرسم على القيمة المضافة 19 %",
+        "baseHt": 1050000,
+        "tax": 199500
+      },
+      {
+        "rateBp": 900,
+        "label": "الرسم على القيمة المضافة 9 %",
+        "baseHt": 1000000,
+        "tax": 90000
+      }
+    ],
+    "taxTotal": 289500,
+    "totalTtc": 2339500,
+    "stampDuty": 5400,
+    "stampAbsorbed": 0,
+    "rounding": 0,
+    "totalDue": 2344900,
+    "paid": 544900,
+    "remaining": 1800000
+  },
+  "inLetters": "أوقفت هذه الفاتورة على مبلغ: ثلاثة وعشرون ألفاً وأربعمائة وتسعة وأربعون ديناراً",
+  "payments": [
+    {
+      "method": "cash",
+      "label": "نقدا",
+      "amount": 544900,
+      "reference": null,
+      "chequeBank": null,
+      "chequeDate": null
+    },
+    {
+      "method": "credit",
+      "label": "كريدي",
+      "amount": 1800000,
+      "reference": null,
+      "chequeBank": null,
+      "chequeDate": null
+    }
+  ],
+  "paymentMode": "نقدا, بالآجل (التسديد في 28/10/2026)",
+  "references": [],
+  "creditKind": null,
+  "reason": null,
+  "note": null,
+  "headerText": null,
+  "footerText": "شكراً لثقتكم",
+  "termsText": "البضاعة المباعة لا تُرد إلا بإشعار دائن.",
+  "social": [
+    "elamel.dz"
+  ],
+  "legal": [],
+  "stampBox": true,
+  "duplicate": null,
+  "watermark": null,
+  "qr": {
+    "size": 21,
+    "modules": "111111101001001111111100000101000101000001101110100011101011101101110101101101011101101110100110001011101100000100010001000001111111101010101111111000000001000000000000101101110000001001011111001000110100100110110010100110101001010001011010010111010111100001100001000101001000000001100001000000111111101010011010011100000101011101100101101110100011001010011101110101000010000110101110101101000110100100000100011101101000111111101101110001110"
+  },
+  "logo": null,
+  "layout": {
+    "accent": "brand",
+    "showLogo": true,
+    "paper": "a4",
+    "secondLang": null,
+    "showDeliveryPrices": true,
+    "showStampBox": true
+  },
+  "labels": {
+    "number": "رقم",
+    "date": "التاريخ",
+    "validUntil": "صالح إلى غاية",
+    "dueDate": "تاريخ التسديد",
+    "seller": "البائع",
+    "customer": "الزبون",
+    "supplier": "المورّد",
+    "legalForm": "الشكل القانوني",
+    "activity": "النشاط",
+    "capital": "رأس المال الاجتماعي",
+    "address": "العنوان",
+    "phone": "الهاتف",
+    "email": "البريد الإلكتروني",
+    "rc": "السجل التجاري",
+    "aeCard": "بطاقة المقاول الذاتي",
+    "nif": "رقم التعريف الجبائي",
+    "nis": "رقم التعريف الإحصائي",
+    "ai": "رقم المادة الضريبية",
+    "nin": "رقم التعريف الوطني",
+    "rib": "رقم الحساب البنكي",
+    "designation": "التعيين",
+    "qty": "الكمية",
+    "unit": "الوحدة",
+    "unitPriceHt": "سعر الوحدة خارج الرسوم",
+    "unitPriceTtc": "سعر الوحدة بكل الرسوم",
+    "discount": "التخفيض",
+    "vatRate": "نسبة الرسم",
+    "totalHt": "المبلغ خارج الرسوم",
+    "totalTtc": "المبلغ بكل الرسوم",
+    "subtotalHt": "المجموع خارج الرسوم",
+    "discountTotal": "مجموع التخفيضات",
+    "totalTtcLabel": "المجموع بكل الرسوم",
+    "stampDuty": "حقوق الطابع",
+    "stampAbsorbed": "حقوق الطابع على عاتق البائع",
+    "rounding": "التقريب",
+    "netToPay": "الصافي للدفع",
+    "paymentMode": "طريقة الدفع",
+    "paid": "المدفوع",
+    "remaining": "الباقي المستحق",
+    "references": "الوثائق المرجعية",
+    "stampBox": "الختم والإمضاء",
+    "page": "صفحة",
+    "printedAt": "طُبع في",
+    "from": "من",
+    "to": "إلى",
+    "driver": "السائق",
+    "vehicle": "المركبة",
+    "note": "ملاحظات",
+    "terms": "الشروط",
+    "reason": "السبب",
+    "receivedBy": "استلمه"
+  },
+  "second": null,
+  "transfer": null,
+  "printedAt": "28/09/2026 10:15"
+}

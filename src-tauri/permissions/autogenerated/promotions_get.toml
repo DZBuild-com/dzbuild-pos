@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-promotions-get"
+description = "Enables the promotions_get command without any pre-configured scope."
+commands.allow = ["promotions_get"]
+
+[[permission]]
+identifier = "deny-promotions-get"
+description = "Denies the promotions_get command without any pre-configured scope."
+commands.deny = ["promotions_get"]

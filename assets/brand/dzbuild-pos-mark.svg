@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <title>DZBuild POS</title>
+  <circle cx="256" cy="256" r="240" fill="#FFC300"/>
+  <path d="M214 198 V178 a42 42 0 0 1 84 0 V198" fill="none" stroke="#FFFFFF" stroke-width="16" stroke-linecap="round"/>
+  <path d="M186 196 L326 196 Q344 196 346 214 L362 392 L362.0 392 L348.8 408 L335.5 392 L322.3 408 L309.0 392 L295.8 408 L282.5 392 L269.3 408 L256.0 392 L242.8 408 L229.5 392 L216.3 408 L203.0 392 L189.8 408 L176.5 392 L163.3 408 L150.0 392 L166 214 Q168 196 186 196 Z" fill="#FFFFFF"/>
+  <circle cx="222" cy="262" r="12" fill="#FFC300"/>
+  <circle cx="290" cy="262" r="12" fill="#FFC300"/>
+  <path d="M206 298 Q256 340 306 298" fill="none" stroke="#FFC300" stroke-width="13" stroke-linecap="round"/>
+  <circle cx="205" cy="352" r="4" fill="#FFC300"/>
+  <circle cx="222" cy="352" r="4" fill="#FFC300"/>
+  <circle cx="239" cy="352" r="4" fill="#FFC300"/>
+  <circle cx="256" cy="352" r="4" fill="#FFC300"/>
+  <circle cx="273" cy="352" r="4" fill="#FFC300"/>
+  <circle cx="290" cy="352" r="4" fill="#FFC300"/>
+  <circle cx="307" cy="352" r="4" fill="#FFC300"/>
+</svg>

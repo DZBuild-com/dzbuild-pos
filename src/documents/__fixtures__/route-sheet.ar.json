@@ -1,0 +1,139 @@
+{
+  "lang": "ar",
+  "rtl": true,
+  "title": "ورقة الطريق",
+  "number": "TR2026-000001",
+  "date": "28/09/2026",
+  "seller": {
+    "name": "Supérette El Amel",
+    "nameAlt": "مغازة الأمل",
+    "legalForm": "SARL",
+    "activity": "Commerce de détail en alimentation générale",
+    "activityAlt": "تجارة التجزئة للمواد الغذائية العامة",
+    "capital": 100000000,
+    "address": "12 rue Larbi Ben M'hidi, Alger",
+    "wilaya": "Alger",
+    "phone": "023 45 67 89",
+    "email": null,
+    "ids": [
+      {
+        "kind": "rc",
+        "value": "16/00-1234567B26"
+      },
+      {
+        "kind": "nif",
+        "value": "000116001234567"
+      },
+      {
+        "kind": "nis",
+        "value": "000116001234567"
+      },
+      {
+        "kind": "ai",
+        "value": "16012345678"
+      },
+      {
+        "kind": "rib",
+        "value": "00799999001234567890"
+      }
+    ],
+    "vatExemptRef": null
+  },
+  "driver": "Rachid",
+  "plate": "01234-116-16",
+  "van": null,
+  "stops": [
+    {
+      "seq": 1,
+      "customer": "Épicerie Amine",
+      "address": "Cité 200 logements, Bab Ezzouar",
+      "phone": "0555123456",
+      "document": "FA2026-000004",
+      "amountDue": 500000,
+      "collected": 500000,
+      "status": "سُلّم"
+    },
+    {
+      "seq": 2,
+      "customer": "Supérette Nour",
+      "address": "Cité 200 logements, Bab Ezzouar",
+      "phone": "0555123456",
+      "document": "BL2026-000007",
+      "amountDue": 1000000,
+      "collected": 0,
+      "status": "للتسليم"
+    }
+  ],
+  "totalDue": 1500000,
+  "totalCollected": 500000,
+  "labels": {
+    "driver": "السائق",
+    "plate": "رقم التسجيل",
+    "van": "المركبة (المخزون)",
+    "customer": "الزبون",
+    "address": "العنوان",
+    "phone": "الهاتف",
+    "document": "الوثيقة",
+    "amountDue": "المبلغ المستحق",
+    "collected": "المقبوض",
+    "status": "الحالة",
+    "signature": "توقيع الزبون"
+  },
+  "partyLabels": {
+    "number": "رقم",
+    "date": "التاريخ",
+    "validUntil": "صالح إلى غاية",
+    "dueDate": "تاريخ التسديد",
+    "seller": "البائع",
+    "customer": "الزبون",
+    "supplier": "المورّد",
+    "legalForm": "الشكل القانوني",
+    "activity": "النشاط",
+    "capital": "رأس المال الاجتماعي",
+    "address": "العنوان",
+    "phone": "الهاتف",
+    "email": "البريد الإلكتروني",
+    "rc": "السجل التجاري",
+    "aeCard": "بطاقة المقاول الذاتي",
+    "nif": "رقم التعريف الجبائي",
+    "nis": "رقم التعريف الإحصائي",
+    "ai": "رقم المادة الضريبية",
+    "nin": "رقم التعريف الوطني",
+    "rib": "رقم الحساب البنكي",
+    "designation": "التعيين",
+    "qty": "الكمية",
+    "unit": "الوحدة",
+    "unitPriceHt": "سعر الوحدة خارج الرسوم",
+    "unitPriceTtc": "سعر الوحدة بكل الرسوم",
+    "discount": "التخفيض",
+    "vatRate": "نسبة الرسم",
+    "totalHt": "المبلغ خارج الرسوم",
+    "totalTtc": "المبلغ بكل الرسوم",
+    "subtotalHt": "المجموع خارج الرسوم",
+    "discountTotal": "مجموع التخفيضات",
+    "totalTtcLabel": "المجموع بكل الرسوم",
+    "stampDuty": "حقوق الطابع",
+    "stampAbsorbed": "حقوق الطابع على عاتق البائع",
+    "rounding": "التقريب",
+    "netToPay": "الصافي للدفع",
+    "paymentMode": "طريقة الدفع",
+    "paid": "المدفوع",
+    "remaining": "الباقي المستحق",
+    "references": "الوثائق المرجعية",
+    "stampBox": "الختم والإمضاء",
+    "page": "صفحة",
+    "printedAt": "طُبع في",
+    "from": "من",
+    "to": "إلى",
+    "driver": "السائق",
+    "vehicle": "المركبة",
+    "note": "ملاحظات",
+    "terms": "الشروط",
+    "reason": "السبب",
+    "receivedBy": "استلمه"
+  },
+  "signatures": [
+    "السائق",
+    "المحل"
+  ]
+}

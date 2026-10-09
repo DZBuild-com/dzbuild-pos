@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-expenses-category-archive"
+description = "Enables the expenses_category_archive command without any pre-configured scope."
+commands.allow = ["expenses_category_archive"]
+
+[[permission]]
+identifier = "deny-expenses-category-archive"
+description = "Denies the expenses_category_archive command without any pre-configured scope."
+commands.deny = ["expenses_category_archive"]

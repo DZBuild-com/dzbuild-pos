@@ -1,0 +1,55 @@
+# cargo-deny policy for the Rust workspace (https://embarkstudios.github.io/cargo-deny/).
+#   CI (every pull request): cargo deny check advisories bans licenses sources
+#   Nightly: cargo deny check advisories, so a new RustSec advisory shows up within a day.
+
+# DZBuild POS ships for Windows only: the Linux GTK and macOS stacks Tauri pulls in for other
+# platforms are not part of any installer, so they are left out of every check.
+[graph]
+targets = ["x86_64-pc-windows-msvc", "i686-pc-windows-msvc"]
+all-features = true
+
+# A vulnerability anywhere in the tree fails. "Unmaintained" (like "unsound", by default) fails
+# only for our direct dependencies, the ones we can replace: the transitive ones (paste through
+# specta, ttf-parser through cosmic-text) have no upgrade on our side and would keep CI red.
+[advisories]
+version = 2
+unmaintained = "workspace"
+ignore = []
+
+# The code is GPL-3.0-or-later: every dependency must carry a licence compatible with it.
+# A crate under several licences ("MIT OR Apache-2.0") passes when one of them is allowed.
+[licenses]
+version = 2
+confidence-threshold = 0.8
+allow = [
+  "MIT",
+  "MIT-0",
+  "Apache-2.0",
+  "BSD-2-Clause",
+  "BSD-3-Clause",
+  "0BSD",
+  "Zlib",
+  "BSL-1.0",
+  "CC0-1.0",
+  "Unlicense",
+  "Unicode-3.0",
+  "MPL-2.0",
+]
+
+[licenses.private]
+# The workspace crates are never published to crates.io.
+ignore = true
+
+[bans]
+# Several versions of one crate (windows-sys…) come from Tauri's own tree: worth knowing, not
+# worth failing a pull request.
+multiple-versions = "warn"
+wildcards = "deny"
+allow-wildcard-paths = true
+
+[sources]
+# Only crates.io: no git or unknown registry dependency.
+unknown-registry = "deny"
+unknown-git = "deny"
+allow-registry = ["https://github.com/rust-lang/crates.io-index"]
+allow-git = []

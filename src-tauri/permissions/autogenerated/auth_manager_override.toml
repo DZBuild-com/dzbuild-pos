@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-auth-manager-override"
+description = "Enables the auth_manager_override command without any pre-configured scope."
+commands.allow = ["auth_manager_override"]
+
+[[permission]]
+identifier = "deny-auth-manager-override"
+description = "Denies the auth_manager_override command without any pre-configured scope."
+commands.deny = ["auth_manager_override"]

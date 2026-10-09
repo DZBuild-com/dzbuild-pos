@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-recovery-inspect"
+description = "Enables the recovery_inspect command without any pre-configured scope."
+commands.allow = ["recovery_inspect"]
+
+[[permission]]
+identifier = "deny-recovery-inspect"
+description = "Denies the recovery_inspect command without any pre-configured scope."
+commands.deny = ["recovery_inspect"]

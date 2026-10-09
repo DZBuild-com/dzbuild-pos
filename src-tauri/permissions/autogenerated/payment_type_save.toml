@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-payment-type-save"
+description = "Enables the payment_type_save command without any pre-configured scope."
+commands.allow = ["payment_type_save"]
+
+[[permission]]
+identifier = "deny-payment-type-save"
+description = "Denies the payment_type_save command without any pre-configured scope."
+commands.deny = ["payment_type_save"]

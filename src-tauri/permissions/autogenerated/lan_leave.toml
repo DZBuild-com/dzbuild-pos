@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-lan-leave"
+description = "Enables the lan_leave command without any pre-configured scope."
+commands.allow = ["lan_leave"]
+
+[[permission]]
+identifier = "deny-lan-leave"
+description = "Denies the lan_leave command without any pre-configured scope."
+commands.deny = ["lan_leave"]

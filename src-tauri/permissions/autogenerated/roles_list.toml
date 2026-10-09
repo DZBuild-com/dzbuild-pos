@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-roles-list"
+description = "Enables the roles_list command without any pre-configured scope."
+commands.allow = ["roles_list"]
+
+[[permission]]
+identifier = "deny-roles-list"
+description = "Denies the roles_list command without any pre-configured scope."
+commands.deny = ["roles_list"]

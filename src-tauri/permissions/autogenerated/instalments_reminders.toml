@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-instalments-reminders"
+description = "Enables the instalments_reminders command without any pre-configured scope."
+commands.allow = ["instalments_reminders"]
+
+[[permission]]
+identifier = "deny-instalments-reminders"
+description = "Denies the instalments_reminders command without any pre-configured scope."
+commands.deny = ["instalments_reminders"]

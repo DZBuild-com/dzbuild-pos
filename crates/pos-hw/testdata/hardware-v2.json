@@ -1,0 +1,66 @@
+{
+  "version": 2,
+  "printers": [
+    {
+      "id": "p1",
+      "name": "Caisse 1",
+      "transport": { "kind": "windows", "printerName": "XP-80C" },
+      "profile": {
+        "preset": "xprinter",
+        "width": "mm80",
+        "dots": 576,
+        "columns": 48,
+        "render": "auto",
+        "codePage": "pc858",
+        "codePageSelector": 19,
+        "cut": "partial",
+        "feedBeforeCut": 4,
+        "drawerPin": "pin2",
+        "bandRows": 96,
+        "exitChineseMode": true
+      }
+    }
+  ],
+  "receiptPrinterId": "p1",
+  "receipt": {
+    "printByDefault": true,
+    "openDrawerOnCash": true,
+    "drawerBeforePrint": false,
+    "logo": true,
+    "secondLang": null
+  },
+  "scanner": { "layout": "azerty", "prefix": "", "suffix": "enter_or_tab", "serial": null },
+  "labelPrinters": [
+    {
+      "id": "l1",
+      "name": "Étiquettes",
+      "transport": { "kind": "windows", "printerName": "XP-365B" },
+      "profile": {
+        "preset": "xprinter",
+        "language": "tspl",
+        "dpi": "d203",
+        "darkness": 8,
+        "speed": 4,
+        "media": "gap",
+        "offsetXDmm": 0,
+        "offsetYDmm": 0,
+        "bitmapBlackIsZero": true
+      }
+    }
+  ],
+  "labelPrinterId": "l1",
+  "scale": {
+    "serial": { "port": "COM3", "baud": 9600, "dataBits": "seven", "parity": "even", "stopBits": "one" },
+    "protocol": "toledo8217",
+    "pollMs": 200,
+    "stableReadings": 3,
+    "capacityG": 15000
+  },
+  "display": {
+    "vfd": null,
+    "screen": { "enabled": false, "monitor": null, "showLogo": true, "thanksSeconds": 5 }
+  },
+  "drawer": { "kind": "printer" },
+  "driverNames": { "p1": "XP-80C", "l1": "XP-365B" },
+  "documents": { "defaultPrinter": null, "kinds": [], "marginsMm": 12 }
+}

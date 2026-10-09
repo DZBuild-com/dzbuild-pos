@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-scale-tare"
+description = "Enables the scale_tare command without any pre-configured scope."
+commands.allow = ["scale_tare"]
+
+[[permission]]
+identifier = "deny-scale-tare"
+description = "Denies the scale_tare command without any pre-configured scope."
+commands.deny = ["scale_tare"]

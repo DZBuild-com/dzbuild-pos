@@ -1,0 +1,89 @@
+{
+  "title": "Bijouterie",
+  "tabs": {
+    "label": "Bijouterie",
+    "board": "Prix du gramme",
+    "register": "Registre"
+  },
+  "metal": {
+    "gold": "Or",
+    "silver": "Argent",
+    "platinum": "Platine"
+  },
+  "fineness": "{{metal}} {{titre}} ‰ ({{carats}} carats)",
+  "finenessPlain": "{{metal}} {{titre}} ‰",
+  "board": {
+    "title": "Prix du gramme",
+    "metalTitre": "Métal et titre",
+    "since": "Fixé le",
+    "actions": "Actions",
+    "setBy": "{{date}} par {{name}}",
+    "new": "Nouveau prix",
+    "newFor": "Nouveau prix — {{fineness}}",
+    "add": "Ajouter un métal ou un titre",
+    "price": "Prix du gramme",
+    "save": "Enregistrer le prix",
+    "saved": "Nouveau prix enregistré.",
+    "history": "Historique",
+    "historyFor": "Historique — {{fineness}}",
+    "empty": "Aucun prix au gramme. Ajoutez le prix de l'or que vous vendez pour commencer.",
+    "reprice": "Recalculer les prix du catalogue",
+    "repriceHint": "Met le prix du jour des bijoux vendus au poids dans la liste des produits : les étiquettes et les listes de prix l'affichent.",
+    "repriced": "{{count}} prix mis à jour"
+  },
+  "tab": {
+    "title": "Bijou",
+    "metal": "Métal",
+    "titre": "Titre (‰)",
+    "carats": "{{carats}} carats",
+    "weight": "Poids (g)",
+    "facon": "Façon",
+    "stones": "Pierres",
+    "hallmark": "Poinçon",
+    "byWeight": "Prix au poids",
+    "byWeightHint": "Poids × prix du gramme du jour + façon, à la caisse.",
+    "live": "Prix actuel : {{amount}}",
+    "noPrice": "Pas de prix au gramme pour ce métal et ce titre : ajoutez-le dans Bijouterie.",
+    "notPiece": "Ce produit n'est pas encore un bijou : remplissez son métal, son titre et son poids.",
+    "save": "Enregistrer le bijou",
+    "saved": "Bijou enregistré."
+  },
+  "register": {
+    "title": "Registre spécial des clients",
+    "authorisation": "Autorisation n° {{number}} du {{date}} — {{authority}}",
+    "noAuthorisation": "Le numéro d'autorisation n'est pas encore renseigné.",
+    "year": "Année",
+    "empty": "Aucune vente de bijou inscrite au registre cette année.",
+    "tillNote": "Le registre est tenu sur le poste principal : ce poste le consulte seulement.",
+    "columns": {
+      "seq": "N°",
+      "date": "Date",
+      "ticket": "Ticket",
+      "nature": "Désignation",
+      "pieces": "Pièces",
+      "weight": "Poids (g)",
+      "titre": "Titre",
+      "price": "Prix",
+      "buyer": "Acheteur",
+      "id": "Pièce d'identité",
+      "address": "Adresse"
+    },
+    "idKinds": {
+      "cni": "CNI",
+      "passport": "Passeport",
+      "driving_licence": "Permis de conduire",
+      "other": "Autre pièce"
+    },
+    "settings": "Autorisation et plafond",
+    "number": "N° de l'autorisation",
+    "date": "Date de l'autorisation",
+    "authority": "Délivrée par",
+    "maxCash": "Plafond des paiements en espèces",
+    "maxCashHint": "Vide : pas de plafond. Au-delà, la caisse demande un autre mode de paiement.",
+    "save": "Enregistrer",
+    "saved": "Autorisation et plafond enregistrés."
+  },
+  "labels": {
+    "jewelLine": "Ligne bijou"
+  }
+}

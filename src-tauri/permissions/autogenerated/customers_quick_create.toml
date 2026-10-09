@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-customers-quick-create"
+description = "Enables the customers_quick_create command without any pre-configured scope."
+commands.allow = ["customers_quick_create"]
+
+[[permission]]
+identifier = "deny-customers-quick-create"
+description = "Denies the customers_quick_create command without any pre-configured scope."
+commands.deny = ["customers_quick_create"]

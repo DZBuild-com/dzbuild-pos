@@ -1,0 +1,59 @@
+name: Feature request
+description: Suggest an improvement or a new feature for shops.
+title: "[Feature]: "
+labels: ["enhancement", "status/needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the idea. For an open-ended idea, [Discussions](https://github.com/DZBuild-com/dzbuild-pos/discussions) is a good place to start.
+        DZBuild POS never builds fictive invoices, hidden stock, sales deletion or any other feature that is illegal in Algeria.
+  - type: textarea
+    id: problem
+    attributes:
+      label: The problem
+      description: What does the shop need to do today, and why is it hard?
+      placeholder: "At closing time I need to …"
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: The solution you would like
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives you considered
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Till and payments
+        - Stock and products
+        - Customers and kridi
+        - Suppliers and purchases
+        - Documents, invoices and fiscal reports
+        - Printing and hardware
+        - Several tills on a network
+        - Import and export
+        - A trade pack (restaurant, pharmacy, butcher, phones, wholesale, jewellery…)
+        - Languages and right-to-left
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: activity
+    attributes:
+      label: Type of shop
+      placeholder: "Grocery, pharmacy, phone shop …"
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before you send
+      options:
+        - label: I searched the existing issues and discussions.
+          required: true
+        - label: This feature works offline, or I explained why it needs the internet.

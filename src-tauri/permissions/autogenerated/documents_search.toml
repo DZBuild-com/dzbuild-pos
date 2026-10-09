@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-documents-search"
+description = "Enables the documents_search command without any pre-configured scope."
+commands.allow = ["documents_search"]
+
+[[permission]]
+identifier = "deny-documents-search"
+description = "Denies the documents_search command without any pre-configured scope."
+commands.deny = ["documents_search"]

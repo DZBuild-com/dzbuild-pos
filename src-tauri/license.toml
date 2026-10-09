@@ -1,0 +1,14 @@
+# DZBuild POS: who sells the licences, shown on the activation screen.
+# Public values only: they are compiled into the app (`license::seller`).
+seller = "DZBuild"
+# The WhatsApp number in international form, digits only (213…). Empty: the activation QR holds the
+# device code itself instead of a WhatsApp link. Put the sales number here;
+# `pnpm release:build` refuses to build while neither whatsapp nor phone is filled in.
+whatsapp = ""
+# A phone number shown as text (optional).
+phone = ""
+url = "https://dzbuild.com/pos"
+# 0.9.0: the free edition. `true` licenses every PC with no key: the activation screen, the
+# read-only mode and Settings › Licence are never shown (`license::free_edition`); the release
+# build no longer needs a sales contact.
+free = true

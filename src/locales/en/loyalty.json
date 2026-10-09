@@ -1,0 +1,116 @@
+{
+  "title": "Loyalty and vouchers",
+  "tabs": {
+    "label": "Loyalty and vouchers",
+    "vouchers": "Vouchers",
+    "loyalty": "Loyalty"
+  },
+  "card": {
+    "title": "Loyalty card",
+    "enrol": "Enrol in the programme",
+    "code": "Card code",
+    "codeHint": "Scan the card or type its code (8 to 20 letters or digits).",
+    "generate": "Generate a code",
+    "block": "Block the card",
+    "blockHint": "Lost or stolen card: the customer keeps their points and gets a new card.",
+    "none": "No card yet",
+    "enrolled": "Card {{code}} saved.",
+    "blocked": "Card {{code}} blocked."
+  },
+  "account": {
+    "balance": "Points balance",
+    "points": "{{count}} points",
+    "expiring": "{{count}} points expire before {{date}}",
+    "pointValue": "One point is worth {{amount}}",
+    "notRedeemable": "Not enough points yet to turn them into a loyalty voucher.",
+    "redeem": "Redeem points",
+    "adjust": "Adjust",
+    "note": "Reason"
+  },
+  "redeem": {
+    "title": "Redeem points",
+    "points": "Points to redeem",
+    "max": "At most {{max}} points.",
+    "range": "Between {{min}} and {{max}} points.",
+    "value": "Loyalty voucher of {{amount}}",
+    "submit": "Create the loyalty voucher",
+    "done": "Loyalty voucher {{code}} created, valid until {{date}}.",
+    "notPrinted": "The voucher was not printed: reprint it."
+  },
+  "adjust": {
+    "title": "Adjust the points",
+    "direction": "Adjustment",
+    "add": "Add points",
+    "remove": "Remove points",
+    "points": "Number of points",
+    "save": "Save the adjustment",
+    "done": "Points adjusted."
+  },
+  "entries": {
+    "title": "Points history",
+    "date": "Date",
+    "kind": "Movement",
+    "points": "Points",
+    "ref": "Ticket or voucher",
+    "expires": "Expire on",
+    "none": "No points movement for this customer.",
+    "earn": "Earned",
+    "redeem": "Redeemed",
+    "expire": "Expired",
+    "reversal": "Taken back (return)",
+    "adjust": "Adjusted"
+  },
+  "sell": {
+    "title": "Sell a gift voucher",
+    "amount": "Voucher amount",
+    "buyer": "Buyer (optional)",
+    "receive": "To collect: {{amount}}",
+    "toReceive": "To collect: {{amount}} (stamp duty {{duty}})",
+    "submit": "Collect and print",
+    "done": "Gift voucher {{code}} sold, valid until {{date}}.",
+    "notPrinted": "The voucher was not printed: reprint it."
+  },
+  "list": {
+    "title": "Vouchers",
+    "outstanding": "Still owed to holders: {{amount}}",
+    "reprint": "Reprint",
+    "reprinted": "Voucher {{code}} sent to the printer.",
+    "search": "Code, barcode or buyer",
+    "kind": "Type",
+    "status": "Status",
+    "allKinds": "All types",
+    "allStatuses": "All statuses",
+    "empty": "No vouchers. Sell a gift voucher from the till menu (Esc).",
+    "columns": {
+      "code": "Code",
+      "kind": "Type",
+      "issued": "Issued on",
+      "expires": "Expires on",
+      "initial": "Amount",
+      "balance": "Balance",
+      "status": "Status",
+      "buyer": "Buyer"
+    }
+  },
+  "kinds": {
+    "gift": "Gift voucher",
+    "exchange": "Exchange voucher",
+    "loyalty": "Loyalty voucher"
+  },
+  "statuses": {
+    "active": "Valid",
+    "spent": "Used",
+    "expired": "Expired"
+  },
+  "settings": {
+    "title": "Loyalty rules",
+    "pointsPer100": "Points per 100 DA",
+    "pointValue": "Value of a point",
+    "minRedeem": "Minimum to redeem",
+    "validity": "Points validity (months)",
+    "validityHint": "0: points never expire.",
+    "voucherValidity": "Voucher validity (months)",
+    "save": "Save the rules",
+    "saved": "Loyalty rules saved."
+  }
+}

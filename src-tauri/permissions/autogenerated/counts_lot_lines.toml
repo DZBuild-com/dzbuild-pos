@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-counts-lot-lines"
+description = "Enables the counts_lot_lines command without any pre-configured scope."
+commands.allow = ["counts_lot_lines"]
+
+[[permission]]
+identifier = "deny-counts-lot-lines"
+description = "Denies the counts_lot_lines command without any pre-configured scope."
+commands.deny = ["counts_lot_lines"]

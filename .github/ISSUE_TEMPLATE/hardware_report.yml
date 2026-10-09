@@ -1,0 +1,76 @@
+name: Hardware report
+description: Tell us how a printer, scanner, scale, cash drawer or display works with DZBuild POS.
+title: "[Hardware]: "
+labels: ["area/printing-hardware", "status/needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Reports that a device **works** are as useful as reports that it does not: they help other shops choose their hardware.
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Device type
+      options:
+        - Receipt printer
+        - Label printer
+        - A4 printer
+        - Barcode scanner
+        - Scale
+        - Cash drawer
+        - Pole display
+        - Second screen (customer display)
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: model
+    attributes:
+      label: Brand and model
+      placeholder: "Xprinter XP-80C, Zebra GK420t, CAS ER …"
+    validations:
+      required: true
+  - type: dropdown
+    id: connection
+    attributes:
+      label: Connection
+      options:
+        - USB with a Windows driver (printer queue)
+        - USB without a driver
+        - Network (Ethernet or Wi-Fi)
+        - Serial (COM) or USB-serial
+        - Through the receipt printer (cash drawer)
+        - Keyboard wedge (scanner)
+        - Other
+    validations:
+      required: true
+  - type: dropdown
+    id: result
+    attributes:
+      label: Result
+      options:
+        - Works fully
+        - Works partly
+        - Does not work
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: DZBuild POS version
+      description: Settings › About.
+      placeholder: "1.0.0"
+    validations:
+      required: true
+  - type: textarea
+    id: settings
+    attributes:
+      label: Settings you used
+      description: Protocol (ESC/POS, TSPL, ZPL…), paper width, code page, baud rate, label size…
+  - type: textarea
+    id: details
+    attributes:
+      label: What happened
+      description: What worked, what did not, error messages. A photo of the printed receipt or label helps a lot (hide customer data).
+    validations:
+      required: true

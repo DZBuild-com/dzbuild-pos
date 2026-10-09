@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-audit-history"
+description = "Enables the audit_history command without any pre-configured scope."
+commands.allow = ["audit_history"]
+
+[[permission]]
+identifier = "deny-audit-history"
+description = "Denies the audit_history command without any pre-configured scope."
+commands.deny = ["audit_history"]

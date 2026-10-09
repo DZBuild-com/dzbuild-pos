@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-loyalty-adjust"
+description = "Enables the loyalty_adjust command without any pre-configured scope."
+commands.allow = ["loyalty_adjust"]
+
+[[permission]]
+identifier = "deny-loyalty-adjust"
+description = "Denies the loyalty_adjust command without any pre-configured scope."
+commands.deny = ["loyalty_adjust"]

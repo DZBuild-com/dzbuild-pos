@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-counts-import-collector"
+description = "Enables the counts_import_collector command without any pre-configured scope."
+commands.allow = ["counts_import_collector"]
+
+[[permission]]
+identifier = "deny-counts-import-collector"
+description = "Denies the counts_import_collector command without any pre-configured scope."
+commands.deny = ["counts_import_collector"]

@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-rounds-set-stops"
+description = "Enables the rounds_set_stops command without any pre-configured scope."
+commands.allow = ["rounds_set_stops"]
+
+[[permission]]
+identifier = "deny-rounds-set-stops"
+description = "Denies the rounds_set_stops command without any pre-configured scope."
+commands.deny = ["rounds_set_stops"]

@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-departments-archive"
+description = "Enables the departments_archive command without any pre-configured scope."
+commands.allow = ["departments_archive"]
+
+[[permission]]
+identifier = "deny-departments-archive"
+description = "Denies the departments_archive command without any pre-configured scope."
+commands.deny = ["departments_archive"]

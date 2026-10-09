@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-stock-transfers"
+description = "Enables the stock_transfers command without any pre-configured scope."
+commands.allow = ["stock_transfers"]
+
+[[permission]]
+identifier = "deny-stock-transfers"
+description = "Denies the stock_transfers command without any pre-configured scope."
+commands.deny = ["stock_transfers"]

@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-counts-set-lot"
+description = "Enables the counts_set_lot command without any pre-configured scope."
+commands.allow = ["counts_set_lot"]
+
+[[permission]]
+identifier = "deny-counts-set-lot"
+description = "Denies the counts_set_lot command without any pre-configured scope."
+commands.deny = ["counts_set_lot"]

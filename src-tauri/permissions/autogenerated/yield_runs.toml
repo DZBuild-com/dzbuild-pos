@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-yield-runs"
+description = "Enables the yield_runs command without any pre-configured scope."
+commands.allow = ["yield_runs"]
+
+[[permission]]
+identifier = "deny-yield-runs"
+description = "Denies the yield_runs command without any pre-configured scope."
+commands.deny = ["yield_runs"]

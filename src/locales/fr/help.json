@@ -1,0 +1,16 @@
+{
+  "title": "Centre d'aide",
+  "search": "Rechercher dans l'aide",
+  "noResult": "Aucune page ne correspond.",
+  "groups": {
+    "start": "Commencer",
+    "sell": "Vendre",
+    "manage": "Gérer",
+    "settings": "Réglages",
+    "safety": "Sécurité des données"
+  },
+  "print": "Imprimer la fiche pratique",
+  "openFull": "Ouvrir l'aide complète",
+  "needHelp": "Besoin d'aide ? Contactez l'assistance",
+  "back": "Retour au centre d'aide"
+}

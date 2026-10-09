@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-products-restore"
+description = "Enables the products_restore command without any pre-configured scope."
+commands.allow = ["products_restore"]
+
+[[permission]]
+identifier = "deny-products-restore"
+description = "Denies the products_restore command without any pre-configured scope."
+commands.deny = ["products_restore"]

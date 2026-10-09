@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-imports-error-report"
+description = "Enables the imports_error_report command without any pre-configured scope."
+commands.allow = ["imports_error_report"]
+
+[[permission]]
+identifier = "deny-imports-error-report"
+description = "Denies the imports_error_report command without any pre-configured scope."
+commands.deny = ["imports_error_report"]

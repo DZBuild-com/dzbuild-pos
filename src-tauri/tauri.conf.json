@@ -1,0 +1,75 @@
+{
+  "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
+  "productName": "DZBuild POS",
+  "version": "1.0.0",
+  "identifier": "dev.dzbuild.pos",
+  "build": {
+    "beforeDevCommand": "pnpm dev",
+    "devUrl": "http://localhost:1420",
+    "beforeBuildCommand": "pnpm build",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "withGlobalTauri": false,
+    "windows": [
+      {
+        "label": "main",
+        "title": "DZBuild POS",
+        "width": 1280,
+        "height": 800,
+        "minWidth": 1024,
+        "minHeight": 640,
+        "center": true,
+        "maximized": true,
+        "preventOverflow": true,
+        "resizable": true
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self'; img-src 'self' data: asset: http://asset.localhost; style-src 'self' 'unsafe-inline'; font-src 'self' data:; script-src 'self'; connect-src ipc: http://ipc.localhost ws://localhost:1420",
+      "assetProtocol": { "enable": true, "scope": ["$APPDATA/media/**/*"] }
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["nsis"],
+    "publisher": "DZBuild",
+    "homepage": "https://dzbuild.com/pos",
+    "category": "Business",
+    "copyright": "© 2026 DZBuild",
+    "shortDescription": "DZBuild POS",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "createUpdaterArtifacts": false,
+    "windows": {
+      "webviewInstallMode": { "type": "embedBootstrapper", "silent": true },
+      "minimumWebview2Version": "120.0.2210.55",
+      "nsis": {
+        "installMode": "perMachine",
+        "languages": ["English", "French", "Arabic"],
+        "displayLanguageSelector": true,
+        "customLanguageFiles": {
+          "English": "./windows/lang/English.nsh",
+          "French": "./windows/lang/French.nsh",
+          "Arabic": "./windows/lang/Arabic.nsh"
+        },
+        "compression": "lzma",
+        "installerIcon": "icons/icon.ico",
+        "installerHooks": "./windows/hooks.nsh"
+      }
+    }
+  },
+  "plugins": {
+    "updater": {
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDY1QTM3RUM1MDY1MjAwRTYKUldUbUFGSUd4WDZqWmU4M09IQ3hoTEpRM3JsTUFING5DWTZWeXg2alQvSElEWHVyZ2RZTHp0V1gK",
+      "endpoints": ["https://dzbuild.com/pos/updates/stable/latest.json"],
+      "requireSignedVersion": true,
+      "windows": { "installMode": "passive" }
+    }
+  }
+}

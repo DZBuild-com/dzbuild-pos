@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-stock-create-location"
+description = "Enables the stock_create_location command without any pre-configured scope."
+commands.allow = ["stock_create_location"]
+
+[[permission]]
+identifier = "deny-stock-create-location"
+description = "Denies the stock_create_location command without any pre-configured scope."
+commands.deny = ["stock_create_location"]

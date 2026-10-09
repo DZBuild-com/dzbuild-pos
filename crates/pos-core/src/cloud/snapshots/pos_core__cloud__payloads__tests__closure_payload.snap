@@ -1,0 +1,82 @@
+---
+source: crates/pos-core/src/cloud/payloads.rs
+expression: stable(json)
+---
+{
+  "anchors": {
+    "audit": {
+      "intact": true,
+      "last_hash": "[stable]",
+      "last_seq": 8
+    },
+    "closure_hash": "[stable]",
+    "closure_prev_hash": "[stable]",
+    "documents": [
+      {
+        "document_type": "ticket",
+        "intact": true,
+        "last_hash": "[stable]",
+        "last_seq": 1,
+        "series": "C1"
+      },
+      {
+        "document_type": "return_note",
+        "intact": true,
+        "last_hash": "[stable]",
+        "last_seq": 0,
+        "series": "C1"
+      }
+    ]
+  },
+  "business_date": "2026-09-28",
+  "by_method": [
+    {
+      "count": 1,
+      "method": "cash",
+      "net": "200.00",
+      "paid_back": "0.00",
+      "received": "200.00"
+    }
+  ],
+  "cash": {
+    "cash_refunds": "0.00",
+    "cash_sales": "200.00",
+    "counted": "400.00",
+    "drops": "0.00",
+    "expected": "400.00",
+    "expenses": "0.00",
+    "opening_float": "200.00",
+    "paid_in": "0.00",
+    "paid_out": "0.00",
+    "variance": "0.00"
+  },
+  "cashier_ref": "[stable]",
+  "closed_at": "[stable]",
+  "external_id": "[stable]",
+  "first_ticket": "TK2026-C1-000001",
+  "last_ticket": "TK2026-C1-000001",
+  "location_id": "loc_1",
+  "opened_at": "[stable]",
+  "per_rate": [
+    {
+      "base": "168.07",
+      "tax": "31.93",
+      "tax_rate": 19,
+      "total": "200.00"
+    }
+  ],
+  "returns": 0,
+  "terminal": "C1",
+  "tickets": 1,
+  "totals": {
+    "discount": "0.00",
+    "grand_total": "200.00",
+    "net": "200.00",
+    "returns": "0.00",
+    "rounding": "0.00",
+    "sales": "200.00",
+    "stamp_absorbed": "0.00",
+    "stamp_charged": "0.00"
+  },
+  "z_number": "ZC1-000001"
+}

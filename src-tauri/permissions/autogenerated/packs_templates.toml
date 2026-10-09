@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-packs-templates"
+description = "Enables the packs_templates command without any pre-configured scope."
+commands.allow = ["packs_templates"]
+
+[[permission]]
+identifier = "deny-packs-templates"
+description = "Denies the packs_templates command without any pre-configured scope."
+commands.deny = ["packs_templates"]

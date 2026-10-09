@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-cloud-publish-list"
+description = "Enables the cloud_publish_list command without any pre-configured scope."
+commands.allow = ["cloud_publish_list"]
+
+[[permission]]
+identifier = "deny-cloud-publish-list"
+description = "Denies the cloud_publish_list command without any pre-configured scope."
+commands.deny = ["cloud_publish_list"]

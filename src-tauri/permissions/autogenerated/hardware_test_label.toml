@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-hardware-test-label"
+description = "Enables the hardware_test_label command without any pre-configured scope."
+commands.allow = ["hardware_test_label"]
+
+[[permission]]
+identifier = "deny-hardware-test-label"
+description = "Denies the hardware_test_label command without any pre-configured scope."
+commands.deny = ["hardware_test_label"]

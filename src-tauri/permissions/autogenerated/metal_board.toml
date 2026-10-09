@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-metal-board"
+description = "Enables the metal_board command without any pre-configured scope."
+commands.allow = ["metal_board"]
+
+[[permission]]
+identifier = "deny-metal-board"
+description = "Denies the metal_board command without any pre-configured scope."
+commands.deny = ["metal_board"]

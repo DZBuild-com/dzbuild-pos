@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-rounds-route-sheet-print"
+description = "Enables the rounds_route_sheet_print command without any pre-configured scope."
+commands.allow = ["rounds_route_sheet_print"]
+
+[[permission]]
+identifier = "deny-rounds-route-sheet-print"
+description = "Denies the rounds_route_sheet_print command without any pre-configured scope."
+commands.deny = ["rounds_route_sheet_print"]

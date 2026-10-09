@@ -1,0 +1,71 @@
+{
+  "title": "Reports",
+  "search": "Find a report",
+  "noMatch": "No report matches this search.",
+  "none": "Your role cannot open any report. Ask the owner to add one.",
+  "back": "All reports",
+  "unavailable": {
+    "title": "Report unavailable",
+    "body": "This report does not exist or your role cannot open it."
+  },
+  "asOf": "As of",
+  "truncated": "Only the first {{rows}} rows are shown: shorten the period or add a filter.",
+  "required": {
+    "promotion": "Choose the promotion to show its declaration.",
+    "count": "Choose the stock count to show its variances."
+  },
+  "filters": {
+    "grouping": "Group by",
+    "groupings": { "day": "Day", "week": "Week", "month": "Month", "year": "Year" },
+    "terminal": "Terminal",
+    "allTerminals": "All terminals",
+    "thisTerminal": "This terminal ({{code}})",
+    "user": "Cashier",
+    "allUsers": "All cashiers",
+    "allCategories": "All categories",
+    "product": "Product",
+    "customer": "Customer",
+    "searchHint": "All by default: type at least 2 letters to pick one.",
+    "results": "Results",
+    "clear": "Remove the filter {{name}}",
+    "allSuppliers": "All suppliers",
+    "promotion": "Promotion",
+    "choosePromotion": "Choose a promotion",
+    "count": "Stock count",
+    "chooseCount": "Choose a stock count",
+    "countOption": "{{location}}, {{date}} ({{status}})"
+  },
+  "chart": {
+    "title": "Chart: {{value}}",
+    "first": "The chart shows the first {{rows}} rows of the table."
+  },
+  "dashboard": {
+    "day": "Business day {{date}}",
+    "today": "Today's sales",
+    "tickets": "Tickets",
+    "averageTicket": "Average ticket",
+    "returns": "Returns",
+    "yesterday": "Yesterday",
+    "month": "Month to date",
+    "margin": "Today's margin",
+    "receivables": "Customers owe you",
+    "payables": "You owe suppliers",
+    "lowStock": "Low stock",
+    "expiring": "Lots to watch",
+    "openTills": "Open tills",
+    "lastDays": "Sales of the last 14 days",
+    "top": "Today's best sellers",
+    "methods": "Today's takings",
+    "openReport": "Open the report",
+    "noSales": "No sales today.",
+    "columns": {
+      "product": "Product",
+      "qty": "Quantity",
+      "netTtc": "Net incl. VAT",
+      "method": "Payment method",
+      "net": "Net"
+    },
+    "noAccess": "You do not have access to the dashboard.",
+    "noAccessBody": "Ask the owner to add “See sales reports” to your role."
+  }
+}

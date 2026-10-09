@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-lan-become-host"
+description = "Enables the lan_become_host command without any pre-configured scope."
+commands.allow = ["lan_become_host"]
+
+[[permission]]
+identifier = "deny-lan-become-host"
+description = "Denies the lan_become_host command without any pre-configured scope."
+commands.deny = ["lan_become_host"]

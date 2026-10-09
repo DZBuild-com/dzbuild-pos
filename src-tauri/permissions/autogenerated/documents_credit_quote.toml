@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-documents-credit-quote"
+description = "Enables the documents_credit_quote command without any pre-configured scope."
+commands.allow = ["documents_credit_quote"]
+
+[[permission]]
+identifier = "deny-documents-credit-quote"
+description = "Denies the documents_credit_quote command without any pre-configured scope."
+commands.deny = ["documents_credit_quote"]

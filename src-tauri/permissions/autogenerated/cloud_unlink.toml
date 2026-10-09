@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-cloud-unlink"
+description = "Enables the cloud_unlink command without any pre-configured scope."
+commands.allow = ["cloud_unlink"]
+
+[[permission]]
+identifier = "deny-cloud-unlink"
+description = "Denies the cloud_unlink command without any pre-configured scope."
+commands.deny = ["cloud_unlink"]

@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-imports-open-file"
+description = "Enables the imports_open_file command without any pre-configured scope."
+commands.allow = ["imports_open_file"]
+
+[[permission]]
+identifier = "deny-imports-open-file"
+description = "Denies the imports_open_file command without any pre-configured scope."
+commands.deny = ["imports_open_file"]

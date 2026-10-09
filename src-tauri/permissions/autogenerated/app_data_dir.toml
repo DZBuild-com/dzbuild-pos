@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-app-data-dir"
+description = "Enables the app_data_dir command without any pre-configured scope."
+commands.allow = ["app_data_dir"]
+
+[[permission]]
+identifier = "deny-app-data-dir"
+description = "Denies the app_data_dir command without any pre-configured scope."
+commands.deny = ["app_data_dir"]

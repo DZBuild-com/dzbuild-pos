@@ -1,0 +1,16 @@
+---
+source: crates/pos-hw/src/labels/zpl.rs
+expression: text
+---
+~SD16
+^XA
+^CI28
+^PW464
+^LL320
+^LH0,0
+^MNY
+^PR4
+^FO0,0^GFA,18560,18560,58,<hex 37120 fnv 81b554171785da7b>^FS
+^FO89,206^BY3^BEN,80,Y,N^FD613012345678^FS
+^PQ1
+^XZ

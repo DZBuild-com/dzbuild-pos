@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-support-open"
+description = "Enables the support_open command without any pre-configured scope."
+commands.allow = ["support_open"]
+
+[[permission]]
+identifier = "deny-support-open"
+description = "Denies the support_open command without any pre-configured scope."
+commands.deny = ["support_open"]

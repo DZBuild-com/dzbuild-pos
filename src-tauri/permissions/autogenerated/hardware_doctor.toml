@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-hardware-doctor"
+description = "Enables the hardware_doctor command without any pre-configured scope."
+commands.allow = ["hardware_doctor"]
+
+[[permission]]
+identifier = "deny-hardware-doctor"
+description = "Denies the hardware_doctor command without any pre-configured scope."
+commands.deny = ["hardware_doctor"]

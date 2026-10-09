@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-credit-statement"
+description = "Enables the credit_statement command without any pre-configured scope."
+commands.allow = ["credit_statement"]
+
+[[permission]]
+identifier = "deny-credit-statement"
+description = "Denies the credit_statement command without any pre-configured scope."
+commands.deny = ["credit_statement"]

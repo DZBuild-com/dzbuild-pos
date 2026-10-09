@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-products-price-help"
+description = "Enables the products_price_help command without any pre-configured scope."
+commands.allow = ["products_price_help"]
+
+[[permission]]
+identifier = "deny-products-price-help"
+description = "Denies the products_price_help command without any pre-configured scope."
+commands.deny = ["products_price_help"]

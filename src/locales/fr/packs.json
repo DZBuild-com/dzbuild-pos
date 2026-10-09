@@ -1,0 +1,258 @@
+{
+  "saved": "Enregistré",
+  "gate": {
+    "title": "Ce module est désactivé.",
+    "body": "Activez-le dans Réglages › Activité et modules pour utiliser cet écran.",
+    "open": "Ouvrir Activité et modules"
+  },
+  "template": {
+    "ready": "Prêts à l'emploi",
+    "growing": "Bientôt enrichis",
+    "modules": "Modules activés",
+    "tillMode": "Écran de caisse",
+    "seed": "Créer les catégories et services du modèle",
+    "apply": "Appliquer le modèle",
+    "change": "Changer d'activité…",
+    "customised": "Personnalisé",
+    "reset": "Revenir aux modules du modèle",
+    "pick": "Choisissez l'activité la plus proche : elle active les bons modules. Vous pourrez la changer dans Réglages › Activité et modules.",
+    "changeTitle": "Changer d'activité",
+    "categories": "Catégories du modèle",
+    "services": "Services du modèle",
+    "resets": "Les modules et l'écran de caisse deviennent ceux du modèle. Rien n'est supprimé."
+  },
+  "settings": {
+    "activityTitle": "Activité de la boutique",
+    "activityHelp": "Le modèle choisit les modules et l'écran de caisse ; vous pouvez ensuite les régler un par un ici.",
+    "modulesTitle": "Modules",
+    "modulesHelp": "Un module désactivé cache ses écrans et refuse ses opérations ; ses données restent.",
+    "between": "Entre {{min}} et {{max}}",
+    "saved": "Enregistré.",
+    "regulated": {
+      "title": "Vente au-dessus d'un prix plafonné",
+      "help": "Une ligne vendue au-dessus du prix plafonné par la loi (pain, lait, semoule…) avertit le caissier, ou est refusée.",
+      "warn": "Avertir le caissier",
+      "block": "Refuser la vente"
+    },
+    "minOrder": {
+      "title": "Minimum de commande",
+      "help": "Une ligne en dessous du minimum de commande d'un article (vente en gros) avertit, ou est refusée.",
+      "warn": "Avertir",
+      "block": "Refuser la ligne"
+    },
+    "flexy": {
+      "title": "Opérateurs flexy",
+      "help": "Pour chaque opérateur : le produit de recharge vendu en caisse et la commission que vous touchez (le rapport des ventes flexy la compte). Un opérateur sans produit ne se vend pas.",
+      "commission": "Commission (%)",
+      "commissionInvalid": "Entre 0 et 20 %",
+      "product": "Produit de recharge",
+      "noProduct": "Aucun produit",
+      "change": "Changer"
+    },
+    "repairs": {
+      "ready": "Message « prêt »",
+      "readyHelp": "Le texte copié pour prévenir le client que son appareil est prêt, dans sa langue. {shop}, {item}, {number} et {amount} sont remplacés.",
+      "conditions": "Conditions du bon de dépôt",
+      "conditionsHelp": "Imprimées en bas du bon remis au client au dépôt, dans sa langue.",
+      "uncollected": "Appareils non retirés",
+      "uncollectedDays": "Jours après « prêt »",
+      "uncollectedHelp": "Au-delà, l'appareil apparaît dans « Non retirés »."
+    },
+    "reminders": {
+      "days": "Rappels d'échéance",
+      "daysLabel": "Jours avant l'échéance",
+      "daysHelp": "Une échéance apparaît dans les rappels ce nombre de jours avant sa date.",
+      "message": "Texte du rappel",
+      "messageHelp": "Le texte copié pour rappeler une échéance au client, dans sa langue. {shop}, {amount}, {number} et {date} sont remplacés."
+    },
+    "keptDeposit": {
+      "title": "Arrhes conservées",
+      "help": "Quand un client renonce à une commande et que la boutique garde les arrhes, elles sont vendues sous ce produit (un service).",
+      "none": "Aucun produit : les arrhes ne peuvent pas être conservées",
+      "clear": "Retirer"
+    }
+  },
+  "tillModes": {
+    "retail": { "name": "Commerce", "help": "Grille de produits, scan et encaissement." },
+    "restaurant": { "name": "Restaurant", "help": "Plan de salle d'abord, puis tickets par table." },
+    "wholesale": { "name": "Gros", "help": "Client obligatoire, prix client et quantités minimales." },
+    "mixed": { "name": "Mixte", "help": "Caisse de commerce avec un bouton Tables (café + épicerie)." }
+  },
+  "groups": {
+    "sale": "Vente",
+    "restaurant": "Restaurant",
+    "health": "Santé",
+    "services": "Atelier et services",
+    "credit": "Crédit et commandes",
+    "wholesale": "Gros et distribution",
+    "loyalty": "Fidélité",
+    "jewellery": "Bijouterie",
+    "staff": "Personnel et zakat"
+  },
+  "modules": {
+    "restaurant": { "name": "Restaurant et café", "help": "Tables, tickets ouverts, cuisine, addition." },
+    "department_keys": {
+      "name": "Touches rayon",
+      "help": "Prix tapé à la caisse pour les produits sans code."
+    },
+    "regulated_prices": {
+      "name": "Prix plafonnés",
+      "help": "Alerte ou blocage au-dessus du prix réglementé."
+    },
+    "lots": { "name": "Lots et péremption", "help": "Numéros de lot, dates limites, alertes." },
+    "variant_grid": { "name": "Grille tailles et couleurs", "help": "Stock et saisie par variante." },
+    "yield": { "name": "Rendement de découpe", "help": "Carcasse découpée en morceaux, coût réparti." },
+    "waste": { "name": "Pertes du jour", "help": "Casse, invendus et consommation interne." },
+    "pharmacy": {
+      "name": "Pharmacie",
+      "help": "Noms génériques (DCI), génériques, tarif de référence Chifa, registre des médicaments contrôlés."
+    },
+    "serials": { "name": "Numéros de série et IMEI", "help": "Saisie à la vente, contrôle au retour." },
+    "flexy": { "name": "Flexy", "help": "Recharges par opérateur, stock et commissions." },
+    "repairs": {
+      "name": "Réparations et tickets de service",
+      "help": "Bon de dépôt, arrhes, suivi, retrait."
+    },
+    "instalments": { "name": "Vente à tempérament", "help": "Contrat, échéancier, versements, relances." },
+    "wholesale": {
+      "name": "Prix client et minimum de commande",
+      "help": "Tarifs par client, packs, BL valant facture."
+    },
+    "delivery_rounds": {
+      "name": "Tournées de livraison",
+      "help": "Bon de route, encaissements, vente en camion."
+    },
+    "orders": {
+      "name": "Commandes et réservations",
+      "help": "Arrhes, stock réservé, vente à la fin du paiement."
+    },
+    "appointments": { "name": "Rendez-vous", "help": "Agenda par employé." },
+    "loyalty": { "name": "Fidélité (points)", "help": "Points par dinar, chèques fidélité." },
+    "gift_vouchers": { "name": "Bons cadeaux et d'échange", "help": "Vente, paiement et registre des bons." },
+    "jewellery": { "name": "Bijouterie", "help": "Prix au gramme, registre spécial, poinçons." },
+    "staff": { "name": "Employés", "help": "Fiches, avances, commissions." },
+    "zakat": { "name": "Zakat", "help": "Calcul indicatif face au nissab." }
+  },
+  "activities": {
+    "general": "Supérette / épicerie",
+    "clothing": "Vêtements et chaussures",
+    "phones": "Téléphonie et électronique",
+    "cosmetics": "Cosmétiques et parfumerie",
+    "hardware": "Quincaillerie et matériaux",
+    "stationery": "Librairie et papeterie",
+    "food_service": "Restaurant, café, fast-food",
+    "wholesale": "Grossiste et distribution",
+    "other": "Autre commerce",
+    "butcher": "Boucherie",
+    "bakery": "Boulangerie et pâtisserie",
+    "parapharmacy": "Parapharmacie",
+    "pharmacy": "Pharmacie",
+    "auto_parts": "Pièces auto",
+    "instalments": "Électroménager à tempérament",
+    "optics": "Optique",
+    "pressing": "Pressing et couture",
+    "salon": "Salon de coiffure et beauté",
+    "jewellery": "Bijouterie",
+    "gym": "Salle de sport",
+    "kiosk": "Kiosque et multiservice",
+    "containers": "Eau et gaz en bouteilles",
+    "importer": "Importateur",
+    "van_sales": "Vente en camion",
+    "workshop": "Atelier et fabrication"
+  },
+  "scale": {
+    "title": "Balance",
+    "help": "Branchez la balance, choisissez son port puis détectez-la. Vous pourrez le faire plus tard dans Réglages › Matériel.",
+    "skip": "Passer"
+  },
+  "till": {
+    "departments": {
+      "title": "Touches rayon",
+      "price": "Prix",
+      "qty": "Quantité",
+      "add": "Ajouter",
+      "empty": "Aucune touche rayon n'est encore créée.",
+      "back": "Revenir aux produits"
+    },
+    "flexy": {
+      "title": "Recharge flexy",
+      "phone": "Numéro",
+      "amount": "Montant",
+      "operator": "Opérateur",
+      "float": "Stock de {{operator}} : {{amount}}",
+      "submit": "Ajouter la recharge",
+      "pickOperator": "Choisissez l'opérateur."
+    },
+    "serial": {
+      "title": "Numéro de série — {{name}}",
+      "field": "IMEI ou numéro de série",
+      "invalid": "IMEI invalide",
+      "taken": "Ce numéro est déjà choisi.",
+      "notInStock": "Ce numéro n'est pas en stock pour ce produit.",
+      "count": "{{done}} sur {{total}}",
+      "inStock": "En stock",
+      "remove": "Retirer {{serial}}",
+      "add": "Ajouter",
+      "submit": "Valider",
+      "back": "Numéros rendus — {{name}}",
+      "backHint": "Cochez les {{count}} numéros qui reviennent."
+    },
+    "generic": "Générique moins cher : {{name}} {{price}}",
+    "replace": "Remplacer",
+    "chifa": "Tarif de référence Chifa {{price}}",
+    "prescription": {
+      "title": "Registre des médicaments contrôlés",
+      "prescriber": "Prescripteur",
+      "prescriberRef": "N° d'ordre du médecin",
+      "number": "N° d'ordonnance",
+      "date": "Date de l'ordonnance",
+      "patient": "Patient",
+      "patientRef": "Référence du patient",
+      "required": "Renseignez ce champ.",
+      "submit": "Enregistrer et continuer"
+    },
+    "buyer": {
+      "title": "Acheteur (registre spécial)",
+      "hint": "Le registre spécial des bijoutiers inscrit l'identité de l'acheteur d'un bijou en métal précieux.",
+      "name": "Nom et prénom",
+      "idKind": "Pièce d'identité",
+      "idKinds": {
+        "cni": "Carte nationale d'identité",
+        "passport": "Passeport",
+        "driving_licence": "Permis de conduire",
+        "other": "Autre pièce"
+      },
+      "idNumber": "Numéro",
+      "address": "Adresse",
+      "required": "Renseignez ce champ.",
+      "submit": "Continuer"
+    },
+    "variants": {
+      "pick": "Choisir la taille et la couleur",
+      "cell": "{{row}} {{col}} {{stock}}"
+    },
+    "van": {
+      "title": "Vendre depuis le camion",
+      "pick": "Choisissez le camion d'une tournée sur la route.",
+      "none": "Aucune tournée n'est sur la route.",
+      "option": "{{van}} — tournée {{round}}",
+      "banner": "Stock : {{van}} — tournée {{round}}",
+      "back": "Revenir au magasin"
+    },
+    "voucher": {
+      "title": "Bon d'achat",
+      "code": "Code du bon",
+      "find": "Lire le bon",
+      "storeCredit": "Avoir du client — solde {{balance}}",
+      "deposit": "Arrhes {{number}} — {{balance}}",
+      "giftVoucher": "Bon cadeau {{code}} — solde {{balance}}",
+      "use": "Utiliser le bon",
+      "unknown": "Aucun bon, aucunes arrhes ne portent ce code.",
+      "spent": "Ce bon est déjà entièrement utilisé.",
+      "otherCustomer": "Ces arrhes sont à un autre client : choisissez-le d'abord (F3).",
+      "atPayment": "{{voucher}} : choisissez « Bon d'achat » à l'encaissement."
+    },
+    "points": "Points gagnés : +{{points}}",
+    "card": "Carte fidélité : {{name}}"
+  }
+}

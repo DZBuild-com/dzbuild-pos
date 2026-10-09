@@ -1,0 +1,30 @@
+{
+  "total": "Total",
+  "empty": "Aucune ligne",
+  "search": "Rechercher",
+  "export": {
+    "title": "Exporter",
+    "language": "Langue du fichier",
+    "xlsx": "Excel (xlsx)",
+    "csv": "CSV",
+    "pdf": "PDF",
+    "done": "Fichier enregistré. Lignes : {{rows}}."
+  },
+  "range": {
+    "label": "Période",
+    "today": "Aujourd'hui",
+    "yesterday": "Hier",
+    "this_week": "Cette semaine",
+    "last_week": "Semaine dernière",
+    "this_month": "Ce mois",
+    "last_month": "Mois dernier",
+    "this_year": "Cette année",
+    "custom": "Période…",
+    "from": "Du",
+    "to": "Au"
+  },
+  "loadMore": "Charger plus",
+  "olderRows": "Les lignes plus anciennes ne sont pas encore affichées.",
+  "truncated": "Seules les {{rows}} premières lignes sont affichées : précisez la recherche ou les filtres pour voir les autres.",
+  "truncatedSort": "Le tri est désactivé tant que toute la liste n'est pas chargée."
+}

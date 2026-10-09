@@ -1,0 +1,261 @@
+{
+  "docType": "invoice",
+  "lang": "en",
+  "rtl": false,
+  "title": "Invoice",
+  "number": "FA2026-000045",
+  "date": "28/09/2026",
+  "validUntil": null,
+  "dueDate": "28/10/2026",
+  "seller": {
+    "name": "Supérette El Amel",
+    "nameAlt": "مغازة الأمل",
+    "legalForm": "SARL",
+    "activity": "Commerce de détail en alimentation générale",
+    "activityAlt": "تجارة التجزئة للمواد الغذائية العامة",
+    "capital": 100000000,
+    "address": "12 rue Larbi Ben M'hidi, Alger",
+    "wilaya": "Algiers",
+    "phone": "023 45 67 89",
+    "email": null,
+    "ids": [
+      {
+        "kind": "rc",
+        "value": "16/00-1234567B26"
+      },
+      {
+        "kind": "nif",
+        "value": "000116001234567"
+      },
+      {
+        "kind": "nis",
+        "value": "000116001234567"
+      },
+      {
+        "kind": "ai",
+        "value": "16012345678"
+      },
+      {
+        "kind": "rib",
+        "value": "00799999001234567890"
+      }
+    ],
+    "vatExemptRef": null
+  },
+  "counterpart": {
+    "name": "SARL Amine",
+    "nameAlt": null,
+    "legalForm": "SARL",
+    "activity": "Quincaillerie",
+    "activityAlt": null,
+    "capital": null,
+    "address": "5 rue Didouche Mourad, Alger",
+    "wilaya": "Algiers",
+    "phone": null,
+    "email": null,
+    "ids": [
+      {
+        "kind": "rc",
+        "value": "16/00-7654321B26"
+      },
+      {
+        "kind": "nif",
+        "value": "000016001234567"
+      },
+      {
+        "kind": "nis",
+        "value": "000016007654321"
+      },
+      {
+        "kind": "ai",
+        "value": "16098765432"
+      }
+    ],
+    "vatExemptRef": null
+  },
+  "counterpartRole": "customer",
+  "showPrices": true,
+  "priceBasisHt": true,
+  "showTax": true,
+  "ifuMention": null,
+  "exemptMention": null,
+  "lines": [
+    {
+      "no": 1,
+      "description": "Ciment 25 kg",
+      "descriptionAlt": null,
+      "qty": 10000,
+      "unit": "piece",
+      "unitPriceHt": 100000,
+      "unitPriceTtc": 119000,
+      "discount": 59500,
+      "discountBp": 500,
+      "rateBp": 1900,
+      "totalHt": 950000,
+      "totalTtc": 1130500,
+      "components": [],
+      "note": null
+    },
+    {
+      "no": 2,
+      "description": "Sable 1 m3",
+      "descriptionAlt": null,
+      "qty": 2000,
+      "unit": "piece",
+      "unitPriceHt": 500000,
+      "unitPriceTtc": 545000,
+      "discount": 0,
+      "discountBp": 0,
+      "rateBp": 900,
+      "totalHt": 1000000,
+      "totalTtc": 1090000,
+      "components": [],
+      "note": null
+    },
+    {
+      "no": 3,
+      "description": "Transport Alger – Blida",
+      "descriptionAlt": null,
+      "qty": 1000,
+      "unit": "piece",
+      "unitPriceHt": 100000,
+      "unitPriceTtc": 119000,
+      "discount": 0,
+      "discountBp": 0,
+      "rateBp": 1900,
+      "totalHt": 100000,
+      "totalTtc": 119000,
+      "components": [],
+      "note": null
+    }
+  ],
+  "totals": {
+    "subtotalHt": 2050000,
+    "discountTotal": 59500,
+    "taxes": [
+      {
+        "rateBp": 1900,
+        "label": "VAT 19 %",
+        "baseHt": 1050000,
+        "tax": 199500
+      },
+      {
+        "rateBp": 900,
+        "label": "VAT 9 %",
+        "baseHt": 1000000,
+        "tax": 90000
+      }
+    ],
+    "taxTotal": 289500,
+    "totalTtc": 2339500,
+    "stampDuty": 5400,
+    "stampAbsorbed": 0,
+    "rounding": 0,
+    "totalDue": 2344900,
+    "paid": 544900,
+    "remaining": 1800000
+  },
+  "inLetters": "This invoice is closed at the sum of: twenty-three thousand four hundred forty-nine dinars",
+  "payments": [
+    {
+      "method": "cash",
+      "label": "Cash",
+      "amount": 544900,
+      "reference": null,
+      "chequeBank": null,
+      "chequeDate": null
+    },
+    {
+      "method": "credit",
+      "label": "Customer credit",
+      "amount": 1800000,
+      "reference": null,
+      "chequeBank": null,
+      "chequeDate": null
+    }
+  ],
+  "paymentMode": "Cash, On account (due 28/10/2026)",
+  "references": [],
+  "creditKind": null,
+  "reason": null,
+  "note": null,
+  "headerText": null,
+  "footerText": "Thank you for your trust",
+  "termsText": "Goods are taken back by credit note only.",
+  "social": [
+    "elamel.dz"
+  ],
+  "legal": [],
+  "stampBox": true,
+  "duplicate": null,
+  "watermark": null,
+  "qr": {
+    "size": 21,
+    "modules": "111111101001001111111100000101000101000001101110100011101011101101110101101101011101101110100110001011101100000100010001000001111111101010101111111000000001000000000000101101110000001001011111001000110100100110110010100110101001010001011010010111010111100001100001000101001000000001100001000000111111101010011010011100000101011101100101101110100011001010011101110101000010000110101110101101000110100100000100011101101000111111101101110001110"
+  },
+  "logo": null,
+  "layout": {
+    "accent": "brand",
+    "showLogo": true,
+    "paper": "a4",
+    "secondLang": null,
+    "showDeliveryPrices": true,
+    "showStampBox": true
+  },
+  "labels": {
+    "number": "No.",
+    "date": "Date",
+    "validUntil": "Valid until",
+    "dueDate": "Due date",
+    "seller": "Seller",
+    "customer": "Customer",
+    "supplier": "Supplier",
+    "legalForm": "Legal form",
+    "activity": "Activity",
+    "capital": "Share capital",
+    "address": "Address",
+    "phone": "Phone",
+    "email": "Email",
+    "rc": "Trade register (RC)",
+    "aeCard": "Auto-entrepreneur card",
+    "nif": "Tax ID (NIF)",
+    "nis": "Statistical ID (NIS)",
+    "ai": "Tax article (AI)",
+    "nin": "National ID (NIN)",
+    "rib": "Bank account (RIB)",
+    "designation": "Description",
+    "qty": "Qty",
+    "unit": "Unit",
+    "unitPriceHt": "Unit price excl. tax",
+    "unitPriceTtc": "Unit price incl. tax",
+    "discount": "Discount",
+    "vatRate": "VAT",
+    "totalHt": "Amount excl. tax",
+    "totalTtc": "Amount incl. tax",
+    "subtotalHt": "Total excl. tax",
+    "discountTotal": "Total discounts",
+    "totalTtcLabel": "Total incl. tax",
+    "stampDuty": "Stamp duty",
+    "stampAbsorbed": "Stamp duty paid by the seller",
+    "rounding": "Rounding",
+    "netToPay": "Amount due",
+    "paymentMode": "Payment method",
+    "paid": "Paid",
+    "remaining": "Balance due",
+    "references": "Referenced documents",
+    "stampBox": "Stamp and signature",
+    "page": "Page",
+    "printedAt": "Printed on",
+    "from": "From",
+    "to": "To",
+    "driver": "Driver",
+    "vehicle": "Vehicle",
+    "note": "Notes",
+    "terms": "Terms",
+    "reason": "Reason",
+    "receivedBy": "Received by"
+  },
+  "second": null,
+  "transfer": null,
+  "printedAt": "28/09/2026 10:15"
+}

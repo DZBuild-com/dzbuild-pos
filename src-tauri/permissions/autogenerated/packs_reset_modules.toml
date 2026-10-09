@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-packs-reset-modules"
+description = "Enables the packs_reset_modules command without any pre-configured scope."
+commands.allow = ["packs_reset_modules"]
+
+[[permission]]
+identifier = "deny-packs-reset-modules"
+description = "Denies the packs_reset_modules command without any pre-configured scope."
+commands.deny = ["packs_reset_modules"]

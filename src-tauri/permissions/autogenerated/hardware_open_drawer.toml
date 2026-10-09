@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-hardware-open-drawer"
+description = "Enables the hardware_open_drawer command without any pre-configured scope."
+commands.allow = ["hardware_open_drawer"]
+
+[[permission]]
+identifier = "deny-hardware-open-drawer"
+description = "Denies the hardware_open_drawer command without any pre-configured scope."
+commands.deny = ["hardware_open_drawer"]

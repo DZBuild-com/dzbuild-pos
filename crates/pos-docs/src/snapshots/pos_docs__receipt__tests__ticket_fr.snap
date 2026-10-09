@@ -1,0 +1,89 @@
+---
+source: crates/pos-docs/src/receipt.rs
+expression: receipt
+---
+{
+  "lang": "fr",
+  "rtl": false,
+  "docType": "ticket",
+  "number": "TK2026-C1-000123",
+  "localTime": "28/09/2026 12:00",
+  "cashier": "Yacine",
+  "terminalCode": "C1",
+  "header": {
+    "name": "Supérette El Amel",
+    "legalForm": "EURL",
+    "address": "12 rue Larbi Ben M'hidi, Alger",
+    "phone": "0555 12 34 56",
+    "rc": "16/00-1234567B26",
+    "nif": "000116001234567",
+    "nis": "000116010012345",
+    "ai": "16012345678",
+    "headerText": "Ouvert 7j/7",
+    "demo": false
+  },
+  "lines": [
+    {
+      "description": "Lait Candia 1 L",
+      "qty": 2000,
+      "unitCode": "pc",
+      "unitPrice": 45000,
+      "discount": 5000,
+      "total": 85000,
+      "taxRateBp": 1900,
+      "note": null,
+      "components": []
+    },
+    {
+      "description": "Kit scolaire",
+      "qty": 1000,
+      "unitCode": "pc",
+      "unitPrice": 35000,
+      "discount": 0,
+      "total": 35000,
+      "taxRateBp": 1900,
+      "note": null,
+      "components": [
+        {
+          "description": "Stylo",
+          "qty": 2000
+        }
+      ]
+    }
+  ],
+  "itemCount": 3000,
+  "showTax": true,
+  "ifuMention": false,
+  "subtotalHt": 100840,
+  "taxes": [
+    {
+      "rateBp": 1900,
+      "baseHt": 100840,
+      "tax": 19160
+    }
+  ],
+  "discountTotal": 5000,
+  "totalTtc": 120000,
+  "stampDuty": 1200,
+  "stampAbsorbed": 0,
+  "rounding": 0,
+  "totalDue": 121200,
+  "payments": [
+    {
+      "method": "cash",
+      "amount": 150000,
+      "reference": null,
+      "chequeBank": null,
+      "chequeDate": null
+    }
+  ],
+  "change": 28800,
+  "totalInLetters": "mille deux cent douze dinars",
+  "originalNumber": null,
+  "note": null,
+  "footerText": "شكرا",
+  "duplicate": false,
+  "barcode": "TK2026-C1-000123",
+  "storeUrl": null,
+  "customerBalance": null
+}

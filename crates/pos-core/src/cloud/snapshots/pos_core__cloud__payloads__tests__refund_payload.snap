@@ -1,0 +1,29 @@
+---
+source: crates/pos-core/src/cloud/payloads.rs
+expression: stable(json)
+---
+{
+  "apply_stock": false,
+  "document_type": "return_note",
+  "external_id": "[stable]",
+  "lines": [
+    {
+      "amount": "200.00",
+      "description": "Lait",
+      "product_external_id": "[stable]",
+      "quantity": 2,
+      "restock": false,
+      "returned_to": "shelf"
+    }
+  ],
+  "number": "BR2026-C1-000001",
+  "occurred_at": "[stable]",
+  "payments": [
+    {
+      "amount": "200.00",
+      "method": "cash"
+    }
+  ],
+  "terminal": "C1",
+  "total": "200.00"
+}

@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-imports-discard"
+description = "Enables the imports_discard command without any pre-configured scope."
+commands.allow = ["imports_discard"]
+
+[[permission]]
+identifier = "deny-imports-discard"
+description = "Denies the imports_discard command without any pre-configured scope."
+commands.deny = ["imports_discard"]

@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-backup-drives"
+description = "Enables the backup_drives command without any pre-configured scope."
+commands.allow = ["backup_drives"]
+
+[[permission]]
+identifier = "deny-backup-drives"
+description = "Denies the backup_drives command without any pre-configured scope."
+commands.deny = ["backup_drives"]

@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-catalog-units-update"
+description = "Enables the catalog_units_update command without any pre-configured scope."
+commands.allow = ["catalog_units_update"]
+
+[[permission]]
+identifier = "deny-catalog-units-update"
+description = "Denies the catalog_units_update command without any pre-configured scope."
+commands.deny = ["catalog_units_update"]

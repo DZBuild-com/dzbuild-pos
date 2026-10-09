@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-pharmacy-product-get"
+description = "Enables the pharmacy_product_get command without any pre-configured scope."
+commands.allow = ["pharmacy_product_get"]
+
+[[permission]]
+identifier = "deny-pharmacy-product-get"
+description = "Denies the pharmacy_product_get command without any pre-configured scope."
+commands.deny = ["pharmacy_product_get"]

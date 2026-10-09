@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-service-get"
+description = "Enables the service_get command without any pre-configured scope."
+commands.allow = ["service_get"]
+
+[[permission]]
+identifier = "deny-service-get"
+description = "Denies the service_get command without any pre-configured scope."
+commands.deny = ["service_get"]

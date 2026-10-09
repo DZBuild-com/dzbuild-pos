@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-staff-advance"
+description = "Enables the staff_advance command without any pre-configured scope."
+commands.allow = ["staff_advance"]
+
+[[permission]]
+identifier = "deny-staff-advance"
+description = "Denies the staff_advance command without any pre-configured scope."
+commands.deny = ["staff_advance"]

@@ -1,0 +1,5 @@
+---
+source: crates/pos-hw/src/receipt.rs
+expression: digest(&out.bytes)
+---
+69411 bytes, sha256 8d8f21d1d0abc7d6b7a814970dc78e65adb28e444791f02670dc1343bbdf4752

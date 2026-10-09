@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-staff-profile-set"
+description = "Enables the staff_profile_set command without any pre-configured scope."
+commands.allow = ["staff_profile_set"]
+
+[[permission]]
+identifier = "deny-staff-profile-set"
+description = "Denies the staff_profile_set command without any pre-configured scope."
+commands.deny = ["staff_profile_set"]

@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-recovery-rejoin"
+description = "Enables the recovery_rejoin command without any pre-configured scope."
+commands.allow = ["recovery_rejoin"]
+
+[[permission]]
+identifier = "deny-recovery-rejoin"
+description = "Denies the recovery_rejoin command without any pre-configured scope."
+commands.deny = ["recovery_rejoin"]

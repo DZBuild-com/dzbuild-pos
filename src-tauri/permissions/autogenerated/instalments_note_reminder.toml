@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-instalments-note-reminder"
+description = "Enables the instalments_note_reminder command without any pre-configured scope."
+commands.allow = ["instalments_note_reminder"]
+
+[[permission]]
+identifier = "deny-instalments-note-reminder"
+description = "Denies the instalments_note_reminder command without any pre-configured scope."
+commands.deny = ["instalments_note_reminder"]

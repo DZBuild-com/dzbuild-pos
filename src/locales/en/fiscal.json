@@ -1,0 +1,69 @@
+{
+  "title": "Tax",
+  "tabs": { "g50": "G50 return", "registers": "Registers and statements", "archive": "Fiscal archive" },
+  "g50": {
+    "month": "Month declared",
+    "form": "Form: {{form}}",
+    "line": "Line",
+    "box": "Box",
+    "amount": "Amount",
+    "copy": "Copy",
+    "copyLine": "Copy {{line}}",
+    "copied": "Amount copied.",
+    "otherRates": "Other rates",
+    "rate": "Rate",
+    "baseHt": "Base excl. tax (HT)",
+    "tax": "VAT (TVA)",
+    "outside": "Salary IRG, TAP and other taxes: outside the till, declare them yourself.",
+    "lines": {
+      "caHt9": "Turnover excl. tax — 9%",
+      "exempt9": "of which exempt — 9%",
+      "taxable9": "of which taxable — 9%",
+      "tva9": "VAT due — 9%",
+      "caHt19": "Turnover excl. tax — 19%",
+      "exempt19": "of which exempt — 19%",
+      "taxable19": "of which taxable — 19%",
+      "tva19": "VAT due — 19%",
+      "caHtTotal": "Total turnover excl. tax",
+      "exemptTotal": "Total exempt",
+      "taxableTotal": "Total taxable",
+      "tvaTotal": "Total output VAT",
+      "tvaDeductible": "Deductible VAT (G9)",
+      "tvaDue": "VAT payable",
+      "tvaCredit": "VAT credit carried forward",
+      "stampDuty": "Stamp duty (on statement)"
+    }
+  },
+  "registers": {
+    "intro": "Each statement opens with its filters and exports to xlsx, csv or PDF.",
+    "kinds": {
+      "vat_by_rate": "Output VAT by rate and period",
+      "vat_deductible": "Deductible VAT on purchases, with invoices paid in cash above the limit",
+      "stamp_duty_statement": "Stamp duty per day and till, credit payments included",
+      "g50": "G50 lines of the month with their boxes",
+      "ifu_turnover": "IFU turnover and how close it is to the IFU limit",
+      "g9_suppliers": "G9 supplier statement",
+      "customers_annual": "Annual customer statement (missing NIF flagged)",
+      "sales_register": "Sales register",
+      "purchases_register": "Purchases register"
+    }
+  },
+  "archive": {
+    "intro": "A copy of every document, the action log and the Z closes of a period. It shows if anything was changed later. Keep it ten years.",
+    "from": "From",
+    "to": "To",
+    "language": "Summary language",
+    "export": "Export the archive",
+    "progress": { "parts": "Tables", "summary": "PDF summary", "manifest": "Check codes" },
+    "saved": "Archive saved: {{path}}",
+    "manifest": "Archive check code (SHA-256)",
+    "files": "Files",
+    "rows": "Rows",
+    "bytes": "Bytes",
+    "chainsIntact": "No document was changed.",
+    "chainsBroken": "A change was found in the documents: the archive shows where. Contact DZBuild support.",
+    "verify": "Verify an archive",
+    "verifyOk": "Archive intact: no file was changed since the export.",
+    "verifyBad": "Files changed since the export: {{files}}"
+  }
+}

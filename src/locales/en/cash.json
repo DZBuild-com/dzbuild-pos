@@ -1,0 +1,139 @@
+{
+  "title": "Cash register",
+  "status": { "open": "Register open", "closed": "Register closed" },
+  "closedTitle": "The register is closed",
+  "closedHint": "Count the opening float, then open the register to start selling.",
+  "openedBy": "Opened by {{name}} on",
+  "open": {
+    "button": "Open the register",
+    "title": "Open the register",
+    "hint": "Enter the money in the drawer before the first sale.",
+    "float": "Opening float",
+    "count": "Count the notes and coins",
+    "submit": "Open the register with this float"
+  },
+  "count": { "note": "{{value}} DA notes", "coin": "{{value}} DA coins", "total": "Total counted" },
+  "move": {
+    "amount": "Amount",
+    "note": "Reason",
+    "paid_in": { "button": "Paid in", "title": "Money paid in", "submit": "Record the paid in" },
+    "paid_out": { "button": "Paid out", "title": "Money paid out", "submit": "Record the paid out" },
+    "drop": { "button": "Safe drop", "title": "Safe drop", "submit": "Record the safe drop" }
+  },
+  "expense": {
+    "button": "Expense",
+    "category": "Category",
+    "note": "Details",
+    "submit": "Record the expense",
+    "categories": {
+      "rent": "Rent",
+      "electricity": "Electricity",
+      "water": "Water",
+      "wages": "Wages",
+      "transport": "Transport",
+      "supplies": "Supplies",
+      "maintenance": "Maintenance",
+      "other": "Other expense"
+    }
+  },
+  "movements": {
+    "empty": "No movement since opening.",
+    "time": "Time",
+    "kind": "Movement",
+    "note": "Reason",
+    "kinds": {
+      "float": "Opening float",
+      "sale": "Sale",
+      "refund": "Refund",
+      "paid_in": "Paid in",
+      "paid_out": "Paid out",
+      "expense": "Expense",
+      "credit_payment": "Customer payment",
+      "drop": "Safe drop"
+    }
+  },
+  "report": {
+    "x": "X report",
+    "z": "Z report",
+    "xButton": "X report",
+    "tickets": "Receipts",
+    "sales": "Sales",
+    "returns": "Returns",
+    "invoices": "Invoices ({{number}})",
+    "creditNotes": "Credit notes ({{number}})",
+    "net": "Net",
+    "stampDuty": "Stamp duty",
+    "float": "Opening float",
+    "paidIn": "Paid in",
+    "paidOut": "Paid out",
+    "creditPayments": "Kridi payments in cash",
+    "expenses": "Expenses",
+    "expected": "Expected cash",
+    "counted": "Counted cash",
+    "variance": "Difference",
+    "intact": "Receipts and action log checked: nothing was changed.",
+    "broken": "The action log or the receipts were changed. Stop selling on this PC and contact DZBuild support.",
+    "printX": "Print the X report",
+    "printZ": "Reprint the Z report",
+    "blind": "Blind close: the drawer amounts are not shown. Count the drawer; the variance is worked out at the close."
+  },
+  "close": {
+    "button": "Close the register",
+    "title": "Close the register",
+    "hint": "Count all the money in the drawer, note by note. The Z report can no longer be changed.",
+    "notes": "Remark",
+    "submit": "Close and print the Z",
+    "recount": "The difference is above the allowed limit. Count the drawer again, note by note.",
+    "done": "Register closed",
+    "zPrinted": "Z report printed",
+    "backupFailed": "The register is closed, but the automatic backup failed. Make a backup from Settings › Backups."
+  },
+  "history": {
+    "title": "Earlier closes",
+    "empty": "No close yet.",
+    "z": "Z no.",
+    "date": "Closed on",
+    "show": "Show the Z report"
+  },
+  "tabs": {
+    "label": "Cash register sections",
+    "session": "Cash session",
+    "expenses": "Expenses",
+    "flexy": "Top-ups"
+  },
+  "expenses": {
+    "title": "Expenses",
+    "new": "New expense",
+    "allCategories": "All categories",
+    "chooseCategory": "Choose a category",
+    "method": "Payment method",
+    "fromTill": "Paid with money from the drawer",
+    "fromTillHint": "The money leaves this terminal's drawer and shows on the Z report.",
+    "tillClosed": "The register is closed: the expense is paid outside the drawer.",
+    "day": "Day of the expense",
+    "dayHint": "A day of the current year, today at the latest.",
+    "reference": "Reference (invoice, receipt)",
+    "noSupplier": "No supplier",
+    "saved": "Expense recorded.",
+    "totals": "Total per category",
+    "totalsEmpty": "No expenses in this period.",
+    "empty": "No expenses in this period. Record one with “New expense”.",
+    "columns": {
+      "date": "Day",
+      "category": "Category",
+      "amount": "Amount",
+      "method": "Payment",
+      "reference": "Reference",
+      "note": "Details",
+      "status": "Status"
+    },
+    "tillTag": "Drawer",
+    "reversed": "Reversed",
+    "reversal": "Reversal",
+    "reverse": "Reverse the expense",
+    "reverseBody": "The {{amount}} expense ({{category}}) stays in the history: a negative entry of the same amount cancels it.",
+    "reverseTill": "The money does not go back into the drawer: record a cash in if it does.",
+    "reverseNote": "Reason for the reversal",
+    "reversedDone": "Expense reversed."
+  }
+}

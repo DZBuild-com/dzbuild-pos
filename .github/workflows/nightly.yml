@@ -1,0 +1,59 @@
+name: Nightly
+
+on:
+  schedule:
+    - cron: "30 1 * * *" # 02:30 in Algiers
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  e2e:
+    runs-on: windows-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: End-to-end suite on Edge (WebView2's engine)
+        run: pnpm e2e
+      # The ar/fr/en screenshots and the HTML report are the review artefacts.
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: e2e-artifacts
+          path: e2e-artifacts/
+  budgets:
+    runs-on: windows-latest
+    timeout-minutes: 90
+    continue-on-error: true # a shared runner is not the reference PC: the figures are a trend
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+      - run: cargo test --release -p pos-core budget_ -- --ignored --nocapture --test-threads=1 --skip busy_year
+      - run: cargo test --release -p pos-hw budget_ -- --ignored --nocapture
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      - run: pnpm audit --prod --audit-level high
+      - uses: EmbarkStudios/cargo-deny-action@v2
+        with:
+          command: check advisories

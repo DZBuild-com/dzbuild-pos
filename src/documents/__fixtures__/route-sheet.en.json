@@ -1,0 +1,139 @@
+{
+  "lang": "en",
+  "rtl": false,
+  "title": "Route sheet",
+  "number": "TR2026-000001",
+  "date": "28/09/2026",
+  "seller": {
+    "name": "Supérette El Amel",
+    "nameAlt": "مغازة الأمل",
+    "legalForm": "SARL",
+    "activity": "Commerce de détail en alimentation générale",
+    "activityAlt": "تجارة التجزئة للمواد الغذائية العامة",
+    "capital": 100000000,
+    "address": "12 rue Larbi Ben M'hidi, Alger",
+    "wilaya": "Alger",
+    "phone": "023 45 67 89",
+    "email": null,
+    "ids": [
+      {
+        "kind": "rc",
+        "value": "16/00-1234567B26"
+      },
+      {
+        "kind": "nif",
+        "value": "000116001234567"
+      },
+      {
+        "kind": "nis",
+        "value": "000116001234567"
+      },
+      {
+        "kind": "ai",
+        "value": "16012345678"
+      },
+      {
+        "kind": "rib",
+        "value": "00799999001234567890"
+      }
+    ],
+    "vatExemptRef": null
+  },
+  "driver": "Rachid",
+  "plate": "01234-116-16",
+  "van": null,
+  "stops": [
+    {
+      "seq": 1,
+      "customer": "Épicerie Amine",
+      "address": "Cité 200 logements, Bab Ezzouar",
+      "phone": "0555123456",
+      "document": "FA2026-000004",
+      "amountDue": 500000,
+      "collected": 500000,
+      "status": "Delivered"
+    },
+    {
+      "seq": 2,
+      "customer": "Supérette Nour",
+      "address": "Cité 200 logements, Bab Ezzouar",
+      "phone": "0555123456",
+      "document": "BL2026-000007",
+      "amountDue": 1000000,
+      "collected": 0,
+      "status": "To deliver"
+    }
+  ],
+  "totalDue": 1500000,
+  "totalCollected": 500000,
+  "labels": {
+    "driver": "Driver",
+    "plate": "Plate",
+    "van": "Vehicle (stock)",
+    "customer": "Customer",
+    "address": "Address",
+    "phone": "Phone",
+    "document": "Document",
+    "amountDue": "To collect",
+    "collected": "Collected",
+    "status": "Status",
+    "signature": "Customer signature"
+  },
+  "partyLabels": {
+    "number": "No.",
+    "date": "Date",
+    "validUntil": "Valid until",
+    "dueDate": "Due date",
+    "seller": "Seller",
+    "customer": "Customer",
+    "supplier": "Supplier",
+    "legalForm": "Legal form",
+    "activity": "Activity",
+    "capital": "Share capital",
+    "address": "Address",
+    "phone": "Phone",
+    "email": "Email",
+    "rc": "Trade register (RC)",
+    "aeCard": "Auto-entrepreneur card",
+    "nif": "Tax ID (NIF)",
+    "nis": "Statistical ID (NIS)",
+    "ai": "Tax article (AI)",
+    "nin": "National ID (NIN)",
+    "rib": "Bank account (RIB)",
+    "designation": "Description",
+    "qty": "Qty",
+    "unit": "Unit",
+    "unitPriceHt": "Unit price excl. tax",
+    "unitPriceTtc": "Unit price incl. tax",
+    "discount": "Discount",
+    "vatRate": "VAT",
+    "totalHt": "Amount excl. tax",
+    "totalTtc": "Amount incl. tax",
+    "subtotalHt": "Total excl. tax",
+    "discountTotal": "Total discounts",
+    "totalTtcLabel": "Total incl. tax",
+    "stampDuty": "Stamp duty",
+    "stampAbsorbed": "Stamp duty paid by the seller",
+    "rounding": "Rounding",
+    "netToPay": "Amount due",
+    "paymentMode": "Payment method",
+    "paid": "Paid",
+    "remaining": "Balance due",
+    "references": "Referenced documents",
+    "stampBox": "Stamp and signature",
+    "page": "Page",
+    "printedAt": "Printed on",
+    "from": "From",
+    "to": "To",
+    "driver": "Driver",
+    "vehicle": "Vehicle",
+    "note": "Notes",
+    "terms": "Terms",
+    "reason": "Reason",
+    "receivedBy": "Received by"
+  },
+  "signatures": [
+    "The driver",
+    "The shop"
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "title": "Set up DZBuild POS",
+  "progress": "Step {{step}} of {{total}}",
+  "steps": {
+    "language": "Language",
+    "shop": "Shop",
+    "owner": "Owner",
+    "printer": "Printer",
+    "scale": "Scale"
+  },
+  "language": {
+    "title": "Choose the language of the app",
+    "hint": "You can change it at any time, and each user can have their own."
+  },
+  "shop": {
+    "title": "Your shop",
+    "name": "Shop name",
+    "activity": "Activity",
+    "regime": "Tax regime",
+    "regimeIfu": "IFU (flat-rate single tax: one fixed tax, no TVA)",
+    "regimeIfuHint": "Prices include all taxes; no TVA on your documents.",
+    "regimeReel": "Real regime (TVA)",
+    "regimeReelHint": "Invoices show the TVA for each rate.",
+    "priceMode": "Prices are typed",
+    "priceTtc": "All taxes included (TTC)",
+    "priceHt": "Before tax (HT)",
+    "wilaya": "Wilaya",
+    "wilayaNone": "Choose later",
+    "phone": "Phone",
+    "optional": "(optional)"
+  },
+  "owner": {
+    "title": "The owner's account",
+    "hint": "The owner can do everything and manages the other users.",
+    "name": "Your name",
+    "pin": "PIN code (4 to 8 digits)",
+    "pinConfirm": "Type the PIN again"
+  },
+  "printer": {
+    "title": "Receipt printer",
+    "hint": "Plug in and switch on the printer, then detect it. You can change it in Settings › Hardware.",
+    "none": "No printer found. Install its Windows driver and detect again, or skip this step.",
+    "likely": "Likely a receipt printer",
+    "skip": "Skip for now"
+  },
+  "skip": "Skip",
+  "finish": "Finish and open the app",
+  "free": {
+    "note": "DZBuild POS is free forever. Want a website for your shop too?",
+    "link": "dzbuild.com/register"
+  },
+  "first": {
+    "demo": "Try it with a demo shop",
+    "import": "Move my shop from another PC (.dzpos file)",
+    "tour": "Watch the tour (2 minutes)",
+    "openingDemo": "Opening the demo…",
+    "restoring": "Restoring your shop…",
+    "importHint": "Stop selling on the old PC: both would number the same tickets. For a second till, choose \"Till of a shop\"."
+  }
+}

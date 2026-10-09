@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-appointments-set-status"
+description = "Enables the appointments_set_status command without any pre-configured scope."
+commands.allow = ["appointments_set_status"]
+
+[[permission]]
+identifier = "deny-appointments-set-status"
+description = "Denies the appointments_set_status command without any pre-configured scope."
+commands.deny = ["appointments_set_status"]

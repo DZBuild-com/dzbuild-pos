@@ -1,0 +1,52 @@
+{
+  "title": "Payment",
+  "pay": "Take payment",
+  "validate": "Confirm",
+  "tenders": {
+    "cash": "Cash",
+    "card_cib": "CIB card",
+    "edahabia": "Edahabia",
+    "baridimob": "BaridiMob",
+    "cheque": "Cheque",
+    "transfer": "Transfer",
+    "credit": "Customer credit",
+    "voucher": "Store credit",
+    "change": "Change given"
+  },
+  "needCustomer": "Choose the customer first (F3) to pay on credit or with their store credit.",
+  "voucherTile": "Voucher",
+  "typeReference": "Reference",
+  "reference": {
+    "card_cib": "Authorisation no. ({{method}})",
+    "edahabia": "Authorisation no. ({{method}})",
+    "baridimob": "Transaction no. ({{method}})",
+    "cheque": "Cheque no.",
+    "transfer": "Transfer reference",
+    "credit": "Reference",
+    "voucher": "Voucher no.",
+    "change": "Reference"
+  },
+  "cheque": { "bank": "Bank", "date": "Cheque date" },
+  "quickNote": "{{value}} DA",
+  "exact": "Exact amount",
+  "totalTtc": "Total incl. tax",
+  "stampDuty": "Stamp duty",
+  "totalDue": "Amount due",
+  "stampHint": "Paying by card avoids this stamp duty: ",
+  "missing": "Left to pay",
+  "change": "Change",
+  "unknown": "Amount not worked out yet: finish typing the payment",
+  "printLang": "Receipt language",
+  "printReceipt": "Print the receipt",
+  "noPrinter": "No receipt printer: set it up in Settings › Hardware.",
+  "exchangeCredit": "Returned value (exchange):",
+  "shortage": "{{name}}: {{available}} in stock, {{needed}} asked",
+  "done": {
+    "title": "Payment taken",
+    "number": "Receipt",
+    "refunded": "To give back to the customer",
+    "printing": "The receipt is printing.",
+    "noReceipt": "No receipt printed.",
+    "newSale": "New sale"
+  }
+}

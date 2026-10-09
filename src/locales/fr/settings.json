@@ -1,0 +1,940 @@
+{
+  "title": "Réglages",
+  "sections": {
+    "shop": "Boutique",
+    "activity": "Activité et modules",
+    "documents": "Documents",
+    "sales": "Ventes et caisse",
+    "users": "Utilisateurs et rôles",
+    "hardware": "Matériel",
+    "backups": "Sauvegardes",
+    "dzbuild": "DZBuild",
+    "updates": "Mises à jour",
+    "audit": "Journal des opérations",
+    "about": "À propos",
+    "data": "Données",
+    "expenseCategories": "Catégories de dépenses",
+    "network": "Réseau",
+    "diagnostics": "Diagnostic",
+    "display": "Affichage",
+    "license": "Licence"
+  },
+  "shop": {
+    "identity": "Identité",
+    "nameAr": "Nom en arabe",
+    "nameFr": "Nom en français",
+    "nameEn": "Nom en anglais",
+    "legalForm": "Forme juridique",
+    "capital": "Capital social (DA)",
+    "contact": "Adresse et contact",
+    "address": "Adresse",
+    "email": "E-mail",
+    "legal": "Identifiants légaux",
+    "rc": "N° du registre du commerce (RC)",
+    "nif": "NIF (15 ou 18 chiffres)",
+    "nis": "NIS (15 ou 18 chiffres)",
+    "nin": "NIN (18 chiffres)",
+    "ai": "Article d'imposition (AI)",
+    "rib": "RIB",
+    "tax": "Fiscalité et prix",
+    "docLang": "Langue des documents par défaut",
+    "priceModeLocked": "Ne change plus dès qu'un produit a un prix ou qu'un ticket a un numéro : tous les prix enregistrés seraient lus de travers.",
+    "receipt": "Textes du ticket",
+    "headerAr": "En-tête du ticket en arabe",
+    "headerFr": "En-tête du ticket en français",
+    "headerEn": "En-tête du ticket en anglais",
+    "footerAr": "Pied du ticket en arabe",
+    "footerFr": "Pied du ticket en français",
+    "footerEn": "Pied du ticket en anglais",
+    "social": {
+      "title": "Réseaux sociaux",
+      "facebook": "Facebook",
+      "instagram": "Instagram",
+      "tiktok": "TikTok",
+      "website": "Site web"
+    },
+    "save": "Enregistrer la boutique",
+    "saved": "Informations de la boutique enregistrées.",
+    "logo": "Logo",
+    "logoHint": "Image PNG ou JPEG de 512 Ko au plus, imprimée sur les tickets et les factures. Elle est enregistrée dès que vous la choisissez.",
+    "logoNone": "Aucun logo pour le moment.",
+    "logoSet": "Un logo est enregistré.",
+    "logoChoose": "Choisir une image",
+    "logoRemove": "Retirer le logo",
+    "logoSaved": "Logo enregistré.",
+    "logoRemoved": "Logo retiré."
+  },
+  "salesRules": {
+    "payments": "Encaissement",
+    "maxChange": "Monnaie maximale",
+    "maxChangeHint": "La monnaie rendue ne dépasse jamais ce montant. 0 : pas de limite.",
+    "cashRounding": "Arrondi des totaux payés en espèces",
+    "rounding": {
+      "0": "Pas d'arrondi",
+      "500": "Au 5 DA le plus proche",
+      "1000": "Au 10 DA le plus proche"
+    },
+    "chequeRequiresCustomer": "Un paiement par chèque exige un client identifié",
+    "stampDuty": "Droit de timbre",
+    "stampModes": {
+      "charge_customer": "Ajouté au net à payer",
+      "absorb": "Payé par la boutique",
+      "off": "Non calculé"
+    },
+    "stampOffWarning": "Le droit de timbre ne sera plus calculé. Choisissez ce réglage seulement si votre boutique en est exemptée.",
+    "cash": "Clôture de caisse",
+    "varianceThreshold": "Écart toléré à la clôture",
+    "varianceThresholdHint": "Au-delà de cet écart, la clôture demande l'accord d'un gérant.",
+    "blindClose": "Clôture à l'aveugle : le caissier compte le tiroir sans voir les espèces attendues",
+    "stock": "Stock",
+    "negativePolicy": "Vente sans stock",
+    "negative": {
+      "allow": "Autoriser",
+      "warn": "Avertir",
+      "block": "Bloquer"
+    },
+    "expiredLots": "Lots périmés",
+    "expired": {
+      "warn": "Avertir",
+      "block": "Bloquer"
+    },
+    "expiryAlertDays": "Alerte de péremption (jours avant la date)",
+    "products": "Produits",
+    "eanPrefix": "Préfixe des codes-barres internes",
+    "eanPrefixHint": "3 chiffres commençant par 2 : les codes-barres que la boutique crée elle-même (EAN-13) commencent ainsi.",
+    "soldes": "Soldes",
+    "soldesHint": "Les périodes de soldes fixées par le wali, 12 au plus. Une promotion de soldes ne s'applique que pendant ces périodes.",
+    "soldesNone": "Aucune période de soldes.",
+    "soldesWindow": "Période {{n}}",
+    "soldesAdd": "Ajouter une période",
+    "soldesRemove": "Retirer la période {{n}}",
+    "save": "Enregistrer les règles",
+    "saved": "Règles enregistrées."
+  },
+  "users": {
+    "title": "Utilisateurs",
+    "add": "Ajouter un utilisateur",
+    "edit": "Modifier l'utilisateur",
+    "displayName": "Nom affiché sur la tuile",
+    "username": "Identifiant de connexion",
+    "role": "Rôle",
+    "discountLimit": "Remise maximale sans validation (%)",
+    "pin": "Code PIN (4 à 8 chiffres)",
+    "pinConfirm": "Retapez le code PIN",
+    "changePin": "Changer le code PIN",
+    "pinChanged": "Code PIN modifié.",
+    "deactivate": "Désactiver",
+    "reactivate": "Réactiver",
+    "created": "Utilisateur créé.",
+    "updated": "Utilisateur enregistré.",
+    "save": "Enregistrer l'utilisateur",
+    "autoLock": "Verrouiller l'écran après (minutes, 0 = jamais)",
+    "autoLockSaved": "Verrouillage automatique enregistré.",
+    "saveAutoLock": "Enregistrer le verrouillage automatique",
+    "columns": {
+      "name": "Nom",
+      "role": "Rôle",
+      "language": "Langue",
+      "status": "État",
+      "lastLogin": "Dernière connexion",
+      "actions": "Actions"
+    }
+  },
+  "roles": {
+    "title": "Rôles",
+    "add": "Nouveau rôle",
+    "edit": "Modifier le rôle",
+    "nameAr": "Nom du rôle en arabe",
+    "nameFr": "Nom du rôle en français",
+    "nameEn": "Nom du rôle en anglais",
+    "permissions": "Ce que ce rôle peut faire",
+    "ownerAll": "Le propriétaire peut tout faire. Ce rôle ne peut pas être modifié.",
+    "system": "Intégré",
+    "usersCount_zero": "Aucun utilisateur",
+    "usersCount_one": "{{count}} utilisateur",
+    "usersCount_two": "{{count}} utilisateurs",
+    "usersCount_few": "{{count}} utilisateurs",
+    "usersCount_many": "{{count}} utilisateurs",
+    "usersCount_other": "{{count}} utilisateurs",
+    "activeCount_zero": "aucun actif",
+    "activeCount_one": "{{count}} actif",
+    "activeCount_two": "{{count}} actifs",
+    "activeCount_few": "{{count}} actifs",
+    "activeCount_many": "{{count}} actifs",
+    "activeCount_other": "{{count}} actifs",
+    "usersSummary": "{{users}} ({{active}})",
+    "save": "Enregistrer le rôle",
+    "saved": "Rôle enregistré.",
+    "remove": "Retirer le rôle",
+    "removed": "Rôle retiré."
+  },
+  "backups": {
+    "intro": "Une sauvegarde est faite automatiquement chaque jour et avant chaque mise à jour. Gardez aussi une copie sur une clé USB.",
+    "now": "Sauvegarder maintenant",
+    "done": "Sauvegarde créée.",
+    "empty": "Aucune sauvegarde pour le moment. Faites la première maintenant.",
+    "openFolder": "Ouvrir le dossier des sauvegardes",
+    "columns": { "date": "Date", "kind": "Type", "size": "Taille", "actions": "Actions" },
+    "kinds": {
+      "auto": "Automatique",
+      "manual": "Manuelle",
+      "pre_migration": "Avant une mise à jour",
+      "pre_restore": "Avant une restauration",
+      "pre_pairing": "Changement de réseau"
+    },
+    "restore": "Restaurer",
+    "restoreTitle": "Restaurer cette sauvegarde ?",
+    "restoreBody": "Les données actuelles seront remplacées par la sauvegarde du {{date}}. Une sauvegarde de sécurité des données actuelles est faite avant, puis DZBuild POS redémarre.",
+    "restoreOtherPc": "Si cette sauvegarde vient d'un autre PC, n'encaissez plus sur l'ancien PC : les deux numéroteraient les mêmes tickets. Pour une deuxième caisse, reliez les PC en réseau (Réglages › Réseau).",
+    "restorePin": "Votre code PIN de propriétaire",
+    "restoreConfirm": "Restaurer cette sauvegarde",
+    "restarting": "Restauration… DZBuild POS redémarre dans un instant.",
+    "ownerOnly": "Seul le propriétaire peut restaurer une sauvegarde.",
+    "previewAction": "Aperçu et restauration",
+    "schedule": {
+      "title": "Quand sauvegarder",
+      "daily": "Chaque jour au premier démarrage.",
+      "zClose": "À chaque clôture de caisse (Z).",
+      "beforeUpdate": "Avant chaque mise à jour du logiciel.",
+      "onClose": "Sauvegarder quand l'application se ferme",
+      "keepDaily": "Garder une copie par jour pendant",
+      "keepWeekly": "Puis une copie par semaine pendant",
+      "keepMonthly": "Puis une copie par mois pendant",
+      "none": "Aucune",
+      "days_zero": "{{count}} jours",
+      "days_one": "{{count}} jour",
+      "days_two": "{{count}} jours",
+      "days_few": "{{count}} jours",
+      "days_many": "{{count}} jours",
+      "days_other": "{{count}} jours",
+      "weeks_zero": "{{count}} semaines",
+      "weeks_one": "{{count}} semaine",
+      "weeks_two": "{{count}} semaines",
+      "weeks_few": "{{count}} semaines",
+      "weeks_many": "{{count}} semaines",
+      "weeks_other": "{{count}} semaines",
+      "months_zero": "{{count}} mois",
+      "months_one": "{{count}} mois",
+      "months_two": "{{count}} mois",
+      "months_few": "{{count}} mois",
+      "months_many": "{{count}} mois",
+      "months_other": "{{count}} mois",
+      "retentionNote": "Seules les copies automatiques les plus anciennes sont supprimées. Vos ventes restent toujours dans les données de la boutique : la loi demande de les garder 10 ans."
+    },
+    "mirror": {
+      "title": "Copie de secours (clé USB ou dossier)",
+      "intro": "Chaque sauvegarde est aussi copiée ici et vérifiée. Si le disque du PC tombe en panne, vos données sont sur la clé.",
+      "none": "Aucune copie de secours n'est faite.",
+      "choose": "Choisir une clé USB ou un dossier",
+      "change": "Changer de dossier",
+      "stop": "Ne plus faire de copie de secours",
+      "available": "Branchée",
+      "unavailable": "Clé absente",
+      "lastCopy": "Dernière copie : {{date}}",
+      "never": "Aucune copie encore",
+      "free": "Espace libre : {{size}}",
+      "toDrive": {
+        "title": "Sauvegarder sur une clé USB maintenant",
+        "none": "Branchez une clé USB : elle apparaîtra ici.",
+        "action": "Copier sur {{drive}} ({{mount}})",
+        "done": "Sauvegarde copiée sur la clé {{drive}}."
+      },
+      "demo": "La boutique de démonstration garde ses sauvegardes dans son propre dossier : elle ne fait aucune copie sur la clé USB ou le dossier de votre vraie boutique."
+    },
+    "integrity": {
+      "title": "Vérifier les données de la boutique",
+      "body": "Relit toutes les données de la boutique pour trouver un dommage (disque en panne, coupure de courant). Cela peut prendre une minute.",
+      "action": "Vérifier maintenant",
+      "ok": "Aucun dommage : les données de la boutique sont intactes.",
+      "damaged": "Les données de la boutique sont endommagées. Arrêtez les ventes et restaurez la dernière bonne sauvegarde."
+    },
+    "export": {
+      "title": "Exporter mes données",
+      "body": "Un fichier .dzpos contient toute votre boutique : gardez-le en lieu sûr ou importez-le sur un autre PC.",
+      "action": "Exporter une sauvegarde (.dzpos)",
+      "allData": "Toutes les données en tableur",
+      "done": "Sauvegarde exportée."
+    },
+    "preview": {
+      "title": "Contenu de la sauvegarde",
+      "company": "Boutique",
+      "lastTicket": "Dernier ticket",
+      "noTicket": "Aucun ticket",
+      "documents": "Documents validés",
+      "products": "Produits",
+      "customers": "Clients",
+      "lastActivity": "Dernière opération",
+      "invalid": "Cette sauvegarde est endommagée : elle ne peut pas être restaurée.",
+      "newer": "Cette sauvegarde vient d'une version plus récente de DZBuild POS. Installez la dernière version avant de la restaurer.",
+      "ownerOnly": "Seul le propriétaire peut restaurer une sauvegarde.",
+      "origin": "Copie de",
+      "demo": "DÉMO – boutique de démonstration",
+      "tillCopy": "le poste de caisse {{code}} de « {{host}} » : il rejoint de nouveau son poste principal, il ne se restaure pas",
+      "mainCopy_zero": "un poste principal",
+      "mainCopy_one": "un poste principal avec {{count}} poste de caisse : il ne se restaure pas derrière lui",
+      "mainCopy_two": "un poste principal avec {{count}} postes de caisse : il ne se restaure pas derrière eux",
+      "mainCopy_few": "un poste principal avec {{count}} postes de caisse : il ne se restaure pas derrière eux",
+      "mainCopy_many": "un poste principal avec {{count}} postes de caisse : il ne se restaure pas derrière eux",
+      "mainCopy_other": "un poste principal avec {{count}} postes de caisse : il ne se restaure pas derrière eux"
+    }
+  },
+  "updates": {
+    "title": "Mises à jour",
+    "installed": "Version installée",
+    "channel": "Canal de mise à jour",
+    "stable": "Stable",
+    "stableHint": "Recommandé pour la caisse.",
+    "beta": "Bêta",
+    "betaHint": "Les nouveautés en avance, pour tester.",
+    "autoCheck": "Rechercher les mises à jour chaque jour",
+    "autoDownload": "Télécharger automatiquement quand la caisse est fermée",
+    "checkNow": "Rechercher maintenant",
+    "lastCheck": "Dernière recherche : {{date}}",
+    "neverChecked": "Aucune recherche encore",
+    "upToDate": "DZBuild POS est à jour.",
+    "available": "Version {{version}} disponible",
+    "download": "Télécharger",
+    "downloading": "Téléchargement…",
+    "install": "Installer maintenant",
+    "blocked": "La caisse {{terminal}} est ouverte (par {{user}} depuis {{time}}) : clôturez-la d'abord.",
+    "confirmTitle": "Installer la mise à jour",
+    "confirmBody": "DZBuild POS va se fermer, installer la version {{version}} puis redémarrer (1 à 2 minutes). Une sauvegarde est faite avant.",
+    "confirm": "Installer et redémarrer",
+    "paused": "DZBuild a mis cette version en pause : rien à faire, continuez à travailler.",
+    "notYet": "Cette version arrive dans les boutiques petit à petit : ce PC la recevra dans les prochains jours.",
+    "tooOld": "Cette version est trop ancienne pour se mettre à jour seule.",
+    "fullInstaller": "Télécharger l'installateur complet",
+    "whatsNew": "Nouveautés de cette version",
+    "rollback": "En cas de problème, réinstallez la version précédente depuis dzbuild.com/pos : vos données restent, et la sauvegarde d'avant la mise à jour est dans Réglages › Sauvegardes.",
+    "mainPcFirst": "Ce poste de caisse prend la version du poste principal ({{version}}) : mettez d'abord à jour le poste principal, puis ce poste la reçoit depuis lui.",
+    "mainPcUnreachable": "Ce poste de caisse prend la version du poste principal, qui ne répond pas pour le moment. Réessayez quand il est allumé."
+  },
+  "diagnostics": {
+    "thisPc": "Ce PC",
+    "version": "Version",
+    "webview": "WebView2",
+    "windows": "Windows",
+    "memory": "Mémoire totale / disponible",
+    "appMemory": "Mémoire utilisée par DZBuild POS",
+    "coldStart": "Démarrage",
+    "coldStartValue": "{{seconds}} s",
+    "diskFree": "Espace libre sur le disque des données",
+    "crashDumps": "Plantages enregistrés",
+    "lastCrash": "Dernier plantage : {{at}} — {{message}}",
+    "noCrash": "Aucun plantage enregistré",
+    "sendTitle": "Envoyer un diagnostic à l'assistance",
+    "sendBody": "Le fichier contient la version, les réglages, la liste des imprimantes et les journaux techniques (ce que le logiciel a fait). Il ne contient ni vos clients, ni vos ventes, ni vos codes. Rien n'est envoyé automatiquement : c'est vous qui l'envoyez.",
+    "export": "Exporter le diagnostic (.zip)",
+    "exported_zero": "Diagnostic enregistré ({{count}} fichier).",
+    "exported_one": "Diagnostic enregistré ({{count}} fichier).",
+    "exported_two": "Diagnostic enregistré ({{count}} fichiers).",
+    "exported_few": "Diagnostic enregistré ({{count}} fichiers).",
+    "exported_many": "Diagnostic enregistré ({{count}} fichiers).",
+    "exported_other": "Diagnostic enregistré ({{count}} fichiers).",
+    "openLogs": "Ouvrir les journaux",
+    "logLevel": "Détail des journaux techniques",
+    "logLevelHint": "« Détaillé » seulement si l'assistance le demande.",
+    "levels": {
+      "warn": "Réduit",
+      "info": "Normal",
+      "debug": "Détaillé"
+    }
+  },
+  "display": {
+    "light": "Mode allégé (PC lent)",
+    "lightHint": "Moins d'animations et de petites vignettes : plus rapide sur un Celeron ou 4 Go de mémoire.",
+    "textSize": "Taille du texte",
+    "normal": "Normale (100 %)",
+    "large": "Grande (115 %)",
+    "larger": "Très grande (130 %)",
+    "osk": "Clavier à l'écran (écran tactile sans clavier)",
+    "thisPc": "Ces choix ne concernent que ce PC."
+  },
+  "support": {
+    "title": "Assistance",
+    "whatsapp": "Écrire sur WhatsApp à {{name}}",
+    "web": "Ouvrir la page d'assistance",
+    "defaultName": "l'assistance",
+    "label": "Nom de votre assistance (revendeur, technicien)",
+    "number": "Numéro WhatsApp (format international, ex. 213550123456)",
+    "url": "Page web d'assistance (https://…)",
+    "save": "Enregistrer le contact",
+    "saved": "Contact d'assistance enregistré."
+  },
+  "audit": {
+    "intro": "Chaque action importante est inscrite ici. Chaque ligne est scellée à la précédente : aucune ligne ne peut être modifiée ou supprimée sans que cela se voie.",
+    "verify": "Vérifier le journal",
+    "intact": "Lignes vérifiées : {{n}}. Rien n'a été modifié.",
+    "broken": "La ligne n° {{seq}} du journal a été modifiée. Ne vendez plus sur ce poste et contactez le support DZBuild.",
+    "empty": "Aucune entrée pour le moment.",
+    "system": "Système",
+    "filter": "Afficher",
+    "families": {
+      "all": "Tout",
+      "sale": "Ventes",
+      "return": "Retours",
+      "cash": "Caisse",
+      "drawer": "Tiroir",
+      "document": "Tickets",
+      "product": "Produits",
+      "stock": "Stock",
+      "auth": "Connexions"
+    },
+    "columns": {
+      "seq": "N°",
+      "at": "Date et heure",
+      "user": "Utilisateur",
+      "action": "Action",
+      "details": "Détails"
+    },
+    "actions": {
+      "setup": { "completed": "Installation terminée" },
+      "auth": {
+        "login": "Connexion",
+        "login_failed": "Code PIN erroné",
+        "logout": "Déconnexion",
+        "override": "Validation par un responsable",
+        "override_failed": "Validation par un responsable refusée"
+      },
+      "company": {
+        "updated": "Informations de la boutique modifiées",
+        "logo_changed": "Logo de la boutique modifié"
+      },
+      "settings": { "updated": "Réglage modifié" },
+      "user": {
+        "created": "Utilisateur créé",
+        "updated": "Utilisateur modifié",
+        "pin_changed": "Code PIN modifié",
+        "deactivated": "Utilisateur désactivé",
+        "language_changed": "Langue modifiée",
+        "duplicated": "Utilisateur créé sur modèle"
+      },
+      "role": {
+        "created": "Rôle créé",
+        "updated": "Rôle modifié",
+        "archived": "Rôle retiré",
+        "duplicated": "Rôle dupliqué"
+      },
+      "backup": {
+        "created": "Sauvegarde faite",
+        "restore_scheduled": "Restauration demandée",
+        "restored": "Sauvegarde restaurée",
+        "exported": "Sauvegarde exportée dans un fichier",
+        "imported": "Sauvegarde importée depuis un fichier",
+        "mirrored": "Copie de secours faite",
+        "mirror_failed": "Copie de secours échouée"
+      },
+      "local": { "updated": "Réglage de ce poste modifié" },
+      "app": { "updated": "Nouvelle version démarrée" },
+      "clock": { "moved_back": "Horloge du PC reculée" },
+      "diagnostics": { "exported": "Diagnostic exporté" },
+      "update": {
+        "downloaded": "Mise à jour téléchargée",
+        "install_started": "Installation d'une mise à jour"
+      },
+      "demo": {
+        "entered": "Boutique de démonstration ouverte",
+        "left": "Démonstration quittée",
+        "erased": "Démonstration effacée"
+      },
+      "license": {
+        "activated": "Licence activée",
+        "expired": "Période d'essai terminée",
+        "removed": "Licence retirée",
+        "tampered": "Données de licence modifiées",
+        "repaired": "Copie de la licence réparée"
+      },
+      "db": {
+        "unclean_shutdown": "Redémarrage après un arrêt brutal (coupure de courant)",
+        "integrity_checked": "Données de la boutique vérifiées (recherche de dommages)"
+      },
+      "unit": { "created": "Unité créée", "updated": "Unité modifiée" },
+      "tax_rate": {
+        "synced": "Taux de TVA mis à jour depuis les données réglementaires",
+        "updated": "Taux de TVA modifié"
+      },
+      "price_level": {
+        "created": "Niveau de prix créé",
+        "updated": "Niveau de prix modifié",
+        "archived": "Niveau de prix archivé"
+      },
+      "category": {
+        "created": "Catégorie créée",
+        "updated": "Catégorie modifiée",
+        "archived": "Catégorie archivée"
+      },
+      "product": {
+        "created": "Produit créé",
+        "updated": "Produit modifié",
+        "price_changed": "Prix modifié",
+        "archived": "Produit archivé",
+        "restored": "Produit réactivé",
+        "extras_updated": "Fiche produit complétée",
+        "price_breaks_changed": "Prix par quantité modifiés",
+        "variants_generated": "Déclinaisons créées",
+        "prices_bulk_updated": "Prix modifiés en masse",
+        "bulk_edited": "Produits modifiés en masse",
+        "image_changed": "Photo du produit changée",
+        "regulation_set": "Prix réglementé du produit modifié",
+        "modifiers_set": "Options du produit modifiées"
+      },
+      "stock_location": { "created": "Emplacement de stock créé" },
+      "stock": {
+        "adjusted": "Stock ajusté",
+        "levels_rebuilt": "Stock recalculé depuis les mouvements",
+        "count_started": "Inventaire commencé",
+        "count_closed": "Inventaire clôturé",
+        "count_cancelled": "Inventaire annulé",
+        "transferred": "Transfert de stock",
+        "minimums_set": "Stocks minimums modifiés"
+      },
+      "document": {
+        "cancelled": "Brouillon annulé",
+        "reprinted": "Document réimprimé (duplicata)",
+        "printed": "Document imprimé (original)",
+        "exported": "Document exporté en PDF",
+        "draft_saved": "Brouillon de document enregistré",
+        "converted": "Document transformé"
+      },
+      "quote": { "validated": "Devis validé" },
+      "proforma": { "validated": "Facture proforma validée" },
+      "delivery_note": { "validated": "Bon de livraison validé" },
+      "invoice": { "validated": "Facture validée", "from_ticket": "Facture établie sur ticket" },
+      "credit_note": { "created": "Avoir établi" },
+      "fiscal": { "archive_exported": "Archive fiscale exportée" },
+      "cloud": {
+        "linked": "Boutique DZBuild liée",
+        "unlinked": "Boutique DZBuild déliée",
+        "relink_required": "Liaison DZBuild à refaire",
+        "revoked": "Liaison DZBuild annulée depuis DZBuild",
+        "order_claimed": "Commande en ligne prise en charge",
+        "order_released": "Commande en ligne remise en attente",
+        "order_prepared": "Commande en ligne préparée",
+        "order_fulfilled": "Commande en ligne vendue ou expédiée",
+        "order_refused": "Commande en ligne refusée",
+        "pulled": "Modifications reçues de DZBuild",
+        "backup_key_created": "Clé des sauvegardes en ligne créée",
+        "backup_uploaded": "Sauvegarde envoyée sur DZBuild",
+        "publish_changed": "Produits publiés en ligne modifiés",
+        "backup_downloaded": "Sauvegarde en ligne téléchargée",
+        "personal_data_purged": "Coordonnées des acheteurs en ligne effacées (durée de conservation écoulée)"
+      },
+      "lan": {
+        "reconciled": "Corrigé par le poste principal",
+        "notice_acknowledged": "Alerte réseau lue",
+        "replayed": "Opération d'un poste de caisse enregistrée sur le poste principal",
+        "pairing_code_issued": "Code d'appairage affiché",
+        "till_paired": "Poste de caisse ajouté",
+        "till_revoked": "Poste de caisse retiré",
+        "paired": "Ce poste est devenu un poste de caisse",
+        "host_enabled": "Poste principal activé",
+        "host_disabled": "Retour en poste unique",
+        "promoted": "Poste de caisse devenu poste principal",
+        "left": "Poste de caisse sorti du réseau",
+        "clock_skew": "Heure du PC différente du poste principal",
+        "replay_rejected": "Opération d'un poste de caisse refusée",
+        "item_rejected": "Opération refusée par le poste principal",
+        "replay_retried": "Opération refusée renvoyée au poste principal",
+        "journal_adopted": "Journal d'un poste de caisse repris par ce poste principal",
+        "till_rejoined": "Poste de caisse rejoint à nouveau après un dommage de ses données"
+      },
+      "cash": {
+        "session_opened": "Caisse ouverte",
+        "paid_in": "Entrée de caisse",
+        "paid_out": "Sortie de caisse",
+        "dropped": "Versement au coffre",
+        "expense": "Dépense payée en caisse",
+        "close_refused": "Clôture refusée : écart à faire valider",
+        "session_closed": "Caisse clôturée (Z)",
+        "host_share": "Espèces d'une opération enregistrée sur le poste principal pour cette caisse"
+      },
+      "sale": {
+        "created": "Vente",
+        "held": "Ticket mis en attente",
+        "recalled": "Ticket en attente repris",
+        "held_discarded": "Ticket en attente supprimé",
+        "line_voided": "Ligne annulée",
+        "cancelled": "Vente abandonnée",
+        "qty_reduced": "Quantité d'une ligne réduite"
+      },
+      "return": { "created": "Retour de marchandise" },
+      "hardware": { "updated": "Réglages du matériel modifiés" },
+      "drawer": { "opened": "Tiroir-caisse ouvert sans vente" },
+      "ledger": { "balances_rebuilt": "Soldes des comptes recalculés" },
+      "customer": {
+        "created": "Client créé",
+        "updated": "Client modifié",
+        "blocked": "Client bloqué",
+        "unblocked": "Client débloqué",
+        "archived": "Client archivé",
+        "restored": "Client restauré"
+      },
+      "credit": {
+        "opening_set": "Solde d'ouverture du kridi saisi",
+        "adjusted": "Kridi ajusté",
+        "collected": "Versement encaissé",
+        "receipt_reprinted": "Reçu de versement réimprimé (duplicata)"
+      },
+      "promotion": {
+        "created": "Promotion créée",
+        "updated": "Promotion modifiée",
+        "archived": "Promotion archivée"
+      },
+      "serial": {
+        "sold": "Numéro de série vendu",
+        "returned": "Numéro de série retourné",
+        "registered": "Numéros de série enregistrés"
+      },
+      "supplier": {
+        "created": "Fournisseur créé",
+        "updated": "Fournisseur modifié",
+        "archived": "Fournisseur archivé",
+        "restored": "Fournisseur restauré",
+        "opening_set": "Solde d'ouverture fournisseur saisi",
+        "adjusted": "Compte fournisseur ajusté",
+        "paid": "Fournisseur payé"
+      },
+      "purchase_order": {
+        "saved": "Bon de commande enregistré",
+        "validated": "Bon de commande envoyé"
+      },
+      "goods_receipt": {
+        "validated": "Marchandise réceptionnée"
+      },
+      "supplier_invoice": {
+        "validated": "Facture fournisseur enregistrée"
+      },
+      "supplier_return": {
+        "validated": "Retour au fournisseur"
+      },
+      "expense": { "recorded": "Dépense enregistrée", "reversed": "Dépense annulée" },
+      "expense_category": {
+        "created": "Catégorie de dépense créée",
+        "updated": "Catégorie de dépense modifiée",
+        "archived": "Catégorie de dépense archivée"
+      },
+      "import": {
+        "applied": "Import appliqué",
+        "undone": "Import annulé"
+      },
+      "data": { "exported": "Données exportées" },
+      "labels": {
+        "printed": "Étiquettes imprimées",
+        "dismissed": "Étiquettes marquées à jour",
+        "barcodes_assigned": "Codes-barres internes attribués"
+      },
+      "scale": { "item_set": "Réglage balance d'un article" },
+      "recovery": {
+        "set_aside": "Fichiers de données endommagés mis de côté",
+        "fresh_start": "Nouvelle boutique créée malgré des sauvegardes existantes"
+      },
+      "packs": {
+        "template_applied": "Modèle d'activité appliqué",
+        "modules_set": "Modules modifiés",
+        "till_mode_set": "Mode de caisse modifié"
+      },
+      "department_key": {
+        "created": "Touche rayon créée",
+        "updated": "Touche rayon modifiée",
+        "archived": "Touche rayon archivée"
+      },
+      "dining": {
+        "room_saved": "Salle enregistrée",
+        "room_archived": "Salle archivée",
+        "table_saved": "Table enregistrée",
+        "table_archived": "Table archivée",
+        "ticket_opened": "Ticket de table ouvert",
+        "line_added": "Ligne ajoutée au ticket de table",
+        "line_changed": "Quantité changée sur un ticket de table",
+        "line_removed": "Ligne retirée avant l'envoi en cuisine",
+        "ticket_updated": "Ticket de table modifié",
+        "ticket_transferred": "Ticket transféré vers une autre table",
+        "tickets_merged": "Tickets de table fusionnés",
+        "menu_set": "Menu du jour défini",
+        "kitchen_sent": "Envoi en cuisine",
+        "kitchen_printed": "Bon de cuisine réimprimé",
+        "line_voided": "Ligne annulée avec motif",
+        "line_comped": "Ligne offerte",
+        "ticket_voided": "Ticket de table annulé",
+        "bill_printed": "Addition imprimée",
+        "ticket_split": "Ticket de table partagé",
+        "ticket_paid": "Ticket de table encaissé"
+      },
+      "modifier_group": {
+        "saved": "Groupe d'options enregistré",
+        "archived": "Groupe d'options archivé"
+      },
+      "kitchen_station": {
+        "saved": "Poste de préparation enregistré",
+        "archived": "Poste de préparation archivé"
+      },
+      "pharmacy": {
+        "product_set": "Fiche médicament modifiée",
+        "register_recorded": "Inscription au registre des médicaments contrôlés",
+        "chifa_applied": "Liste Chifa importée"
+      },
+      "butcher": {
+        "yield_template_saved": "Modèle de découpe enregistré",
+        "yield_template_archived": "Modèle de découpe archivé",
+        "yield_run": "Découpe de carcasse"
+      },
+      "flexy": {
+        "float_purchased": "Achat de crédit flexy",
+        "operators_seeded": "Opérateurs flexy préparés"
+      },
+      "deposit": {
+        "taken": "Arrhes encaissées",
+        "refunded": "Arrhes remboursées"
+      },
+      "service": {
+        "intake": "Ticket de service ouvert",
+        "status_set": "Statut du ticket de service changé",
+        "assigned": "Technicien assigné",
+        "items_set": "Pièces et main d'œuvre modifiées",
+        "delivered": "Article rendu au client"
+      },
+      "instalments": {
+        "signed": "Contrat de vente à tempérament signé",
+        "guarantee_added": "Pièce justificative ajoutée au contrat",
+        "reminder_noted": "Rappel d'échéance noté",
+        "level_seeded": "Niveau de prix tempérament créé"
+      },
+      "wholesale": {
+        "price_set": "Prix client modifié",
+        "min_order_set": "Minimum de commande modifié",
+        "pack_created": "Pack créé"
+      },
+      "rounds": {
+        "created": "Tournée créée",
+        "stops_set": "Arrêts de la tournée modifiés",
+        "started": "Tournée partie",
+        "stop_reported": "Arrêt de tournée saisi",
+        "closed": "Tournée clôturée",
+        "van_created": "Véhicule de livraison créé"
+      },
+      "orders": {
+        "created": "Commande client enregistrée",
+        "ready": "Commande prête",
+        "fulfilled": "Commande servie en caisse",
+        "delivered": "Commande livrée (BL ou facture)",
+        "closed": "Commande clôturée"
+      },
+      "appointments": {
+        "booked": "Rendez-vous pris",
+        "updated": "Rendez-vous modifié",
+        "status_set": "État du rendez-vous"
+      },
+      "loyalty": {
+        "enrolled": "Client inscrit au programme fidélité",
+        "card_blocked": "Carte fidélité bloquée",
+        "redeemed": "Points échangés contre un chèque fidélité",
+        "adjusted": "Points ajustés",
+        "expired": "Points expirés"
+      },
+      "vouchers": {
+        "sold": "Bon cadeau vendu",
+        "expired": "Bons expirés"
+      },
+      "jewellery": {
+        "piece_set": "Fiche bijou modifiée",
+        "metal_price_set": "Prix du gramme modifié",
+        "repriced": "Prix des bijoux recalculés"
+      },
+      "staff": {
+        "profile_set": "Fiche employé modifiée",
+        "advance_given": "Avance sur salaire versée",
+        "advance_repaid": "Avance remboursée",
+        "salary_deducted": "Avance retenue sur salaire"
+      },
+      "zakat": {
+        "saved": "Calcul de zakat enregistré"
+      },
+      "payment_type": {
+        "created": "Type de paiement créé",
+        "updated": "Type de paiement modifié",
+        "archived": "Type de paiement archivé"
+      },
+      "datapack": {
+        "installed": "Pack réglementaire installé"
+      },
+      "privacy": {
+        "consent_set": "Consentement du client enregistré",
+        "accessed": "Fiche client consultée",
+        "exported": "Données du client exportées",
+        "anonymised": "Client anonymisé"
+      },
+      "till": {
+        "key_map_set": "Touches de caisse modifiées"
+      },
+      "registers": {
+        "host_booked": "Écritures d'un poste de caisse enregistrées sur le poste principal (registres et soldes)"
+      }
+    }
+  },
+  "integrity": {
+    "verify": "Vérifier les tickets et les clôtures",
+    "chainIntact": "{{type}} {{series}} : {{n}} documents vérifiés, rien n'a été modifié.",
+    "chainBroken": "{{type}} {{series}} : modification détectée à partir de {{number}}. Ne vendez plus sur ce poste et contactez le support DZBuild.",
+    "closuresIntact": "Clôtures Z : {{n}} vérifiées, rien n'a été modifié.",
+    "closuresBroken": "Clôtures Z : modification détectée au rapport {{z}}. Contactez le support DZBuild.",
+    "receiptsIntact": "Reçus de versement : {{n}} vérifiés, rien n'a été modifié.",
+    "receiptsBroken": "Reçus de versement : modification détectée au reçu {{number}}. Contactez le support DZBuild.",
+    "tillJournalIntact": "Journal du poste {{code}} : {{n}} lignes vérifiées, rien n'a été modifié.",
+    "tillJournalBroken": "Journal du poste {{code}} : modification trouvée à partir de la ligne {{seq}}. Contactez le support DZBuild.",
+    "tillMergeBroken": "Journaux des postes réunis sur ce poste principal : une modification a été trouvée. Contactez le support DZBuild."
+  },
+  "history": {
+    "title": "Historique de {{name}}",
+    "empty": "Aucune modification enregistrée."
+  },
+  "about": {
+    "version": "Version",
+    "dataFolder": "Dossier des données",
+    "schema": "Version du format des données",
+    "os": "Système d'exploitation",
+    "terminal": "Poste",
+    "openData": "Ouvrir le dossier des données",
+    "openLogs": "Ouvrir les journaux techniques",
+    "tagline": "DZBuild POS fonctionne sans internet et garde vos données sur ce PC.",
+    "free": "DZBuild POS est gratuit : pas de licence, pas de clé, pas d'abonnement. Les mises à jour sont gratuites aussi.",
+    "grow": {
+      "title": "Développez votre commerce avec DZBuild",
+      "website": { "text": "Créez votre site et vendez dans toute l'Algérie.", "action": "Créer mon site" },
+      "link": {
+        "text": "Liez ce magasin à votre compte DZBuild pour publier votre catalogue et recevoir les commandes en ligne.",
+        "action": "Ouvrir la liaison DZBuild"
+      },
+      "blog": { "text": "Conseils et guides pour les commerçants.", "action": "Lire le blog" }
+    },
+    "lastCrash": "Dernier plantage : {{at}}",
+    "openDiagnostics": "Ouvrir le diagnostic"
+  },
+  "data": {
+    "exportAllTitle": "Vos données vous appartiennent",
+    "exportAllHelp": "Toutes vos données en fichiers CSV (un fichier par liste : produits, clients, ventes…), réunis dans un fichier zip que lisent Excel et les autres logiciels.",
+    "exportAll": "Exporter toutes les données (zip)",
+    "exportAllDone": "Données exportées. Lignes : {{rows}}.",
+    "backupTitle": "Fichier de sauvegarde",
+    "backupHelp": "Un fichier .dzpos contient toutes les données de la boutique. Gardez-le sur une clé USB pour restaurer la boutique sur ce poste ou sur un autre.",
+    "exportBackup": "Exporter un fichier de sauvegarde (.dzpos)",
+    "exportBackupDone": "Fichier de sauvegarde enregistré.",
+    "importBackup": "Importer un fichier de sauvegarde",
+    "importBackupHelp": "Le fichier est ajouté à la liste des sauvegardes, d'où le propriétaire peut le restaurer. Rien n'est remplacé tant qu'il n'est pas restauré.",
+    "importBackupDone": "Sauvegarde du {{date}} ajoutée à la liste des sauvegardes.",
+    "imports": "Importer des données",
+    "importsHelp": "Depuis un fichier Excel ou CSV, avec une vérification avant chaque import."
+  },
+  "expenseCategories": {
+    "intro": "Les catégories proposées pour chaque dépense. Le groupe dit sur quelle ligne du rapport Z apparaissent les dépenses payées avec l'argent du tiroir.",
+    "new": "Nouvelle catégorie",
+    "edit": "Modifier la catégorie",
+    "showArchived": "Afficher les archivées",
+    "columns": {
+      "order": "Ordre",
+      "code": "Code",
+      "name": "Nom",
+      "cashGroup": "Groupe dans la caisse",
+      "status": "État",
+      "actions": "Actions"
+    },
+    "fields": {
+      "code": "Code",
+      "cashGroup": "Groupe dans la caisse",
+      "sortOrder": "Ordre"
+    },
+    "save": "Enregistrer la catégorie",
+    "saved": "Catégorie enregistrée.",
+    "archive": "Archiver",
+    "archiveTitle": "Archiver cette catégorie ?",
+    "archiveBody": "« {{name}} » ne sera plus proposée pour les nouvelles dépenses. Les dépenses déjà enregistrées la gardent.",
+    "archived": "Archivée"
+  },
+  "documents": {
+    "layout": {
+      "title": "Présentation",
+      "accent": "Couleur d'accent",
+      "accents": {
+        "brand": "Marque",
+        "ink": "Encre",
+        "info": "Bleu",
+        "ok": "Vert"
+      },
+      "logo": "Logo de la boutique sur les documents",
+      "paper": "Format du papier",
+      "papers": {
+        "a4": "A4",
+        "a5": "A5"
+      },
+      "secondLang": "Deuxième langue des nouveaux documents",
+      "secondLangNone": "Aucune",
+      "deliveryPrices": "Prix sur les bons de livraison",
+      "stampBox": "Cadre « cachet et signature » sur les devis et bons",
+      "save": "Enregistrer la présentation"
+    },
+    "texts": {
+      "title": "Textes des documents",
+      "header": "En-tête ({{lang}})",
+      "footer": "Pied de page ({{lang}})",
+      "terms": "Conditions de vente ({{lang}})",
+      "warranty": "Conditions de garantie ({{lang}})",
+      "count": "{{used}} / {{max}}",
+      "save": "Enregistrer les textes"
+    },
+    "identity": {
+      "title": "Identité fiscale",
+      "activity": "Activité ({{lang}})",
+      "activityHint": "Imprimée sur les factures : l'activité inscrite au registre du commerce.",
+      "aeCard": "Carte d'auto-entrepreneur",
+      "aeCardHint": "Remplace le RC sur les documents d'un auto-entrepreneur.",
+      "save": "Enregistrer l'identité"
+    },
+    "rules": {
+      "title": "Règles",
+      "quoteDays": "Validité des devis (jours)",
+      "dueDays": "Échéance des factures à terme (jours)",
+      "save": "Enregistrer les règles"
+    },
+    "arabic": {
+      "title": "Arabe sur les étiquettes et les documents",
+      "hint": "L'information du consommateur se donne essentiellement en arabe (décret exécutif 13-378). Le logiciel vous prévient avant d'imprimer sans arabe.",
+      "documents": "Documents sans arabe",
+      "guards": {
+        "off": "Ne rien signaler",
+        "consumer": "Signaler pour tout document à un consommateur",
+        "categories": "Signaler pour les catégories choisies"
+      },
+      "documentCategories": "Catégories des documents",
+      "labels": "Étiquettes sans arabe",
+      "labelModes": {
+        "activity": "Selon l'activité de la boutique",
+        "categories": "Seulement les catégories choisies"
+      },
+      "labelActivityHint": "Toutes les catégories pour l'alimentation générale, les cosmétiques, la restauration et le commerce de gros ; aucune pour les autres activités.",
+      "labelCategories": "Catégories des étiquettes",
+      "noCategories": "Aucune catégorie pour l'instant. Créez-les dans Produits.",
+      "save": "Enregistrer les règles de l'arabe"
+    },
+    "printers": {
+      "title": "Imprimantes A4 de ce poste",
+      "hint": "Ces choix restent sur ce PC ; chaque PC a les siens.",
+      "default": "Imprimante A4 par défaut",
+      "windowsDefault": "Imprimante par défaut de Windows",
+      "margins": "Marges (mm)",
+      "printerFor": "Imprimante — {{kind}}",
+      "paperFor": "Papier — {{kind}}",
+      "copiesFor": "Copies — {{kind}}",
+      "save": "Enregistrer les imprimantes",
+      "saved": "Imprimantes de ce poste enregistrées."
+    },
+    "preview": "Aperçu avec une facture d'exemple",
+    "previewHint": "L'exemple utilise un vendeur, un client et des lignes fictifs. Il montre vos réglages et vos textes avant que vous les enregistriez.",
+    "saved": "Réglages des documents enregistrés."
+  },
+  "demoCard": {
+    "title": "Boutique de démonstration",
+    "body": "Une boutique d'exemple pour s'entraîner, séparée de vos données.",
+    "open": "Ouvrir la boutique de démonstration",
+    "confirm": "DZBuild POS va redémarrer sur la boutique de démonstration. Vos vraies données ne sont pas touchées.",
+    "erase": "Effacer la démo"
+  }
+}

@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-suppliers-update"
+description = "Enables the suppliers_update command without any pre-configured scope."
+commands.allow = ["suppliers_update"]
+
+[[permission]]
+identifier = "deny-suppliers-update"
+description = "Denies the suppliers_update command without any pre-configured scope."
+commands.deny = ["suppliers_update"]

@@ -1,0 +1,127 @@
+{
+  "title": "Commandes",
+  "optional": "(facultatif)",
+  "tabs": {
+    "label": "Commandes et rendez-vous",
+    "orders": "Commandes"
+  },
+  "kinds": {
+    "order": "Commande",
+    "layaway": "Vente avec réservation"
+  },
+  "status": {
+    "open": "Ouverte",
+    "ready": "Prête",
+    "fulfilled": "Servie",
+    "closed": "Clôturée"
+  },
+  "depositKinds": {
+    "deposit": "Acompte versé",
+    "applied": "Arrhes imputées",
+    "refund": "Arrhes remboursées"
+  },
+  "list": {
+    "label": "Commandes clients",
+    "number": "Commande",
+    "kind": "Type",
+    "allKinds": "Tous les types",
+    "customer": "Client",
+    "total": "Total",
+    "held": "Arrhes détenues",
+    "status": "Statut",
+    "allStatuses": "Tous les statuts",
+    "daysOpen": "Ouverte depuis",
+    "days": "{{count}} j",
+    "searchHint": "Numéro de la commande ou nom du client",
+    "empty": "Aucune commande",
+    "hint": "Une commande se crée à la caisse (menu Échap, « Mettre en commande ») ou depuis un devis validé (« Transformer en commande »)."
+  },
+  "dialog": {
+    "title": "Mettre en commande",
+    "kind": "Type de commande",
+    "orderHint": "La marchandise est livrée ou servie plus tard.",
+    "layawayHint": "La marchandise est réservée et remise une fois tout payé.",
+    "due": "À livrer le",
+    "dueInvalid": "Choisissez aujourd'hui ou une date à venir.",
+    "reserve": "Réserver le stock",
+    "deposit": "Acompte",
+    "method": "Mode de paiement",
+    "reference": "Référence",
+    "minimum": "Minimum {{amount}} pour une vente avec réservation.",
+    "duty": "Droit de timbre : {{amount}}",
+    "toReceive": "À encaisser : {{amount}}",
+    "note": "Note",
+    "submit": "Enregistrer la commande",
+    "created": "Commande {{number}} enregistrée"
+  },
+  "page": {
+    "for": "Commande {{number}} — {{customer}}",
+    "payIn": "Encaisser un acompte",
+    "ready": "Prête",
+    "readyDone": "La commande est prête : prévenez le client.",
+    "fulfil": "Servir en caisse",
+    "deliver": "Livrer (BL)",
+    "deliverBody": "Un bon de livraison est validé avec les lignes de la commande ; les arrhes détenues passent sur le compte du client.",
+    "invoice": "Facturer",
+    "invoiceBody": "Une facture est validée sur le compte du client ; les arrhes détenues en règlent une partie.",
+    "served": "Document {{number}} validé",
+    "servedBy": "Servie par {{number}}",
+    "keep": "Conserver les arrhes",
+    "keepBody": "Le client renonce : la boutique garde les arrhes. Elles sont vendues sur un ticket « Arrhes conservées » et la commande est clôturée. Un responsable doit l'autoriser.",
+    "kept": "Arrhes conservées : le ticket s'imprime.",
+    "close": "Clôturer",
+    "closeBody": "La commande est annulée et le stock réservé est libéré.",
+    "closed": "Commande clôturée",
+    "heldHint": "Remboursez les arrhes ou conservez-les avant de clôturer.",
+    "layawayHint": "Une vente avec réservation se règle entièrement avant la remise, jamais à crédit.",
+    "lines": "Lignes",
+    "item": "Article",
+    "qty": "Quantité",
+    "unitPrice": "Prix unitaire",
+    "reserved": "Stock réservé",
+    "deposits": "Arrhes",
+    "history": "Historique",
+    "by": "par {{name}}"
+  },
+  "fulfil": {
+    "loaded": "Commande {{number}} en caisse : {{held}} d'arrhes déjà versées, encaissez le reste.",
+    "layaway": "Vente avec réservation {{number}} en caisse : le reste se règle maintenant, jamais à crédit."
+  },
+  "fromQuote": "Transformer en commande",
+  "appointments": {
+    "title": "Rendez-vous",
+    "day": "Jour",
+    "previousDay": "Jour précédent",
+    "nextDay": "Jour suivant",
+    "today": "Aujourd'hui",
+    "free": "{{staff}} {{time}} libre",
+    "anyone": "Sans préférence",
+    "minutes": "{{count}} min",
+    "new": "Nouveau rendez-vous",
+    "edit": "Rendez-vous",
+    "customer": "Nom du client",
+    "phone": "Téléphone",
+    "service": "Prestation",
+    "noService": "Retirer la prestation",
+    "staff": "Employé",
+    "start": "Début",
+    "duration": "Durée (min)",
+    "durationRange": "Saisissez une durée entre 5 et 600 minutes.",
+    "note": "Note",
+    "book": "Réserver",
+    "save": "Enregistrer le rendez-vous",
+    "booked": "Rendez-vous réservé",
+    "saved": "Rendez-vous enregistré",
+    "mark": {
+      "done": "Marquer fait",
+      "no_show": "Marquer absent",
+      "cancelled": "Annuler le rendez-vous"
+    },
+    "status": {
+      "booked": "Prévu",
+      "done": "Fait",
+      "cancelled": "Annulé",
+      "no_show": "Absent"
+    }
+  }
+}

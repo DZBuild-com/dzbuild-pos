@@ -1,0 +1,142 @@
+{
+  "sections": {
+    "payments": "Paiements",
+    "privacy": "Confidentialité",
+    "keys": "Raccourcis",
+    "regulatory": "Données réglementaires"
+  },
+  "users": {
+    "duplicate": "Dupliquer",
+    "duplicateTitle": "Nouvel utilisateur comme {{name}}",
+    "duplicateHint": "Il reçoit le rôle, la langue et la remise maximale de {{name}}, avec son propre nom et son code PIN.",
+    "duplicateSave": "Créer l'utilisateur"
+  },
+  "roles": {
+    "duplicate": "Dupliquer",
+    "duplicateTitle": "Nouveau rôle comme {{name}}",
+    "duplicateHint": "Le nouveau rôle reçoit les mêmes autorisations ; vous pourrez les changer ensuite.",
+    "duplicateSave": "Créer le rôle",
+    "duplicated": "Rôle créé."
+  },
+  "backups": {
+    "hourly": {
+      "label": "Copies horaires pendant l'ouverture de caisse",
+      "hint": "Une copie par heure tant qu'une session de caisse est ouverte sur ce PC ; au-delà du nombre choisi, les plus anciennes du jour sont effacées."
+    }
+  },
+  "dayCutoff": {
+    "label": "Heure de changement de journée",
+    "hint": "Les ventes faites avant cette heure comptent pour la veille (jamais pour l'année précédente)."
+  },
+  "keys": {
+    "title": "Touches de la caisse",
+    "intro": "Chaque action de l'écran de vente a sa touche : une touche F (sauf F11, réservée à la balance), Ctrl + un chiffre ou {{escape}}.",
+    "action": "Action",
+    "key": "Touche",
+    "change": "Changer",
+    "changeFor": "Changer la touche de {{action}}",
+    "press": "Appuyez sur la nouvelle touche…",
+    "taken": "{{key}} est déjà la touche de {{action}}.",
+    "save": "Enregistrer les touches",
+    "saved": "Touches enregistrées",
+    "reset": "Rétablir les touches par défaut",
+    "resetDone": "Touches par défaut rétablies",
+    "actions": {
+      "help": "Aide",
+      "search": "Rechercher un produit",
+      "customer": "Client",
+      "price_check": "Vérifier un prix",
+      "discount": "Remise",
+      "hold": "Mettre en attente",
+      "held": "Tickets en attente",
+      "return": "Retour",
+      "drawer": "Tiroir",
+      "repeat_last": "Répéter la dernière ligne",
+      "checkout": "Encaisser",
+      "menu": "Menu",
+      "floor": "Plan de salle",
+      "flexy": "Recharge flexy",
+      "gift_voucher": "Vendre un bon cadeau",
+      "serial": "Numéro de série",
+      "department_keys": "Touches rayon"
+    }
+  },
+  "payments": {
+    "types": {
+      "title": "Types de paiement",
+      "intro": "Des boutons de paiement en plus pour la caisse. Chacun est compté comme un mode habituel (par exemple, un prélèvement CCP compté comme un virement).",
+      "add": "Nouveau type de paiement",
+      "edit": "Modifier le type de paiement",
+      "code": "Code",
+      "codeHint": "Lettres minuscules sans accent, chiffres et _ (24 au plus).",
+      "codeInvalid": "Lettres minuscules, chiffres et _ seulement (1 à 24).",
+      "nameAr": "Nom en arabe",
+      "nameFr": "Nom en français",
+      "nameEn": "Nom en anglais",
+      "base": "Mode de règlement",
+      "reference": "Référence obligatoire à l'encaissement",
+      "referenceBadge": "Référence",
+      "order": "Ordre d'affichage",
+      "save": "Enregistrer le type",
+      "saved": "Type de paiement enregistré",
+      "archive": "Archiver",
+      "archived": "Type de paiement archivé",
+      "archivedBadge": "Archivé",
+      "showArchived": "Afficher les types archivés",
+      "empty": "Aucun type de paiement en plus. Les modes habituels restent à la caisse."
+    },
+    "qr": {
+      "title": "QR BaridiMob (BaridPay)",
+      "intro": "L'écran client montre ce QR quand le paiement BaridiMob est choisi.",
+      "text": "Texte du QR",
+      "hint": "Le texte de votre QR marchand BaridPay (10 à 512 caractères).",
+      "invalid": "Le texte doit avoir 10 à 512 caractères.",
+      "save": "Enregistrer le QR",
+      "saved": "QR enregistré",
+      "clear": "Retirer le QR",
+      "cleared": "QR retiré",
+      "preview": "Aperçu sur l'écran client",
+      "none": "Aucun QR : l'écran client n'en montre pas."
+    }
+  },
+  "regulatory": {
+    "title": "Pack réglementaire",
+    "intro": "Taux de TVA, barème du droit de timbre, prix plafonnés, nissab et wilayas viennent d'un fichier signé par DZBuild. Un nouveau pack s'installe depuis une clé USB et s'applique au prochain démarrage.",
+    "inUse": "Pack utilisé",
+    "id": "Identifiant",
+    "version": "Version",
+    "validFrom": "En vigueur depuis",
+    "notes": "Sources",
+    "installed": "Packs installés sur ce PC",
+    "installedEmpty": "Aucun pack installé : le logiciel utilise celui livré avec lui.",
+    "file": "Fichier",
+    "install": "Installer un pack signé…",
+    "installHint": "Choisissez le fichier .json du pack, puis son fichier .sig (la signature de DZBuild). Un pack sans la signature de DZBuild est refusé.",
+    "done": "Installé : il s'appliquera au prochain démarrage.",
+    "restart": "Redémarrer pour l'appliquer",
+    "restarting": "DZBuild POS redémarre…"
+  },
+  "hardware": {
+    "mode": "Mode d'impression",
+    "modes": {
+      "raw": "Directement vers l'imprimante (ESC/POS, recommandé)",
+      "rawHint": "Le logiciel envoie le ticket à l'imprimante, arabe compris.",
+      "driver": "Pilote Windows (pages)",
+      "driverHint": "Pour une imprimante qui refuse l'impression directe : le ticket s'imprime comme une page, par Windows."
+    },
+    "rollWidth": "Largeur du rouleau (pages)",
+    "kitchenTab": "Cuisine",
+    "kitchen": {
+      "title": "Imprimantes de cuisine",
+      "hint": "Chaque poste de préparation imprime ses bons sur l'imprimante choisie ; sans imprimante choisie, sur l'imprimante de secours, sinon sur l'imprimante de tickets. Une imprimante de cuisine en réseau sert à toutes les caisses.",
+      "printer": "Imprimante du poste",
+      "default": "Imprimante de secours ou de tickets",
+      "copies": "Copies",
+      "buzzer": "Sonnerie après chaque bon",
+      "fallback": "Imprimante de secours",
+      "receiptPrinter": "L'imprimante de tickets",
+      "noPrinter": "Ajoutez d'abord une imprimante dans l'onglet « Imprimantes de tickets ».",
+      "noStation": "Aucun poste de préparation : créez-les dans Restaurant › Postes de préparation."
+    }
+  }
+}

@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-rounds-close"
+description = "Enables the rounds_close command without any pre-configured scope."
+commands.allow = ["rounds_close"]
+
+[[permission]]
+identifier = "deny-rounds-close"
+description = "Denies the rounds_close command without any pre-configured scope."
+commands.deny = ["rounds_close"]

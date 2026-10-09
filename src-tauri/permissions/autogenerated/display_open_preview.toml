@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-display-open-preview"
+description = "Enables the display_open_preview command without any pre-configured scope."
+commands.allow = ["display_open_preview"]
+
+[[permission]]
+identifier = "deny-display-open-preview"
+description = "Denies the display_open_preview command without any pre-configured scope."
+commands.deny = ["display_open_preview"]

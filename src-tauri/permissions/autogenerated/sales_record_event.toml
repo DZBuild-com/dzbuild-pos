@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-sales-record-event"
+description = "Enables the sales_record_event command without any pre-configured scope."
+commands.allow = ["sales_record_event"]
+
+[[permission]]
+identifier = "deny-sales-record-event"
+description = "Denies the sales_record_event command without any pre-configured scope."
+commands.deny = ["sales_record_event"]

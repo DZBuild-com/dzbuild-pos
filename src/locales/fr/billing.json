@@ -1,0 +1,258 @@
+{
+  "list": {
+    "title": "Documents",
+    "new": "Nouveau document",
+    "search": "Numéro, client ou fournisseur",
+    "all": "Tous",
+    "status": "Statut",
+    "period": "Période",
+    "customer": "Client",
+    "minTotal": "Montant minimum",
+    "maxTotal": "Montant maximum",
+    "empty": "Aucun document pour ces filtres.",
+    "loadMore": "Afficher plus",
+    "columns": {
+      "number": "Numéro",
+      "kind": "Type",
+      "date": "Date",
+      "party": "Client / fournisseur",
+      "totalTtc": "Total TTC",
+      "totalDue": "Net à payer",
+      "state": "État",
+      "copies": "Copies"
+    }
+  },
+  "kinds": {
+    "invoice": "Facture",
+    "quote": "Devis",
+    "proforma": "Facture proforma",
+    "delivery_note": "Bon de livraison",
+    "credit_note": "Avoir",
+    "ticket": "Ticket",
+    "return_note": "Bon de retour",
+    "purchase_order": "Bon de commande",
+    "goods_receipt": "Bon de réception",
+    "supplier_invoice": "Facture fournisseur",
+    "transfer": "Bon de transfert",
+    "customer_order": "Commande client"
+  },
+  "statuses": { "draft": "Brouillon", "validated": "Validé", "cancelled": "Annulé" },
+  "states": {
+    "draft": "Brouillon",
+    "cancelled": "Annulé",
+    "open": "En cours",
+    "expired": "Expiré",
+    "converted": "Transformé",
+    "to_invoice": "À facturer",
+    "invoiced": "Facturé",
+    "unpaid": "Reste dû {{amount}}",
+    "overdue": "En retard — reste dû {{amount}}",
+    "paid": "Payé",
+    "partly_credited": "Annulée en partie par avoir ({{amount}})",
+    "credited": "Annulée par avoir {{numbers}}",
+    "final": "Validé"
+  },
+  "view": {
+    "print": "Imprimer",
+    "pdf": "PDF",
+    "preview": "Aperçu",
+    "copies": "Copies déjà faites : {{count}}. La prochaine sera un DUPLICATA.",
+    "sources": "Fait à partir de",
+    "targets": "Documents qui en découlent",
+    "lines": "Lignes",
+    "totals": "Totaux",
+    "notFound": "Ce document n'existe pas ou ne vous est pas accessible.",
+    "columns": { "description": "Désignation", "qty": "Quantité", "unitPrice": "Prix unitaire" },
+    "totalHt": "Total HT",
+    "tax": "TVA",
+    "stampDuty": "Droit de timbre"
+  },
+  "print": {
+    "title": "Imprimer {{number}}",
+    "language": "Langue du document",
+    "second": "Deuxième langue",
+    "monolingual": "Une seule langue",
+    "printer": "Imprimante",
+    "defaultPrinter": "Imprimante par défaut de Windows",
+    "copies": "Nombre de copies",
+    "submit": "Imprimer",
+    "original": "Imprimé (original)",
+    "duplicate": "Imprimé (duplicata)",
+    "dialog": "La fenêtre d'impression de Windows s'est ouverte.",
+    "pdfSaved": "PDF enregistré : {{path}}"
+  },
+  "preview": { "title": "Aperçu avant impression", "print": "Imprimer…" },
+  "editor": {
+    "new": {
+      "invoice": "Nouvelle facture",
+      "quote": "Nouveau devis",
+      "proforma": "Nouvelle facture proforma",
+      "delivery_note": "Nouveau bon de livraison"
+    },
+    "draftOf": "Brouillon — {{kind}}",
+    "customer": "Client",
+    "noCustomer": "Sans client",
+    "language": "Langue du document",
+    "secondLanguage": "Deuxième langue",
+    "none": "Aucune",
+    "validUntil": "Valable jusqu'au",
+    "validUntilDefault": "Par défaut : {{days}} jours",
+    "dueDate": "Échéance",
+    "note": "Note",
+    "addProduct": "Scanner ou chercher un produit",
+    "openItem": "Article libre",
+    "columns": {
+      "product": "Désignation",
+      "qty": "Quantité",
+      "unitPrice": "Prix unitaire",
+      "discount": "Remise",
+      "total": "Total"
+    },
+    "lineField": "{{field}} — {{name}}",
+    "removeLine": "Retirer la ligne",
+    "empty": "Ajoutez au moins une ligne.",
+    "totals": {
+      "ht": "Total HT",
+      "tax": "TVA {{rate}}",
+      "ttc": "Total TTC",
+      "ifu": "Régime IFU – TVA non applicable",
+      "exempt": "Client exonéré de TVA : prix hors taxes"
+    },
+    "save": "Enregistrer le brouillon",
+    "saved": "Brouillon enregistré.",
+    "validate": "Valider",
+    "preview": "Aperçu",
+    "cancelDraft": "Abandonner le brouillon",
+    "cancelConfirm": "Abandonner ce brouillon ? Il reste dans l'archive comme annulé, sans numéro.",
+    "cancelled": "Brouillon abandonné."
+  },
+  "mentions": {
+    "title": "Mentions obligatoires",
+    "complete": "Toutes les mentions obligatoires sont présentes.",
+    "sellerMissing": "Il manque sur la fiche de la boutique : {{list}}",
+    "buyerMissing": "Il manque sur la fiche du client : {{list}}",
+    "warnings": "À compléter si possible : {{list}}",
+    "blocking": "Une facture ne peut pas être validée sans ces mentions (décret 05-468).",
+    "fixShop": "Compléter la boutique",
+    "fixCustomer": "Compléter le client",
+    "fixDocuments": "Compléter l'identité des documents",
+    "names": {
+      "name": "nom ou raison sociale",
+      "legal_form": "forme juridique",
+      "activity": "activité",
+      "capital": "capital social",
+      "address": "adresse",
+      "phone": "téléphone",
+      "rc": "RC",
+      "nif": "NIF",
+      "nis": "NIS",
+      "ai": "article d'imposition"
+    }
+  },
+  "validate": {
+    "title": {
+      "invoice": "Valider la facture",
+      "quote": "Valider le devis",
+      "proforma": "Valider la facture proforma",
+      "delivery_note": "Valider le bon de livraison"
+    },
+    "summary": "Une fois validé, le document reçoit son numéro et ne peut plus être modifié.",
+    "tenders": "Règlement",
+    "onAccount": "À terme (compte client)",
+    "chequeBank": "Banque",
+    "chequeDate": "Date du chèque",
+    "reference": "Référence",
+    "duty": "Droit de timbre",
+    "netToPay": "Net à payer",
+    "missing": "Reste à régler",
+    "change": "Monnaie à rendre",
+    "submit": "Valider",
+    "done": "Document {{number}} validé."
+  },
+  "convert": {
+    "button": "Transformer",
+    "toInvoice": "En facture",
+    "toDelivery": "En bon de livraison",
+    "toProforma": "En facture proforma",
+    "toInvoiceRepriced": "En facture aux prix du jour",
+    "toDeliveryRepriced": "En bon de livraison aux prix du jour",
+    "toProformaRepriced": "En facture proforma aux prix du jour",
+    "already": "Déjà transformé : {{numbers}}",
+    "invoiceDeliveries": "Facturer les BL de ce client"
+  },
+  "deliveries": {
+    "title": "Facturer des bons de livraison",
+    "pick": "Bons de livraison à facturer",
+    "none": "Aucun bon de livraison à facturer pour ce client.",
+    "limit": "50 bons au plus par facture.",
+    "submit": "Créer la facture"
+  },
+  "ticketInvoice": {
+    "action": "Facturer ce ticket",
+    "title": "Facture du ticket {{number}}",
+    "already": "Ce ticket a déjà sa facture.",
+    "submit": "Facturer le ticket"
+  },
+  "offer": {
+    "menu": "Charger un devis",
+    "title": "Charger un devis ou une proforma",
+    "number": "Numéro du devis",
+    "load": "Charger",
+    "chip": "Devis {{number}}",
+    "priceChanged": "Certains prix ont changé depuis le devis : ils sont signalés sur les lignes.",
+    "linkFailed": "La vente est enregistrée, mais son lien avec le devis n'a pas pu être noté."
+  },
+  "credit": {
+    "action": "Avoir",
+    "title": "Avoir sur la facture {{number}}",
+    "kind": "Type d'avoir",
+    "goods": "Retour de marchandise",
+    "financial": "Geste commercial ou remise",
+    "qtyFor": "Quantité à reprendre — {{name}}",
+    "atMost": "{{qty}} au plus",
+    "restock": "Remettre en stock",
+    "amount": "Montant TTC de l'avoir",
+    "reason": "Motif",
+    "reasons": {
+      "defective": "Produit défectueux",
+      "wrong_item": "Erreur d'article",
+      "price_adjustment": "Correction de prix",
+      "commercial_gesture": "Geste commercial",
+      "cancellation": "Annulation de la vente",
+      "other": "Autre"
+    },
+    "refund": "Remboursement",
+    "refundReference": "Référence du remboursement",
+    "quote": {
+      "total": "Montant de l'avoir",
+      "tax": "Dont TVA",
+      "refund": "À rendre au client",
+      "remaining": "Reste sur la facture"
+    },
+    "submit": "Créer l'avoir",
+    "done": "Avoir {{number}} créé.",
+    "invoiceCancelled": "La facture {{number}} est entièrement annulée par avoir."
+  },
+  "warranty": {
+    "action": "Certificat de garantie",
+    "title": "Certificat de garantie",
+    "line": "Article",
+    "months": "{{months}} mois",
+    "serials": "Numéros de série",
+    "language": "Langue du certificat",
+    "print": "Imprimer",
+    "pdf": "PDF",
+    "printed": "Certificat de garantie imprimé.",
+    "none": "Aucun article de ce document n'a de durée de garantie."
+  },
+  "statement": {
+    "printA4": "Imprimer en A4",
+    "pdf": "PDF",
+    "language": "Langue du relevé",
+    "printed": "Relevé imprimé en A4."
+  },
+  "guard": {
+    "text": "Information du consommateur en arabe : ce document devrait être imprimé en arabe (décret 13-378).",
+    "switch": "Imprimer en arabe"
+  }
+}

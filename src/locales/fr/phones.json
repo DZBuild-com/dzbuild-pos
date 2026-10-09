@@ -1,0 +1,33 @@
+{
+  "flexy": {
+    "title": "Flexy",
+    "buy": "Acheter du stock",
+    "operator": "Opérateur",
+    "amount": "Montant crédité",
+    "cost": "Prix payé",
+    "fromTill": "Payé depuis la caisse",
+    "save": "Enregistrer l'achat",
+    "balance": "Stock {{operator}}",
+    "low": "Stock bas",
+    "commission": "Commission",
+    "bought": "Stock {{operator}} : +{{amount}}",
+    "note": "Note",
+    "entries": "Mouvements du stock flexy",
+    "allOperators": "Tous les opérateurs",
+    "commissionHint": "Les commissions par opérateur et par jour sont dans le rapport des ventes flexy.",
+    "noEntries": "Aucun mouvement sur cette période.",
+    "columns": {
+      "date": "Date",
+      "kind": "Mouvement",
+      "amount": "Montant",
+      "cost": "Coût",
+      "phone": "Numéro"
+    },
+    "kinds": {
+      "purchase": "Achat de stock",
+      "sale": "Recharge vendue",
+      "reversal": "Recharge annulée",
+      "adjustment": "Ajustement"
+    }
+  }
+}

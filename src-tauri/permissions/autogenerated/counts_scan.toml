@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-counts-scan"
+description = "Enables the counts_scan command without any pre-configured scope."
+commands.allow = ["counts_scan"]
+
+[[permission]]
+identifier = "deny-counts-scan"
+description = "Denies the counts_scan command without any pre-configured scope."
+commands.deny = ["counts_scan"]

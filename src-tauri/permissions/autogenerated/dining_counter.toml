@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-dining-counter"
+description = "Enables the dining_counter command without any pre-configured scope."
+commands.allow = ["dining_counter"]
+
+[[permission]]
+identifier = "deny-dining-counter"
+description = "Denies the dining_counter command without any pre-configured scope."
+commands.deny = ["dining_counter"]

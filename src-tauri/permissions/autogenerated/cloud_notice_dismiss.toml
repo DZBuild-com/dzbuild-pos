@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-cloud-notice-dismiss"
+description = "Enables the cloud_notice_dismiss command without any pre-configured scope."
+commands.allow = ["cloud_notice_dismiss"]
+
+[[permission]]
+identifier = "deny-cloud-notice-dismiss"
+description = "Denies the cloud_notice_dismiss command without any pre-configured scope."
+commands.deny = ["cloud_notice_dismiss"]

@@ -1,0 +1,152 @@
+{
+  "lang": "fr",
+  "rtl": false,
+  "title": "Relevé de compte",
+  "seller": {
+    "name": "Supérette El Amel",
+    "nameAlt": "مغازة الأمل",
+    "legalForm": "SARL",
+    "activity": "Commerce de détail en alimentation générale",
+    "activityAlt": "تجارة التجزئة للمواد الغذائية العامة",
+    "capital": 100000000,
+    "address": "12 rue Larbi Ben M'hidi, Alger",
+    "wilaya": "Alger",
+    "phone": "023 45 67 89",
+    "email": null,
+    "ids": [
+      {
+        "kind": "rc",
+        "value": "16/00-1234567B26"
+      },
+      {
+        "kind": "nif",
+        "value": "000116001234567"
+      },
+      {
+        "kind": "nis",
+        "value": "000116001234567"
+      },
+      {
+        "kind": "ai",
+        "value": "16012345678"
+      },
+      {
+        "kind": "rib",
+        "value": "00799999001234567890"
+      }
+    ],
+    "vatExemptRef": null
+  },
+  "party": {
+    "name": "SARL Amine",
+    "code": "C00012",
+    "address": "5 rue Didouche Mourad, Alger",
+    "nif": "000016001234567",
+    "rc": null,
+    "isSupplier": false
+  },
+  "period": "01/09/2026 – 30/09/2026",
+  "opening": 150000,
+  "lines": [
+    {
+      "date": "05/09/2026",
+      "label": "Vente à crédit",
+      "number": "FA2026-000045",
+      "debit": 2280000,
+      "credit": 0,
+      "balance": 2430000
+    },
+    {
+      "date": "12/09/2026",
+      "label": "Versement",
+      "number": null,
+      "debit": 0,
+      "credit": 1000000,
+      "balance": 1430000
+    },
+    {
+      "date": "20/09/2026",
+      "label": "Retour au compte",
+      "number": "AV2026-000003",
+      "debit": 0,
+      "credit": 339150,
+      "balance": 1090850
+    }
+  ],
+  "totalDebit": 2280000,
+  "totalCredit": 1339150,
+  "closing": 1090850,
+  "labels": {
+    "date": "Date",
+    "label": "Opération",
+    "number": "Pièce",
+    "debit": "Débit",
+    "credit": "Crédit",
+    "balance": "Solde",
+    "opening": "Solde au début de la période",
+    "closing": "Solde à la fin de la période",
+    "period": "Période",
+    "printedAt": "Imprimé le",
+    "customer": "Client",
+    "supplier": "Fournisseur",
+    "code": "Code",
+    "nif": "NIF",
+    "rc": "RC",
+    "address": "Adresse",
+    "total": "Total"
+  },
+  "partyLabels": {
+    "number": "N°",
+    "date": "Date",
+    "validUntil": "Valable jusqu'au",
+    "dueDate": "Date de règlement",
+    "seller": "Vendeur",
+    "customer": "Client",
+    "supplier": "Fournisseur",
+    "legalForm": "Forme juridique",
+    "activity": "Activité",
+    "capital": "Capital social",
+    "address": "Adresse",
+    "phone": "Tél.",
+    "email": "E-mail",
+    "rc": "RC",
+    "aeCard": "Carte AE",
+    "nif": "NIF",
+    "nis": "NIS",
+    "ai": "AI",
+    "nin": "NIN",
+    "rib": "RIB",
+    "designation": "Désignation",
+    "qty": "Qté",
+    "unit": "Unité",
+    "unitPriceHt": "P.U. HT",
+    "unitPriceTtc": "P.U. TTC",
+    "discount": "Remise",
+    "vatRate": "TVA",
+    "totalHt": "Montant HT",
+    "totalTtc": "Montant TTC",
+    "subtotalHt": "Total HT",
+    "discountTotal": "Total des remises",
+    "totalTtcLabel": "Total TTC",
+    "stampDuty": "Droit de timbre",
+    "stampAbsorbed": "Droit de timbre pris en charge par le vendeur",
+    "rounding": "Arrondi",
+    "netToPay": "Net à payer",
+    "paymentMode": "Mode de paiement",
+    "paid": "Payé",
+    "remaining": "Reste dû",
+    "references": "Documents cités",
+    "stampBox": "Cachet et signature",
+    "page": "Page",
+    "printedAt": "Imprimé le",
+    "from": "De",
+    "to": "Vers",
+    "driver": "Chauffeur",
+    "vehicle": "Véhicule",
+    "note": "Observations",
+    "terms": "Conditions",
+    "reason": "Motif",
+    "receivedBy": "Reçu par"
+  },
+  "printedAt": "28/09/2026 10:15"
+}

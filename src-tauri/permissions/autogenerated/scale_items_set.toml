@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-scale-items-set"
+description = "Enables the scale_items_set command without any pre-configured scope."
+commands.allow = ["scale_items_set"]
+
+[[permission]]
+identifier = "deny-scale-items-set"
+description = "Denies the scale_items_set command without any pre-configured scope."
+commands.deny = ["scale_items_set"]

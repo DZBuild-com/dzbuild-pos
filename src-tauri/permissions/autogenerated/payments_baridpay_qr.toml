@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-payments-baridpay-qr"
+description = "Enables the payments_baridpay_qr command without any pre-configured scope."
+commands.allow = ["payments_baridpay_qr"]
+
+[[permission]]
+identifier = "deny-payments-baridpay-qr"
+description = "Denies the payments_baridpay_qr command without any pre-configured scope."
+commands.deny = ["payments_baridpay_qr"]

@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-controlled-register-entries"
+description = "Enables the controlled_register_entries command without any pre-configured scope."
+commands.allow = ["controlled_register_entries"]
+
+[[permission]]
+identifier = "deny-controlled-register-entries"
+description = "Denies the controlled_register_entries command without any pre-configured scope."
+commands.deny = ["controlled_register_entries"]

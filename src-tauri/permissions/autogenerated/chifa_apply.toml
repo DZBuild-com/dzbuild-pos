@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-chifa-apply"
+description = "Enables the chifa_apply command without any pre-configured scope."
+commands.allow = ["chifa_apply"]
+
+[[permission]]
+identifier = "deny-chifa-apply"
+description = "Denies the chifa_apply command without any pre-configured scope."
+commands.deny = ["chifa_apply"]

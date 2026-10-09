@@ -1,0 +1,40 @@
+{
+  "title": "Tickets",
+  "empty": "Aucun ticket pour ces critères.",
+  "filters": {
+    "number": "N° de ticket",
+    "date": "Journée",
+    "type": "Type",
+    "all": "Tous"
+  },
+  "columns": {
+    "number": "N°",
+    "date": "Date et heure",
+    "type": "Type",
+    "cashier": "Caissier",
+    "total": "Montant"
+  },
+  "types": {
+    "ticket": "Ticket de caisse",
+    "return_note": "Bon de retour",
+    "invoice": "Facture",
+    "credit_note": "Avoir",
+    "proforma": "Facture proforma",
+    "quote": "Devis",
+    "delivery_note": "Bon de livraison",
+    "customer_order": "Bon de commande client",
+    "purchase_order": "Bon de commande",
+    "goods_receipt": "Bon de réception",
+    "supplier_invoice": "Facture fournisseur",
+    "transfer": "Bon de transfert"
+  },
+  "sheet": {
+    "title": "Ticket {{number}}",
+    "total": "Net à payer",
+    "hash": "Code de contrôle :",
+    "printLang": "Langue de la réimpression",
+    "reprint": "Réimprimer (DUPLICATA)",
+    "reprinted": "Duplicata envoyé à {{printer}}",
+    "return": "Reprendre des articles de ce ticket"
+  }
+}

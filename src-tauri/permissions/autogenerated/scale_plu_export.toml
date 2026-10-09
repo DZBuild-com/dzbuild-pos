@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-scale-plu-export"
+description = "Enables the scale_plu_export command without any pre-configured scope."
+commands.allow = ["scale_plu_export"]
+
+[[permission]]
+identifier = "deny-scale-plu-export"
+description = "Denies the scale_plu_export command without any pre-configured scope."
+commands.deny = ["scale_plu_export"]

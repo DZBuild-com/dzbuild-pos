@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-suppliers-adjust"
+description = "Enables the suppliers_adjust command without any pre-configured scope."
+commands.allow = ["suppliers_adjust"]
+
+[[permission]]
+identifier = "deny-suppliers-adjust"
+description = "Denies the suppliers_adjust command without any pre-configured scope."
+commands.deny = ["suppliers_adjust"]

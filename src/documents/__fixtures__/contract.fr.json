@@ -1,0 +1,189 @@
+{
+  "lang": "fr",
+  "rtl": false,
+  "title": "Contrat de vente à tempérament",
+  "number": "CT2026-000001",
+  "date": "28/09/2026",
+  "seller": {
+    "name": "Supérette El Amel",
+    "nameAlt": "مغازة الأمل",
+    "legalForm": "SARL",
+    "activity": "Commerce de détail en alimentation générale",
+    "activityAlt": "تجارة التجزئة للمواد الغذائية العامة",
+    "capital": 100000000,
+    "address": "12 rue Larbi Ben M'hidi, Alger",
+    "wilaya": "Alger",
+    "phone": "023 45 67 89",
+    "email": null,
+    "ids": [
+      {
+        "kind": "rc",
+        "value": "16/00-1234567B26"
+      },
+      {
+        "kind": "nif",
+        "value": "000116001234567"
+      },
+      {
+        "kind": "nis",
+        "value": "000116001234567"
+      },
+      {
+        "kind": "ai",
+        "value": "16012345678"
+      },
+      {
+        "kind": "rib",
+        "value": "00799999001234567890"
+      }
+    ],
+    "vatExemptRef": null
+  },
+  "buyer": {
+    "name": "Farid Bouzid",
+    "nameAlt": null,
+    "legalForm": null,
+    "activity": "Quincaillerie",
+    "activityAlt": null,
+    "capital": null,
+    "address": "5 rue Didouche Mourad, Alger",
+    "wilaya": "Alger",
+    "phone": null,
+    "email": null,
+    "ids": [
+      {
+        "kind": "rc",
+        "value": "16/00-7654321B26"
+      },
+      {
+        "kind": "nif",
+        "value": "000016001234567"
+      },
+      {
+        "kind": "nis",
+        "value": "000016007654321"
+      },
+      {
+        "kind": "ai",
+        "value": "16098765432"
+      }
+    ],
+    "vatExemptRef": null
+  },
+  "items": [
+    {
+      "name": "Réfrigérateur Condor 400 L",
+      "qty": 1000,
+      "total": 12000000
+    }
+  ],
+  "total": 12000000,
+  "down": 3000000,
+  "financed": 9000000,
+  "count": 6,
+  "dues": [
+    [
+      "31/10/2026",
+      1500000
+    ],
+    [
+      "30/11/2026",
+      1500000
+    ],
+    [
+      "31/12/2026",
+      1500000
+    ],
+    [
+      "31/01/2027",
+      1500000
+    ],
+    [
+      "28/02/2027",
+      1500000
+    ],
+    [
+      "31/03/2027",
+      1500000
+    ]
+  ],
+  "guarantees": [
+    "Fiche de paie — Farid Bouzid — Fiche de paie août 2026"
+  ],
+  "clauses": [
+    "Le vendeur vend au client les biens ci-dessus, neufs et conformes.",
+    "Le prix est celui de la vente à tempérament indiqué ci-dessus ; l'apport initial est payé à la signature.",
+    "Le client paie le reste aux dates de l'échéancier, au magasin, par virement ou prélèvement CCP, carte ou chèque de paiement ; chaque versement donne un reçu.",
+    "Les paiements sont reçus au magasin ou sur le compte indiqué par le vendeur.",
+    "Le client peut payer par avance tout ou partie du reste à tout moment.",
+    "Aucun chèque de garantie n'est demandé ni accepté.",
+    "Les biens sont remis au client à la signature."
+  ],
+  "labels": {
+    "items": "Biens vendus",
+    "total": "Prix total TTC",
+    "down": "Apport initial",
+    "financed": "Reste à payer par échéances",
+    "schedule": "Échéancier",
+    "due": "Échéance",
+    "amount": "Montant",
+    "guarantees": "Pièces justificatives remises"
+  },
+  "partyLabels": {
+    "number": "N°",
+    "date": "Date",
+    "validUntil": "Valable jusqu'au",
+    "dueDate": "Date de règlement",
+    "seller": "Vendeur",
+    "customer": "Client",
+    "supplier": "Fournisseur",
+    "legalForm": "Forme juridique",
+    "activity": "Activité",
+    "capital": "Capital social",
+    "address": "Adresse",
+    "phone": "Tél.",
+    "email": "E-mail",
+    "rc": "RC",
+    "aeCard": "Carte AE",
+    "nif": "NIF",
+    "nis": "NIS",
+    "ai": "AI",
+    "nin": "NIN",
+    "rib": "RIB",
+    "designation": "Désignation",
+    "qty": "Qté",
+    "unit": "Unité",
+    "unitPriceHt": "P.U. HT",
+    "unitPriceTtc": "P.U. TTC",
+    "discount": "Remise",
+    "vatRate": "TVA",
+    "totalHt": "Montant HT",
+    "totalTtc": "Montant TTC",
+    "subtotalHt": "Total HT",
+    "discountTotal": "Total des remises",
+    "totalTtcLabel": "Total TTC",
+    "stampDuty": "Droit de timbre",
+    "stampAbsorbed": "Droit de timbre pris en charge par le vendeur",
+    "rounding": "Arrondi",
+    "netToPay": "Net à payer",
+    "paymentMode": "Mode de paiement",
+    "paid": "Payé",
+    "remaining": "Reste dû",
+    "references": "Documents cités",
+    "stampBox": "Cachet et signature",
+    "page": "Page",
+    "printedAt": "Imprimé le",
+    "from": "De",
+    "to": "Vers",
+    "driver": "Chauffeur",
+    "vehicle": "Véhicule",
+    "note": "Observations",
+    "terms": "Conditions",
+    "reason": "Motif",
+    "receivedBy": "Reçu par"
+  },
+  "signatures": [
+    "Le vendeur",
+    "Le client (lu et approuvé)"
+  ]
+}

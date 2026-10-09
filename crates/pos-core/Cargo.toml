@@ -1,0 +1,59 @@
+[package]
+name = "pos-core"
+description = "DZBuild POS domain: money, database, audit journal, auth, settings, regulatory data pack."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+publish.workspace = true
+
+[dependencies]
+serde.workspace = true
+serde_json = { workspace = true, features = ["raw_value"] }
+thiserror.workspace = true
+specta = { workspace = true, features = ["serde_json"] }
+tracing.workspace = true
+rusqlite.workspace = true
+rusqlite_migration.workspace = true
+uuid.workspace = true
+chrono.workspace = true
+crossbeam-channel.workspace = true
+sha2.workspace = true
+hex.workspace = true
+getrandom.workspace = true
+argon2.workspace = true
+unicode-normalization.workspace = true
+url.workspace = true
+reqwest = { workspace = true, features = ["native-tls", "blocking", "form", "system-proxy"] }
+tiny_http.workspace = true
+base64.workspace = true
+keyring-core.workspace = true
+semver = "1.0.28"
+regex = "1.13.1"
+aho-corasick = "1.1.5"
+# Umm al-Qura Hijri dates of the zakat statement; the tables are built in, no data provider.
+icu_calendar = { version = "=2.3.0", default-features = false }
+# Signed regulatory data packs (PLT-024): the minisign verifier of the Tauri updater, the
+# version src-tauri already locks (no new crate).
+minisign-verify = "0.2.5"
+
+[target.'cfg(windows)'.dependencies]
+windows-native-keyring-store.workspace = true
+
+[features]
+# `LedgerEntry::for_tests` for the statement tests of pos-docs.
+testkit = []
+
+[dev-dependencies]
+proptest.workspace = true
+insta.workspace = true
+tempfile.workspace = true
+wiremock.workspace = true
+tokio = { workspace = true, features = ["rt-multi-thread", "macros"] }
+tracing-subscriber.workspace = true
+
+[lints]
+workspace = true

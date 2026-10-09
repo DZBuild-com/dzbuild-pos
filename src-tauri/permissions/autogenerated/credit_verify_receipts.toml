@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-credit-verify-receipts"
+description = "Enables the credit_verify_receipts command without any pre-configured scope."
+commands.allow = ["credit_verify_receipts"]
+
+[[permission]]
+identifier = "deny-credit-verify-receipts"
+description = "Denies the credit_verify_receipts command without any pre-configured scope."
+commands.deny = ["credit_verify_receipts"]

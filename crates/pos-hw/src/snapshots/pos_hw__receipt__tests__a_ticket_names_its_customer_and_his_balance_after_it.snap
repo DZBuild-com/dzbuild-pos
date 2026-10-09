@@ -1,0 +1,45 @@
+---
+source: crates/pos-hw/src/receipt.rs
+expression: dump(&out.bytes)
+---
+<1B>@<1B>t<13 1B>a<01 1B>E<01 1D>!<11>Sup<82>rette El Amel<0A>
+<1D>!<00 1B>E<00 1B>a<00 1B>a<01 1B>E<00>EURL<0A>
+<1B>E<00 1B>a<00 1B>a<01 1B>E<00>12 rue Larbi Ben M'hidi, Alger<0A>
+<1B>E<00 1B>a<00 1B>a<01 1B>E<00>T<82>l. 0550 12 34 56<0A>
+<1B>E<00 1B>a<00 1B>a<01 1B>E<00>RC 16/00-1234567 B 22<0A>
+<1B>E<00 1B>a<00 1B>a<01 1B>E<00>NIF 001216098765432<0A>
+<1B>E<00 1B>a<00>------------------------------------------------<0A>
+<1B>a<01 1B>E<01>Ticket de caisse<0A>
+<1B>E<00 1B>a<00 1B>a<00 1B>E<00>N<F8> TK2026-C1-000123<0A>
+<1B>E<00 1B>a<00 1B>E<00>Date 28/09/2026 12:00                  Caisse C1<0A>
+<1B>E<00 1B>a<00 1B>E<00>Caissier Yacine<0A>
+<1B>E<00 1B>a<00 1B>a<00 1B>E<00>Client Karim Benali<0A>
+<1B>E<00 1B>a<00 1B>a<00 1B>E<00>Code client C00001<0A>
+<1B>E<00 1B>a<00>------------------------------------------------<0A>
+<1B>a<00 1B>E<00>Lait Candia 1 L<0A>
+<1B>E<00 1B>a<00 1B>E<00>  2 <9E> 150,00                              300,00<0A>
+<1B>E<00 1B>a<00 1B>E<00>Huile Elio 5 L<0A>
+<1B>E<00 1B>a<00 1B>E<00>  1 <9E> 650,00                              617,50<0A>
+<1B>E<00 1B>E<00>  Remise                                  -32,50<0A>
+<1B>E<00 1B>a<00 1B>E<00>Tomates<0A>
+<1B>E<00 1B>a<00 1B>E<00>  1,25 kg <9E> 120,00                        150,00<0A>
+<1B>E<00>------------------------------------------------<0A>
+<1B>E<00>Articles                                    4,25<0A>
+<1B>E<00 1B>E<00>Total HT                                  931,75<0A>
+<1B>E<00 1B>E<00>TVA 19 % (518,91)                          98,59<0A>
+<1B>E<00 1B>E<00>TVA 9 % (412,84)                           37,16<0A>
+<1B>E<00 1B>E<01>Total TTC                               1 067,50<0A>
+<1B>E<00 1B>E<00>Droit de timbre                            11,00<0A>
+<1B>E<00 1B>E<01 1D>!<11>Net <85> payer  1 078,50 DA<0A>
+<1D>!<00 1B>E<00>------------------------------------------------<0A>
+<1B>E<00>Esp<8A>ces                                 1 200,00<0A>
+<1B>E<00 1B>E<01>Monnaie rendue                            121,50<0A>
+<1B>E<00 1B>E<01>Solde de votre compte                   3 000,00<0A>
+<1B>E<00 1B>E<00>Vous avez <82>conomis<82>                        32,50<0A>
+<1B>E<00>------------------------------------------------<0A>
+<1B>a<00 1B>E<00>Arr<88>t<82> <85> la somme de : mille soixante-dix-huit<0A>
+dinars et cinquante centimes<0A>
+<1B>E<00 1B>a<00 1B>a<01 1B>E<00>Ouvert 7j/7 de 7h <85> 22h<0A>
+<1B>E<00 1B>a<00 1B>a<01 1B>E<01>Merci de votre visite<0A>
+<1B>E<00 1B>a<00 1B>d<01 1B>a<01 1D>h<3C 1D>w<03 1D>H<02 1D>f<00 1D>kI<13>{BTK{C<14 1A>{B-C1-{C<00 01 17 0A>
+<1B>a<00 1B>d<04 1D>VB<00>

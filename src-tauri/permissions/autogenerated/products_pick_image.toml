@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-products-pick-image"
+description = "Enables the products_pick_image command without any pre-configured scope."
+commands.allow = ["products_pick_image"]
+
+[[permission]]
+identifier = "deny-products-pick-image"
+description = "Denies the products_pick_image command without any pre-configured scope."
+commands.deny = ["products_pick_image"]

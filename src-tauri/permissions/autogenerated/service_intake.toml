@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-service-intake"
+description = "Enables the service_intake command without any pre-configured scope."
+commands.allow = ["service_intake"]
+
+[[permission]]
+identifier = "deny-service-intake"
+description = "Denies the service_intake command without any pre-configured scope."
+commands.deny = ["service_intake"]
