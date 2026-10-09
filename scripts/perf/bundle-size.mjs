@@ -92,10 +92,9 @@ export const LAZY_SCREENS = [
   "src/features/wholesale/RoundsScreen.tsx",
   // M8: a gift voucher sold from the till's menu (a pack chunk)
   "src/features/loyalty/SellVoucherDialog.tsx",
-  // M9: the activation screen, Settings › Licence, and the read-only banner and till card (their
-  // words load with them, only on a PC that needs them)
+  // The activation screen and the read-only banner and till card (their words load with them,
+  // only on a PC that needs them). Settings › Licence is not in the free edition's bundle at all.
   "src/features/license/ActivationScreen.tsx",
-  "src/features/license/LicenseSettings.tsx",
   "src/features/license/LicenseNotice.tsx",
   "src/features/license/PosLicenseCard.tsx",
   "src/features/zakat/ZakatScreen.tsx",
