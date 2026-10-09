@@ -45,14 +45,33 @@ jobs:
       version: ${{ steps.plan.outputs.version }}
       arches: ${{ steps.plan.outputs.arches }}
       prerelease: ${{ steps.plan.outputs.prerelease }}
+      skip: ${{ steps.existing.outputs.skip }}
     steps:
       - uses: actions/checkout@v7
         with:
           persist-credentials: false
+      # Publishing a draft that a manual run built creates the tag, and that tag push lands here.
+      # When the tag already has a release with installers, there is nothing to build again.
+      - id: existing
+        name: Is this tag already released?
+        if: github.ref_type == 'tag'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+          count="$(gh release view "$TAG" --repo "$GITHUB_REPOSITORY" --json assets --jq '.assets | length' 2>/dev/null || echo 0)"
+          if [ "$count" -gt 0 ]; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            echo "$TAG already has a release with $count files: nothing to build." >> "$GITHUB_STEP_SUMMARY"
+          fi
       - uses: actions/setup-node@v7
+        if: steps.existing.outputs.skip != 'true'
         with:
           node-version: ${{ env.NODE_VERSION }}
       - id: plan
+        if: steps.existing.outputs.skip != 'true'
         name: Plan the release
         shell: bash
         env:
@@ -91,11 +110,14 @@ jobs:
   # The same gates as every pull request (lint, types, tests, i18n, cargo-deny…).
   gates:
     name: Gates
+    needs: [prepare]
+    if: needs.prepare.outputs.skip != 'true'
     uses: ./.github/workflows/ci.yml
 
   installers:
     name: Installers (${{ matrix.arch }})
     needs: [prepare, gates]
+    if: needs.prepare.outputs.skip != 'true'
     runs-on: windows-latest
     timeout-minutes: 150
     strategy:
@@ -151,6 +173,7 @@ jobs:
   release:
     name: Draft GitHub release
     needs: [prepare, installers]
+    if: needs.prepare.outputs.skip != 'true'
     # Windows: pnpm release:manifest reads each setup's Authenticode status.
     runs-on: windows-latest
     timeout-minutes: 30
