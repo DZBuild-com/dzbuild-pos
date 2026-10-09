@@ -27,7 +27,7 @@ ed25519-dalek.workspace = true
 # serial number, the SMBIOS system UUID (GetSystemFirmwareTable) and the system disk's serial
 # number (CreateFileW + DeviceIoControl; CreateFileW needs Win32_Security). The same versions as
 # Cargo.lock already holds.
-windows-registry = "0.6.1"
+windows-registry = "0.100.0"
 windows = { version = "0.62.2", features = [
   "Win32_Foundation",
   "Win32_Security",
