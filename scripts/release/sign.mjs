@@ -64,7 +64,8 @@ export function signCommand(provider, env, file) {
       const totp = need(env, "ES_TOTP_SECRET");
       const dir = need(env, "CODESIGNTOOL_DIR");
       return {
-        cmd: path.join(dir, "CodeSignTool.bat"),
+        // CodeSignTool only runs on Windows; win32 joining keeps the test honest on a Linux runner.
+        cmd: path.win32.join(dir, "CodeSignTool.bat"),
         args: [
           "sign",
           `-username=${user}`,

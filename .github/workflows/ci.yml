@@ -2,10 +2,12 @@
 # that run side by side. release.yml calls this workflow before it builds the installers.
 name: CI
 
+# Runs when a change lands on main, when started by hand, or as the release gates.
+# Pull requests are not built automatically: a maintainer starts CI on a branch from the
+# Actions tab when a review needs it.
 on:
   push:
     branches: [main]
-  pull_request:
   workflow_dispatch:
   workflow_call:
 
