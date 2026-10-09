@@ -1484,7 +1484,7 @@ dependencies = [
  "hex",
  "image",
  "insta",
- "minisign-verify",
+ "minisign-verify 0.3.0",
  "pos-core",
  "pos-docs",
  "pos-hw",
@@ -3388,6 +3388,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "22f9645cb765ea72b8111f36c522475d2daa0d22c957a9826437e97534bc4e9e"
 
 [[package]]
+name = "minisign-verify"
+version = "0.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "871285dc19d8d0ebe0eef3d0e99a205f2a71363b122632cbbfa4a6c370a960ce"
+
+[[package]]
 name = "miniz_oxide"
 version = "0.8.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -4267,7 +4273,7 @@ dependencies = [
  "icu_calendar",
  "insta",
  "keyring-core",
- "minisign-verify",
+ "minisign-verify 0.3.0",
  "proptest",
  "regex",
  "reqwest",
@@ -6164,7 +6170,7 @@ dependencies = [
  "http",
  "infer",
  "log",
- "minisign-verify",
+ "minisign-verify 0.2.5",
  "osakit",
  "percent-encoding",
  "reqwest",

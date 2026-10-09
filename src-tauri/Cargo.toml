@@ -41,7 +41,7 @@ tauri-plugin-fs = "2.6.0"
 tauri-plugin-updater = { version = "2.13.0", default-features = false, features = ["native-tls", "system-proxy"] }
 # A till checks the setup its main PC mirrors as the plugin checks a download (the
 # plugin's own minisign verifier and the semver of its versions; both already in the lockfile).
-minisign-verify = "0.2.5"
+minisign-verify = "0.3.0"
 semver = "1.0.28"
 # The update endpoint (`updates.rs`); in the tests, the DZBuild stand-in's authorize redirect
 # (`commands::cloud_mock`).

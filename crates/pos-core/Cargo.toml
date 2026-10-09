@@ -38,7 +38,7 @@ aho-corasick = "1.1.5"
 icu_calendar = { version = "=2.3.0", default-features = false }
 # Signed regulatory data packs (PLT-024): the minisign verifier of the Tauri updater, the
 # version src-tauri already locks (no new crate).
-minisign-verify = "0.2.5"
+minisign-verify = "0.3.0"
 
 [target.'cfg(windows)'.dependencies]
 windows-native-keyring-store.workspace = true
