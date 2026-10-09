@@ -53,7 +53,7 @@ tracing-subscriber = { version = "0.3.23", features = ["fmt"] }
 axum = { version = "0.8.9", default-features = false, features = ["http1", "json", "query", "tokio", "ws", "matched-path"] }
 tokio = "1.53.1"
 tokio-util = { version = "0.7.19", features = ["io"] }
-tokio-tungstenite = "0.29.0"
+tokio-tungstenite = "0.30.0"
 futures-util = { version = "0.3.34", default-features = false, features = ["sink", "std"] }
 mdns-sd = { version = "0.21.4", default-features = false }
 
