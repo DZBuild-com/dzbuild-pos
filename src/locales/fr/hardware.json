@@ -1,0 +1,353 @@
+{
+  "title": "Matériel",
+  "print": {
+    "failed": "Le ticket {{number}} n'a pas été imprimé",
+    "versementFailed": "Le reçu de versement {{number}} n'a pas été imprimé",
+    "voucherFailed": "Le bon {{number}} n'a pas été imprimé",
+    "intakeFailed": "Le bon de réparation {{number}} n'a pas été imprimé",
+    "depositFailed": "Le reçu d'arrhes {{number}} n'a pas été imprimé",
+    "kitchenFailed": "Le bon de cuisine n'a pas été imprimé",
+    "prebillFailed": "L'addition n'a pas été imprimée"
+  },
+  "status": {
+    "ready": "Imprimante prête",
+    "none": "Aucune imprimante de tickets",
+    "failed": "La dernière impression a échoué"
+  },
+  "save": "Enregistrer les réglages du matériel",
+  "saved": "Réglages du matériel enregistrés.",
+  "errors": {
+    "port": "Saisissez un port entre 1 et 65535 (souvent 9100)."
+  },
+  "printers": {
+    "title": "Imprimantes",
+    "empty": "Aucune imprimante. Ajoutez l'imprimante de tickets de ce poste.",
+    "add": "Ajouter une imprimante"
+  },
+  "printer": {
+    "title": "Imprimante",
+    "defaultName": "Caisse 1",
+    "name": "Nom de l'imprimante",
+    "connection": "Branchement",
+    "kinds": {
+      "windows": "Imprimante Windows (USB)",
+      "tcp": "Réseau (adresse IP)",
+      "serial": "Port série (COM)"
+    },
+    "discover": "Détecter les imprimantes",
+    "windowsPrinter": "Imprimante Windows",
+    "choose": "Choisir…",
+    "likely": "{{name}} (imprimante de tickets probable)",
+    "host": "Adresse IP",
+    "port": "Port",
+    "serialPort": "Port COM",
+    "baud": "Vitesse (bauds)",
+    "paper": "Largeur du papier",
+    "advanced": "Réglages avancés",
+    "preset": "Modèle",
+    "presets": {
+      "generic": "Générique ESC/POS",
+      "xprinter": "Xprinter",
+      "epson": "Epson TM",
+      "rongta": "Rongta"
+    },
+    "render": "Impression",
+    "renders": {
+      "auto": "Automatique (texte ou image selon la langue)",
+      "text": "Texte",
+      "raster": "Image (arabe)"
+    },
+    "codePage": "Page de code",
+    "codePageSelector": "Numéro de page de code (ESC t)",
+    "cut": "Coupe du papier",
+    "cuts": {
+      "partial": "Partielle",
+      "full": "Complète",
+      "none": "Aucune"
+    },
+    "drawerPin": "Broche du tiroir",
+    "pins": {
+      "pin2": "Broche 2 (habituelle)",
+      "pin5": "Broche 5"
+    },
+    "bandRows": "Hauteur des bandes d'image (points)",
+    "chineseMode": "Quitter le mode chinois au début (Xprinter, Rongta)",
+    "test": "Imprimer une page de test",
+    "testSent": "Page de test envoyée à {{printer}}.",
+    "keep": "Enregistrer l'imprimante"
+  },
+  "receipt": {
+    "title": "Ticket",
+    "printByDefault": "Imprimer le ticket à chaque vente",
+    "openDrawerOnCash": "Ouvrir le tiroir quand il y a des espèces",
+    "drawerBeforePrint": "Ouvrir le tiroir avant d'imprimer",
+    "logo": "Imprimer le logo de la boutique",
+    "secondLang": "Ticket bilingue : deuxième langue",
+    "none": "Aucune (une seule langue)"
+  },
+  "scanner": {
+    "title": "Scanner de codes-barres",
+    "layout": "Clavier envoyé par le scanner",
+    "layouts": {
+      "us": "QWERTY (réglage d'usine)",
+      "usHint": "La plupart des scanners sont livrés ainsi.",
+      "azerty": "AZERTY français",
+      "azertyHint": "Si votre scanner a été configuré en clavier français."
+    },
+    "test": "Testez votre scanner ici",
+    "testHint": "Cliquez dans la case puis scannez un produit.",
+    "read": "Code lu : {{code}}"
+  },
+  "unprinted": {
+    "title": "Reçus non imprimés",
+    "count": "Reçus non imprimés : {{count}}",
+    "hint": "Réimprimer imprime l'original s'il n'est jamais sorti, sinon un DUPLICATA.",
+    "empty": "Tous les reçus ont été imprimés.",
+    "dismiss": "Ignorer"
+  },
+  "customerDisplay": {
+    "welcome": "Bienvenue",
+    "due": "À payer",
+    "total": "Total",
+    "paid": "Reçu",
+    "change": "Rendu",
+    "thanks": "Merci",
+    "weight": "Poids net",
+    "kilos": "{{qty}} kg",
+    "perKilo": "{{price}} le kg",
+    "tare": "Tare {{tare}} kg",
+    "saved": "Vous économisez {{amount}}",
+    "orderOnline": "Commandez en ligne",
+    "payBaridimob": "Scannez avec BaridiMob pour payer"
+  },
+  "hub": {
+    "portRequired": "Choisissez le port COM de cet appareil.",
+    "columnsRange": "Entre 16 et 40 colonnes.",
+    "thanksRange": "Entre 2 et 30 secondes.",
+    "fixField": "Corrigez le champ indiqué dans l'onglet ouvert, puis enregistrez.",
+    "title": "Matériel de ce poste",
+    "tabs": {
+      "receipt": "Imprimantes de tickets",
+      "labels": "Étiquettes",
+      "scale": "Balance",
+      "displays": "Afficheurs",
+      "scanners": "Lecteurs",
+      "drawer": "Tiroir"
+    }
+  },
+  "devices": {
+    "off": "Non réglé",
+    "connected": "Branché ({{port}})",
+    "disconnected": "Débranché ({{port}}) : {{reason}}",
+    "label": "{{device}} : {{state}}",
+    "names": {
+      "scale": "Balance",
+      "vfd": "Afficheur client",
+      "serial_scanner": "Lecteur sur port série"
+    },
+    "portOption": "{{port}} ({{description}})"
+  },
+  "labelPrinters": {
+    "title": "Imprimantes d'étiquettes",
+    "empty": "Aucune imprimante d'étiquettes. Branchez-la puis cliquez sur « Ajouter ».",
+    "add": "Ajouter une imprimante d'étiquettes",
+    "editTitle": "Imprimante d'étiquettes",
+    "defaultName": "Étiquettes",
+    "detect": "Détecter",
+    "likely": "{{name}} (imprimante d'étiquettes probable)",
+    "test": "Imprimer une étiquette de test",
+    "tested": "Étiquette de test envoyée à {{printer}}",
+    "keep": "Garder cette imprimante",
+    "default": "Imprimante d'étiquettes par défaut",
+    "preset": "Modèle",
+    "presets": {
+      "xprinter": "Xprinter (TSPL)",
+      "tsc": "TSC (TSPL)",
+      "smart_pos": "Smart POS (TSPL)",
+      "zebra": "Zebra (ZPL)",
+      "godex": "Godex (ZPL)"
+    },
+    "dpi": "Résolution",
+    "dpis": {
+      "d203": "203 dpi (8 points/mm)",
+      "d300": "300 dpi (12 points/mm)"
+    },
+    "darkness": "Noirceur (0–15)",
+    "speed": "Vitesse (1–6)",
+    "media": "Détection",
+    "medias": {
+      "gap": "Espace entre étiquettes",
+      "black_mark": "Marque noire",
+      "continuous": "Rouleau continu"
+    },
+    "offsetX": "Décalage horizontal (mm)",
+    "offsetY": "Décalage vertical (mm)",
+    "polarity": "Inverser le noir et le blanc des images (à changer si l'étiquette sort en négatif)",
+    "arabicRule": "Les étiquettes des produits alimentaires et réglementés gardent l'arabe : cette règle se choisit dans les réglages des documents.",
+    "arabicRuleLink": "Ouvrir les réglages des documents"
+  },
+  "scale": {
+    "title": "Balance de caisse",
+    "port": "Port de la balance",
+    "none": "Aucune balance",
+    "detect": "Détecter la balance",
+    "notFound": "Aucune balance n'a répondu sur ce port. Vérifiez qu'elle est allumée et réglée en sortie série.",
+    "protocol": "Protocole",
+    "protocols": {
+      "toledo8217": "Mettler Toledo 8217",
+      "cas_ecr": "CAS (ECR)",
+      "continuous": "Flux continu (balances génériques)"
+    },
+    "baud": "Vitesse",
+    "bits": "Bits de données",
+    "parity": "Parité",
+    "parities": {
+      "none": "Aucune",
+      "even": "Paire",
+      "odd": "Impaire"
+    },
+    "pollMs": "Interrogation (ms)",
+    "stableReadings": "Lectures égales pour « stable »",
+    "capacityG": "Portée (g)",
+    "live": "Poids en direct",
+    "net": "{{qty}} kg",
+    "waiting": "En attente d'une lecture de la balance enregistrée.",
+    "states": {
+      "ok": "Stable",
+      "motion": "En mouvement",
+      "overload": "Surcharge",
+      "underload": "Sous zéro",
+      "disconnected": "Débranchée",
+      "no_response": "Ne répond pas"
+    },
+    "tare": "Tare",
+    "clearTare": "Annuler la tare",
+    "zero": "Zéro",
+    "codes": {
+      "title": "Codes-barres poids et prix",
+      "fromPack": "Formats par défaut du pack réglementaire (balances Rongta, ACLAS, Dibal).",
+      "add": "Ajouter un format",
+      "reset": "Revenir aux formats du pack",
+      "save": "Enregistrer les formats",
+      "saved": "Formats enregistrés.",
+      "prefix": "Préfixe",
+      "pluDigits": "Chiffres du PLU",
+      "verifier": "Chiffre de contrôle du prix",
+      "value": "Contenu",
+      "values": {
+        "weight": "Poids",
+        "price": "Prix",
+        "count": "Nombre"
+      },
+      "valueDigits": "Chiffres de la valeur",
+      "decimals": "Décimales",
+      "overlap": "Le préfixe {{prefix}} est aussi le début de vos codes internes ({{internal}}) : un code interne non enregistré serait lu comme un poids.",
+      "test": "Scannez une étiquette de balance",
+      "result": "{{name}} : {{qty}} kg",
+      "resultCount": "{{name}} : {{qty}} pièces",
+      "labelPrice": "Prix sur l'étiquette {{label}}, à la caisse {{till}}",
+      "notScale": "{{name}} : ce code n'est pas une étiquette de balance.",
+      "unknown": "Aucun article n'a ce code."
+    }
+  },
+  "display": {
+    "vfd": {
+      "title": "Afficheur client (VFD)",
+      "enabled": "Utiliser un afficheur sur port série",
+      "commands": "Jeu de commandes",
+      "commandSets": {
+        "esc_pos": "ESC/POS (Epson)",
+        "cd5220": "CD5220"
+      },
+      "columns": "Caractères par ligne",
+      "rows": "Lignes",
+      "latinLang": "Langue de l'afficheur",
+      "charset": "Caractères",
+      "charsets": {
+        "ascii": "Sans accents (le plus sûr)",
+        "pc858": "Avec accents (PC858)"
+      },
+      "test": "Tester l'afficheur",
+      "tested": "Motif de test envoyé à l'afficheur.",
+      "limit": "Un afficheur client n'affiche que des lettres latines et des chiffres : un ticket en arabe y apparaît en français ou en anglais."
+    },
+    "screen": {
+      "title": "Écran client",
+      "enabled": "Afficher l'écran client",
+      "monitor": "Écran",
+      "mainWindow": "(l'écran de la caisse)",
+      "single": "Un seul écran est branché : l'écran client ne s'ouvre qu'en aperçu.",
+      "logo": "Afficher le logo",
+      "thanks": "Durée du remerciement (secondes)",
+      "preview": "Aperçu",
+      "closePreview": "Fermer l'aperçu",
+      "monitorOption": "{{name}} — {{width}}×{{height}}"
+    }
+  },
+  "scanners": {
+    "title": "Lecteurs de codes-barres",
+    "prefix": "Préfixe envoyé par le lecteur",
+    "suffix": "Fin de lecture",
+    "suffixes": {
+      "enter_or_tab": "Entrée ou Tab",
+      "silence": "Aucune (fin après une pause)"
+    },
+    "learn": {
+      "open": "Apprendre mon lecteur",
+      "title": "Apprendre le lecteur",
+      "hint": "Scannez le code-barres de la page de test de l'imprimante ({{code}}), ou tapez les chiffres écrits sous un code-barres puis scannez-le.",
+      "expected": "Code attendu",
+      "capture": "Cliquez ici puis scannez",
+      "found": "Lecteur reconnu : clavier {{layout}}, préfixe « {{prefix}} », fin {{suffix}}.",
+      "failed": "Ce scan ne contient pas le code attendu. Recommencez sans toucher le clavier.",
+      "apply": "Appliquer"
+    },
+    "serial": {
+      "title": "Lecteur sur port série (mode USB-COM)",
+      "enabled": "Utiliser un lecteur sur port série",
+      "port": "Port",
+      "suffixes": {
+        "cr": "CR",
+        "lf": "LF",
+        "cr_lf": "CR LF",
+        "tab": "Tab",
+        "silence": "Aucune"
+      },
+      "last": "Dernier code reçu : {{code}}"
+    }
+  },
+  "drawer": {
+    "title": "Tiroir-caisse",
+    "via": "Ouverture",
+    "vias": {
+      "printer": "Par l'imprimante de tickets (RJ11)",
+      "serial": "Par un adaptateur USB/COM"
+    },
+    "port": "Port",
+    "kick": "Commande",
+    "kicks": {
+      "esc_pos": "Octets ESC/POS",
+      "dtr": "Impulsion DTR"
+    },
+    "test": "Ouvrir le tiroir",
+    "sent": "Commande d'ouverture envoyée au tiroir.",
+    "savedFirst": "Le tiroir s'ouvre avec les réglages enregistrés, pendant une session de caisse ouverte."
+  },
+  "doctor": {
+    "check": "Vérifier les imprimantes",
+    "none": "Aucun problème trouvé.",
+    "issues": {
+      "missing": "Windows ne trouve plus « {{name}} ». Rebranchez-la ou choisissez-la de nouveau.",
+      "driver_changed": "Le pilote de « {{name}} » a changé ({{saved}} → {{now}}) : Windows Update l'a peut-être remplacé. Réinstallez le pilote du fabricant puis imprimez une page de test.",
+      "offline": "Windows indique « {{name}} » hors ligne. Vérifiez qu'elle est allumée et branchée, puis remettez-la en ligne dans Paramètres Windows › Imprimantes."
+    },
+    "status": {
+      "ready": "Prête",
+      "paperOut": "Plus de papier",
+      "paperLow": "Papier bientôt fini",
+      "coverOpen": "Capot ouvert",
+      "offline": "Hors ligne",
+      "error": "En erreur"
+    }
+  }
+}

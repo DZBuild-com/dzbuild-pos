@@ -1,0 +1,234 @@
+# The installers of a release, 64-bit and 32-bit, built from a v* tag (or by hand) and attached
+# to a DRAFT GitHub release. Nothing is published to shops from here: the owner reviews the draft,
+# runs docs/release-checklist.md and publishes (docs/release/github-actions.md).
+#
+# Secrets are all optional and only read through ${{ secrets.* }}; none is ever printed:
+#   without TAURI_SIGNING_PRIVATE_KEY the setups have no updater .sig and no manifest is written;
+#   without DZPOS_SIGN_PROVIDER the setups are not Authenticode-signed.
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+    inputs:
+      arch:
+        description: Windows architectures to build
+        type: choice
+        options: [both, x64, x86]
+        default: both
+      prerelease:
+        description: Mark the draft release as a pre-release
+        type: boolean
+        default: false
+
+# One release run per ref at a time; a running build is never cancelled halfway.
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+env:
+  NODE_VERSION: 24
+  CARGO_TERM_COLOR: always
+  CARGO_INCREMENTAL: 0
+
+jobs:
+  prepare:
+    name: Version, tag and arches
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    outputs:
+      version: ${{ steps.plan.outputs.version }}
+      arches: ${{ steps.plan.outputs.arches }}
+      prerelease: ${{ steps.plan.outputs.prerelease }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - id: plan
+        name: Plan the release
+        shell: bash
+        env:
+          REF_TYPE: ${{ github.ref_type }}
+          REF_NAME: ${{ github.ref_name }}
+          ARCH_INPUT: ${{ inputs.arch }}
+          PRERELEASE_INPUT: ${{ inputs.prerelease }}
+        run: |
+          set -euo pipefail
+          check="$(node scripts/release/version.mjs --check)"
+          case "$check" in
+            "version "*) version="${check#version }" ;;
+            *) echo "::error::$check"; exit 1 ;;
+          esac
+          if [ "$REF_TYPE" = "tag" ] && [ "$REF_NAME" != "v$version" ]; then
+            echo "::error::the tag $REF_NAME does not match the version $version"
+            exit 1
+          fi
+          case "${ARCH_INPUT:-both}" in
+            both) arches='["x64","x86"]' ;;
+            x64) arches='["x64"]' ;;
+            x86) arches='["x86"]' ;;
+            *) echo "::error::unknown arch $ARCH_INPUT"; exit 1 ;;
+          esac
+          prerelease=false
+          if [[ "$version" == *-* ]] || [ "$PRERELEASE_INPUT" = "true" ]; then prerelease=true; fi
+          test -f "src/release-notes/$version.json" || { echo "::error::src/release-notes/$version.json is missing"; exit 1; }
+          node scripts/release/notes-for-tag.mjs "v$version" > /dev/null
+          {
+            echo "version=$version"
+            echo "arches=$arches"
+            echo "prerelease=$prerelease"
+          } >> "$GITHUB_OUTPUT"
+          echo "DZBuild POS $version: arches $arches, prerelease $prerelease" >> "$GITHUB_STEP_SUMMARY"
+
+  # The same gates as every pull request (lint, types, tests, i18n, cargo-deny…).
+  gates:
+    name: Gates
+    uses: ./.github/workflows/ci.yml
+
+  installers:
+    name: Installers (${{ matrix.arch }})
+    needs: [prepare, gates]
+    runs-on: windows-latest
+    timeout-minutes: 150
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: ${{ fromJSON(needs.prepare.outputs.arches) }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: dtolnay/rust-toolchain@stable
+      - name: 32-bit Rust target
+        if: matrix.arch == 'x86'
+        run: rustup target add i686-pc-windows-msvc
+      - uses: Swatinem/rust-cache@v2
+        with:
+          shared-key: installers-${{ matrix.arch }}
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      # Online setup (with .sig when the updater key is there) and offline setup, plus their
+      # SHA256SUMS.txt lines, in dist-release/<version>/ (scripts/release/build.mjs).
+      - name: Build the ${{ matrix.arch }} setups
+        shell: pwsh
+        env:
+          ARCH: ${{ matrix.arch }}
+          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+          TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
+          DZPOS_SIGN_PROVIDER: ${{ secrets.DZPOS_SIGN_PROVIDER }}
+          DZPOS_SIGN_THUMBPRINT: ${{ secrets.DZPOS_SIGN_THUMBPRINT }}
+          SM_HOST: ${{ secrets.SM_HOST }}
+          SM_API_KEY: ${{ secrets.SM_API_KEY }}
+          SM_CLIENT_CERT_FILE: ${{ secrets.SM_CLIENT_CERT_FILE }}
+          SM_CLIENT_CERT_PASSWORD: ${{ secrets.SM_CLIENT_CERT_PASSWORD }}
+          SM_KEYPAIR_ALIAS: ${{ secrets.SM_KEYPAIR_ALIAS }}
+          ES_USERNAME: ${{ secrets.ES_USERNAME }}
+          ES_PASSWORD: ${{ secrets.ES_PASSWORD }}
+          ES_CREDENTIAL_ID: ${{ secrets.ES_CREDENTIAL_ID }}
+          ES_TOTP_SECRET: ${{ secrets.ES_TOTP_SECRET }}
+          CODESIGNTOOL_DIR: ${{ secrets.CODESIGNTOOL_DIR }}
+        run: pnpm release:build --arch $env:ARCH
+      - uses: actions/upload-artifact@v7
+        with:
+          name: installers-${{ matrix.arch }}
+          path: dist-release/
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 30
+
+  release:
+    name: Draft GitHub release
+    needs: [prepare, installers]
+    # Windows: pnpm release:manifest reads each setup's Authenticode status.
+    runs-on: windows-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+    env:
+      VERSION: ${{ needs.prepare.outputs.version }}
+      PRERELEASE: ${{ needs.prepare.outputs.prerelease }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - uses: actions/download-artifact@v8
+        with:
+          pattern: installers-*
+          path: ${{ runner.temp }}/installers
+      - name: One release folder, one SHA256SUMS.txt
+        shell: pwsh
+        run: |
+          $sources = @(Get-ChildItem (Join-Path $env:RUNNER_TEMP "installers") -Directory | Sort-Object Name | ForEach-Object { $_.FullName })
+          node scripts/release/collect.mjs $env:VERSION @sources
+      # The update manifests need the updater .sig (TAURI_SIGNING_PRIVATE_KEY) and, for a stable
+      # version, Authenticode-signed setups (manifest.mjs refuses an unsigned stable setup).
+      # The secret only decides the path; it is never printed.
+      - name: Update manifests (pnpm release:manifest)
+        shell: pwsh
+        env:
+          DZPOS_SIGN_PROVIDER: ${{ secrets.DZPOS_SIGN_PROVIDER }}
+        run: |
+          $sig = "dist-release/$env:VERSION/DZBuildPOS-$env:VERSION-setup.exe.sig"
+          if (-not (Test-Path -LiteralPath $sig)) {
+            Write-Output "::notice::No updater signature (TAURI_SIGNING_PRIVATE_KEY not set): no update manifest for $env:VERSION."
+            exit 0
+          }
+          $extra = @()
+          if (-not $env:DZPOS_SIGN_PROVIDER) {
+            if ($env:VERSION -notmatch "-") {
+              Write-Output "::notice::Stable $env:VERSION without Authenticode signing: no update manifest (only a beta may be published unsigned)."
+              exit 0
+            }
+            $extra += "--allow-unsigned"
+          }
+          pnpm release:manifest @extra
+      - name: Release notes
+        shell: pwsh
+        run: node scripts/release/notes-for-tag.mjs "v$env:VERSION" --out (Join-Path $env:RUNNER_TEMP "release-notes.md")
+      # Creates the draft, or refreshes the files and notes of an existing draft. A release that
+      # is already published is never touched: bump the version instead.
+      - name: Create or update the draft release
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $tag = "v$env:VERSION"
+          $notes = Join-Path $env:RUNNER_TEMP "release-notes.md"
+          $files = @(Get-ChildItem "dist-release/$env:VERSION" -File | ForEach-Object { $_.FullName })
+          if (Test-Path "dist-release/$env:VERSION/updates") {
+            foreach ($channel in Get-ChildItem "dist-release/$env:VERSION/updates" -Directory) {
+              $manifest = Join-Path $env:RUNNER_TEMP "latest-$($channel.Name).json"
+              Copy-Item -LiteralPath (Join-Path $channel.FullName "latest.json") -Destination $manifest
+              $files += $manifest
+            }
+          }
+          $pre = $env:PRERELEASE -eq "true"
+          $draft = gh release view $tag --repo $env:GITHUB_REPOSITORY --json isDraft --jq .isDraft 2>$null
+          if ($LASTEXITCODE -eq 0) {
+            if ($draft -ne "true") { throw "$tag is already published; bump the version for a new release" }
+            gh release upload $tag @files --clobber --repo $env:GITHUB_REPOSITORY
+            if ($LASTEXITCODE) { exit $LASTEXITCODE }
+            gh release edit $tag --repo $env:GITHUB_REPOSITORY --draft --title "DZBuild POS $env:VERSION" --notes-file $notes --prerelease=$($pre.ToString().ToLower())
+          } else {
+            $flags = @()
+            if ($pre) { $flags += "--prerelease" }
+            gh release create $tag @files --draft --target $env:GITHUB_SHA --title "DZBuild POS $env:VERSION" --notes-file $notes --repo $env:GITHUB_REPOSITORY @flags
+          }
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          "Draft release $tag ready: $($files.Count) files" >> $env:GITHUB_STEP_SUMMARY

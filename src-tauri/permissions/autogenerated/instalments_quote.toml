@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-instalments-quote"
+description = "Enables the instalments_quote command without any pre-configured scope."
+commands.allow = ["instalments_quote"]
+
+[[permission]]
+identifier = "deny-instalments-quote"
+description = "Denies the instalments_quote command without any pre-configured scope."
+commands.deny = ["instalments_quote"]

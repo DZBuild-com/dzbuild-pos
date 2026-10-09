@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-company-set-logo"
+description = "Enables the company_set_logo command without any pre-configured scope."
+commands.allow = ["company_set_logo"]
+
+[[permission]]
+identifier = "deny-company-set-logo"
+description = "Denies the company_set_logo command without any pre-configured scope."
+commands.deny = ["company_set_logo"]

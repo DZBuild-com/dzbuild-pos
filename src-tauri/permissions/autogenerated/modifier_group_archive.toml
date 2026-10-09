@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-modifier-group-archive"
+description = "Enables the modifier_group_archive command without any pre-configured scope."
+commands.allow = ["modifier_group_archive"]
+
+[[permission]]
+identifier = "deny-modifier-group-archive"
+description = "Denies the modifier_group_archive command without any pre-configured scope."
+commands.deny = ["modifier_group_archive"]

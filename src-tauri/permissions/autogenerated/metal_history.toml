@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-metal-history"
+description = "Enables the metal_history command without any pre-configured scope."
+commands.allow = ["metal_history"]
+
+[[permission]]
+identifier = "deny-metal-history"
+description = "Denies the metal_history command without any pre-configured scope."
+commands.deny = ["metal_history"]

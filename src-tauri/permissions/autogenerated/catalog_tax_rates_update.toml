@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-catalog-tax-rates-update"
+description = "Enables the catalog_tax_rates_update command without any pre-configured scope."
+commands.allow = ["catalog_tax_rates_update"]
+
+[[permission]]
+identifier = "deny-catalog-tax-rates-update"
+description = "Denies the catalog_tax_rates_update command without any pre-configured scope."
+commands.deny = ["catalog_tax_rates_update"]

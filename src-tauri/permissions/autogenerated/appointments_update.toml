@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-appointments-update"
+description = "Enables the appointments_update command without any pre-configured scope."
+commands.allow = ["appointments_update"]
+
+[[permission]]
+identifier = "deny-appointments-update"
+description = "Denies the appointments_update command without any pre-configured scope."
+commands.deny = ["appointments_update"]

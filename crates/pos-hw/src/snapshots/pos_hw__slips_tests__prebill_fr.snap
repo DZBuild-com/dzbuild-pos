@@ -1,0 +1,116 @@
+---
+source: crates/pos-hw/src/slips_tests.rs
+expression: "prebill_layout(&fixture_prebill(pos_core::lang::Lang::Fr))"
+---
+{
+  "rtl": false,
+  "rows": [
+    {
+      "row": "text",
+      "text": "Restaurant El Bahdja",
+      "align": "center",
+      "large": true,
+      "bold": true
+    },
+    {
+      "row": "rule"
+    },
+    {
+      "row": "text",
+      "text": "Addition",
+      "align": "center",
+      "large": true,
+      "bold": true
+    },
+    {
+      "row": "text",
+      "text": "Table T4 — 3 couverts",
+      "align": "center",
+      "large": false,
+      "bold": false
+    },
+    {
+      "row": "text",
+      "text": "Sofiane",
+      "align": "center",
+      "large": false,
+      "bold": false
+    },
+    {
+      "row": "rule"
+    },
+    {
+      "row": "pair",
+      "start": "2 × Brochettes",
+      "end": "1 200,00",
+      "large": false,
+      "bold": false
+    },
+    {
+      "row": "pair",
+      "start": "3 × Chorba frik",
+      "end": "450,00",
+      "large": false,
+      "bold": false
+    },
+    {
+      "row": "rule"
+    },
+    {
+      "row": "pair",
+      "start": "Total TTC",
+      "end": "1 650,00 DA",
+      "large": true,
+      "bold": true
+    },
+    {
+      "row": "pair",
+      "start": "À payer en espèces (timbre compris)",
+      "end": "1 667,00 DA",
+      "large": false,
+      "bold": true
+    },
+    {
+      "row": "text",
+      "text": "Partagé en 3 :",
+      "align": "start",
+      "large": false,
+      "bold": false
+    },
+    {
+      "row": "pair",
+      "start": "  1/3",
+      "end": "550,00",
+      "large": false,
+      "bold": false
+    },
+    {
+      "row": "pair",
+      "start": "  2/3",
+      "end": "550,00",
+      "large": false,
+      "bold": false
+    },
+    {
+      "row": "pair",
+      "start": "  3/3",
+      "end": "550,00",
+      "large": false,
+      "bold": false
+    },
+    {
+      "row": "rule"
+    },
+    {
+      "row": "text",
+      "text": "Ce document n'est pas un ticket de caisse.",
+      "align": "center",
+      "large": false,
+      "bold": true
+    },
+    {
+      "row": "feed",
+      "lines": 3
+    }
+  ]
+}

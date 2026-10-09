@@ -1,0 +1,69 @@
+{
+  "title": "Fiscalité",
+  "tabs": { "g50": "Déclaration G50", "registers": "Registres et états", "archive": "Archive fiscale" },
+  "g50": {
+    "month": "Mois déclaré",
+    "form": "Formulaire : {{form}}",
+    "line": "Ligne",
+    "box": "Case",
+    "amount": "Montant",
+    "copy": "Copier",
+    "copyLine": "Copier {{line}}",
+    "copied": "Montant copié.",
+    "otherRates": "Autres taux",
+    "rate": "Taux",
+    "baseHt": "Base HT",
+    "tax": "TVA",
+    "outside": "IRG sur salaires, TAP et autres impôts : hors de la caisse, à déclarer vous-même.",
+    "lines": {
+      "caHt9": "Chiffre d'affaires HT — 9 %",
+      "exempt9": "dont exonéré — 9 %",
+      "taxable9": "dont imposable — 9 %",
+      "tva9": "TVA due — 9 %",
+      "caHt19": "Chiffre d'affaires HT — 19 %",
+      "exempt19": "dont exonéré — 19 %",
+      "taxable19": "dont imposable — 19 %",
+      "tva19": "TVA due — 19 %",
+      "caHtTotal": "Total CA HT",
+      "exemptTotal": "Total exonéré",
+      "taxableTotal": "Total imposable",
+      "tvaTotal": "Total TVA collectée",
+      "tvaDeductible": "TVA déductible (G9)",
+      "tvaDue": "TVA à payer",
+      "tvaCredit": "Précompte (crédit de TVA)",
+      "stampDuty": "Droit de timbre sur état"
+    }
+  },
+  "registers": {
+    "intro": "Chaque état s'ouvre avec ses filtres et s'exporte en xlsx, csv ou PDF.",
+    "kinds": {
+      "vat_by_rate": "TVA collectée par taux et par période",
+      "vat_deductible": "TVA déductible des achats, avec les factures payées en espèces au-delà de la limite",
+      "stamp_duty_statement": "Droit de timbre par jour et par caisse, versements compris",
+      "g50": "Lignes G50 du mois avec leurs cases",
+      "ifu_turnover": "Chiffre d'affaires IFU et distance au plafond de l'IFU",
+      "g9_suppliers": "État G9 des fournisseurs",
+      "customers_annual": "État annuel des clients (NIF manquants signalés)",
+      "sales_register": "Registre des ventes",
+      "purchases_register": "Registre des achats"
+    }
+  },
+  "archive": {
+    "intro": "Une copie de tous les documents, du journal des opérations et des clôtures Z d'une période. Elle montre si quelque chose a été modifié ensuite. À conserver dix ans.",
+    "from": "Du",
+    "to": "Au",
+    "language": "Langue du résumé",
+    "export": "Exporter l'archive",
+    "progress": { "parts": "Tables", "summary": "Résumé PDF", "manifest": "Codes de contrôle" },
+    "saved": "Archive enregistrée : {{path}}",
+    "manifest": "Code de contrôle de l'archive (SHA-256)",
+    "files": "Fichiers",
+    "rows": "Lignes",
+    "bytes": "Octets",
+    "chainsIntact": "Aucun document n'a été modifié.",
+    "chainsBroken": "Une modification a été trouvée dans les documents : l'archive montre où. Contactez le support DZBuild.",
+    "verify": "Vérifier une archive",
+    "verifyOk": "Archive intacte : aucun fichier n'a été modifié depuis l'export.",
+    "verifyBad": "Fichiers modifiés depuis l'export : {{files}}"
+  }
+}

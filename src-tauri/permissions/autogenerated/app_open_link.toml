@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-app-open-link"
+description = "Enables the app_open_link command without any pre-configured scope."
+commands.allow = ["app_open_link"]
+
+[[permission]]
+identifier = "deny-app-open-link"
+description = "Denies the app_open_link command without any pre-configured scope."
+commands.deny = ["app_open_link"]

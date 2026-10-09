@@ -1,0 +1,15 @@
+{
+  "barcode": "6130000012345",
+  "external_id": "[stable]",
+  "inventory": {
+    "barcode": "6130000012345",
+    "sku": "SAC-CUIR-NOIR",
+    "track_stock": true
+  },
+  "name": "حقيبة جلد سوداء",
+  "pricing": {
+    "price": 4500
+  },
+  "sku": "SAC-CUIR-NOIR",
+  "status": "active"
+}

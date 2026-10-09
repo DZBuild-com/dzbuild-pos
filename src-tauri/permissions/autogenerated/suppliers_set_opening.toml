@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-suppliers-set-opening"
+description = "Enables the suppliers_set_opening command without any pre-configured scope."
+commands.allow = ["suppliers_set_opening"]
+
+[[permission]]
+identifier = "deny-suppliers-set-opening"
+description = "Denies the suppliers_set_opening command without any pre-configured scope."
+commands.deny = ["suppliers_set_opening"]

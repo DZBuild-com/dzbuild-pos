@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-documents-validate"
+description = "Enables the documents_validate command without any pre-configured scope."
+commands.allow = ["documents_validate"]
+
+[[permission]]
+identifier = "deny-documents-validate"
+description = "Denies the documents_validate command without any pre-configured scope."
+commands.deny = ["documents_validate"]

@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-documents-reprint"
+description = "Enables the documents_reprint command without any pre-configured scope."
+commands.allow = ["documents_reprint"]
+
+[[permission]]
+identifier = "deny-documents-reprint"
+description = "Denies the documents_reprint command without any pre-configured scope."
+commands.deny = ["documents_reprint"]

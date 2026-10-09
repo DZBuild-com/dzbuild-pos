@@ -1,0 +1,222 @@
+{
+  "appName": "DZBuild POS",
+  "actions": {
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "close": "Fermer",
+    "next": "Suivant",
+    "back": "Retour",
+    "edit": "Modifier",
+    "create": "Créer",
+    "remove": "Retirer",
+    "retry": "Réessayer",
+    "loadMore": "Afficher plus",
+    "logout": "Se déconnecter",
+    "openSettings": "Ouvrir les réglages",
+    "confirm": "Confirmer",
+    "print": "Imprimer",
+    "reprint": "Réimprimer",
+    "search": "Rechercher",
+    "add": "Ajouter",
+    "apply": "Appliquer",
+    "done": "Terminé"
+  },
+  "languages": { "label": "Langue", "ar": "العربية", "fr": "Français", "en": "English" },
+  "theme": {
+    "label": "Changer le thème",
+    "system": "Thème : automatique",
+    "light": "Thème : clair",
+    "dark": "Thème : sombre"
+  },
+  "status": {
+    "loading": "Chargement…",
+    "active": "Actif",
+    "inactive": "Désactivé",
+    "never": "Jamais",
+    "you": "(vous)"
+  },
+  "comingSoon": {
+    "title": "{{module}} : bientôt disponible",
+    "body": "Ce module arrive dans une prochaine mise à jour de DZBuild POS. En attendant, préparez votre boutique dans les réglages.",
+    "action": "Ouvrir les réglages"
+  },
+  "terminal": { "code": "Poste {{code}}" },
+  "fatal": {
+    "title": "DZBuild POS ne peut pas ouvrir ses données",
+    "body": "Vos données n'ont pas été effacées. Ne déplacez, ne supprimez et ne remplacez aucun fichier du dossier des données. Ne copiez jamais une sauvegarde par-dessus le fichier pos.db : vous pourriez perdre vos ventes. Copiez tout le dossier des données sur une clé USB et contactez le support DZBuild.",
+    "dataFolder": "Dossier des données",
+    "openFolder": "Ouvrir le dossier des données"
+  },
+  "nativeFatal": {
+    "body": "DZBuild POS n'a pas pu démarrer. Vos données n'ont pas été touchées. Redémarrez l'ordinateur ; si cela se reproduit, contactez le support DZBuild et envoyez le fichier crash.log du dossier logs de %APPDATA%\\dev.dzbuild.pos."
+  },
+  "recovery": {
+    "start": "Restaurer une sauvegarde",
+    "newerDatabase": "Ces données ont été enregistrées par une version plus récente de DZBuild POS. Installez la dernière version.",
+    "download": "Télécharger la dernière version",
+    "found": "Sauvegardes trouvées",
+    "none": "Aucune sauvegarde trouvée. Branchez la clé USB qui contient vos sauvegardes.",
+    "places": {
+      "local": "Sur ce PC",
+      "mirror": "Copie de secours · {{place}}",
+      "drive": "Clé USB · {{place}}"
+    },
+    "check": "Vérifier cette sauvegarde",
+    "other": "Choisir une autre",
+    "continue": "Continuer",
+    "invalid": "Cette sauvegarde est endommagée. Choisissez-en une autre.",
+    "owner": "Propriétaire",
+    "pin": "Code PIN du propriétaire (celui de cette sauvegarde)",
+    "moveAside": "Les fichiers endommagés seront déplacés dans le dossier des sauvegardes (corrupt-…), jamais effacés. DZBuild POS redémarrera sur cette sauvegarde.",
+    "restore": "Restaurer et redémarrer",
+    "restarting": "Redémarrage sur la sauvegarde du {{date}}…",
+    "keptIn": "Fichiers endommagés conservés dans :",
+    "locked": "Trop de codes PIN erronés. Attendez 15 minutes puis réessayez.",
+    "till": {
+      "body": "Ce PC est un poste de caisse : ses données viennent du poste principal. Une sauvegarde le ferait revenir en arrière ; rejoignez plutôt de nouveau le poste principal.",
+      "host": "Poste principal",
+      "start": "Rejoindre de nouveau le poste principal",
+      "explain": "Les fichiers endommagés seront déplacés dans le dossier des sauvegardes (corrupt-…), jamais effacés. DZBuild POS redémarrera comme un nouveau PC : choisissez « Poste de caisse d'une boutique », puis saisissez le code d'appairage que le poste principal affiche.",
+      "confirm": "Déplacer les fichiers et redémarrer",
+      "restarting": "Redémarrage comme nouveau PC…",
+      "unsent_one": "1 opération de ce poste n'est pas encore arrivée au poste principal : elle restera dans le dossier corrupt-… des sauvegardes. Gardez-le et prévenez l'assistance.",
+      "unsent_other": "{{count}} opérations de ce poste ne sont pas encore arrivées au poste principal : elles resteront dans le dossier corrupt-… des sauvegardes. Gardez-le et prévenez l'assistance.",
+      "unsentUnknown": "Les ventes que ce poste n'avait pas encore envoyées au poste principal resteront dans le dossier corrupt-… des sauvegardes, pour l'assistance.",
+      "unsent_zero": "{{count}} opérations de ce poste ne sont pas encore arrivées au poste principal : elles resteront dans le dossier corrupt-… des sauvegardes. Gardez-le et prévenez l'assistance.",
+      "unsent_two": "{{count}} opérations de ce poste ne sont pas encore arrivées au poste principal : elles resteront dans le dossier corrupt-… des sauvegardes. Gardez-le et prévenez l'assistance.",
+      "unsent_few": "{{count}} opérations de ce poste ne sont pas encore arrivées au poste principal : elles resteront dans le dossier corrupt-… des sauvegardes. Gardez-le et prévenez l'assistance.",
+      "unsent_many": "{{count}} opérations de ce poste ne sont pas encore arrivées au poste principal : elles resteront dans le dossier corrupt-… des sauvegardes. Gardez-le et prévenez l'assistance.",
+      "unsentNone": "Ce poste avait tout envoyé au poste principal : rien ne se perd."
+    },
+    "mainPc_one": "Ce PC est le poste principal d'un poste de caisse : une sauvegarde le ferait revenir en arrière derrière lui. Faites plutôt de ce poste de caisse le poste principal (Réglages › Réseau, « Faire de ce poste le poste principal ») : il garde la copie la plus récente.",
+    "mainPc_other": "Ce PC est le poste principal de {{count}} postes de caisse : une sauvegarde le ferait revenir en arrière derrière eux. Faites plutôt d'un poste de caisse le poste principal (Réglages › Réseau, « Faire de ce poste le poste principal ») : il garde la copie la plus récente.",
+    "fresh": {
+      "explain": "Vous ne voulez pas revenir à une sauvegarde ? Vous pouvez créer une nouvelle boutique vide. Les sauvegardes restent dans leur dossier.",
+      "start": "Créer une nouvelle boutique quand même",
+      "confirm": "Oui, créer une boutique vide et redémarrer",
+      "restarting": "Redémarrage sur une nouvelle boutique…"
+    },
+    "mainPc_zero": "Ce PC est le poste principal de {{count}} postes de caisse : une sauvegarde le ferait revenir en arrière derrière eux. Faites plutôt d'un poste de caisse le poste principal (Réglages › Réseau, « Faire de ce poste le poste principal ») : il garde la copie la plus récente.",
+    "mainPc_two": "Ce PC est le poste principal de {{count}} postes de caisse : une sauvegarde le ferait revenir en arrière derrière eux. Faites plutôt d'un poste de caisse le poste principal (Réglages › Réseau, « Faire de ce poste le poste principal ») : il garde la copie la plus récente.",
+    "mainPc_few": "Ce PC est le poste principal de {{count}} postes de caisse : une sauvegarde le ferait revenir en arrière derrière eux. Faites plutôt d'un poste de caisse le poste principal (Réglages › Réseau, « Faire de ce poste le poste principal ») : il garde la copie la plus récente.",
+    "mainPc_many": "Ce PC est le poste principal de {{count}} postes de caisse : une sauvegarde le ferait revenir en arrière derrière eux. Faites plutôt d'un poste de caisse le poste principal (Réglages › Réseau, « Faire de ce poste le poste principal ») : il garde la copie la plus récente."
+  },
+  "startup": {
+    "restoreFailed": {
+      "title": "La sauvegarde n'a pas pu être restaurée",
+      "body": "DZBuild POS a conservé vos données actuelles. Le fichier de sauvegarde est peut-être endommagé ou était encore utilisé : relancez la restauration depuis Réglages, Sauvegardes."
+    },
+    "numbersReissued": {
+      "title": "Des numéros déjà imprimés vont être réattribués",
+      "body": "La sauvegarde restaurée est plus ancienne que les dernières ventes : les numéros ci-dessous ont déjà été imprimés et seront attribués une seconde fois à d'autres documents. Gardez les tickets papier de cette période. La restauration et ces numéros sont inscrits au journal des opérations."
+    },
+    "loggingUnavailable": {
+      "title": "Les journaux techniques ne peuvent pas être écrits dans le dossier des données",
+      "body": "DZBuild POS fonctionne normalement. Vérifiez l'espace libre sur le disque et que le dossier des données n'est pas en lecture seule.",
+      "fallback": "Les journaux techniques de cette session vont dans ce dossier :",
+      "none": "Aucun journal technique n'est écrit pendant cette session."
+    },
+    "webviewOutdated": {
+      "title": "Le composant d'affichage de Windows (WebView2) est trop ancien",
+      "body": "Version {{version}} installée, {{minimum}} au minimum. Certaines fonctions peuvent mal s'afficher. Mettez-le à jour (Internet nécessaire) ou réinstallez avec l'installateur hors ligne.",
+      "action": "Mettre à jour WebView2"
+    },
+    "clockMovedBack": {
+      "title": "L'horloge du PC a reculé",
+      "body": "La dernière opération date du {{lastSeen}}, l'horloge indique {{now}}. Corrigez la date et l'heure de Windows : les tickets et le journal des opérations en dépendent. Ce recul est inscrit au journal des opérations."
+    },
+    "appUpdated": {
+      "title": "DZBuild POS a été mis à jour",
+      "body": "Version {{from}} → {{to}}. Vos données ont été sauvegardées avant la mise à jour.",
+      "whatsNew": "Voir les nouveautés"
+    },
+    "updateNotInstalled": {
+      "title": "La mise à jour n'a pas été installée",
+      "body": "Windows n'a pas lancé l'installation de la version {{version}}, le plus souvent parce que sa demande d'autorisation a été refusée ou que ce compte Windows ne peut pas l'accepter. DZBuild POS a redémarré sur la version actuelle et vos données sont intactes. Pour l'installer, recommencez et acceptez la demande, avec un compte administrateur Windows si besoin."
+    },
+    "datapackSkipped": "Le fichier réglementaire {{file}} n'a pas été utilisé ({{reason}})."
+  },
+  "tray": {
+    "open": "Ouvrir",
+    "quit": "Quitter",
+    "tooltip": "DZBuild POS {{version}}",
+    "updateReady": "Mise à jour {{version}} prête",
+    "backupProblem": "Problème de sauvegarde : ouvrez Réglages › Sauvegardes"
+  },
+  "closing": {
+    "saving": "Sauvegarde avant fermeture…"
+  },
+  "backupAlerts": {
+    "failed": {
+      "title": "La sauvegarde automatique a échoué",
+      "body": "Les données du jour ne sont protégées par aucune sauvegarde. Faites une sauvegarde dans Réglages › Sauvegardes, ou prévenez le propriétaire."
+    },
+    "stale": {
+      "title": "Aucune sauvegarde récente",
+      "body": "La sauvegarde la plus récente date du {{date}}. Faites une sauvegarde maintenant dans Réglages › Sauvegardes, ou prévenez le propriétaire."
+    },
+    "damaged": {
+      "title": "Les données de la boutique sont endommagées : arrêtez les ventes",
+      "body": "Une copie de sauvegarde a échoué à sa vérification, et le fichier des données de la boutique aussi. N'enregistrez plus de ventes. Le propriétaire doit restaurer la dernière bonne sauvegarde dans Réglages › Sauvegardes, ou appeler le support DZBuild.",
+      "acknowledge": "J'ai compris"
+    },
+    "mirror": {
+      "title": "La copie de secours n'a pas pu être faite",
+      "body": "La sauvegarde du PC a réussi, mais pas sa copie sur la clé ou le dossier de secours."
+    },
+    "openBackups": "Ouvrir les sauvegardes"
+  },
+  "backToTop": "Revenir en haut",
+  "updatePill": "Mise à jour prête",
+  "updateOffer": {
+    "body": "La version {{version}} est prête. L'installer maintenant ? DZBuild POS redémarrera.",
+    "install": "Installer maintenant",
+    "later": "Plus tard"
+  },
+  "whatsNew": { "title": "Nouveautés" },
+  "keys": {
+    "enter": "Entrée",
+    "escape": "Échap",
+    "delete": "Suppr",
+    "plus": "+",
+    "minus": "-",
+    "multiply": "*",
+    "arrows": "↑ ↓",
+    "f1": "F1",
+    "f2": "F2",
+    "f3": "F3",
+    "f4": "F4",
+    "f5": "F5",
+    "f6": "F6",
+    "f7": "F7",
+    "f8": "F8",
+    "f9": "F9",
+    "f10": "F10",
+    "f11": "F11",
+    "f12": "F12",
+    "ctrlS": "Ctrl+S",
+    "ctrlD": "Ctrl+D",
+    "ctrlN": "Ctrl+N",
+    "ctrlDigit": "Ctrl+{{digit}}"
+  },
+  "units": { "sizeMb": "{{value}} Mo", "sizeGb": "{{value}} Go", "sizeMbWhole": "{{value}} Mo" },
+  "answers": {
+    "yes": "Oui",
+    "no": "Non"
+  },
+  "demo": {
+    "ribbon": "Boutique de démonstration — rien ici n'est réel.",
+    "leave": "Quitter la démo",
+    "pins": "Démo : propriétaire {{owner}}, caissier {{cashier}}"
+  },
+  "osk": {
+    "label": "Clavier à l'écran",
+    "shift": "Maj",
+    "space": "Espace",
+    "erase": "Effacer",
+    "enter": "Entrée",
+    "toArabic": "عربي",
+    "toAzerty": "AZERTY",
+    "hide": "Masquer le clavier"
+  }
+}

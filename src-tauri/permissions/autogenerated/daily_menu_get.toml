@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-daily-menu-get"
+description = "Enables the daily_menu_get command without any pre-configured scope."
+commands.allow = ["daily_menu_get"]
+
+[[permission]]
+identifier = "deny-daily-menu-get"
+description = "Denies the daily_menu_get command without any pre-configured scope."
+commands.deny = ["daily_menu_get"]

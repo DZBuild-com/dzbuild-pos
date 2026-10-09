@@ -1,0 +1,54 @@
+---
+source: crates/pos-hw/src/report.rs
+expression: dump(&out.bytes)
+---
+<1B>@<1B>t<13 1B>a<01 1B>E<01 1D>!<11>Sup<82>rette El Amel<0A>
+<1D>!<00 1B>E<00 1B>a<00 1B>a<01 1B>E<01>Rapport Z<0A>
+<1B>E<00 1B>a<00>------------------------------------------------<0A>
+<1B>E<00>N<F8> Z                                  ZC1-000031<0A>
+<1B>E<00 1B>E<00>Caisse                                        C1<0A>
+<1B>E<00 1B>E<00>Caissier                                  Yacine<0A>
+<1B>E<00 1B>E<00>Ouverture                       28/09/2026 05:00<0A>
+<1B>E<00>------------------------------------------------<0A>
+<1B>E<00>Tickets                                       42<0A>
+<1B>E<00 1B>E<00>Retours                                        1<0A>
+<1B>E<00 1B>E<00>Premier ticket                  TK2026-C1-000101<0A>
+<1B>E<00 1B>E<00>Dernier ticket                  TK2026-C1-000142<0A>
+<1B>E<00 1B>E<00>Ventes                                 98 500,00<0A>
+<1B>E<00 1B>E<00>Retours                                   617,50<0A>
+<1B>E<00 1B>E<01>Net                                    97 882,50<0A>
+<1B>E<00 1B>E<00>Remises accord<82>es                         120,00<0A>
+<1B>E<00 1B>E<00>TVA 19 %                                9 500,00<0A>
+<1B>E<00 1B>E<00>Droit de timbre                           523,00<0A>
+<1B>E<00>------------------------------------------------<0A>
+<1B>a<00 1B>E<01>Par mode de paiement<0A>
+<1B>E<00 1B>a<00 1B>E<00>Esp<8A>ces (38)                           69 382,50<0A>
+<1B>E<00 1B>E<00>Carte CIB (4)                          28 500,00<0A>
+<1B>E<00>------------------------------------------------<0A>
+<1B>E<00>Fond de caisse                         10 000,00<0A>
+<1B>E<00 1B>E<00>Esp<8A>ces des ventes                     70 000,00<0A>
+<1B>E<00 1B>E<00>Remboursements                            617,50<0A>
+<1B>E<00 1B>E<00>Entr<82>es de caisse                           0,00<0A>
+<1B>E<00 1B>E<00>Sorties de caisse                           0,00<0A>
+<1B>E<00 1B>E<00>Versements au coffre                        0,00<0A>
+<1B>E<00 1B>E<00>D<82>penses                                    0,00<0A>
+<1B>E<00 1B>E<01>Esp<8A>ces attendues                      79 382,50<0A>
+<1B>E<00>------------------------------------------------<0A>
+<1B>a<00 1B>E<01>Comptage de la caisse<0A>
+<1B>E<00 1B>a<00 1B>E<00>2 000,00 <9E> 35                          70 000,00<0A>
+<1B>E<00 1B>E<00>1 000,00 <9E> 9                            9 000,00<0A>
+<1B>E<00 1B>E<00>500,00 <9E> 1                                500,00<0A>
+<1B>E<00 1B>E<00>200,00 <9E> 1                                200,00<0A>
+<1B>E<00 1B>E<00>100,00 <9E> 1                                100,00<0A>
+<1B>E<00 1B>E<00>50,00 <9E> 1                                  50,00<0A>
+<1B>E<00 1B>E<00>20,00 <9E> 1                                  20,00<0A>
+<1B>E<00 1B>E<00>5,00 <9E> 1                                    5,00<0A>
+<1B>E<00 1B>E<01>Esp<8A>ces compt<82>es                       79 375,00<0A>
+<1B>E<00 1B>E<01 90>cart                                      -7,50<0A>
+<1B>E<00>------------------------------------------------<0A>
+<1B>E<01>Grand total                         4 123 456,00<0A>
+<1B>E<00 1B>E<00>Journal                                  Int<8A>gre<0A>
+<1B>E<00 1B>a<01 1B>E<00>efefefefefefefef<0A>
+<1B>E<00 1B>a<00 1B>E<00>Cl<93>ture                         28/09/2026 17:00<0A>
+<1B>E<00 1B>E<00>Caissier                                  Yacine<0A>
+<1B>E<00 1B>d<04 1D>VB<00>

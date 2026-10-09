@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-devices-status"
+description = "Enables the devices_status command without any pre-configured scope."
+commands.allow = ["devices_status"]
+
+[[permission]]
+identifier = "deny-devices-status"
+description = "Denies the devices_status command without any pre-configured scope."
+commands.deny = ["devices_status"]

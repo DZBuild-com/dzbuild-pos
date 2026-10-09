@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-suppliers-archive"
+description = "Enables the suppliers_archive command without any pre-configured scope."
+commands.allow = ["suppliers_archive"]
+
+[[permission]]
+identifier = "deny-suppliers-archive"
+description = "Denies the suppliers_archive command without any pre-configured scope."
+commands.deny = ["suppliers_archive"]

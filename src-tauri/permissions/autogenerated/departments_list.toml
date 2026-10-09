@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-departments-list"
+description = "Enables the departments_list command without any pre-configured scope."
+commands.allow = ["departments_list"]
+
+[[permission]]
+identifier = "deny-departments-list"
+description = "Denies the departments_list command without any pre-configured scope."
+commands.deny = ["departments_list"]

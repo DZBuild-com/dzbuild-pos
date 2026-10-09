@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-serials-register"
+description = "Enables the serials_register command without any pre-configured scope."
+commands.allow = ["serials_register"]
+
+[[permission]]
+identifier = "deny-serials-register"
+description = "Denies the serials_register command without any pre-configured scope."
+commands.deny = ["serials_register"]

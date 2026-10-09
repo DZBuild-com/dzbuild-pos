@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-jewellery-reprice"
+description = "Enables the jewellery_reprice command without any pre-configured scope."
+commands.allow = ["jewellery_reprice"]
+
+[[permission]]
+identifier = "deny-jewellery-reprice"
+description = "Denies the jewellery_reprice command without any pre-configured scope."
+commands.deny = ["jewellery_reprice"]

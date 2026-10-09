@@ -1,0 +1,60 @@
+{
+  "tab": "Personal data",
+  "intro": "What the customer agreed to, the export of their data and anonymisation (law 18-07).",
+  "consent": {
+    "title": "Customer consents",
+    "sms": "SMS",
+    "whatsapp": "WhatsApp",
+    "loyalty": "Loyalty",
+    "granted": "Agreed",
+    "refused": "Refused",
+    "unknown": "Not asked yet",
+    "source": {
+      "label": "Consent collected",
+      "counter": "At the counter",
+      "form": "Signed form",
+      "import": "Import",
+      "customer_request": "Customer's request"
+    },
+    "history": "History",
+    "historyEmpty": "No consent recorded for this customer.",
+    "row": "{{channel}}: {{answer}} ({{source}}) — {{name}}",
+    "saved": "Customer consent recorded"
+  },
+  "export": "Export the customer's data",
+  "exportHint": "A data file (JSON, read by other software) and an Excel file, in the folder you choose.",
+  "exported": "Data saved: {{json}} and {{xlsx}}",
+  "anonymise": {
+    "open": "Anonymise",
+    "title": "Anonymise this customer?",
+    "body": "Their name, phones, e-mail, address, NIN and notes will be erased for good, and their file archived.",
+    "kept": "What stays: the receipts and invoices (kept for the tax office), the legal registers, and the action log, which cannot be changed.",
+    "note": "Reason",
+    "confirm": "Anonymise for good",
+    "refused": "Not possible for now: {{items}}",
+    "done": "Customer anonymised ({{code}})"
+  },
+  "open": {
+    "separator": ", ",
+    "balance": "Account balance",
+    "deposits": "deposits",
+    "orders": "open order",
+    "serviceTickets": "repair in progress",
+    "vouchers": "voucher not used up",
+    "appointments": "booked appointment",
+    "instalmentGuarantees": "an instalment contract's documents (names, ID numbers, phones), kept with the contract",
+    "voucherBuyer": "the buyer's name on a gift voucher"
+  },
+  "dpo": {
+    "title": "Data protection officer",
+    "intro": "Named on the register of your use of personal data, which you keep for the ANPDP (the personal data protection authority).",
+    "name": "Name",
+    "email": "E-mail",
+    "phone": "Phone",
+    "save": "Save the officer",
+    "saved": "Officer saved",
+    "register": "Print the processing register",
+    "registerPrinted": "Processing register sent to the printer.",
+    "accessReport": "See the accesses to personal data"
+  }
+}

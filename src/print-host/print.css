@@ -1,0 +1,19 @@
+@import "tailwindcss";
+@import "../styles/tokens.css";
+@import "../documents/documents.css";
+
+/* Paper: always light, whatever the app theme. The page size and margins are each job's own
+   `@page` rule (PrintHostApp), the same as WebView2's print settings (Rust `PageSetup`). */
+html,
+body {
+  background: #ffffff;
+  color: var(--ink);
+  margin: 0;
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+/* The rendered height includes the margins of what prints (a receipt's last line never runs onto
+   a second page). */
+.print-root {
+  display: flow-root;
+}

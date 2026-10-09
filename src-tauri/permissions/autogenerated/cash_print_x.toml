@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-cash-print-x"
+description = "Enables the cash_print_x command without any pre-configured scope."
+commands.allow = ["cash_print_x"]
+
+[[permission]]
+identifier = "deny-cash-print-x"
+description = "Denies the cash_print_x command without any pre-configured scope."
+commands.deny = ["cash_print_x"]

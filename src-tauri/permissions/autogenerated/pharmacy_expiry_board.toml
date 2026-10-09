@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-pharmacy-expiry-board"
+description = "Enables the pharmacy_expiry_board command without any pre-configured scope."
+commands.allow = ["pharmacy_expiry_board"]
+
+[[permission]]
+identifier = "deny-pharmacy-expiry-board"
+description = "Denies the pharmacy_expiry_board command without any pre-configured scope."
+commands.deny = ["pharmacy_expiry_board"]

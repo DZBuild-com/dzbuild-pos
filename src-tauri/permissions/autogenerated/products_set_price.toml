@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-products-set-price"
+description = "Enables the products_set_price command without any pre-configured scope."
+commands.allow = ["products_set_price"]
+
+[[permission]]
+identifier = "deny-products-set-price"
+description = "Denies the products_set_price command without any pre-configured scope."
+commands.deny = ["products_set_price"]

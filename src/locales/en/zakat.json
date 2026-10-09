@@ -1,0 +1,48 @@
+{
+  "title": "Zakat",
+  "intro": "An estimate of the zakat on your trade goods: the figures the software knows, plus what you add.",
+  "inputs": "What you add",
+  "day": "Calculation date",
+  "hijri": "Hijri date",
+  "valuation": {
+    "label": "Stock value",
+    "cost": "at cost",
+    "sale_price": "at sale price"
+  },
+  "bank": "Bank and CCP",
+  "otherAssets": "Other assets",
+  "otherDebts": "Other debts",
+  "note": "Note",
+  "preview": "Calculation",
+  "computing": "Calculating…",
+  "lines": {
+    "stock": "Stock ({{valuation}})",
+    "cash": "Cash in the drawers",
+    "bank": "Bank and CCP",
+    "otherAssets": "Other assets",
+    "receivables": "What customers owe you",
+    "payables": "What you owe suppliers",
+    "otherDebts": "Other debts"
+  },
+  "base": "Base",
+  "nisab": "Nisab",
+  "nisabSource": "Source: {{source}}",
+  "rate": "Rate",
+  "due": "Zakat due",
+  "belowNisab": "The base is below the nisab: no zakat is due.",
+  "disclaimer": "An indicative calculation made by the software. It is not a fatwa; when in doubt, ask a scholar or your wilaya's religious affairs directorate.",
+  "save": "Save the calculation",
+  "recorded": "Calculation {{number}} saved",
+  "saved": "Saved calculations",
+  "savedEmpty": "No saved calculation. Save today's to keep and print it.",
+  "print": "Print",
+  "printed": "Zakat calculation sent to the printer.",
+  "columns": {
+    "number": "No.",
+    "day": "Date",
+    "base": "Base",
+    "due": "Zakat",
+    "by": "By"
+  },
+  "mainPcOnly": "Calculations are saved and kept on the main PC."
+}

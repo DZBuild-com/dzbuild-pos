@@ -1,0 +1,37 @@
+{
+  "title": "Synthèse des ventes",
+  "subtitle": "Du 01/09/2026 au 30/09/2026",
+  "lang": "fr",
+  "rtl": false,
+  "shop": "Supérette El Amel",
+  "nif": "000116001234567",
+  "nifLabel": "NIF",
+  "columns": [
+    {
+      "key": "period",
+      "label": "Période",
+      "kind": "date",
+      "tag": null
+    },
+    {
+      "key": "netTtc",
+      "label": "Net TTC",
+      "kind": "money",
+      "tag": null
+    }
+  ],
+  "rows": [
+    [
+      "2026-09-01",
+      1200000
+    ]
+  ],
+  "totals": [
+    null,
+    1200000
+  ],
+  "tagLabels": {},
+  "totalLabel": "Total",
+  "printedAt": "28/09/2026 10:15",
+  "pageLabel": "Page"
+}

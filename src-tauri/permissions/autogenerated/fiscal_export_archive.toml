@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-fiscal-export-archive"
+description = "Enables the fiscal_export_archive command without any pre-configured scope."
+commands.allow = ["fiscal_export_archive"]
+
+[[permission]]
+identifier = "deny-fiscal-export-archive"
+description = "Denies the fiscal_export_archive command without any pre-configured scope."
+commands.deny = ["fiscal_export_archive"]

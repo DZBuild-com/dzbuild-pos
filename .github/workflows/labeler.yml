@@ -1,0 +1,22 @@
+# Labels every pull request from the paths it changes (.github/labeler.yml).
+# pull_request_target so that pull requests from forks can be labelled too: this workflow never
+# checks out nor runs the pull request's code, it only reads the list of changed files.
+name: Labeler
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  label:
+    name: Label by changed paths
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/labeler@v7
+        with:
+          sync-labels: false

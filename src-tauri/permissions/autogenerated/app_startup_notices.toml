@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-app-startup-notices"
+description = "Enables the app_startup_notices command without any pre-configured scope."
+commands.allow = ["app_startup_notices"]
+
+[[permission]]
+identifier = "deny-app-startup-notices"
+description = "Denies the app_startup_notices command without any pre-configured scope."
+commands.deny = ["app_startup_notices"]

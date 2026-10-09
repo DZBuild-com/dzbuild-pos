@@ -1,0 +1,38 @@
+node_modules/
+target/
+dist/
+# Release builds: both setups, signatures, SHA256SUMS and the channel manifests
+dist-release/
+.env
+.env.*
+keys/
+# The data-pack signing key (M8 Task 17): only its public half is committed, in
+# crates/pos-core/data/datapack.pub.
+src-tauri/keys/datapack.key
+*.pfx
+*.key
+# A test-only key that signs the data-pack fixtures; the app never trusts it.
+!crates/pos-core/tests/fixtures/datapack/test-only.key
+# Tauri generated schemas
+src-tauri/gen/schemas/
+# SQLite files from manual runs (test fixtures are kept)
+*.db
+*.db-wal
+*.db-shm
+!crates/pos-core/tests/fixtures/*.db
+# Frontend
+*.tsbuildinfo
+coverage/
+.vite/
+# Playwright: screenshots, traces and the HTML report of `pnpm e2e`
+e2e-artifacts/
+.worktrees/
+# M9: the owner's licence tool builds and licence files never enter the repository
+dist-owner/
+*.dzlic
+licence-signing.*
+# The LTS package handed to shops (installers + README), built from dist-release
+pos lts/
+
+# Local build logs at the repository root
+/*.log

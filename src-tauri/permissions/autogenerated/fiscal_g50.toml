@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-fiscal-g50"
+description = "Enables the fiscal_g50 command without any pre-configured scope."
+commands.allow = ["fiscal_g50"]
+
+[[permission]]
+identifier = "deny-fiscal-g50"
+description = "Denies the fiscal_g50 command without any pre-configured scope."
+commands.deny = ["fiscal_g50"]

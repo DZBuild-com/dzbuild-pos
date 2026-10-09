@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-scale-clear-tare"
+description = "Enables the scale_clear_tare command without any pre-configured scope."
+commands.allow = ["scale_clear_tare"]
+
+[[permission]]
+identifier = "deny-scale-clear-tare"
+description = "Denies the scale_clear_tare command without any pre-configured scope."
+commands.deny = ["scale_clear_tare"]

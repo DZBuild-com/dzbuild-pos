@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-dining-table-archive"
+description = "Enables the dining_table_archive command without any pre-configured scope."
+commands.allow = ["dining_table_archive"]
+
+[[permission]]
+identifier = "deny-dining-table-archive"
+description = "Denies the dining_table_archive command without any pre-configured scope."
+commands.deny = ["dining_table_archive"]

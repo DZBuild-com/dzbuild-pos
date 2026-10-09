@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-suppliers-statement"
+description = "Enables the suppliers_statement command without any pre-configured scope."
+commands.allow = ["suppliers_statement"]
+
+[[permission]]
+identifier = "deny-suppliers-statement"
+description = "Denies the suppliers_statement command without any pre-configured scope."
+commands.deny = ["suppliers_statement"]

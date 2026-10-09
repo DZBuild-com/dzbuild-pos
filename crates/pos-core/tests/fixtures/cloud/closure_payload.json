@@ -1,0 +1,78 @@
+{
+  "anchors": {
+    "audit": {
+      "intact": true,
+      "last_hash": "[stable]",
+      "last_seq": 8
+    },
+    "closure_hash": "[stable]",
+    "closure_prev_hash": "[stable]",
+    "documents": [
+      {
+        "document_type": "ticket",
+        "intact": true,
+        "last_hash": "[stable]",
+        "last_seq": 1,
+        "series": "C1"
+      },
+      {
+        "document_type": "return_note",
+        "intact": true,
+        "last_hash": "[stable]",
+        "last_seq": 0,
+        "series": "C1"
+      }
+    ]
+  },
+  "business_date": "2026-09-28",
+  "by_method": [
+    {
+      "count": 1,
+      "method": "cash",
+      "net": 200,
+      "paid_back": 0,
+      "received": 200
+    }
+  ],
+  "cash": {
+    "cash_refunds": 0,
+    "cash_sales": 200,
+    "counted": 400,
+    "drops": 0,
+    "expected": 400,
+    "expenses": 0,
+    "opening_float": 200,
+    "paid_in": 0,
+    "paid_out": 0,
+    "variance": 0
+  },
+  "cashier_ref": "[stable]",
+  "closed_at": "[stable]",
+  "external_id": "[stable]",
+  "first_ticket": "TK2026-C1-000001",
+  "last_ticket": "TK2026-C1-000001",
+  "location_id": "loc_1",
+  "opened_at": "[stable]",
+  "per_rate": [
+    {
+      "base": 168.07,
+      "tax": 31.93,
+      "tax_rate": 19,
+      "total": 200
+    }
+  ],
+  "returns": 0,
+  "terminal": "C1",
+  "tickets": 1,
+  "totals": {
+    "discount": 0,
+    "grand_total": 200,
+    "net": 200,
+    "returns": 0,
+    "rounding": 0,
+    "sales": 200,
+    "stamp_absorbed": 0,
+    "stamp_charged": 0
+  },
+  "z_number": "ZC1-000001"
+}

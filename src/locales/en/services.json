@@ -1,0 +1,122 @@
+{
+  "title": "Repairs and services",
+  "tabs": {
+    "label": "Ticket views",
+    "tickets": "Tickets",
+    "uncollected": "Not collected",
+    "settings": "Settings"
+  },
+  "kinds": {
+    "repair": "Repair",
+    "pressing": "Dry cleaning",
+    "tailoring": "Tailoring",
+    "other": "Other"
+  },
+  "status": {
+    "received": "Received",
+    "diagnosing": "Diagnosis",
+    "waiting_parts": "Waiting for parts",
+    "in_progress": "In progress",
+    "ready": "Ready",
+    "delivered": "Handed back",
+    "returned_unrepaired": "Returned unrepaired",
+    "cancelled": "Cancelled"
+  },
+  "board": {
+    "label": "Tickets by status",
+    "kind": "Type",
+    "allKinds": "All types",
+    "search": "Search",
+    "searchHint": "Number, device, IMEI or customer",
+    "new": "New drop-off",
+    "empty": "No tickets",
+    "late": "Promised date passed",
+    "promised": "Ready on {{date}}"
+  },
+  "uncollected": {
+    "emptyTitle": "Nothing is waiting for its customer",
+    "emptyBody": "Items ready for too long show here, with any deposit the shop still holds.",
+    "label": "Items not collected",
+    "number": "No.",
+    "customer": "Customer",
+    "item": "Item",
+    "readySince": "Ready for",
+    "deposit": "Deposit"
+  },
+  "intake": {
+    "title": "New drop-off",
+    "kind": "Drop-off type",
+    "item": "Device or item",
+    "brand": "Brand",
+    "model": "Model",
+    "serial": "Serial no. / IMEI",
+    "accessories": "Accessories left",
+    "condition": "Condition on arrival",
+    "fault": "Fault or request",
+    "estimate": "Estimate",
+    "promised": "Ready on",
+    "technician": "Technician",
+    "noTechnician": "Not chosen yet",
+    "lang": "Customer's language",
+    "save": "Save and print the slip",
+    "customerRequired": "Choose the customer or create one.",
+    "newCustomer": "New customer",
+    "customerName": "Customer name",
+    "customerPhone": "Phone",
+    "createCustomer": "Create the customer",
+    "saved": "Slip {{number}} saved"
+  },
+  "deposit": {
+    "title": "Deposit",
+    "amount": "Amount",
+    "method": "Payment method",
+    "reference": "Reference",
+    "duty": "Stamp duty: {{amount}}",
+    "toReceive": "To collect: {{amount}}",
+    "take": "Take the deposit",
+    "refund": "Refund the deposit",
+    "held": "Deposit: {{amount}}",
+    "skip": "No deposit",
+    "for": "Slip {{number}} — {{customer}}",
+    "taken": "Deposit taken: the receipt is printing.",
+    "refunded": "Deposit refunded"
+  },
+  "items": {
+    "title": "Parts and labour",
+    "add": "Add a part",
+    "labour": "Labour",
+    "search": "Part or service from the catalogue",
+    "qty": "Quantity",
+    "price": "Price",
+    "catalogPrice": "Catalogue price: {{amount}}",
+    "save": "Save the parts",
+    "saved": "Parts saved",
+    "empty": "No parts or labour planned.",
+    "remove": "Remove {{name}}"
+  },
+  "ticket": {
+    "back": "Back to the board",
+    "details": "Drop-off",
+    "customer": "Customer",
+    "timeline": "History",
+    "by": "by {{name}}",
+    "next": "Move to",
+    "technician": "Technician",
+    "closed": "This ticket is closed: it no longer changes.",
+    "deposits": "Deposit held"
+  },
+  "ready": {
+    "title": "“Ready” message",
+    "copy": "Copy the message",
+    "copied": "Message copied",
+    "whatsappYes": "WhatsApp consent: yes, since {{date}}",
+    "whatsappNo": "No WhatsApp consent: call the customer",
+    "smsYes": "SMS consent: yes, since {{date}}",
+    "smsNo": "No SMS consent",
+    "hint": "The software sends nothing: paste the message into WhatsApp or a text message."
+  },
+  "pickup": "Hand back to the customer",
+  "pickupLoaded": "Ticket {{number}}: take the payment for the hand-back.",
+  "days": "{{count}} d",
+  "waiting": "Waiting for {{count}} days"
+}

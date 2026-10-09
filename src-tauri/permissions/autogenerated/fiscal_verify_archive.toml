@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-fiscal-verify-archive"
+description = "Enables the fiscal_verify_archive command without any pre-configured scope."
+commands.allow = ["fiscal_verify_archive"]
+
+[[permission]]
+identifier = "deny-fiscal-verify-archive"
+description = "Denies the fiscal_verify_archive command without any pre-configured scope."
+commands.deny = ["fiscal_verify_archive"]

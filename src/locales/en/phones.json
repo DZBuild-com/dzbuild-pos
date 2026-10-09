@@ -1,0 +1,33 @@
+{
+  "flexy": {
+    "title": "Top-ups",
+    "buy": "Buy float",
+    "operator": "Operator",
+    "amount": "Credit added",
+    "cost": "Price paid",
+    "fromTill": "Paid from the till",
+    "save": "Save the purchase",
+    "balance": "{{operator}} float",
+    "low": "Low float",
+    "commission": "Commission",
+    "bought": "{{operator}} float: +{{amount}}",
+    "note": "Note",
+    "entries": "Float movements",
+    "allOperators": "All operators",
+    "commissionHint": "The commission per operator and per day is in the top-up sales report.",
+    "noEntries": "No movements in this period.",
+    "columns": {
+      "date": "Date",
+      "kind": "Movement",
+      "amount": "Amount",
+      "cost": "Cost",
+      "phone": "Number"
+    },
+    "kinds": {
+      "purchase": "Float bought",
+      "sale": "Top-up sold",
+      "reversal": "Top-up cancelled",
+      "adjustment": "Adjustment"
+    }
+  }
+}

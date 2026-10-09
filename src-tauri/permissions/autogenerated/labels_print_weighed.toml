@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-labels-print-weighed"
+description = "Enables the labels_print_weighed command without any pre-configured scope."
+commands.allow = ["labels_print_weighed"]
+
+[[permission]]
+identifier = "deny-labels-print-weighed"
+description = "Denies the labels_print_weighed command without any pre-configured scope."
+commands.deny = ["labels_print_weighed"]

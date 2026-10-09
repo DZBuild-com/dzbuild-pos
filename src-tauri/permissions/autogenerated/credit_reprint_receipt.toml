@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-credit-reprint-receipt"
+description = "Enables the credit_reprint_receipt command without any pre-configured scope."
+commands.allow = ["credit_reprint_receipt"]
+
+[[permission]]
+identifier = "deny-credit-reprint-receipt"
+description = "Denies the credit_reprint_receipt command without any pre-configured scope."
+commands.deny = ["credit_reprint_receipt"]

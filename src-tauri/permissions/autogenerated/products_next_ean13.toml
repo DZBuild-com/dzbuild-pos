@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-products-next-ean13"
+description = "Enables the products_next_ean13 command without any pre-configured scope."
+commands.allow = ["products_next_ean13"]
+
+[[permission]]
+identifier = "deny-products-next-ean13"
+description = "Denies the products_next_ean13 command without any pre-configured scope."
+commands.deny = ["products_next_ean13"]

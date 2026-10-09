@@ -1,0 +1,45 @@
+---
+source: crates/pos-hw/src/receipt.rs
+expression: dump(&out.bytes)
+---
+<1B>@<1C>.<1B>t<13 1B>a<01 1B>E<01 1D>!<11>El Amel<0A>
+Superette<0A>
+<1D>!<00 1B>E<00 1B>a<00 1B>a<01 1B>E<00>EURL<0A>
+<1B>E<00 1B>a<00 1B>a<01 1B>E<00>12 Larbi Ben M'hidi St, Algiers<0A>
+<1B>E<00 1B>a<00 1B>a<01 1B>E<00>Tel. 0550 12 34 56<0A>
+<1B>E<00 1B>a<00 1B>a<01 1B>E<00>RC 16/00-1234567 B 22<0A>
+<1B>E<00 1B>a<00 1B>a<01 1B>E<00>NIF 001216098765432<0A>
+<1B>E<00 1B>a<00>--------------------------------<0A>
+<1B>a<01 1B>E<01>Receipt<0A>
+<1B>E<00 1B>a<00 1B>a<00 1B>E<00>No. TK2026-C1-000123<0A>
+<1B>E<00 1B>a<00 1B>E<00>Date 28/09/2026 12:00    Till C1<0A>
+<1B>E<00 1B>a<00 1B>E<00>Cashier Yacine<0A>
+<1B>E<00 1B>a<00>--------------------------------<0A>
+<1B>a<00 1B>E<00>Candia milk 1 L<0A>
+<1B>E<00 1B>a<00 1B>E<00>  2 <9E> 150.00              300.00<0A>
+<1B>E<00 1B>a<00 1B>E<00>Elio oil 5 L<0A>
+<1B>E<00 1B>a<00 1B>E<00>  1 <9E> 650.00              617.50<0A>
+<1B>E<00 1B>E<00>  Discount                -32.50<0A>
+<1B>E<00 1B>a<00 1B>E<00>Tomatoes<0A>
+<1B>E<00 1B>a<00 1B>E<00>  1.25 kg <9E> 120.00        150.00<0A>
+<1B>E<00>--------------------------------<0A>
+<1B>E<00>Items                       4.25<0A>
+<1B>E<00 1B>E<00>Total excl. VAT           931.75<0A>
+<1B>E<00 1B>E<00>VAT 19% (518.91)           98.59<0A>
+<1B>E<00 1B>E<00>VAT 9% (412.84)            37.16<0A>
+<1B>E<00 1B>E<01>Total incl. VAT         1,067.50<0A>
+<1B>E<00 1B>E<00>Stamp duty                 11.00<0A>
+<1B>E<00 1B>E<01 1D>!<11>Amount due<0A>
+     1,078.50 DA<0A>
+<1D>!<00 1B>E<00>--------------------------------<0A>
+<1B>E<00>Cash                    1,200.00<0A>
+<1B>E<00 1B>E<01>Change                    121.50<0A>
+<1B>E<00 1B>E<00>You saved                  32.50<0A>
+<1B>E<00>--------------------------------<0A>
+<1B>a<00 1B>E<00>Amount in words : one thousand<0A>
+seventy-eight dinars and fifty<0A>
+centimes<0A>
+<1B>E<00 1B>a<00 1B>a<01 1B>E<00>Open every day 7am-10pm<0A>
+<1B>E<00 1B>a<00 1B>a<01 1B>E<01>Thank you for your visit<0A>
+<1B>E<00 1B>a<00 1B>d<01 1B>a<01 1D>h<3C 1D>w<02 1D>H<02 1D>f<00 1D>kI<13>{BTK{C<14 1A>{B-C1-{C<00 01 17 0A>
+<1B>a<00 1B>d<04 1D>VB<00>

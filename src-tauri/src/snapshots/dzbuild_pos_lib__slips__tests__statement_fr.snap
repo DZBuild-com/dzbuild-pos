@@ -1,0 +1,22 @@
+---
+source: src-tauri/src/slips.rs
+expression: printed
+---
+** Supérette El Amel
+12 rue Larbi Ben M'hidi, Alger
+Tél. 023 45 67 89
+NIF 000116001234567
+--------
+* Relevé de compte
+Karim Benali C00001
+01/09/2026 – 30/09/2026
+--------
+* Solde au début 5 000,00
+12/09/2026 Vente à crédit 2 000,00
+  TK2026-C1-000012 = 7 000,00
+28/09/2026 Versement -2 000,00
+  RV2026-000001 = 5 000,00
+--------
+** Solde à la fin 5 000,00 DA
+28/09/2026 12:00
+(feed 1)

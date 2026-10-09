@@ -1,0 +1,128 @@
+# Every pull request and every push to main: the same gates as `pnpm check`, split into jobs
+# that run side by side. release.yml calls this workflow before it builds the installers.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+  workflow_call:
+
+# A new push to the same branch or pull request cancels the run it replaces.
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  # The LTS that satisfies engines.node in package.json; pnpm comes from its packageManager.
+  NODE_VERSION: 24
+  CARGO_TERM_COLOR: always
+  CARGO_INCREMENTAL: 0
+
+jobs:
+  frontend:
+    name: Frontend (lint, types, tests, i18n, format, bundle)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: ESLint
+        run: pnpm lint
+      - name: TypeScript
+        run: pnpm typecheck
+      - name: Vitest
+        run: pnpm test
+      - name: Tooling tests (scripts/, release scripts and workflows)
+        run: pnpm test:tooling
+      - name: Arabic / French / English parity
+        run: pnpm i18n
+      - name: Prettier
+        run: pnpm exec prettier --check .
+      - name: Frontend build
+        run: pnpm build
+      - name: POS bundle budget (NFR-010)
+        run: pnpm perf:bundle
+
+  rust:
+    name: Rust (fmt, clippy, tests, 32-bit check)
+    runs-on: windows-latest
+    timeout-minutes: 75
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+          targets: i686-pc-windows-msvc
+      - uses: Swatinem/rust-cache@v2
+        with:
+          shared-key: rust-x64
+          # Pull requests read the cache main wrote; only main writes it.
+          save-if: ${{ github.ref == 'refs/heads/main' }}
+      - name: rustfmt
+        run: cargo fmt --all --check
+      # tauri::generate_context! embeds ../dist: the app crate needs the built frontend.
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Frontend for the app crate
+        run: pnpm exec vite build
+      - name: Clippy
+        run: cargo clippy --workspace --all-targets -- -D warnings
+      - name: Tests
+        run: cargo test --workspace
+      - name: 32-bit Windows (i686) compiles
+        run: cargo check --workspace --all-targets --target i686-pc-windows-msvc
+
+  deny:
+    name: Dependencies (advisories, licences, bans, sources)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: EmbarkStudios/cargo-deny-action@v2
+        with:
+          command: check advisories bans licenses sources
+
+  # The release-mode app on every push to main (pull requests stay fast); release.yml builds
+  # the installers of both arches itself.
+  build:
+    name: Release build without installer (x64)
+    if: github.workflow == 'CI' && github.event_name != 'pull_request'
+    runs-on: windows-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+        with:
+          shared-key: release-x64
+          save-if: ${{ github.ref == 'refs/heads/main' }}
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Tauri release build without bundling
+        run: pnpm tauri build --no-bundle

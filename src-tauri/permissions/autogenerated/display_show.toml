@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-display-show"
+description = "Enables the display_show command without any pre-configured scope."
+commands.allow = ["display_show"]
+
+[[permission]]
+identifier = "deny-display-show"
+description = "Denies the display_show command without any pre-configured scope."
+commands.deny = ["display_show"]

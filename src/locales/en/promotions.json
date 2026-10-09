@@ -1,0 +1,105 @@
+{
+  "title": "Promotions",
+  "back": "Products",
+  "new": "New promotion",
+  "empty": "No promotions yet. Create one to lower prices for a period.",
+  "saved": "Promotion saved.",
+  "archive": "Archive the promotion",
+  "archived": "Promotion archived.",
+  "readOnly": "Only a user allowed to change prices can edit a promotion.",
+  "filters": {
+    "allCampaigns": "All campaigns",
+    "showArchived": "Show archived"
+  },
+  "columns": {
+    "name": "Promotion",
+    "campaign": "Campaign",
+    "discount": "Discount",
+    "period": "Period",
+    "trigger": "Applied",
+    "status": "Status"
+  },
+  "campaigns": {
+    "promotion": "Promotion",
+    "solde": "Seasonal sale",
+    "liquidation": "Clearance",
+    "deballage": "Unpacking sale"
+  },
+  "kinds": {
+    "percent": "Percentage",
+    "amount": "Amount per item",
+    "buy_x_get_y": "Free items",
+    "bundle_price": "Bundle price"
+  },
+  "triggers": {
+    "auto": "Automatically at the till",
+    "manual": "Named discount (the cashier picks it)"
+  },
+  "triggerTags": {
+    "auto": "Automatic",
+    "manual": "Named discount"
+  },
+  "scopes": {
+    "all": "All products",
+    "categories": "Some categories",
+    "products": "Some products"
+  },
+  "status": {
+    "active": "Active",
+    "inactive": "Disabled",
+    "archived": "Archived",
+    "outside": "Outside the seasonal sale periods"
+  },
+  "describe": {
+    "buyGet": "{{buy}} bought + {{get}} free",
+    "bundle": "{{qty}} for {{price}}"
+  },
+  "period": {
+    "none": "No dates",
+    "from": "From {{from}}",
+    "to": "Until {{to}}"
+  },
+  "fields": {
+    "nameFr": "Name (French)",
+    "nameAr": "Name (Arabic)",
+    "nameEn": "Name (English)",
+    "campaign": "Campaign",
+    "kind": "Type of promotion",
+    "percent": "Discount (%)",
+    "amount": "Discount per item (DA)",
+    "buyQty": "Items bought",
+    "getQty": "Items free",
+    "bundleQty": "Items in the bundle",
+    "bundlePrice": "Bundle price (DA)",
+    "scope": "Applies to",
+    "categories": "Categories",
+    "trigger": "Applied",
+    "priority": "Priority",
+    "minQty": "Minimum quantity",
+    "startsOn": "From",
+    "endsOn": "To",
+    "active": "Active"
+  },
+  "hints": {
+    "campaign": "Seasonal sales, clearances and unpacking sales have a start and an end date. They keep the price charged before the campaign, for the declaration.",
+    "trigger": "Only a percentage promotion outside the seasonal sales can be a named discount.",
+    "priority": "When several promotions cover an item, the highest wins.",
+    "minQty": "The promotion applies from this quantity on the line."
+  },
+  "optional": "(optional)",
+  "outsideWindow": "These dates are outside the seasonal sale periods set by the wali. Check them, or add the period in Settings › Sales and cash.",
+  "errors": {
+    "percent": "Enter a discount between 0.01 and 100 %.",
+    "amount": "Enter an amount above zero, like 50 or 49.90.",
+    "pieces": "Enter a whole number of items, at least 1.",
+    "bundle": "A bundle holds at least 2 items.",
+    "priority": "Enter a priority between 0 and 100.",
+    "categories": "Choose at least one category.",
+    "products": "Add at least one product."
+  },
+  "removeProduct": "Remove {{name}}",
+  "declaration": {
+    "title": "Seasonal sale declaration",
+    "body": "The products on sale, their price charged before the campaign and the quantities, for the declaration to the trade directorate."
+  }
+}

@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-cash-verify-closures"
+description = "Enables the cash_verify_closures command without any pre-configured scope."
+commands.allow = ["cash_verify_closures"]
+
+[[permission]]
+identifier = "deny-cash-verify-closures"
+description = "Denies the cash_verify_closures command without any pre-configured scope."
+commands.deny = ["cash_verify_closures"]

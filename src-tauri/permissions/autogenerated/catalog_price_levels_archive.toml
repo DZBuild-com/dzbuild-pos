@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-catalog-price-levels-archive"
+description = "Enables the catalog_price_levels_archive command without any pre-configured scope."
+commands.allow = ["catalog_price_levels_archive"]
+
+[[permission]]
+identifier = "deny-catalog-price-levels-archive"
+description = "Denies the catalog_price_levels_archive command without any pre-configured scope."
+commands.deny = ["catalog_price_levels_archive"]

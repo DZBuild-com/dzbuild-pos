@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-rounds-get"
+description = "Enables the rounds_get command without any pre-configured scope."
+commands.allow = ["rounds_get"]
+
+[[permission]]
+identifier = "deny-rounds-get"
+description = "Denies the rounds_get command without any pre-configured scope."
+commands.deny = ["rounds_get"]

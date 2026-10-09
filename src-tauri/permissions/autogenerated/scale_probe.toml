@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-scale-probe"
+description = "Enables the scale_probe command without any pre-configured scope."
+commands.allow = ["scale_probe"]
+
+[[permission]]
+identifier = "deny-scale-probe"
+description = "Denies the scale_probe command without any pre-configured scope."
+commands.deny = ["scale_probe"]

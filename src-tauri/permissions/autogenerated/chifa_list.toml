@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-chifa-list"
+description = "Enables the chifa_list command without any pre-configured scope."
+commands.allow = ["chifa_list"]
+
+[[permission]]
+identifier = "deny-chifa-list"
+description = "Denies the chifa_list command without any pre-configured scope."
+commands.deny = ["chifa_list"]

@@ -1,0 +1,7 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "print-host",
+  "description": "Hidden print window: its two commands and its wake-up event only.",
+  "windows": ["print-host"],
+  "permissions": ["print-host-commands", "core:event:allow-listen", "core:event:allow-unlisten"]
+}

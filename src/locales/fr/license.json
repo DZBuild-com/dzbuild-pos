@@ -1,0 +1,91 @@
+{
+  "activation": {
+    "title": "Activer DZBuild POS",
+    "intro": "Ce PC a besoin d'une licence DZBuild POS : un essai de 7 jours ou une licence à vie. Envoyez le code de ce PC à DZBuild, puis collez la clé reçue.",
+    "language": "Langue",
+    "step1": "1. Envoyez ce code à DZBuild",
+    "step2": "2. Collez la clé reçue",
+    "scan": "Scannez avec votre téléphone pour l'envoyer par WhatsApp.",
+    "scanCode": "Scannez avec votre téléphone pour copier le code.",
+    "demo": "Essayer d'abord la boutique de démonstration",
+    "demoHint": "Sans licence et sans valeur fiscale : pour découvrir le logiciel.",
+    "openingDemo": "Ouverture de la boutique de démonstration…"
+  },
+  "device": {
+    "label": "Code de ce PC",
+    "copy": "Copier le code",
+    "copied": "Code copié",
+    "qr": "Code QR du code de ce PC"
+  },
+  "form": {
+    "key": "Clé de licence",
+    "keyHint": "Elle commence par DZL1. Collez-la en entier, même sur plusieurs lignes.",
+    "activate": "Activer la licence",
+    "activating": "Activation…",
+    "file": "Charger un fichier .dzlic",
+    "done": "Licence activée"
+  },
+  "seller": {
+    "title": "Pour obtenir une licence : {{seller}}",
+    "whatsapp": "WhatsApp :",
+    "phone": "Téléphone :",
+    "web": "Site :"
+  },
+  "state": {
+    "expired": "La période d'essai de ce PC est terminée. Activez une licence à vie pour vendre à nouveau.",
+    "otherDevice": "La licence trouvée appartient à un autre PC ({{code}}) : ce PC a changé (disque, Windows ou processeur). Envoyez le nouveau code ci-dessous.",
+    "tampered": "Les données de licence de ce PC ont été modifiées. Collez de nouveau votre clé pour la réactiver.",
+    "refused": "La licence de ce PC n'est plus acceptée. Contactez DZBuild pour une nouvelle clé.",
+    "deviceUnreadable": "Windows ne donne pas l'identité de ce PC. Redémarrez-le ; si cela continue, contactez le support DZBuild."
+  },
+  "banner": {
+    "readOnly": "Mode consultation : ventes et modifications bloquées. Rapports, exports et sauvegardes restent disponibles.",
+    "trial_zero": "Essai : dernier jour.",
+    "trial_one": "Essai : encore {{count}} jour.",
+    "trial_two": "Essai : encore {{count}} jours.",
+    "trial_few": "Essai : encore {{count}} jours.",
+    "trial_many": "Essai : encore {{count}} jours.",
+    "trial_other": "Essai : encore {{count}} jours.",
+    "activate": "Activer une licence",
+    "lifetime": "Passer à la licence à vie"
+  },
+  "till": {
+    "title": "Caisse en mode consultation",
+    "body": "Ce PC ne peut pas vendre sans licence valide. Les rapports, les exports et les sauvegardes restent disponibles dans le menu.",
+    "ask": "Demandez au propriétaire d'activer la licence de ce PC.",
+    "backOffice": "Retour au menu"
+  },
+  "settings": {
+    "title": "Licence de ce PC",
+    "status": "État",
+    "states": {
+      "demo": "Boutique de démonstration (sans licence)",
+      "unlicensed": "Sans licence",
+      "active": "Active",
+      "expired": "Essai terminé",
+      "refused": "Refusée",
+      "otherDevice": "Licence d'un autre PC",
+      "tampered": "Données modifiées",
+      "deviceUnreadable": "Identité du PC illisible"
+    },
+    "kind": "Type",
+    "kinds": { "trial": "Essai", "lifetime": "À vie" },
+    "customer": "Client",
+    "issued": "Délivrée le",
+    "expires": "Fin",
+    "never": "Jamais (licence à vie)",
+    "daysLeft_zero": "aucun jour restant",
+    "daysLeft_one": "{{count}} jour restant",
+    "daysLeft_two": "{{count}} jours restants",
+    "daysLeft_few": "{{count}} jours restants",
+    "daysLeft_many": "{{count}} jours restants",
+    "daysLeft_other": "{{count}} jours restants",
+    "replace": "Activer une autre clé",
+    "remove": "Retirer la licence de ce PC",
+    "removeTitle": "Retirer la licence de ce PC ?",
+    "removeBody": "Ce PC passera en mode consultation : plus de ventes ni de modifications. La clé reste valable et pourra être activée de nouveau.",
+    "pin": "Votre code PIN",
+    "confirmRemove": "Retirer la licence",
+    "removed": "Licence retirée : ce PC est en mode consultation."
+  }
+}

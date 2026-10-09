@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-returns-quote"
+description = "Enables the returns_quote command without any pre-configured scope."
+commands.allow = ["returns_quote"]
+
+[[permission]]
+identifier = "deny-returns-quote"
+description = "Denies the returns_quote command without any pre-configured scope."
+commands.deny = ["returns_quote"]

@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-instalments-list"
+description = "Enables the instalments_list command without any pre-configured scope."
+commands.allow = ["instalments_list"]
+
+[[permission]]
+identifier = "deny-instalments-list"
+description = "Denies the instalments_list command without any pre-configured scope."
+commands.deny = ["instalments_list"]

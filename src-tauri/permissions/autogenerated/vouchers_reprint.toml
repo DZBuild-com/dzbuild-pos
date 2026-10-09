@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-vouchers-reprint"
+description = "Enables the vouchers_reprint command without any pre-configured scope."
+commands.allow = ["vouchers_reprint"]
+
+[[permission]]
+identifier = "deny-vouchers-reprint"
+description = "Denies the vouchers_reprint command without any pre-configured scope."
+commands.deny = ["vouchers_reprint"]

@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-documents-save-draft"
+description = "Enables the documents_save_draft command without any pre-configured scope."
+commands.allow = ["documents_save_draft"]
+
+[[permission]]
+identifier = "deny-documents-save-draft"
+description = "Denies the documents_save_draft command without any pre-configured scope."
+commands.deny = ["documents_save_draft"]

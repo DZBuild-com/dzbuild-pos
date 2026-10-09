@@ -1,0 +1,14 @@
+---
+source: crates/pos-hw/src/labels/tspl.rs
+expression: text
+---
+SIZE 40 mm,25 mm
+GAP 2 mm,0 mm
+DIRECTION 1
+REFERENCE 0,0
+DENSITY 8
+SPEED 4
+CLS
+BITMAP 0,0,40,200,0,<bitmap 40x200 fnv 5cf2d7702db0f4f7>
+BARCODE 65,100,"EAN13",66,1,0,2,2,"613012345678"
+PRINT 1,3

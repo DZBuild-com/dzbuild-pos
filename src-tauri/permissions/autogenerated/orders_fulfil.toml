@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-orders-fulfil"
+description = "Enables the orders_fulfil command without any pre-configured scope."
+commands.allow = ["orders_fulfil"]
+
+[[permission]]
+identifier = "deny-orders-fulfil"
+description = "Denies the orders_fulfil command without any pre-configured scope."
+commands.deny = ["orders_fulfil"]

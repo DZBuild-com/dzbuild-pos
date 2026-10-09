@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-suppliers-restore"
+description = "Enables the suppliers_restore command without any pre-configured scope."
+commands.allow = ["suppliers_restore"]
+
+[[permission]]
+identifier = "deny-suppliers-restore"
+description = "Denies the suppliers_restore command without any pre-configured scope."
+commands.deny = ["suppliers_restore"]

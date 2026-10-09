@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-license-import-file"
+description = "Enables the license_import_file command without any pre-configured scope."
+commands.allow = ["license_import_file"]
+
+[[permission]]
+identifier = "deny-license-import-file"
+description = "Denies the license_import_file command without any pre-configured scope."
+commands.deny = ["license_import_file"]

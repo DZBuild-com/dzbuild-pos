@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-cloud-publish-set"
+description = "Enables the cloud_publish_set command without any pre-configured scope."
+commands.allow = ["cloud_publish_set"]
+
+[[permission]]
+identifier = "deny-cloud-publish-set"
+description = "Denies the cloud_publish_set command without any pre-configured scope."
+commands.deny = ["cloud_publish_set"]

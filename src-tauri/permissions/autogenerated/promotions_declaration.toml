@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-promotions-declaration"
+description = "Enables the promotions_declaration command without any pre-configured scope."
+commands.allow = ["promotions_declaration"]
+
+[[permission]]
+identifier = "deny-promotions-declaration"
+description = "Denies the promotions_declaration command without any pre-configured scope."
+commands.deny = ["promotions_declaration"]

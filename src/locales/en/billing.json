@@ -1,0 +1,258 @@
+{
+  "list": {
+    "title": "Documents",
+    "new": "New document",
+    "search": "Number, customer or supplier",
+    "all": "All",
+    "status": "Status",
+    "period": "Period",
+    "customer": "Customer",
+    "minTotal": "Minimum amount",
+    "maxTotal": "Maximum amount",
+    "empty": "No document for these filters.",
+    "loadMore": "Show more",
+    "columns": {
+      "number": "Number",
+      "kind": "Type",
+      "date": "Date",
+      "party": "Customer / supplier",
+      "totalTtc": "Total incl. tax",
+      "totalDue": "Amount due",
+      "state": "State",
+      "copies": "Copies"
+    }
+  },
+  "kinds": {
+    "invoice": "Invoice",
+    "quote": "Quote",
+    "proforma": "Proforma invoice",
+    "delivery_note": "Delivery note",
+    "credit_note": "Credit note",
+    "ticket": "Receipt",
+    "return_note": "Return note",
+    "purchase_order": "Purchase order",
+    "goods_receipt": "Goods receipt",
+    "supplier_invoice": "Supplier invoice",
+    "transfer": "Transfer note",
+    "customer_order": "Customer order"
+  },
+  "statuses": { "draft": "Draft", "validated": "Validated", "cancelled": "Cancelled" },
+  "states": {
+    "draft": "Draft",
+    "cancelled": "Cancelled",
+    "open": "Open",
+    "expired": "Expired",
+    "converted": "Converted",
+    "to_invoice": "To invoice",
+    "invoiced": "Invoiced",
+    "unpaid": "Balance due {{amount}}",
+    "overdue": "Overdue — balance due {{amount}}",
+    "paid": "Paid",
+    "partly_credited": "Partly cancelled by credit note ({{amount}})",
+    "credited": "Cancelled by credit note {{numbers}}",
+    "final": "Validated"
+  },
+  "view": {
+    "print": "Print",
+    "pdf": "PDF",
+    "preview": "Preview",
+    "copies": "Copies already made: {{count}}. The next one will be a DUPLICATE.",
+    "sources": "Made from",
+    "targets": "Documents made from it",
+    "lines": "Lines",
+    "totals": "Totals",
+    "notFound": "This document does not exist or is not available to you.",
+    "columns": { "description": "Description", "qty": "Quantity", "unitPrice": "Unit price" },
+    "totalHt": "Total excl. tax",
+    "tax": "VAT (TVA)",
+    "stampDuty": "Stamp duty"
+  },
+  "print": {
+    "title": "Print {{number}}",
+    "language": "Document language",
+    "second": "Second language",
+    "monolingual": "One language only",
+    "printer": "Printer",
+    "defaultPrinter": "Windows default printer",
+    "copies": "Number of copies",
+    "submit": "Print",
+    "original": "Printed (original)",
+    "duplicate": "Printed (duplicate)",
+    "dialog": "The Windows print dialog opened.",
+    "pdfSaved": "PDF saved: {{path}}"
+  },
+  "preview": { "title": "Print preview", "print": "Print…" },
+  "editor": {
+    "new": {
+      "invoice": "New invoice",
+      "quote": "New quote",
+      "proforma": "New proforma invoice",
+      "delivery_note": "New delivery note"
+    },
+    "draftOf": "Draft — {{kind}}",
+    "customer": "Customer",
+    "noCustomer": "No customer",
+    "language": "Document language",
+    "secondLanguage": "Second language",
+    "none": "None",
+    "validUntil": "Valid until",
+    "validUntilDefault": "Default: {{days}} days",
+    "dueDate": "Due date",
+    "note": "Note",
+    "addProduct": "Scan or search a product",
+    "openItem": "Open item",
+    "columns": {
+      "product": "Description",
+      "qty": "Quantity",
+      "unitPrice": "Unit price",
+      "discount": "Discount",
+      "total": "Total"
+    },
+    "lineField": "{{field}} — {{name}}",
+    "removeLine": "Remove the line",
+    "empty": "Add at least one line.",
+    "totals": {
+      "ht": "Total excl. tax",
+      "tax": "VAT {{rate}}",
+      "ttc": "Total incl. tax",
+      "ifu": "IFU regime – VAT not applicable",
+      "exempt": "VAT-exempt customer: prices excluding tax"
+    },
+    "save": "Save draft",
+    "saved": "Draft saved.",
+    "validate": "Validate",
+    "preview": "Preview",
+    "cancelDraft": "Discard the draft",
+    "cancelConfirm": "Discard this draft? It stays in the archive as cancelled, without a number.",
+    "cancelled": "Draft discarded."
+  },
+  "mentions": {
+    "title": "Mandatory mentions",
+    "complete": "Every mandatory mention is present.",
+    "sellerMissing": "Missing on the shop details: {{list}}",
+    "buyerMissing": "Missing on the customer details: {{list}}",
+    "warnings": "Better to complete: {{list}}",
+    "blocking": "An invoice cannot be validated without these mentions (décret 05-468).",
+    "fixShop": "Complete the shop",
+    "fixCustomer": "Complete the customer",
+    "fixDocuments": "Complete the document identity",
+    "names": {
+      "name": "name or company name",
+      "legal_form": "legal form",
+      "activity": "activity",
+      "capital": "share capital",
+      "address": "address",
+      "phone": "phone",
+      "rc": "RC",
+      "nif": "NIF",
+      "nis": "NIS",
+      "ai": "tax article"
+    }
+  },
+  "validate": {
+    "title": {
+      "invoice": "Validate the invoice",
+      "quote": "Validate the quote",
+      "proforma": "Validate the proforma invoice",
+      "delivery_note": "Validate the delivery note"
+    },
+    "summary": "Once validated, the document gets its number and can no longer be changed.",
+    "tenders": "Payment",
+    "onAccount": "On account (customer credit)",
+    "chequeBank": "Bank",
+    "chequeDate": "Cheque date",
+    "reference": "Reference",
+    "duty": "Stamp duty",
+    "netToPay": "Amount due",
+    "missing": "Left to pay",
+    "change": "Change to give",
+    "submit": "Validate",
+    "done": "Document {{number}} validated."
+  },
+  "convert": {
+    "button": "Convert",
+    "toInvoice": "To an invoice",
+    "toDelivery": "To a delivery note",
+    "toProforma": "To a proforma invoice",
+    "toInvoiceRepriced": "To an invoice at today's prices",
+    "toDeliveryRepriced": "To a delivery note at today's prices",
+    "toProformaRepriced": "To a proforma invoice at today's prices",
+    "already": "Already converted: {{numbers}}",
+    "invoiceDeliveries": "Invoice this customer's delivery notes"
+  },
+  "deliveries": {
+    "title": "Invoice delivery notes",
+    "pick": "Delivery notes to invoice",
+    "none": "No delivery note to invoice for this customer.",
+    "limit": "At most 50 notes per invoice.",
+    "submit": "Create the invoice"
+  },
+  "ticketInvoice": {
+    "action": "Invoice this receipt",
+    "title": "Invoice for receipt {{number}}",
+    "already": "This receipt already has its invoice.",
+    "submit": "Invoice the receipt"
+  },
+  "offer": {
+    "menu": "Load a quote",
+    "title": "Load a quote or a proforma",
+    "number": "Quote number",
+    "load": "Load",
+    "chip": "Quote {{number}}",
+    "priceChanged": "Some prices changed since the quote: they are flagged on the lines.",
+    "linkFailed": "The sale is recorded, but its link to the quote could not be saved."
+  },
+  "credit": {
+    "action": "Credit note",
+    "title": "Credit note on invoice {{number}}",
+    "kind": "Credit note type",
+    "goods": "Goods returned",
+    "financial": "Commercial gesture or discount",
+    "qtyFor": "Quantity taken back — {{name}}",
+    "atMost": "{{qty}} at most",
+    "restock": "Put back in stock",
+    "amount": "Credit note amount incl. tax",
+    "reason": "Reason",
+    "reasons": {
+      "defective": "Defective product",
+      "wrong_item": "Wrong item",
+      "price_adjustment": "Price correction",
+      "commercial_gesture": "Commercial gesture",
+      "cancellation": "Sale cancelled",
+      "other": "Other"
+    },
+    "refund": "Refund",
+    "refundReference": "Refund reference",
+    "quote": {
+      "total": "Credit note amount",
+      "tax": "Of which VAT",
+      "refund": "To give back to the customer",
+      "remaining": "Left on the invoice"
+    },
+    "submit": "Create the credit note",
+    "done": "Credit note {{number}} created.",
+    "invoiceCancelled": "Invoice {{number}} is fully cancelled by credit notes."
+  },
+  "warranty": {
+    "action": "Warranty certificate",
+    "title": "Warranty certificate",
+    "line": "Item",
+    "months": "{{months}} months",
+    "serials": "Serial numbers",
+    "language": "Certificate language",
+    "print": "Print",
+    "pdf": "PDF",
+    "printed": "Warranty certificate printed.",
+    "none": "No item of this document has a warranty period."
+  },
+  "statement": {
+    "printA4": "Print on A4",
+    "pdf": "PDF",
+    "language": "Statement language",
+    "printed": "Statement printed on A4."
+  },
+  "guard": {
+    "text": "Consumer information in Arabic: this document should be printed in Arabic (décret 13-378).",
+    "switch": "Print in Arabic"
+  }
+}

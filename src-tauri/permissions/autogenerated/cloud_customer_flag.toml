@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-cloud-customer-flag"
+description = "Enables the cloud_customer_flag command without any pre-configured scope."
+commands.allow = ["cloud_customer_flag"]
+
+[[permission]]
+identifier = "deny-cloud-customer-flag"
+description = "Denies the cloud_customer_flag command without any pre-configured scope."
+commands.deny = ["cloud_customer_flag"]

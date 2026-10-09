@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-products-bulk-edit"
+description = "Enables the products_bulk_edit command without any pre-configured scope."
+commands.allow = ["products_bulk_edit"]
+
+[[permission]]
+identifier = "deny-products-bulk-edit"
+description = "Denies the products_bulk_edit command without any pre-configured scope."
+commands.deny = ["products_bulk_edit"]

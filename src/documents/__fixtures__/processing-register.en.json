@@ -1,0 +1,125 @@
+{
+  "lang": "en",
+  "rtl": false,
+  "title": "Record of processing activities",
+  "seller": {
+    "name": "Supérette El Amel",
+    "nameAlt": "مغازة الأمل",
+    "legalForm": "SARL",
+    "activity": "Commerce de détail en alimentation générale",
+    "activityAlt": "تجارة التجزئة للمواد الغذائية العامة",
+    "capital": 100000000,
+    "address": "12 rue Larbi Ben M'hidi, Alger",
+    "wilaya": "Alger",
+    "phone": "023 45 67 89",
+    "email": null,
+    "ids": [
+      {
+        "kind": "rc",
+        "value": "16/00-1234567B26"
+      },
+      {
+        "kind": "nif",
+        "value": "000116001234567"
+      },
+      {
+        "kind": "nis",
+        "value": "000116001234567"
+      },
+      {
+        "kind": "ai",
+        "value": "16012345678"
+      },
+      {
+        "kind": "rib",
+        "value": "00799999001234567890"
+      }
+    ],
+    "vatExemptRef": null
+  },
+  "dpo": "Nadia Ferhat — dpo@exemple.dz",
+  "activities": [
+    [
+      "Customers and credit",
+      "Performance of the sale contract and legal obligation (invoices kept 10 years)",
+      "Identity, contact details, NIF, RC and AI, purchases, debts (credit)",
+      "10 years for sales documents; 3 years after the last purchase for the contact file"
+    ],
+    [
+      "Loyalty programme",
+      "Customer's consent",
+      "Points, loyalty card, purchases that earned points",
+      "Until consent is withdrawn or 3 years without a purchase"
+    ],
+    [
+      "Controlled medicines register",
+      "Legal obligation; health data (law 18-07, art. 18)",
+      "Prescriber, patient, prescription, medicine dispensed",
+      "The register's legal retention period"
+    ]
+  ],
+  "security": "Data kept on the shop's PC, PIN access and role-based rights, tamper-evident journal, encrypted backups at the owner's choice.",
+  "date": "28/09/2026",
+  "labels": {
+    "activity": "Processing activity",
+    "basis": "Legal basis",
+    "data": "Data processed",
+    "retention": "Retention",
+    "security": "Security measures",
+    "dpo": "Data protection officer",
+    "noDpo": "Not appointed"
+  },
+  "partyLabels": {
+    "number": "No.",
+    "date": "Date",
+    "validUntil": "Valid until",
+    "dueDate": "Due date",
+    "seller": "Seller",
+    "customer": "Customer",
+    "supplier": "Supplier",
+    "legalForm": "Legal form",
+    "activity": "Activity",
+    "capital": "Share capital",
+    "address": "Address",
+    "phone": "Phone",
+    "email": "Email",
+    "rc": "Trade register (RC)",
+    "aeCard": "Auto-entrepreneur card",
+    "nif": "Tax ID (NIF)",
+    "nis": "Statistical ID (NIS)",
+    "ai": "Tax article (AI)",
+    "nin": "National ID (NIN)",
+    "rib": "Bank account (RIB)",
+    "designation": "Description",
+    "qty": "Qty",
+    "unit": "Unit",
+    "unitPriceHt": "Unit price excl. tax",
+    "unitPriceTtc": "Unit price incl. tax",
+    "discount": "Discount",
+    "vatRate": "VAT",
+    "totalHt": "Amount excl. tax",
+    "totalTtc": "Amount incl. tax",
+    "subtotalHt": "Total excl. tax",
+    "discountTotal": "Total discounts",
+    "totalTtcLabel": "Total incl. tax",
+    "stampDuty": "Stamp duty",
+    "stampAbsorbed": "Stamp duty paid by the seller",
+    "rounding": "Rounding",
+    "netToPay": "Amount due",
+    "paymentMode": "Payment method",
+    "paid": "Paid",
+    "remaining": "Balance due",
+    "references": "Referenced documents",
+    "stampBox": "Stamp and signature",
+    "page": "Page",
+    "printedAt": "Printed on",
+    "from": "From",
+    "to": "To",
+    "driver": "Driver",
+    "vehicle": "Vehicle",
+    "note": "Notes",
+    "terms": "Terms",
+    "reason": "Reason",
+    "receivedBy": "Received by"
+  }
+}

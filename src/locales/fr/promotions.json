@@ -1,0 +1,105 @@
+{
+  "title": "Promotions",
+  "back": "Produits",
+  "new": "Nouvelle promotion",
+  "empty": "Aucune promotion. Créez-en une pour baisser des prix pendant une période.",
+  "saved": "Promotion enregistrée.",
+  "archive": "Archiver la promotion",
+  "archived": "Promotion archivée.",
+  "readOnly": "Seul un utilisateur autorisé à changer les prix peut modifier une promotion.",
+  "filters": {
+    "allCampaigns": "Toutes les campagnes",
+    "showArchived": "Afficher les archivées"
+  },
+  "columns": {
+    "name": "Promotion",
+    "campaign": "Campagne",
+    "discount": "Réduction",
+    "period": "Période",
+    "trigger": "Déclenchement",
+    "status": "État"
+  },
+  "campaigns": {
+    "promotion": "Promotion",
+    "solde": "Soldes",
+    "liquidation": "Liquidation",
+    "deballage": "Vente au déballage"
+  },
+  "kinds": {
+    "percent": "Pourcentage",
+    "amount": "Montant par article",
+    "buy_x_get_y": "Articles offerts",
+    "bundle_price": "Prix du lot"
+  },
+  "triggers": {
+    "auto": "Automatique à la caisse",
+    "manual": "Remise nommée (choisie par le caissier)"
+  },
+  "triggerTags": {
+    "auto": "Automatique",
+    "manual": "Remise nommée"
+  },
+  "scopes": {
+    "all": "Tous les produits",
+    "categories": "Des catégories",
+    "products": "Des produits"
+  },
+  "status": {
+    "active": "Active",
+    "inactive": "Désactivée",
+    "archived": "Archivée",
+    "outside": "Hors des périodes de soldes"
+  },
+  "describe": {
+    "buyGet": "{{buy}} achetés + {{get}} offerts",
+    "bundle": "{{qty}} pour {{price}}"
+  },
+  "period": {
+    "none": "Sans date",
+    "from": "À partir du {{from}}",
+    "to": "Jusqu'au {{to}}"
+  },
+  "fields": {
+    "nameFr": "Nom (français)",
+    "nameAr": "Nom (arabe)",
+    "nameEn": "Nom (anglais)",
+    "campaign": "Campagne",
+    "kind": "Type de promotion",
+    "percent": "Réduction (%)",
+    "amount": "Remise par article (DA)",
+    "buyQty": "Articles achetés",
+    "getQty": "Articles offerts",
+    "bundleQty": "Articles du lot",
+    "bundlePrice": "Prix du lot (DA)",
+    "scope": "S'applique à",
+    "categories": "Catégories",
+    "trigger": "Déclenchement",
+    "priority": "Priorité",
+    "minQty": "Quantité minimum",
+    "startsOn": "Du",
+    "endsOn": "Au",
+    "active": "Active"
+  },
+  "hints": {
+    "campaign": "Soldes, liquidation et déballage ont une date de début et de fin. Ils gardent le prix pratiqué avant la campagne, pour la déclaration.",
+    "trigger": "Seule une promotion en pourcentage, hors soldes, peut être une remise nommée.",
+    "priority": "Quand plusieurs promotions visent un article, la plus haute l'emporte.",
+    "minQty": "La promotion s'applique à partir de cette quantité sur la ligne."
+  },
+  "optional": "(facultatif)",
+  "outsideWindow": "Ces dates sont hors des périodes de soldes fixées par le wali. Vérifiez-les, ou ajoutez la période dans Réglages › Ventes et caisse.",
+  "errors": {
+    "percent": "Saisissez une réduction entre 0,01 et 100 %.",
+    "amount": "Saisissez un montant supérieur à zéro, comme 50 ou 49,90.",
+    "pieces": "Saisissez un nombre entier d'articles, 1 au moins.",
+    "bundle": "Un lot compte 2 articles au moins.",
+    "priority": "Saisissez une priorité entre 0 et 100.",
+    "categories": "Choisissez au moins une catégorie.",
+    "products": "Ajoutez au moins un produit."
+  },
+  "removeProduct": "Retirer {{name}}",
+  "declaration": {
+    "title": "Déclaration de soldes",
+    "body": "Les produits mis en vente, leur prix pratiqué avant la campagne et les quantités, pour la déclaration à la direction du commerce."
+  }
+}

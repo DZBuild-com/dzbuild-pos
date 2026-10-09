@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-wholesale-pack-create"
+description = "Enables the wholesale_pack_create command without any pre-configured scope."
+commands.allow = ["wholesale_pack_create"]
+
+[[permission]]
+identifier = "deny-wholesale-pack-create"
+description = "Denies the wholesale_pack_create command without any pre-configured scope."
+commands.deny = ["wholesale_pack_create"]

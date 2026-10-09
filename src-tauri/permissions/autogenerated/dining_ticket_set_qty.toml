@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-dining-ticket-set-qty"
+description = "Enables the dining_ticket_set_qty command without any pre-configured scope."
+commands.allow = ["dining_ticket_set_qty"]
+
+[[permission]]
+identifier = "deny-dining-ticket-set-qty"
+description = "Denies the dining_ticket_set_qty command without any pre-configured scope."
+commands.deny = ["dining_ticket_set_qty"]

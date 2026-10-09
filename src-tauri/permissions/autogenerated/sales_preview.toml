@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-sales-preview"
+description = "Enables the sales_preview command without any pre-configured scope."
+commands.allow = ["sales_preview"]
+
+[[permission]]
+identifier = "deny-sales-preview"
+description = "Denies the sales_preview command without any pre-configured scope."
+commands.deny = ["sales_preview"]

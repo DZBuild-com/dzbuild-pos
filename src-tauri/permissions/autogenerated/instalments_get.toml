@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-instalments-get"
+description = "Enables the instalments_get command without any pre-configured scope."
+commands.allow = ["instalments_get"]
+
+[[permission]]
+identifier = "deny-instalments-get"
+description = "Denies the instalments_get command without any pre-configured scope."
+commands.deny = ["instalments_get"]

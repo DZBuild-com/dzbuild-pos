@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-scale-latest"
+description = "Enables the scale_latest command without any pre-configured scope."
+commands.allow = ["scale_latest"]
+
+[[permission]]
+identifier = "deny-scale-latest"
+description = "Denies the scale_latest command without any pre-configured scope."
+commands.deny = ["scale_latest"]

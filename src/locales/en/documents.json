@@ -1,0 +1,40 @@
+{
+  "title": "Receipts",
+  "empty": "No receipt matches these filters.",
+  "filters": {
+    "number": "Receipt no.",
+    "date": "Business day",
+    "type": "Type",
+    "all": "All"
+  },
+  "columns": {
+    "number": "No.",
+    "date": "Date and time",
+    "type": "Type",
+    "cashier": "Cashier",
+    "total": "Amount"
+  },
+  "types": {
+    "ticket": "Receipt",
+    "return_note": "Return note",
+    "invoice": "Invoice",
+    "credit_note": "Credit note",
+    "proforma": "Proforma invoice",
+    "quote": "Quote",
+    "delivery_note": "Delivery note",
+    "customer_order": "Customer order",
+    "purchase_order": "Purchase order",
+    "goods_receipt": "Goods receipt",
+    "supplier_invoice": "Supplier invoice",
+    "transfer": "Transfer note"
+  },
+  "sheet": {
+    "title": "Receipt {{number}}",
+    "total": "Amount due",
+    "hash": "Check code:",
+    "printLang": "Reprint language",
+    "reprint": "Reprint (DUPLICATE)",
+    "reprinted": "Duplicate sent to {{printer}}",
+    "return": "Take back items of this receipt"
+  }
+}

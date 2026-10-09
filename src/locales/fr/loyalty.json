@@ -1,0 +1,116 @@
+{
+  "title": "Fidélité et bons",
+  "tabs": {
+    "label": "Fidélité et bons",
+    "vouchers": "Bons",
+    "loyalty": "Fidélité"
+  },
+  "card": {
+    "title": "Carte fidélité",
+    "enrol": "Inscrire au programme",
+    "code": "Code de la carte",
+    "codeHint": "Scannez la carte ou tapez son code (8 à 20 lettres ou chiffres).",
+    "generate": "Générer un code",
+    "block": "Bloquer la carte",
+    "blockHint": "Carte perdue ou volée : le client garde ses points et reçoit une nouvelle carte.",
+    "none": "Pas encore de carte",
+    "enrolled": "Carte {{code}} enregistrée.",
+    "blocked": "Carte {{code}} bloquée."
+  },
+  "account": {
+    "balance": "Solde de points",
+    "points": "{{count}} points",
+    "expiring": "{{count}} points expirent avant le {{date}}",
+    "pointValue": "Un point vaut {{amount}}",
+    "notRedeemable": "Pas encore assez de points pour les transformer en chèque fidélité.",
+    "redeem": "Échanger des points",
+    "adjust": "Ajuster",
+    "note": "Motif"
+  },
+  "redeem": {
+    "title": "Échanger des points",
+    "points": "Points à échanger",
+    "max": "Au plus {{max}} points.",
+    "range": "Entre {{min}} et {{max}} points.",
+    "value": "Chèque fidélité de {{amount}}",
+    "submit": "Créer le chèque fidélité",
+    "done": "Chèque fidélité {{code}} créé, valable jusqu'au {{date}}.",
+    "notPrinted": "Le chèque n'a pas été imprimé : réimprimez-le."
+  },
+  "adjust": {
+    "title": "Ajuster les points",
+    "direction": "Sens de l'ajustement",
+    "add": "Ajouter des points",
+    "remove": "Retirer des points",
+    "points": "Nombre de points",
+    "save": "Enregistrer l'ajustement",
+    "done": "Points ajustés."
+  },
+  "entries": {
+    "title": "Mouvements de points",
+    "date": "Date",
+    "kind": "Mouvement",
+    "points": "Points",
+    "ref": "Ticket ou bon",
+    "expires": "Expirent le",
+    "none": "Aucun mouvement de points pour ce client.",
+    "earn": "Gagnés",
+    "redeem": "Échangés",
+    "expire": "Expirés",
+    "reversal": "Repris (retour)",
+    "adjust": "Ajustés"
+  },
+  "sell": {
+    "title": "Vendre un bon cadeau",
+    "amount": "Montant du bon",
+    "buyer": "Acheteur (facultatif)",
+    "receive": "À encaisser : {{amount}}",
+    "toReceive": "À encaisser : {{amount}} (timbre {{duty}})",
+    "submit": "Encaisser et imprimer",
+    "done": "Bon cadeau {{code}} vendu, valable jusqu'au {{date}}.",
+    "notPrinted": "Le bon n'a pas été imprimé : réimprimez-le."
+  },
+  "list": {
+    "title": "Bons",
+    "outstanding": "Reste dû aux porteurs : {{amount}}",
+    "reprint": "Réimprimer",
+    "reprinted": "Bon {{code}} envoyé à l'imprimante.",
+    "search": "Code, code-barres ou acheteur",
+    "kind": "Type",
+    "status": "État",
+    "allKinds": "Tous les types",
+    "allStatuses": "Tous les états",
+    "empty": "Aucun bon. Vendez un bon cadeau depuis le menu de la caisse (Échap).",
+    "columns": {
+      "code": "Code",
+      "kind": "Type",
+      "issued": "Émis le",
+      "expires": "Expire le",
+      "initial": "Montant",
+      "balance": "Solde",
+      "status": "État",
+      "buyer": "Acheteur"
+    }
+  },
+  "kinds": {
+    "gift": "Bon cadeau",
+    "exchange": "Bon d'échange",
+    "loyalty": "Chèque fidélité"
+  },
+  "statuses": {
+    "active": "Valable",
+    "spent": "Utilisé",
+    "expired": "Expiré"
+  },
+  "settings": {
+    "title": "Règles de fidélité",
+    "pointsPer100": "Points par tranche de 100 DA",
+    "pointValue": "Valeur d'un point",
+    "minRedeem": "Minimum pour échanger",
+    "validity": "Validité des points (mois)",
+    "validityHint": "0 : les points n'expirent jamais.",
+    "voucherValidity": "Validité des bons (mois)",
+    "save": "Enregistrer les règles",
+    "saved": "Règles de fidélité enregistrées."
+  }
+}

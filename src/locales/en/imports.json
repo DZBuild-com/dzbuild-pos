@@ -1,0 +1,152 @@
+{
+  "title": "Import",
+  "entity": "Data to import",
+  "entities": {
+    "products": "Products",
+    "categories": "Categories",
+    "customers": "Customers",
+    "suppliers": "Suppliers",
+    "opening_stock": "Opening stock",
+    "customer_balances": "Customer opening balances",
+    "supplier_balances": "Supplier opening balances",
+    "count_lines": "Counted quantities"
+  },
+  "steps": {
+    "label": "Import steps",
+    "file": "File",
+    "mapping": "Columns",
+    "check": "Check",
+    "import": "Import"
+  },
+  "file": {
+    "intro": "Choose an Excel (xlsx, xls, ods) or CSV file. Column titles can be in Arabic, French or English. The template shows the expected columns.",
+    "choose": "Choose the file",
+    "template": "Download the template",
+    "templateSaved": "Template saved.",
+    "name": "File",
+    "sheet": "Sheet",
+    "sheetOption": "{{name}} ({{rows}} rows)",
+    "encoding": "Encoding",
+    "delimiter": "Separator",
+    "reading": "Reading the file…"
+  },
+  "mapping": {
+    "intro": "Say what each column of the file holds. Fields followed by * are required.",
+    "column": "Column {{n}}",
+    "untitled": "Untitled",
+    "samples": "First values",
+    "ignore": "Ignore",
+    "required": "{{label}} *",
+    "missing": "Required fields without a column: {{fields}}.",
+    "headerRow": "Title row",
+    "headerRowHelp": "Found automatically. The rows above it are ignored.",
+    "policy": "Records already saved",
+    "policies": {
+      "create_only": "Create only",
+      "upsert": "Create and update",
+      "sync": "Make the list match the file"
+    },
+    "policyHelp": {
+      "create_only": "Only new records are created. A row matching an existing record is skipped and reported.",
+      "upsert": "New records are created, existing ones are updated with the file's values.",
+      "sync": "Like “Create and update”, then the products that are not in the file are archived (never deleted)."
+    },
+    "posting": "Each row adds an opening entry. Nothing is changed or deleted, and the import can be undone the same day.",
+    "location": "Location",
+    "defaultLocation": "Default location",
+    "locationHelp": "Receives the rows of the file that have no location column.",
+    "count": "Stock count",
+    "countChoose": "Choose a stock count",
+    "countNone": "No stock count is open. Start one in Stock › Stock counts.",
+    "countOption": "{{location}}, started on {{date}}"
+  },
+  "check": {
+    "intro": "The check reads the whole file and saves nothing.",
+    "run": "Check the file",
+    "changed": "The columns changed since the check. Check the file again.",
+    "counts": {
+      "label": "Check result",
+      "total": "Rows",
+      "create": "To create",
+      "update": "To update",
+      "skip": "Skipped",
+      "fail": "Refused",
+      "archive": "To archive"
+    },
+    "problems": "Problems",
+    "none": "No problems: the file is ready to import.",
+    "row": "Row {{row}}",
+    "columns": {
+      "row": "Row",
+      "field": "Column",
+      "value": "Value",
+      "problem": "Problem"
+    },
+    "report": "Download the error report",
+    "reportSaved": "Error report saved.",
+    "truncated": "Only the first problems are listed. Fix them, then check the file again.",
+    "stockKept": "Products missing from the file kept for their stock (not archived): {{n}}. Bring their stock to zero to be able to archive them.",
+    "stockKeptMore": "And others: see the stock levels."
+  },
+  "apply": {
+    "run": "Import",
+    "needsCheck": "Check the file with these columns before importing.",
+    "ready": "Refused rows will not be imported.",
+    "progress": "Importing",
+    "progressRows": "{{done}} rows of {{total}}",
+    "another": "Import another file"
+  },
+  "done": {
+    "summary": "{{created}} created, {{updated}} updated, {{skipped}} skipped, {{failed}} refused",
+    "failed": "The import stopped before the end. The rows already imported are kept; you can undo this import.",
+    "undo": "Undo this import",
+    "undoTitle": "Undo this import?",
+    "undoBody": "Records created by the import will be archived, changed records get their previous values back, and opening balances are cancelled.",
+    "keep": "Keep the import",
+    "undone": "Import undone."
+  },
+  "jobs": {
+    "title": "Previous imports",
+    "empty": "No imports yet.",
+    "columns": {
+      "date": "Date",
+      "entity": "Data",
+      "file": "File",
+      "status": "Status",
+      "result": "Result",
+      "actions": "Actions"
+    },
+    "status": {
+      "running": "Running",
+      "done": "Done",
+      "failed": "Stopped",
+      "undone": "Undone"
+    }
+  },
+  "problems": {
+    "required": "This column is required and the cell is empty.",
+    "too_long": "Text too long.",
+    "number_invalid": "Not a valid number.",
+    "too_many_decimals": "Too many digits after the decimal separator.",
+    "ambiguous_separator": "Ambiguous separator: decimal or thousands? Write 1234.50 with no thousands separator.",
+    "negative": "A negative value is not allowed here.",
+    "date_invalid": "Invalid date: write DD/MM/YYYY.",
+    "choice_invalid": "Unknown value: use one of the values listed in the help sheet.",
+    "bool_invalid": "Write yes or no.",
+    "phone_invalid": "Not a valid Algerian phone number.",
+    "nif_invalid": "Invalid NIF.",
+    "email_invalid": "Invalid e-mail address.",
+    "not_found": "No product, customer or supplier matches this row.",
+    "duplicate_in_file": "This row repeats an earlier row of the file.",
+    "already_exists": "Already exists: row skipped (create only).",
+    "unit_not_found": "Unknown unit.",
+    "tax_rate_not_found": "Unknown VAT rate.",
+    "location_not_found": "Unknown location.",
+    "barcode_taken": "This barcode already belongs to another product.",
+    "reference_taken": "This reference already belongs to another product.",
+    "phone_taken": "This phone number already belongs to another customer.",
+    "opening_already_set": "The opening balance is already set.",
+    "value_invalid": "Invalid value.",
+    "rejected": "Row refused."
+  }
+}

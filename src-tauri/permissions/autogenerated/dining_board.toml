@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-dining-board"
+description = "Enables the dining_board command without any pre-configured scope."
+commands.allow = ["dining_board"]
+
+[[permission]]
+identifier = "deny-dining-board"
+description = "Denies the dining_board command without any pre-configured scope."
+commands.deny = ["dining_board"]

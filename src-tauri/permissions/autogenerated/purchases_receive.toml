@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-purchases-receive"
+description = "Enables the purchases_receive command without any pre-configured scope."
+commands.allow = ["purchases_receive"]
+
+[[permission]]
+identifier = "deny-purchases-receive"
+description = "Denies the purchases_receive command without any pre-configured scope."
+commands.deny = ["purchases_receive"]

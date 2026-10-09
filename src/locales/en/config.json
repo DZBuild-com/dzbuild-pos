@@ -1,0 +1,142 @@
+{
+  "sections": {
+    "payments": "Payments",
+    "privacy": "Privacy",
+    "keys": "Shortcuts",
+    "regulatory": "Regulatory data"
+  },
+  "users": {
+    "duplicate": "Duplicate",
+    "duplicateTitle": "New user like {{name}}",
+    "duplicateHint": "They get {{name}}'s role, language and maximum discount, with their own name and PIN.",
+    "duplicateSave": "Create the user"
+  },
+  "roles": {
+    "duplicate": "Duplicate",
+    "duplicateTitle": "New role like {{name}}",
+    "duplicateHint": "The new role gets the same permissions; you can change them afterwards.",
+    "duplicateSave": "Create the role",
+    "duplicated": "Role created."
+  },
+  "backups": {
+    "hourly": {
+      "label": "Hourly copies while the till is open",
+      "hint": "One copy an hour while a cash session is open on this PC; beyond the number chosen, the day's oldest are removed."
+    }
+  },
+  "dayCutoff": {
+    "label": "Business day changes at",
+    "hint": "Sales made before this hour count for the previous day (never for the previous year)."
+  },
+  "keys": {
+    "title": "Till keys",
+    "intro": "Every action of the sale screen has its key: an F key (except F11, kept for the scale), Ctrl + a digit, or {{escape}}.",
+    "action": "Action",
+    "key": "Key",
+    "change": "Change",
+    "changeFor": "Change the key of {{action}}",
+    "press": "Press the new key…",
+    "taken": "{{key}} is already the key of {{action}}.",
+    "save": "Save the keys",
+    "saved": "Keys saved",
+    "reset": "Restore the default keys",
+    "resetDone": "Default keys restored",
+    "actions": {
+      "help": "Help",
+      "search": "Search a product",
+      "customer": "Customer",
+      "price_check": "Check a price",
+      "discount": "Discount",
+      "hold": "Put on hold",
+      "held": "Tickets on hold",
+      "return": "Return",
+      "drawer": "Drawer",
+      "repeat_last": "Repeat the last line",
+      "checkout": "Take payment",
+      "menu": "Menu",
+      "floor": "Floor plan",
+      "flexy": "Flexy top-up",
+      "gift_voucher": "Sell a gift voucher",
+      "serial": "Serial number",
+      "department_keys": "Department keys"
+    }
+  },
+  "payments": {
+    "types": {
+      "title": "Payment types",
+      "intro": "Extra payment buttons for the till. Each one is counted as one of the usual methods (for example, a CCP direct debit counted as a transfer).",
+      "add": "New payment type",
+      "edit": "Edit the payment type",
+      "code": "Code",
+      "codeHint": "Lowercase letters without accents, digits and _ (24 at most).",
+      "codeInvalid": "Lowercase letters, digits and _ only (1 to 24).",
+      "nameAr": "Name in Arabic",
+      "nameFr": "Name in French",
+      "nameEn": "Name in English",
+      "base": "Settlement method",
+      "reference": "Reference required at checkout",
+      "referenceBadge": "Reference",
+      "order": "Display order",
+      "save": "Save the type",
+      "saved": "Payment type saved",
+      "archive": "Archive",
+      "archived": "Payment type archived",
+      "archivedBadge": "Archived",
+      "showArchived": "Show archived types",
+      "empty": "No extra payment type. The usual methods stay at the till."
+    },
+    "qr": {
+      "title": "BaridiMob QR (BaridPay)",
+      "intro": "The customer screen shows this QR when BaridiMob payment is chosen.",
+      "text": "QR text",
+      "hint": "The text of your BaridPay merchant QR (10 to 512 characters).",
+      "invalid": "The text must have 10 to 512 characters.",
+      "save": "Save the QR",
+      "saved": "QR saved",
+      "clear": "Remove the QR",
+      "cleared": "QR removed",
+      "preview": "Preview on the customer screen",
+      "none": "No QR: the customer screen shows none."
+    }
+  },
+  "regulatory": {
+    "title": "Regulatory pack",
+    "intro": "VAT rates, the stamp duty scale, regulated prices, the nisab and the wilayas come from a file signed by DZBuild. A new pack is installed from a USB stick and applies at the next start.",
+    "inUse": "Pack in use",
+    "id": "Identifier",
+    "version": "Version",
+    "validFrom": "In force since",
+    "notes": "Sources",
+    "installed": "Packs installed on this PC",
+    "installedEmpty": "No pack installed: the software uses the one it ships with.",
+    "file": "File",
+    "install": "Install a signed pack…",
+    "installHint": "Choose the pack's .json file, then its .sig file (DZBuild's signature). A pack without DZBuild's signature is refused.",
+    "done": "Installed: it will apply at the next start.",
+    "restart": "Restart to apply it",
+    "restarting": "DZBuild POS is restarting…"
+  },
+  "hardware": {
+    "mode": "Print mode",
+    "modes": {
+      "raw": "Straight to the printer (ESC/POS, recommended)",
+      "rawHint": "The software sends the ticket to the printer, Arabic included.",
+      "driver": "Windows driver (pages)",
+      "driverHint": "For a printer that refuses direct printing: the ticket prints as a page through Windows."
+    },
+    "rollWidth": "Roll width (pages)",
+    "kitchenTab": "Kitchen",
+    "kitchen": {
+      "title": "Kitchen printers",
+      "hint": "Each preparation station prints its tickets on the chosen printer; without one, on the fallback printer, else on the receipt printer. A network kitchen printer serves every till.",
+      "printer": "Station printer",
+      "default": "Fallback or receipt printer",
+      "copies": "Copies",
+      "buzzer": "Buzzer after each ticket",
+      "fallback": "Fallback printer",
+      "receiptPrinter": "The receipt printer",
+      "noPrinter": "First add a printer on the “Receipt printers” tab.",
+      "noStation": "No preparation station: create them in Restaurant › Preparation stations."
+    }
+  }
+}

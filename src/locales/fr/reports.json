@@ -1,0 +1,71 @@
+{
+  "title": "Rapports",
+  "search": "Rechercher un rapport",
+  "noMatch": "Aucun rapport ne correspond à cette recherche.",
+  "none": "Votre rôle ne peut ouvrir aucun rapport. Demandez au propriétaire d'en ajouter un.",
+  "back": "Tous les rapports",
+  "unavailable": {
+    "title": "Rapport indisponible",
+    "body": "Ce rapport n'existe pas ou votre rôle ne permet pas de l'ouvrir."
+  },
+  "asOf": "À la date du",
+  "truncated": "Seules les {{rows}} premières lignes sont affichées : réduisez la période ou ajoutez un filtre.",
+  "required": {
+    "promotion": "Choisissez la promotion pour afficher sa déclaration.",
+    "count": "Choisissez l'inventaire pour afficher ses écarts."
+  },
+  "filters": {
+    "grouping": "Regrouper par",
+    "groupings": { "day": "Jour", "week": "Semaine", "month": "Mois", "year": "Année" },
+    "terminal": "Poste",
+    "allTerminals": "Tous les postes",
+    "thisTerminal": "Ce poste ({{code}})",
+    "user": "Caissier",
+    "allUsers": "Tous les caissiers",
+    "allCategories": "Toutes les catégories",
+    "product": "Produit",
+    "customer": "Client",
+    "searchHint": "Tous par défaut : tapez au moins 2 lettres pour en choisir un.",
+    "results": "Résultats",
+    "clear": "Retirer le filtre {{name}}",
+    "allSuppliers": "Tous les fournisseurs",
+    "promotion": "Promotion",
+    "choosePromotion": "Choisissez une promotion",
+    "count": "Inventaire",
+    "chooseCount": "Choisissez un inventaire",
+    "countOption": "{{location}}, {{date}} ({{status}})"
+  },
+  "chart": {
+    "title": "Graphique : {{value}}",
+    "first": "Le graphique montre les {{rows}} premières lignes du tableau."
+  },
+  "dashboard": {
+    "day": "Journée du {{date}}",
+    "today": "Ventes du jour",
+    "tickets": "Tickets",
+    "averageTicket": "Panier moyen",
+    "returns": "Retours",
+    "yesterday": "Hier",
+    "month": "Mois en cours",
+    "margin": "Marge du jour",
+    "receivables": "Ce que les clients vous doivent",
+    "payables": "Ce que vous devez aux fournisseurs",
+    "lowStock": "Stock bas",
+    "expiring": "Lots à surveiller",
+    "openTills": "Caisses ouvertes",
+    "lastDays": "Ventes des 14 derniers jours",
+    "top": "Meilleures ventes du jour",
+    "methods": "Encaissements du jour",
+    "openReport": "Voir le rapport",
+    "noSales": "Aucune vente aujourd'hui.",
+    "columns": {
+      "product": "Produit",
+      "qty": "Quantité",
+      "netTtc": "Net TTC",
+      "method": "Mode de paiement",
+      "net": "Net"
+    },
+    "noAccess": "Vous n'avez pas accès au tableau de bord.",
+    "noAccessBody": "Demandez au propriétaire d'ajouter « Voir les rapports de ventes » à votre rôle."
+  }
+}

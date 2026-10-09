@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-sales-create"
+description = "Enables the sales_create command without any pre-configured scope."
+commands.allow = ["sales_create"]
+
+[[permission]]
+identifier = "deny-sales-create"
+description = "Denies the sales_create command without any pre-configured scope."
+commands.deny = ["sales_create"]

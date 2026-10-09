@@ -1,0 +1,152 @@
+{
+  "lang": "ar",
+  "rtl": true,
+  "title": "كشف الحساب",
+  "seller": {
+    "name": "مغازة الأمل",
+    "nameAlt": "مغازة الأمل",
+    "legalForm": "SARL",
+    "activity": "تجارة التجزئة للمواد الغذائية العامة",
+    "activityAlt": "تجارة التجزئة للمواد الغذائية العامة",
+    "capital": 100000000,
+    "address": "12 rue Larbi Ben M'hidi, Alger",
+    "wilaya": "الجزائر",
+    "phone": "023 45 67 89",
+    "email": null,
+    "ids": [
+      {
+        "kind": "rc",
+        "value": "16/00-1234567B26"
+      },
+      {
+        "kind": "nif",
+        "value": "000116001234567"
+      },
+      {
+        "kind": "nis",
+        "value": "000116001234567"
+      },
+      {
+        "kind": "ai",
+        "value": "16012345678"
+      },
+      {
+        "kind": "rib",
+        "value": "00799999001234567890"
+      }
+    ],
+    "vatExemptRef": null
+  },
+  "party": {
+    "name": "SARL Amine",
+    "code": "C00012",
+    "address": "5 rue Didouche Mourad, Alger",
+    "nif": "000016001234567",
+    "rc": null,
+    "isSupplier": false
+  },
+  "period": "01/09/2026 – 30/09/2026",
+  "opening": 150000,
+  "lines": [
+    {
+      "date": "05/09/2026",
+      "label": "بيع بالكريدي",
+      "number": "FA2026-000045",
+      "debit": 2280000,
+      "credit": 0,
+      "balance": 2430000
+    },
+    {
+      "date": "12/09/2026",
+      "label": "دفعة",
+      "number": null,
+      "debit": 0,
+      "credit": 1000000,
+      "balance": 1430000
+    },
+    {
+      "date": "20/09/2026",
+      "label": "إرجاع إلى الحساب",
+      "number": "AV2026-000003",
+      "debit": 0,
+      "credit": 339150,
+      "balance": 1090850
+    }
+  ],
+  "totalDebit": 2280000,
+  "totalCredit": 1339150,
+  "closing": 1090850,
+  "labels": {
+    "date": "التاريخ",
+    "label": "العملية",
+    "number": "الوثيقة",
+    "debit": "مدين",
+    "credit": "دائن",
+    "balance": "الرصيد",
+    "opening": "الرصيد في بداية الفترة",
+    "closing": "الرصيد في نهاية الفترة",
+    "period": "الفترة",
+    "printedAt": "طُبع في",
+    "customer": "الزبون",
+    "supplier": "المورّد",
+    "code": "الرمز",
+    "nif": "رقم التعريف الجبائي",
+    "rc": "السجل التجاري",
+    "address": "العنوان",
+    "total": "المجموع"
+  },
+  "partyLabels": {
+    "number": "رقم",
+    "date": "التاريخ",
+    "validUntil": "صالح إلى غاية",
+    "dueDate": "تاريخ التسديد",
+    "seller": "البائع",
+    "customer": "الزبون",
+    "supplier": "المورّد",
+    "legalForm": "الشكل القانوني",
+    "activity": "النشاط",
+    "capital": "رأس المال الاجتماعي",
+    "address": "العنوان",
+    "phone": "الهاتف",
+    "email": "البريد الإلكتروني",
+    "rc": "السجل التجاري",
+    "aeCard": "بطاقة المقاول الذاتي",
+    "nif": "رقم التعريف الجبائي",
+    "nis": "رقم التعريف الإحصائي",
+    "ai": "رقم المادة الضريبية",
+    "nin": "رقم التعريف الوطني",
+    "rib": "رقم الحساب البنكي",
+    "designation": "التعيين",
+    "qty": "الكمية",
+    "unit": "الوحدة",
+    "unitPriceHt": "سعر الوحدة خارج الرسوم",
+    "unitPriceTtc": "سعر الوحدة بكل الرسوم",
+    "discount": "التخفيض",
+    "vatRate": "نسبة الرسم",
+    "totalHt": "المبلغ خارج الرسوم",
+    "totalTtc": "المبلغ بكل الرسوم",
+    "subtotalHt": "المجموع خارج الرسوم",
+    "discountTotal": "مجموع التخفيضات",
+    "totalTtcLabel": "المجموع بكل الرسوم",
+    "stampDuty": "حقوق الطابع",
+    "stampAbsorbed": "حقوق الطابع على عاتق البائع",
+    "rounding": "التقريب",
+    "netToPay": "الصافي للدفع",
+    "paymentMode": "طريقة الدفع",
+    "paid": "المدفوع",
+    "remaining": "الباقي المستحق",
+    "references": "الوثائق المرجعية",
+    "stampBox": "الختم والإمضاء",
+    "page": "صفحة",
+    "printedAt": "طُبع في",
+    "from": "من",
+    "to": "إلى",
+    "driver": "السائق",
+    "vehicle": "المركبة",
+    "note": "ملاحظات",
+    "terms": "الشروط",
+    "reason": "السبب",
+    "receivedBy": "استلمه"
+  },
+  "printedAt": "28/09/2026 10:15"
+}

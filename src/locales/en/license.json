@@ -1,0 +1,91 @@
+{
+  "activation": {
+    "title": "Activate DZBuild POS",
+    "intro": "This PC needs a DZBuild POS licence: a 7-day trial or a lifetime licence. Send this PC's code to DZBuild, then paste the key you receive.",
+    "language": "Language",
+    "step1": "1. Send this code to DZBuild",
+    "step2": "2. Paste the key you received",
+    "scan": "Scan it with your phone to send it by WhatsApp.",
+    "scanCode": "Scan it with your phone to copy the code.",
+    "demo": "Try the demo shop first",
+    "demoHint": "No licence and no fiscal value: to discover the software.",
+    "openingDemo": "Opening the demo shop…"
+  },
+  "device": {
+    "label": "This PC's code",
+    "copy": "Copy the code",
+    "copied": "Code copied",
+    "qr": "QR code of this PC's code"
+  },
+  "form": {
+    "key": "Licence key",
+    "keyHint": "It starts with DZL1. Paste all of it, even over several lines.",
+    "activate": "Activate the licence",
+    "activating": "Activating…",
+    "file": "Load a .dzlic file",
+    "done": "Licence activated"
+  },
+  "seller": {
+    "title": "To get a licence: {{seller}}",
+    "whatsapp": "WhatsApp:",
+    "phone": "Phone:",
+    "web": "Website:"
+  },
+  "state": {
+    "expired": "This PC's trial has ended. Activate a lifetime licence to sell again.",
+    "otherDevice": "The licence found belongs to another PC ({{code}}): this PC changed (disk, Windows or processor). Send the new code below.",
+    "tampered": "This PC's licence data was changed. Paste your key again to activate it again.",
+    "refused": "This PC's licence is no longer accepted. Contact DZBuild for a new key.",
+    "deviceUnreadable": "Windows does not give this PC's identity. Restart it; if it continues, contact DZBuild support."
+  },
+  "banner": {
+    "readOnly": "Read-only mode: sales and changes are blocked. Reports, exports and backups stay available.",
+    "trial_zero": "Trial: last day.",
+    "trial_one": "Trial: {{count}} day left.",
+    "trial_two": "Trial: {{count}} days left.",
+    "trial_few": "Trial: {{count}} days left.",
+    "trial_many": "Trial: {{count}} days left.",
+    "trial_other": "Trial: {{count}} days left.",
+    "activate": "Activate a licence",
+    "lifetime": "Move to a lifetime licence"
+  },
+  "till": {
+    "title": "Till in read-only mode",
+    "body": "This PC cannot sell without a valid licence. Reports, exports and backups stay available in the menu.",
+    "ask": "Ask the owner to activate this PC's licence.",
+    "backOffice": "Back to the menu"
+  },
+  "settings": {
+    "title": "This PC's licence",
+    "status": "Status",
+    "states": {
+      "demo": "Demo shop (no licence)",
+      "unlicensed": "No licence",
+      "active": "Active",
+      "expired": "Trial ended",
+      "refused": "Refused",
+      "otherDevice": "Another PC's licence",
+      "tampered": "Data altered",
+      "deviceUnreadable": "PC identity unreadable"
+    },
+    "kind": "Kind",
+    "kinds": { "trial": "Trial", "lifetime": "Lifetime" },
+    "customer": "Customer",
+    "issued": "Issued on",
+    "expires": "Ends",
+    "never": "Never (lifetime licence)",
+    "daysLeft_zero": "no day left",
+    "daysLeft_one": "{{count}} day left",
+    "daysLeft_two": "{{count}} days left",
+    "daysLeft_few": "{{count}} days left",
+    "daysLeft_many": "{{count}} days left",
+    "daysLeft_other": "{{count}} days left",
+    "replace": "Activate another key",
+    "remove": "Remove this PC's licence",
+    "removeTitle": "Remove this PC's licence?",
+    "removeBody": "This PC will be read-only: no more sales or changes. The key stays valid and can be activated again.",
+    "pin": "Your PIN",
+    "confirmRemove": "Remove the licence",
+    "removed": "Licence removed: this PC is read-only."
+  }
+}

@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-lan-verify-journals"
+description = "Enables the lan_verify_journals command without any pre-configured scope."
+commands.allow = ["lan_verify_journals"]
+
+[[permission]]
+identifier = "deny-lan-verify-journals"
+description = "Denies the lan_verify_journals command without any pre-configured scope."
+commands.deny = ["lan_verify_journals"]

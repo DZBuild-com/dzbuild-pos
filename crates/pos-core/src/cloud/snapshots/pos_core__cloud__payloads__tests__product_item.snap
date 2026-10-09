@@ -1,0 +1,19 @@
+---
+source: crates/pos-core/src/cloud/payloads.rs
+expression: stable(json)
+---
+{
+  "barcode": "6130000012345",
+  "external_id": "[stable]",
+  "inventory": {
+    "barcode": "6130000012345",
+    "sku": "SAC-CUIR-NOIR",
+    "track_stock": true
+  },
+  "name": "حقيبة جلد سوداء",
+  "pricing": {
+    "price": "4500.00"
+  },
+  "sku": "SAC-CUIR-NOIR",
+  "status": "active"
+}

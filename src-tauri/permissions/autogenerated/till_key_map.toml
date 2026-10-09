@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-till-key-map"
+description = "Enables the till_key_map command without any pre-configured scope."
+commands.allow = ["till_key_map"]
+
+[[permission]]
+identifier = "deny-till-key-map"
+description = "Denies the till_key_map command without any pre-configured scope."
+commands.deny = ["till_key_map"]

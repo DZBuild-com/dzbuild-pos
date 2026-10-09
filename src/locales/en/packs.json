@@ -1,0 +1,249 @@
+{
+  "saved": "Saved",
+  "gate": {
+    "title": "This module is off.",
+    "body": "Turn it on in Settings › Activity and modules to use this screen.",
+    "open": "Open Activity and modules"
+  },
+  "template": {
+    "ready": "Ready to use",
+    "growing": "Growing soon",
+    "modules": "Modules turned on",
+    "tillMode": "Till screen",
+    "seed": "Create the template's categories and services",
+    "apply": "Apply the template",
+    "change": "Change activity…",
+    "customised": "Customised",
+    "reset": "Back to the template's modules",
+    "pick": "Choose the closest activity: it turns the right modules on. You can change it later in Settings › Activity and modules.",
+    "changeTitle": "Change activity",
+    "categories": "Template categories",
+    "services": "Template services",
+    "resets": "The modules and the till screen become the template's. Nothing is deleted."
+  },
+  "settings": {
+    "activityTitle": "Shop activity",
+    "activityHelp": "The template chooses the modules and the till screen; you can then set them one by one here.",
+    "modulesTitle": "Modules",
+    "modulesHelp": "A module that is off hides its screens and refuses its operations; its data stays.",
+    "between": "Between {{min}} and {{max}}",
+    "saved": "Saved.",
+    "regulated": {
+      "title": "Selling above a capped price",
+      "help": "A line sold above the price the law caps (bread, milk, semolina…) warns the cashier, or is refused.",
+      "warn": "Warn the cashier",
+      "block": "Refuse the sale"
+    },
+    "minOrder": {
+      "title": "Minimum order",
+      "help": "A line below an item's minimum order (wholesale) warns, or is refused.",
+      "warn": "Warn",
+      "block": "Refuse the line"
+    },
+    "flexy": {
+      "title": "Flexy operators",
+      "help": "For each operator: the top-up product sold at the till and the commission you earn (the flexy sales report counts it). An operator without a product is not sold.",
+      "commission": "Commission (%)",
+      "commissionInvalid": "Between 0 and 20%",
+      "product": "Top-up product",
+      "noProduct": "No product",
+      "change": "Change"
+    },
+    "repairs": {
+      "ready": "\"Ready\" message",
+      "readyHelp": "The text copied to tell the customer their device is ready, in their language. {shop}, {item}, {number} and {amount} are replaced.",
+      "conditions": "Intake slip conditions",
+      "conditionsHelp": "Printed at the foot of the slip handed to the customer at intake, in their language.",
+      "uncollected": "Items not collected",
+      "uncollectedDays": "Days after \"ready\"",
+      "uncollectedHelp": "After that, the item shows in \"Not collected\"."
+    },
+    "reminders": {
+      "days": "Due reminders",
+      "daysLabel": "Days before the due date",
+      "daysHelp": "A due shows in the reminders this many days before its date.",
+      "message": "Reminder text",
+      "messageHelp": "The text copied to remind the customer of a due, in their language. {shop}, {amount}, {number} and {date} are replaced."
+    },
+    "keptDeposit": {
+      "title": "Kept deposits",
+      "help": "When a customer gives up an order and the shop keeps the deposit, the deposit is sold as this product (a service).",
+      "none": "No product: deposits cannot be kept",
+      "clear": "Remove"
+    }
+  },
+  "tillModes": {
+    "retail": { "name": "Retail", "help": "Product grid, scan and checkout." },
+    "restaurant": { "name": "Restaurant", "help": "Floor plan first, then tickets per table." },
+    "wholesale": {
+      "name": "Wholesale",
+      "help": "Customer required, customer prices and minimum quantities."
+    },
+    "mixed": { "name": "Mixed", "help": "Retail till with a Tables button (café + grocery)." }
+  },
+  "groups": {
+    "sale": "Sales",
+    "restaurant": "Restaurant",
+    "health": "Health",
+    "services": "Workshop and services",
+    "credit": "Credit and orders",
+    "wholesale": "Wholesale and distribution",
+    "loyalty": "Loyalty",
+    "jewellery": "Jewellery",
+    "staff": "Staff and zakat"
+  },
+  "modules": {
+    "restaurant": { "name": "Restaurant and café", "help": "Tables, open tickets, kitchen, pre-bill." },
+    "department_keys": {
+      "name": "Department keys",
+      "help": "Price typed at the till for products without a code."
+    },
+    "regulated_prices": { "name": "Regulated prices", "help": "Warning or block above the regulated price." },
+    "lots": { "name": "Lots and expiry", "help": "Lot numbers, expiry dates, alerts." },
+    "variant_grid": { "name": "Size and colour grid", "help": "Stock and entry per variant." },
+    "yield": { "name": "Cutting yield", "help": "Carcass cut into pieces, cost shared out." },
+    "waste": { "name": "Daily waste", "help": "Breakage, unsold goods and own use." },
+    "pharmacy": {
+      "name": "Pharmacy",
+      "help": "Generic names (INN), generics, Chifa reference price, controlled medicines register."
+    },
+    "serials": { "name": "Serial numbers and IMEI", "help": "Entered at the sale, checked at the return." },
+    "flexy": { "name": "Flexy", "help": "Top-ups per operator, float and commissions." },
+    "repairs": { "name": "Repairs and service tickets", "help": "Intake slip, deposit, follow-up, pickup." },
+    "instalments": { "name": "Instalment sales", "help": "Contract, schedule, payments, reminders." },
+    "wholesale": {
+      "name": "Customer prices and minimum order",
+      "help": "Prices per customer, packs, delivery note as invoice."
+    },
+    "delivery_rounds": { "name": "Delivery rounds", "help": "Route sheet, collections, van sales." },
+    "orders": { "name": "Orders and layaway", "help": "Deposit, reserved stock, sold once fully paid." },
+    "appointments": { "name": "Appointments", "help": "Diary per employee." },
+    "loyalty": { "name": "Loyalty (points)", "help": "Points per dinar, loyalty vouchers." },
+    "gift_vouchers": { "name": "Gift and exchange vouchers", "help": "Sale, payment and voucher register." },
+    "jewellery": { "name": "Jewellery", "help": "Price per gram, special register, hallmarks." },
+    "staff": { "name": "Employees", "help": "Records, advances, commissions." },
+    "zakat": { "name": "Zakat", "help": "Indicative calculation against the nisab." }
+  },
+  "activities": {
+    "general": "Superette / grocery",
+    "clothing": "Clothing and shoes",
+    "phones": "Phones and electronics",
+    "cosmetics": "Cosmetics and perfume",
+    "hardware": "Hardware and building materials",
+    "stationery": "Bookshop and stationery",
+    "food_service": "Restaurant, café, fast food",
+    "wholesale": "Wholesaler and distribution",
+    "other": "Other shop",
+    "butcher": "Butcher",
+    "bakery": "Bakery and pastry",
+    "parapharmacy": "Parapharmacy",
+    "pharmacy": "Pharmacy",
+    "auto_parts": "Car parts",
+    "instalments": "Home appliances on instalments",
+    "optics": "Optician",
+    "pressing": "Dry cleaning and tailoring",
+    "salon": "Hair and beauty salon",
+    "jewellery": "Jeweller",
+    "gym": "Gym",
+    "kiosk": "Kiosk and multiservice",
+    "containers": "Bottled water and gas",
+    "importer": "Importer",
+    "van_sales": "Van sales",
+    "workshop": "Workshop and manufacturing"
+  },
+  "scale": {
+    "title": "Scale",
+    "help": "Plug the scale in, choose its port, then detect it. You can do it later in Settings › Hardware.",
+    "skip": "Skip"
+  },
+  "till": {
+    "departments": {
+      "title": "Department keys",
+      "price": "Price",
+      "qty": "Quantity",
+      "add": "Add",
+      "empty": "No department key has been created yet.",
+      "back": "Back to the products"
+    },
+    "flexy": {
+      "title": "Mobile top-up",
+      "phone": "Number",
+      "amount": "Amount",
+      "operator": "Operator",
+      "float": "{{operator}} float: {{amount}}",
+      "submit": "Add the top-up",
+      "pickOperator": "Choose the operator."
+    },
+    "serial": {
+      "title": "Serial number — {{name}}",
+      "field": "IMEI or serial number",
+      "invalid": "Invalid IMEI",
+      "taken": "This number is already chosen.",
+      "notInStock": "This number is not in stock for this product.",
+      "count": "{{done}} of {{total}}",
+      "inStock": "In stock",
+      "remove": "Remove {{serial}}",
+      "add": "Add",
+      "submit": "Confirm",
+      "back": "Numbers coming back — {{name}}",
+      "backHint": "Tick the {{count}} numbers coming back."
+    },
+    "generic": "Cheaper generic: {{name}} {{price}}",
+    "replace": "Replace",
+    "chifa": "Chifa reference price {{price}}",
+    "prescription": {
+      "title": "Controlled medicines register",
+      "prescriber": "Prescriber",
+      "prescriberRef": "Doctor's registration no.",
+      "number": "Prescription no.",
+      "date": "Prescription date",
+      "patient": "Patient",
+      "patientRef": "Patient reference",
+      "required": "Fill in this field.",
+      "submit": "Record and continue"
+    },
+    "buyer": {
+      "title": "Buyer (special register)",
+      "hint": "The jeweller's special register records the identity of the buyer of a precious-metal piece.",
+      "name": "Full name",
+      "idKind": "Identity document",
+      "idKinds": {
+        "cni": "National identity card",
+        "passport": "Passport",
+        "driving_licence": "Driving licence",
+        "other": "Other document"
+      },
+      "idNumber": "Number",
+      "address": "Address",
+      "required": "Fill in this field.",
+      "submit": "Continue"
+    },
+    "variants": {
+      "pick": "Choose the size and colour",
+      "cell": "{{row}} {{col}} {{stock}}"
+    },
+    "van": {
+      "title": "Sell from the van",
+      "pick": "Choose the van of a round on the road.",
+      "none": "No round is on the road.",
+      "option": "{{van}} — round {{round}}",
+      "banner": "Stock: {{van}} — round {{round}}",
+      "back": "Back to the shop"
+    },
+    "voucher": {
+      "title": "Voucher",
+      "code": "Voucher code",
+      "find": "Read the voucher",
+      "storeCredit": "Customer's store credit — balance {{balance}}",
+      "deposit": "Deposit {{number}} — {{balance}}",
+      "giftVoucher": "Gift voucher {{code}} — balance {{balance}}",
+      "use": "Use the voucher",
+      "unknown": "No voucher and no deposit has this code.",
+      "spent": "This voucher is already fully used.",
+      "otherCustomer": "This deposit belongs to another customer: choose them first (F3).",
+      "atPayment": "{{voucher}}: choose “Voucher” at the payment."
+    },
+    "points": "Points earned: +{{points}}",
+    "card": "Loyalty card: {{name}}"
+  }
+}

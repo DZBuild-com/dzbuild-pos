@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-recovery-start-fresh"
+description = "Enables the recovery_start_fresh command without any pre-configured scope."
+commands.allow = ["recovery_start_fresh"]
+
+[[permission]]
+identifier = "deny-recovery-start-fresh"
+description = "Denies the recovery_start_fresh command without any pre-configured scope."
+commands.deny = ["recovery_start_fresh"]

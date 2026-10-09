@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-display-shop"
+description = "Enables the display_shop command without any pre-configured scope."
+commands.allow = ["display_shop"]
+
+[[permission]]
+identifier = "deny-display-shop"
+description = "Denies the display_shop command without any pre-configured scope."
+commands.deny = ["display_shop"]

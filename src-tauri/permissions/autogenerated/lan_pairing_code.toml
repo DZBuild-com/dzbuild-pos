@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-lan-pairing-code"
+description = "Enables the lan_pairing_code command without any pre-configured scope."
+commands.allow = ["lan_pairing_code"]
+
+[[permission]]
+identifier = "deny-lan-pairing-code"
+description = "Denies the lan_pairing_code command without any pre-configured scope."
+commands.deny = ["lan_pairing_code"]

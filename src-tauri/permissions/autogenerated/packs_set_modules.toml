@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-packs-set-modules"
+description = "Enables the packs_set_modules command without any pre-configured scope."
+commands.allow = ["packs_set_modules"]
+
+[[permission]]
+identifier = "deny-packs-set-modules"
+description = "Denies the packs_set_modules command without any pre-configured scope."
+commands.deny = ["packs_set_modules"]

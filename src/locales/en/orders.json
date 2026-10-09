@@ -1,0 +1,127 @@
+{
+  "title": "Orders",
+  "optional": "(optional)",
+  "tabs": {
+    "label": "Orders and appointments",
+    "orders": "Orders"
+  },
+  "kinds": {
+    "order": "Order",
+    "layaway": "Layaway"
+  },
+  "status": {
+    "open": "Open",
+    "ready": "Ready",
+    "fulfilled": "Served",
+    "closed": "Closed"
+  },
+  "depositKinds": {
+    "deposit": "Deposit paid",
+    "applied": "Deposit applied",
+    "refund": "Deposit refunded"
+  },
+  "list": {
+    "label": "Customer orders",
+    "number": "Order",
+    "kind": "Type",
+    "allKinds": "All types",
+    "customer": "Customer",
+    "total": "Total",
+    "held": "Deposit held",
+    "status": "Status",
+    "allStatuses": "All statuses",
+    "daysOpen": "Open for",
+    "days": "{{count}} d",
+    "searchHint": "Order number or customer name",
+    "empty": "No orders",
+    "hint": "An order is made at the till (Esc menu, \"Make it an order\") or from a validated quote (\"Turn into an order\")."
+  },
+  "dialog": {
+    "title": "Make it an order",
+    "kind": "Order type",
+    "orderHint": "The goods are delivered or served later.",
+    "layawayHint": "The goods are set aside and handed over once fully paid.",
+    "due": "Deliver on",
+    "dueInvalid": "Choose today or a later date.",
+    "reserve": "Reserve the stock",
+    "deposit": "Deposit",
+    "method": "Payment method",
+    "reference": "Reference",
+    "minimum": "At least {{amount}} for a layaway.",
+    "duty": "Stamp duty: {{amount}}",
+    "toReceive": "To take: {{amount}}",
+    "note": "Note",
+    "submit": "Save the order",
+    "created": "Order {{number}} saved"
+  },
+  "page": {
+    "for": "Order {{number}} — {{customer}}",
+    "payIn": "Take a deposit",
+    "ready": "Ready",
+    "readyDone": "The order is ready: let the customer know.",
+    "fulfil": "Serve at the till",
+    "deliver": "Deliver (delivery note)",
+    "deliverBody": "A delivery note with the order's lines is validated; the deposit held goes on the customer's account.",
+    "invoice": "Invoice",
+    "invoiceBody": "An invoice is validated on the customer's account; the deposit held pays part of it.",
+    "served": "Document {{number}} validated",
+    "servedBy": "Served by {{number}}",
+    "keep": "Keep the deposit",
+    "keepBody": "The customer gave up: the shop keeps the deposit. It is sold on a \"Kept deposit\" receipt and the order is closed. A manager must allow it.",
+    "kept": "Deposit kept: the receipt is printing.",
+    "close": "Close",
+    "closeBody": "The order is called off and the reserved stock is released.",
+    "closed": "Order closed",
+    "heldHint": "Refund the deposit or keep it before closing.",
+    "layawayHint": "A layaway is paid in full before it is handed over, never on credit.",
+    "lines": "Lines",
+    "item": "Item",
+    "qty": "Quantity",
+    "unitPrice": "Unit price",
+    "reserved": "Reserved stock",
+    "deposits": "Deposits",
+    "history": "History",
+    "by": "by {{name}}"
+  },
+  "fulfil": {
+    "loaded": "Order {{number}} at the till: {{held}} of deposit already paid, take the rest.",
+    "layaway": "Layaway {{number}} at the till: the rest is paid now, never on credit."
+  },
+  "fromQuote": "Turn into an order",
+  "appointments": {
+    "title": "Appointments",
+    "day": "Day",
+    "previousDay": "Previous day",
+    "nextDay": "Next day",
+    "today": "Today",
+    "free": "{{staff}} {{time}} free",
+    "anyone": "No preference",
+    "minutes": "{{count}} min",
+    "new": "New appointment",
+    "edit": "Appointment",
+    "customer": "Customer name",
+    "phone": "Phone",
+    "service": "Service",
+    "noService": "Remove the service",
+    "staff": "Staff member",
+    "start": "Start",
+    "duration": "Duration (min)",
+    "durationRange": "Enter a duration between 5 and 600 minutes.",
+    "note": "Note",
+    "book": "Book",
+    "save": "Save the appointment",
+    "booked": "Appointment booked",
+    "saved": "Appointment saved",
+    "mark": {
+      "done": "Mark done",
+      "no_show": "Mark no-show",
+      "cancelled": "Cancel the appointment"
+    },
+    "status": {
+      "booked": "Booked",
+      "done": "Done",
+      "cancelled": "Cancelled",
+      "no_show": "No-show"
+    }
+  }
+}

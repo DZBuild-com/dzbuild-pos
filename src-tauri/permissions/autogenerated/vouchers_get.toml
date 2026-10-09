@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-vouchers-get"
+description = "Enables the vouchers_get command without any pre-configured scope."
+commands.allow = ["vouchers_get"]
+
+[[permission]]
+identifier = "deny-vouchers-get"
+description = "Denies the vouchers_get command without any pre-configured scope."
+commands.deny = ["vouchers_get"]

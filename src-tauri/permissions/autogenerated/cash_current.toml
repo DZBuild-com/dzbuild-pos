@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-cash-current"
+description = "Enables the cash_current command without any pre-configured scope."
+commands.allow = ["cash_current"]
+
+[[permission]]
+identifier = "deny-cash-current"
+description = "Denies the cash_current command without any pre-configured scope."
+commands.deny = ["cash_current"]

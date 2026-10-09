@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-service-board"
+description = "Enables the service_board command without any pre-configured scope."
+commands.allow = ["service_board"]
+
+[[permission]]
+identifier = "deny-service-board"
+description = "Denies the service_board command without any pre-configured scope."
+commands.deny = ["service_board"]

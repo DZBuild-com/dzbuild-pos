@@ -1,0 +1,139 @@
+# Issue and pull request labels of DZBuild-com/dzbuild-pos: name, colour (hex, no #) and a
+# one-line description. Groups: type (no prefix), area/*, lang/*, priority/*, status/*, then the
+# labels GitHub and contributors already know. Issue templates, Dependabot and the path labeler
+# (.github/labeler.yml) only use names from this list.
+#
+# To add or update a label on GitHub, run for its entry (never deletes other labels):
+#   gh label create "<name>" --color <color> --description "<description>" --force
+
+# Type
+- name: bug
+  color: d73a4a
+  description: Something does not work as documented
+- name: feature
+  color: 0e8a16
+  description: A new capability that does not exist yet
+- name: enhancement
+  color: a2eeef
+  description: An improvement to an existing feature
+- name: question
+  color: d876e3
+  description: A question about using or building DZBuild POS
+- name: documentation
+  color: 0075ca
+  description: README, user guides, docs/ or code comments
+- name: refactor
+  color: c5def5
+  description: Code change with no change in behaviour
+- name: ci
+  color: 5319e7
+  description: GitHub Actions workflows, build and release scripts
+- name: dependencies
+  color: 0366d6
+  description: Updates to npm, Cargo or GitHub Actions dependencies
+
+# Area
+- name: area/till
+  color: fbca04
+  description: Sales screen, tenders, returns, cash sessions and Z report
+- name: area/stock
+  color: fbca04
+  description: Products, catalogue, stock movements and inventory counts
+- name: area/customers-kridi
+  color: fbca04
+  description: Customers, credit (kridi), instalments and loyalty
+- name: area/purchases
+  color: fbca04
+  description: Suppliers, purchase orders and goods receipts
+- name: area/documents-fiscal
+  color: fbca04
+  description: Invoices, numbering, TVA and stamp duty, audit log and fiscal archive
+- name: area/printing-hardware
+  color: fbca04
+  description: Receipt and label printers, scanners, scales, drawer and displays
+- name: area/lan
+  color: fbca04
+  description: Several tills on one shop network (host and client roles)
+- name: area/dzbuild-link
+  color: fbca04
+  description: Optional DZBuild account link
+- name: area/i18n
+  color: fbca04
+  description: Arabic, French and English texts, right-to-left layout
+- name: area/import-export
+  color: fbca04
+  description: Excel, CSV and PDF import and export, backups
+- name: area/updater
+  color: fbca04
+  description: In-app updates and update manifests
+- name: area/packs
+  color: fbca04
+  description: Trade packs (restaurant, pharmacy, butcher, jewellery, wholesale, phones)
+- name: area/ui
+  color: fbca04
+  description: Shared components, layout, theme and accessibility
+
+# Language concerned
+- name: lang/ar
+  color: bfdadc
+  description: Concerns the Arabic version
+- name: lang/fr
+  color: bfdadc
+  description: Concerns the French version
+- name: lang/en
+  color: bfdadc
+  description: Concerns the English version
+
+# Priority
+- name: priority/critical
+  color: b60205
+  description: Blocks sales or risks data; fix before anything else
+- name: priority/high
+  color: d93f0b
+  description: Important; planned for the next release
+- name: priority/normal
+  color: e4e669
+  description: Planned when time allows
+- name: priority/low
+  color: c2e0c6
+  description: Nice to have
+
+# Status
+- name: status/needs-triage
+  color: ededed
+  description: New; not reviewed by a maintainer yet
+- name: status/needs-info
+  color: d4c5f9
+  description: Waiting for more details from the reporter
+- name: status/confirmed
+  color: 0e8a16
+  description: Reproduced or accepted by a maintainer
+- name: status/in-progress
+  color: 1d76db
+  description: Someone is working on it
+- name: status/blocked
+  color: b60205
+  description: Waiting on another issue or an outside change
+- name: status/wontfix
+  color: ffffff
+  description: Will not be worked on
+- name: status/duplicate
+  color: cfd3d7
+  description: Already reported in another issue or pull request
+
+# Other
+- name: good first issue
+  color: 7057ff
+  description: A small, well-scoped task for a first contribution
+- name: help wanted
+  color: 008672
+  description: Maintainers would welcome a contribution
+- name: security
+  color: ee0701
+  description: Security hardening (report vulnerabilities privately)
+- name: breaking-change
+  color: e11d21
+  description: Changes data, settings or behaviour existing shops rely on
+- name: release
+  color: 0052cc
+  description: Release preparation, installers and release notes

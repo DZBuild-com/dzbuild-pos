@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-purchases-remaining"
+description = "Enables the purchases_remaining command without any pre-configured scope."
+commands.allow = ["purchases_remaining"]
+
+[[permission]]
+identifier = "deny-purchases-remaining"
+description = "Denies the purchases_remaining command without any pre-configured scope."
+commands.deny = ["purchases_remaining"]

@@ -1,0 +1,80 @@
+{
+  "title": "Staff",
+  "intro": "Employee files, their salary advances and their shifts at the till.",
+  "back": "Back to staff",
+  "notFound": "This employee does not exist. Pick them from the staff list.",
+  "empty": "No employees. Add the users in Settings › Users and roles.",
+  "inactive": "Inactive",
+  "columns": {
+    "name": "Employee",
+    "role": "Role",
+    "phone": "Phone",
+    "hireDate": "Hired",
+    "salary": "Monthly salary",
+    "commission": "Commission",
+    "owed": "Advances owed"
+  },
+  "reports": {
+    "title": "Staff reports",
+    "commissions": "Sales commissions",
+    "advances": "Salary advances"
+  },
+  "profile": {
+    "title": "Employee file",
+    "phone": "Phone",
+    "hireDate": "Hire date",
+    "salary": "Monthly salary",
+    "commission": "Sales commission (%)",
+    "commissionHint": "Computed on their sales before tax in the commissions report (0 to 50 %).",
+    "note": "Note",
+    "save": "Save the file",
+    "saved": "File saved"
+  },
+  "ledger": {
+    "title": "Advances and repayments",
+    "advance": "Advance",
+    "repayment": "Repayment",
+    "salary_deduction": "Salary deduction",
+    "adjustment": "Adjustment",
+    "owed": "Still owed: {{amount}}",
+    "empty": "No advance for this employee.",
+    "date": "Date",
+    "kind": "Operation",
+    "amount": "Amount",
+    "method": "Method",
+    "month": "Month",
+    "note": "Note",
+    "by": "By"
+  },
+  "advance": {
+    "give": "Salary advance",
+    "amount": "Amount",
+    "fromTill": "Paid from the till",
+    "fromTillHint": "The money leaves this PC's open drawer; otherwise, choose how it is paid.",
+    "method": "Payment method",
+    "note": "Note",
+    "submit": "Pay the advance",
+    "given": "Advance paid and recorded in the expenses (wages)",
+    "repay": "Repayment",
+    "repayHint": "In cash, the money goes into this PC's open drawer.",
+    "repaySubmit": "Record the repayment",
+    "repaid": "Repayment recorded",
+    "deduct": "Salary deduction",
+    "deductHint": "No cash moves: the advance is taken off this month's pay.",
+    "month": "Salary month",
+    "deductSubmit": "Record the deduction",
+    "deducted": "Deduction recorded"
+  },
+  "shifts": {
+    "title": "Shifts",
+    "terminal": "Till",
+    "opened": "Opened",
+    "closed": "Closed",
+    "duration": "Duration",
+    "tickets": "Tickets",
+    "sales": "Sales",
+    "running": "Running",
+    "hours": "{{hours}} h {{minutes}} min",
+    "empty": "No shift in this period."
+  }
+}

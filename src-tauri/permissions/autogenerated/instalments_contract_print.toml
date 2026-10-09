@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-instalments-contract-print"
+description = "Enables the instalments_contract_print command without any pre-configured scope."
+commands.allow = ["instalments_contract_print"]
+
+[[permission]]
+identifier = "deny-instalments-contract-print"
+description = "Denies the instalments_contract_print command without any pre-configured scope."
+commands.deny = ["instalments_contract_print"]

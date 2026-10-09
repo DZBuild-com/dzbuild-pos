@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-kitchen-stations"
+description = "Enables the kitchen_stations command without any pre-configured scope."
+commands.allow = ["kitchen_stations"]
+
+[[permission]]
+identifier = "deny-kitchen-stations"
+description = "Denies the kitchen_stations command without any pre-configured scope."
+commands.deny = ["kitchen_stations"]

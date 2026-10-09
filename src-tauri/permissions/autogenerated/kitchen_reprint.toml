@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-kitchen-reprint"
+description = "Enables the kitchen_reprint command without any pre-configured scope."
+commands.allow = ["kitchen_reprint"]
+
+[[permission]]
+identifier = "deny-kitchen-reprint"
+description = "Denies the kitchen_reprint command without any pre-configured scope."
+commands.deny = ["kitchen_reprint"]

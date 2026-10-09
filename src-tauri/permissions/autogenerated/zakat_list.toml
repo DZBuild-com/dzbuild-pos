@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-zakat-list"
+description = "Enables the zakat_list command without any pre-configured scope."
+commands.allow = ["zakat_list"]
+
+[[permission]]
+identifier = "deny-zakat-list"
+description = "Denies the zakat_list command without any pre-configured scope."
+commands.deny = ["zakat_list"]

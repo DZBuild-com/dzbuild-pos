@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-yield-preview"
+description = "Enables the yield_preview command without any pre-configured scope."
+commands.allow = ["yield_preview"]
+
+[[permission]]
+identifier = "deny-yield-preview"
+description = "Denies the yield_preview command without any pre-configured scope."
+commands.deny = ["yield_preview"]

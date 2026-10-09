@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-demo-erase"
+description = "Enables the demo_erase command without any pre-configured scope."
+commands.allow = ["demo_erase"]
+
+[[permission]]
+identifier = "deny-demo-erase"
+description = "Denies the demo_erase command without any pre-configured scope."
+commands.deny = ["demo_erase"]

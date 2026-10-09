@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-documents-draft-cart"
+description = "Enables the documents_draft_cart command without any pre-configured scope."
+commands.allow = ["documents_draft_cart"]
+
+[[permission]]
+identifier = "deny-documents-draft-cart"
+description = "Denies the documents_draft_cart command without any pre-configured scope."
+commands.deny = ["documents_draft_cart"]

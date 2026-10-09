@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-cloud-outbox-retry"
+description = "Enables the cloud_outbox_retry command without any pre-configured scope."
+commands.allow = ["cloud_outbox_retry"]
+
+[[permission]]
+identifier = "deny-cloud-outbox-retry"
+description = "Denies the cloud_outbox_retry command without any pre-configured scope."
+commands.deny = ["cloud_outbox_retry"]

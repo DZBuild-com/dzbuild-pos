@@ -1,0 +1,52 @@
+{
+  "title": "القبض",
+  "pay": "قبض",
+  "validate": "تأكيد",
+  "tenders": {
+    "cash": "نقدا",
+    "card_cib": "بطاقة CIB",
+    "edahabia": "الذهبية",
+    "baridimob": "بريدي موب",
+    "cheque": "صك",
+    "transfer": "تحويل",
+    "credit": "الكريدي",
+    "voucher": "رصيد لدى المحل",
+    "change": "الباقي"
+  },
+  "needCustomer": "اختر الزبون أولاً (F3) للدفع بالكريدي أو برصيده لدى المحل.",
+  "voucherTile": "قسيمة شراء",
+  "typeReference": "المرجع",
+  "reference": {
+    "card_cib": "رقم الترخيص ({{method}})",
+    "edahabia": "رقم الترخيص ({{method}})",
+    "baridimob": "رقم العملية ({{method}})",
+    "cheque": "رقم الصك",
+    "transfer": "مرجع التحويل",
+    "credit": "المرجع",
+    "voucher": "رقم القسيمة",
+    "change": "المرجع"
+  },
+  "cheque": { "bank": "البنك", "date": "تاريخ الصك" },
+  "quickNote": "{{value}} دج",
+  "exact": "المبلغ بالضبط",
+  "totalTtc": "المجموع بكل الرسوم",
+  "stampDuty": "حقوق الطابع",
+  "totalDue": "الصافي للدفع",
+  "stampHint": "الدفع بالبطاقة يعفي من حقوق الطابع هذه: ",
+  "missing": "الباقي للدفع",
+  "change": "الباقي",
+  "unknown": "المبلغ لم يُحسب بعد: أكمل إدخال الدفع",
+  "printLang": "لغة التذكرة",
+  "printReceipt": "طباعة التذكرة",
+  "noPrinter": "لا توجد طابعة تذاكر: اضبطها في الإعدادات › العتاد.",
+  "exchangeCredit": "قيمة السلع المرجعة (استبدال):",
+  "shortage": "{{name}}: {{available}} في المخزون، {{needed}} مطلوبة",
+  "done": {
+    "title": "تم القبض",
+    "number": "التذكرة",
+    "refunded": "يُعاد للزبون",
+    "printing": "التذكرة تُطبع.",
+    "noReceipt": "دون طباعة التذكرة.",
+    "newSale": "بيع جديد"
+  }
+}

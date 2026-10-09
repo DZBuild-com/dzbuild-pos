@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-imports-undo"
+description = "Enables the imports_undo command without any pre-configured scope."
+commands.allow = ["imports_undo"]
+
+[[permission]]
+identifier = "deny-imports-undo"
+description = "Denies the imports_undo command without any pre-configured scope."
+commands.deny = ["imports_undo"]

@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-dining-ticket-void"
+description = "Enables the dining_ticket_void command without any pre-configured scope."
+commands.allow = ["dining_ticket_void"]
+
+[[permission]]
+identifier = "deny-dining-ticket-void"
+description = "Denies the dining_ticket_void command without any pre-configured scope."
+commands.deny = ["dining_ticket_void"]

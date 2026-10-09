@@ -1,0 +1,89 @@
+{
+  "title": "Jewellery",
+  "tabs": {
+    "label": "Jewellery",
+    "board": "Price per gram",
+    "register": "Register"
+  },
+  "metal": {
+    "gold": "Gold",
+    "silver": "Silver",
+    "platinum": "Platinum"
+  },
+  "fineness": "{{metal}} {{titre}} ‰ ({{carats}} carats)",
+  "finenessPlain": "{{metal}} {{titre}} ‰",
+  "board": {
+    "title": "Price per gram",
+    "metalTitre": "Metal and fineness",
+    "since": "Set on",
+    "actions": "Actions",
+    "setBy": "{{date}} by {{name}}",
+    "new": "New price",
+    "newFor": "New price — {{fineness}}",
+    "add": "Add a metal or fineness",
+    "price": "Price per gram",
+    "save": "Save the price",
+    "saved": "New price saved.",
+    "history": "History",
+    "historyFor": "History — {{fineness}}",
+    "empty": "No price per gram yet. Add the price of the gold you sell to start.",
+    "reprice": "Recalculate catalogue prices",
+    "repriceHint": "Puts today's price of the pieces sold by weight into the product list, so labels and price lists show it.",
+    "repriced": "{{count}} prices updated"
+  },
+  "tab": {
+    "title": "Jewel",
+    "metal": "Metal",
+    "titre": "Fineness (‰)",
+    "carats": "{{carats}} carats",
+    "weight": "Weight (g)",
+    "facon": "Making charge",
+    "stones": "Stones",
+    "hallmark": "Hallmark",
+    "byWeight": "Priced by weight",
+    "byWeightHint": "Weight × today's price per gram + making charge, at the till.",
+    "live": "Current price: {{amount}}",
+    "noPrice": "No price per gram for this metal and fineness: add it under Jewellery.",
+    "notPiece": "This product is not a jewel yet: fill in its metal, fineness and weight.",
+    "save": "Save the jewel",
+    "saved": "Jewel saved."
+  },
+  "register": {
+    "title": "Jeweller register",
+    "authorisation": "Authorisation no. {{number}} of {{date}} — {{authority}}",
+    "noAuthorisation": "The authorisation number is not filled in yet.",
+    "year": "Year",
+    "empty": "No jewellery sale written in the register this year.",
+    "tillNote": "The register is kept on the main PC: this PC only reads it.",
+    "columns": {
+      "seq": "No.",
+      "date": "Date",
+      "ticket": "Ticket",
+      "nature": "Description",
+      "pieces": "Pieces",
+      "weight": "Weight (g)",
+      "titre": "Fineness",
+      "price": "Price",
+      "buyer": "Buyer",
+      "id": "Identity document",
+      "address": "Address"
+    },
+    "idKinds": {
+      "cni": "National ID card",
+      "passport": "Passport",
+      "driving_licence": "Driving licence",
+      "other": "Other document"
+    },
+    "settings": "Authorisation and cash limit",
+    "number": "Authorisation number",
+    "date": "Authorisation date",
+    "authority": "Issued by",
+    "maxCash": "Cash payment limit",
+    "maxCashHint": "Empty: no limit. Above it, the till asks for another payment method.",
+    "save": "Save",
+    "saved": "Authorisation and cash limit saved."
+  },
+  "labels": {
+    "jewelLine": "Jewel line"
+  }
+}

@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-datapack-install"
+description = "Enables the datapack_install command without any pre-configured scope."
+commands.allow = ["datapack_install"]
+
+[[permission]]
+identifier = "deny-datapack-install"
+description = "Denies the datapack_install command without any pre-configured scope."
+commands.deny = ["datapack_install"]

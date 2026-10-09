@@ -1,0 +1,82 @@
+---
+source: crates/pos-hw/src/slips_tests.rs
+expression: kitchen_layout(&slip)
+---
+{
+  "rtl": false,
+  "rows": [
+    {
+      "row": "text",
+      "text": "Kitchen ticket",
+      "align": "center",
+      "large": true,
+      "bold": true
+    },
+    {
+      "row": "text",
+      "text": "Takeaway no. 42",
+      "align": "center",
+      "large": true,
+      "bold": true
+    },
+    {
+      "row": "pair",
+      "start": "Sofiane",
+      "end": "12:00 · Send 2",
+      "large": false,
+      "bold": false
+    },
+    {
+      "row": "rule"
+    },
+    {
+      "row": "text",
+      "text": "2 × Skewers",
+      "align": "start",
+      "large": true,
+      "bold": true
+    },
+    {
+      "row": "text",
+      "text": "   + Fries",
+      "align": "start",
+      "large": false,
+      "bold": false
+    },
+    {
+      "row": "text",
+      "text": "   ! Well done",
+      "align": "start",
+      "large": false,
+      "bold": true
+    },
+    {
+      "row": "text",
+      "text": "   Seat 1",
+      "align": "start",
+      "large": false,
+      "bold": false
+    },
+    {
+      "row": "text",
+      "text": "3 × Chorba frik",
+      "align": "start",
+      "large": true,
+      "bold": true
+    },
+    {
+      "row": "text",
+      "text": "   Course 2",
+      "align": "start",
+      "large": false,
+      "bold": false
+    },
+    {
+      "row": "rule"
+    },
+    {
+      "row": "feed",
+      "lines": 3
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "fr": [
+    "Édition gratuite : plus aucune licence, ni clé, ni période d'essai. Chaque PC vend dès l'installation et le mode lecture seule a disparu.",
+    "L'écran d'activation et la page Paramètres › Licence ne s'affichent plus.",
+    "Tout fonctionne hors ligne comme avant : ventes, stock, caisse, documents, impression, sauvegardes, caisses en réseau local. Le lien DZBuild reste facultatif."
+  ],
+  "ar": [
+    "إصدار مجاني: لا رخصة ولا مفتاح ولا فترة تجريبية. كل جهاز يبيع فور التثبيت، ولم يعد هناك وضع القراءة فقط.",
+    "لم تعد شاشة التفعيل وصفحة الإعدادات › الرخصة تظهر.",
+    "كل شيء يعمل دون إنترنت كما في السابق: المبيعات والمخزون والصندوق والوثائق والطباعة والنسخ الاحتياطي ونقاط البيع عبر الشبكة المحلية. ربط DZBuild يبقى اختياريًا."
+  ],
+  "en": [
+    "Free edition: no licence, no key, no trial. Every PC sells right after the install and the read-only mode is gone.",
+    "The activation screen and Settings › Licence are no longer shown.",
+    "Everything works offline as before: sales, stock, cash, documents, printing, backups and LAN tills. The DZBuild link stays optional."
+  ]
+}

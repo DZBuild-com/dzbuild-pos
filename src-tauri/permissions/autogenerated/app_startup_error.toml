@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-app-startup-error"
+description = "Enables the app_startup_error command without any pre-configured scope."
+commands.allow = ["app_startup_error"]
+
+[[permission]]
+identifier = "deny-app-startup-error"
+description = "Denies the app_startup_error command without any pre-configured scope."
+commands.deny = ["app_startup_error"]

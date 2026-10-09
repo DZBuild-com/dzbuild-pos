@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-rounds-start"
+description = "Enables the rounds_start command without any pre-configured scope."
+commands.allow = ["rounds_start"]
+
+[[permission]]
+identifier = "deny-rounds-start"
+description = "Denies the rounds_start command without any pre-configured scope."
+commands.deny = ["rounds_start"]

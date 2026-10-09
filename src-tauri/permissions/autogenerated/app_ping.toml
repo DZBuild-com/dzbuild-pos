@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-app-ping"
+description = "Enables the app_ping command without any pre-configured scope."
+commands.allow = ["app_ping"]
+
+[[permission]]
+identifier = "deny-app-ping"
+description = "Denies the app_ping command without any pre-configured scope."
+commands.deny = ["app_ping"]

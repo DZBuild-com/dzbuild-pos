@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-lan-cancel-pairing"
+description = "Enables the lan_cancel_pairing command without any pre-configured scope."
+commands.allow = ["lan_cancel_pairing"]
+
+[[permission]]
+identifier = "deny-lan-cancel-pairing"
+description = "Denies the lan_cancel_pairing command without any pre-configured scope."
+commands.deny = ["lan_cancel_pairing"]

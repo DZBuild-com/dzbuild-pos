@@ -1,0 +1,202 @@
+{
+  "title": "Achats",
+  "tabs": {
+    "orders": "Commandes",
+    "receipts": "Réceptions",
+    "invoices": "Factures fournisseurs",
+    "suppliers": "Fournisseurs"
+  },
+  "status": {
+    "draft": "Brouillon",
+    "sent": "Envoyée",
+    "partial": "Reçue en partie",
+    "received": "Reçue",
+    "validated": "Validé",
+    "cancelled": "Annulée"
+  },
+  "filters": {
+    "allSuppliers": "Tous les fournisseurs",
+    "allStatuses": "Tous les états"
+  },
+  "columns": {
+    "number": "N°",
+    "type": "Document",
+    "date": "Date",
+    "supplier": "Fournisseur",
+    "supplierRef": "N° du fournisseur",
+    "status": "État",
+    "totalHt": "Total HT",
+    "tax": "TVA",
+    "totalTtc": "Total TTC"
+  },
+  "empty": "Aucun document pour ces critères. Changez la période ou les filtres.",
+  "exportHint": "Excel et CSV exportent les achats par fournisseur sur la période choisie.",
+  "lineField": "{{field}} — {{name}}",
+  "chooseSupplier": {
+    "title": "Choisir le fournisseur",
+    "placeholder": "Choisissez le fournisseur"
+  },
+  "lines": {
+    "search": "Ajouter un produit",
+    "searchHint": "Tapez un nom ou une référence, ou scannez un code-barres (celui d'un carton ajoute un colis).",
+    "results": "Produits trouvés",
+    "notFound": "Aucun produit ne porte le code {{code}}. Vérifiez le code ou créez le produit.",
+    "product": "Produit",
+    "qty": "Quantité",
+    "packs": "Nombre de colis",
+    "pack": "Unités par colis",
+    "cost": "Coût unitaire HT",
+    "packCost": "Coût du colis HT",
+    "removeOf": "Retirer {{name}}"
+  },
+  "order": {
+    "new": "Nouvelle commande",
+    "newTitle": "Nouvelle commande",
+    "draftTitle": "Bon de commande",
+    "back": "Toutes les commandes",
+    "supplierRef": "Référence chez le fournisseur",
+    "note": "Note",
+    "lines": "Lignes de la commande",
+    "noLines": "Ajoutez au moins un produit à la commande.",
+    "save": "Enregistrer le brouillon",
+    "saved": "Brouillon enregistré.",
+    "validate": "Valider la commande",
+    "validated": "Commande {{number}} validée.",
+    "cancel": "Annuler la commande",
+    "cancelled": "Commande annulée.",
+    "totals": "Totaux",
+    "totalsAfterSave": "Les totaux s'affichent une fois le brouillon enregistré.",
+    "unsaved": "Totaux du dernier enregistrement : enregistrez pour les mettre à jour.",
+    "ordered": "Commandé",
+    "received": "Reçu",
+    "remaining": "Reste à recevoir",
+    "receive": "Réceptionner"
+  },
+  "receive": {
+    "new": "Nouvelle réception",
+    "title": "Réception de {{name}}",
+    "fromOrder": "Les quantités encore attendues sont proposées : corrigez-les selon ce qui est livré.",
+    "free": "Réception sans commande : ajoutez les produits livrés.",
+    "skipHint": "Mettez 0 pour une ligne qui n'est pas livrée.",
+    "awaited": "(attendu : {{qty}})",
+    "allReceived": "Toutes les lignes de cette commande ont été reçues.",
+    "qty": "Quantité reçue",
+    "cost": "Coût unitaire HT",
+    "lot": "N° de lot",
+    "expiry": "Péremption",
+    "serials": "Numéros de série",
+    "serialsHint": "Scannez ou tapez chaque numéro, puis Entrée.",
+    "serialRemove": "Retirer {{serial}}",
+    "serialsCount": "Numéros saisis : {{count}} pour une quantité de {{qty}}. Saisissez un numéro par pièce.",
+    "supplierRef": "N° du bon de livraison du fournisseur",
+    "note": "Note",
+    "invoiceNow": "Facture reçue avec la marchandise",
+    "invoiceNumberMissing": "Saisissez le numéro de la facture reçue, ou décochez la case.",
+    "nothing": "Saisissez au moins une quantité reçue.",
+    "confirm": "Valider la réception",
+    "done": "Réception {{number}} validée.",
+    "doneTitle": "Réception {{number}} validée",
+    "invoiced": "Facture fournisseur {{number}} enregistrée avec la réception.",
+    "recordInvoice": "Enregistrer la facture",
+    "cmupTitle": "Nouveau coût moyen (CMUP)",
+    "cmup": "CMUP",
+    "becomes": "devient"
+  },
+  "invoice": {
+    "new": "Enregistrer une facture",
+    "title": "Facture de {{name}}",
+    "number": "N° de la facture du fournisseur",
+    "dateHint": "La facture est enregistrée à la date du jour.",
+    "note": "Note",
+    "receipts": "Bons de réception facturés",
+    "noReceipts": "Aucun bon de réception pour ce fournisseur.",
+    "noReceipt": "Cochez au moins un bon de réception.",
+    "payNow": "Payer cette facture maintenant",
+    "confirm": "Enregistrer la facture",
+    "done": "Facture {{number}} enregistrée.",
+    "doneTitle": "Facture {{number}} enregistrée",
+    "paid": "Payé :"
+  },
+  "pay": {
+    "new": "Payer le fournisseur",
+    "title": "Paiement à {{name}}",
+    "amount": "Montant payé",
+    "method": "Mode de paiement",
+    "fromTill": "Payé en espèces sorties du tiroir-caisse",
+    "openInvoices": "Factures non réglées",
+    "allocateOldest": "Régler les factures les plus anciennes d'abord",
+    "allocateChosen": "Choisir les factures à régler",
+    "note": "Note",
+    "confirm": "Enregistrer le paiement",
+    "done": "Paiement de {{amount}} enregistré. Reste dû : {{balance}}."
+  },
+  "return": {
+    "new": "Retour fournisseur",
+    "title": "Retour à {{name}}",
+    "qty": "Quantité rendue",
+    "reason": "Motif",
+    "reasons": {
+      "expired": "Périmé",
+      "damaged": "Abîmé",
+      "wrong_item": "Erreur de livraison",
+      "other": "Autre motif"
+    },
+    "fefo": "Automatique (péremption la plus proche)",
+    "lotWithExpiry": "{{lot}} (péremption {{date}})",
+    "credit": "Le fournisseur déduit ce retour de ce que la boutique lui doit",
+    "nothing": "Ajoutez au moins un produit à rendre.",
+    "confirm": "Valider le retour",
+    "done": "Retour {{number}} validé.",
+    "doneTitle": "Retour {{number}} validé",
+    "value": "Valeur du retour :",
+    "notCredited": "Le compte du fournisseur n'a pas changé."
+  },
+  "supplier": {
+    "new": "Nouveau fournisseur",
+    "newTitle": "Nouveau fournisseur",
+    "editTitle": "Modifier {{name}}",
+    "back": "Tous les fournisseurs",
+    "terms": "Paiement",
+    "fields": {
+      "rib": "RIB",
+      "paymentTerms": "Délai de paiement (jours)"
+    },
+    "paymentTermsHint": "Vide : paiement à la livraison.",
+    "save": "Enregistrer le fournisseur",
+    "saved": "Fournisseur enregistré.",
+    "balance": "Reste dû au fournisseur",
+    "filters": {
+      "owed": "Nous leur devons",
+      "archived": "Archivés"
+    },
+    "empty": "Aucun fournisseur ne correspond. Changez la recherche ou créez le fournisseur.",
+    "archived": "Fournisseur archivé : restaurez-le pour lui commander ou le payer.",
+    "days_zero": "À la livraison",
+    "days_one": "{{count}} jour",
+    "days_two": "{{count}} jours",
+    "days_few": "{{count}} jours",
+    "days_many": "{{count}} jours",
+    "days_other": "{{count}} jours",
+    "tabs": {
+      "entries": "Mouvements du compte",
+      "payments": "Paiements",
+      "documents": "Documents",
+      "statement": "Relevé de compte"
+    },
+    "noEntries": "Aucun mouvement sur ce compte.",
+    "statementExportHint": "Excel et CSV exportent les achats de ce fournisseur sur la période."
+  },
+  "aging": {
+    "current": "0 à 30 jours",
+    "days3160": "31 à 60 jours",
+    "days6190": "61 à 90 jours",
+    "over90": "Plus de 90 jours",
+    "advance": "Avances versées"
+  },
+  "opening": {
+    "title": "Solde d'ouverture du fournisseur",
+    "hint": "Ce que la boutique lui devait en commençant avec DZBuild POS, saisi une seule fois.",
+    "owed": "La boutique doit au fournisseur",
+    "advance": "Le fournisseur doit à la boutique (avance)"
+  }
+}

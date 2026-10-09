@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-products-extras-set"
+description = "Enables the products_extras_set command without any pre-configured scope."
+commands.allow = ["products_extras_set"]
+
+[[permission]]
+identifier = "deny-products-extras-set"
+description = "Denies the products_extras_set command without any pre-configured scope."
+commands.deny = ["products_extras_set"]

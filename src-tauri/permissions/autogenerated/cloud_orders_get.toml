@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-cloud-orders-get"
+description = "Enables the cloud_orders_get command without any pre-configured scope."
+commands.allow = ["cloud_orders_get"]
+
+[[permission]]
+identifier = "deny-cloud-orders-get"
+description = "Denies the cloud_orders_get command without any pre-configured scope."
+commands.deny = ["cloud_orders_get"]

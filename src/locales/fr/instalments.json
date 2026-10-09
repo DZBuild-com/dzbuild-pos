@@ -1,0 +1,136 @@
+{
+  "title": "Ventes à tempérament",
+  "sale": "Vente à tempérament",
+  "new": "Nouvelle vente à tempérament",
+  "noAccount": "Seuls les utilisateurs autorisés à voir les comptes clients voient les contrats et leurs échéances.",
+  "tabs": {
+    "label": "Contrats et relances",
+    "contracts": "Contrats",
+    "reminders": "Relances"
+  },
+  "wizard": {
+    "steps": {
+      "customer": "Client",
+      "goods": "Articles",
+      "terms": "Conditions",
+      "documents": "Pièces justificatives",
+      "sign": "Signature"
+    },
+    "progress": "Étape {{step}} sur {{count}}",
+    "previous": "Précédent",
+    "balance": "Solde du compte",
+    "creditLimit": "Plafond de crédit",
+    "noLimit": "Sans plafond",
+    "available": "Crédit encore disponible",
+    "blocked": "Ce client est bloqué : débloquez sa fiche avant de lui vendre à crédit.",
+    "goodsHint": "Les articles sont comptés au prix de vente à tempérament.",
+    "noGoods": "Ajoutez au moins un article.",
+    "qty": "Quantité",
+    "remove": "Retirer {{name}}",
+    "down": "Apport initial",
+    "downMethod": "Mode de paiement de l'apport",
+    "count": "Nombre d'échéances",
+    "firstDue": "Première échéance le",
+    "firstDueAfter": "Choisissez une date après aujourd'hui.",
+    "computing": "Calcul de l'échéancier…",
+    "total": "Prix à tempérament : {{amount}}",
+    "schedule": "Échéancier",
+    "monthly": "Une échéance par mois",
+    "toReceive": "À encaisser maintenant : {{amount}}",
+    "financed": "Reste financé : {{amount}}",
+    "duty": "Droit de timbre sur l'apport : {{amount}}",
+    "sign": "Signer et encaisser l'apport",
+    "printContract": "Imprimer le contrat",
+    "done": "Contrat {{number}} signé",
+    "ticket": "Ticket {{number}}.",
+    "printing": "Le ticket s'imprime.",
+    "finish": "Terminer"
+  },
+  "guarantees": {
+    "title": "Pièces justificatives",
+    "kind": "Type de pièce",
+    "holder": "Titulaire",
+    "reference": "Référence",
+    "phone": "Téléphone",
+    "add": "Ajouter une pièce",
+    "added": "Pièce ajoutée au contrat",
+    "remove": "Retirer : {{kind}}",
+    "none": "Aucune pièce pour l'instant.",
+    "kinds": {
+      "id_document": "Pièce d'identité",
+      "work_certificate": "Attestation de travail",
+      "pay_slip": "Fiche de paie",
+      "ccp_account": "Relevé ou RIP CCP",
+      "residence_certificate": "Certificat de résidence",
+      "guarantor": "Garant",
+      "other": "Autre pièce"
+    },
+    "noCheque": "Aucun chèque de garantie n'est demandé ni accepté."
+  },
+  "list": {
+    "label": "Contrats",
+    "number": "Contrat",
+    "customer": "Client",
+    "searchHint": "Numéro du contrat ou nom du client",
+    "empty": "Aucun contrat"
+  },
+  "plan": {
+    "dues": "Échéances",
+    "seq": "N°",
+    "dueOn": "Échéance",
+    "amount": "Montant",
+    "state": "État",
+    "total": "Total",
+    "down": "Apport",
+    "financed": "Financé",
+    "paid": "Payé",
+    "left": "Reste",
+    "next": "Prochaine échéance",
+    "late": "En retard",
+    "overdueOnly": "En retard seulement",
+    "signedOn": "Signé le {{date}}",
+    "ticket": "Ticket {{number}}",
+    "customerFile": "Fiche du client",
+    "status": {
+      "paid": "Payée",
+      "partial": "Partielle",
+      "due": "Due aujourd'hui",
+      "overdue": "En retard de {{count}} jours",
+      "upcoming": "À venir"
+    },
+    "collect": "Encaisser une échéance",
+    "reprint": "Réimprimer le contrat"
+  },
+  "collect": {
+    "for": "Contrat {{number}} — {{customer}}",
+    "amount": "Montant",
+    "method": "Mode de paiement",
+    "reference": "Référence",
+    "duty": "Droit de timbre : {{amount}}",
+    "toReceive": "À encaisser : {{amount}}",
+    "submit": "Encaisser",
+    "done": "Versement encaissé : reçu {{number}}"
+  },
+  "contract": {
+    "title": "Contrat de vente à tempérament",
+    "lang": "Langue du contrat",
+    "printed": "Le contrat part à l'imprimante."
+  },
+  "consent": {
+    "whatsappYes": "Consentement WhatsApp : oui, depuis le {{date}}",
+    "whatsappNo": "Pas de consentement WhatsApp : appelez le client",
+    "smsYes": "Consentement SMS : oui, depuis le {{date}}",
+    "smsNo": "Pas de consentement SMS"
+  },
+  "reminders": {
+    "title": "Relances",
+    "prepare": "Préparer la relance",
+    "copy": "Copier le texte",
+    "copied": "Texte copié",
+    "note": "Noter le rappel",
+    "noted": "Rappel noté",
+    "hint": "Le logiciel n'envoie aucun message : collez le texte dans WhatsApp ou dans un SMS, ou appelez le client.",
+    "emptyTitle": "Aucune relance à faire",
+    "emptyBody": "Les échéances proches et celles en retard s'afficheront ici."
+  }
+}

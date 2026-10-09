@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-audit-verify-chain"
+description = "Enables the audit_verify_chain command without any pre-configured scope."
+commands.allow = ["audit_verify_chain"]
+
+[[permission]]
+identifier = "deny-audit-verify-chain"
+description = "Denies the audit_verify_chain command without any pre-configured scope."
+commands.deny = ["audit_verify_chain"]

@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-kitchen-station-save"
+description = "Enables the kitchen_station_save command without any pre-configured scope."
+commands.allow = ["kitchen_station_save"]
+
+[[permission]]
+identifier = "deny-kitchen-station-save"
+description = "Denies the kitchen_station_save command without any pre-configured scope."
+commands.deny = ["kitchen_station_save"]

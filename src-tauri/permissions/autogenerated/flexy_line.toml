@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-flexy-line"
+description = "Enables the flexy_line command without any pre-configured scope."
+commands.allow = ["flexy_line"]
+
+[[permission]]
+identifier = "deny-flexy-line"
+description = "Denies the flexy_line command without any pre-configured scope."
+commands.deny = ["flexy_line"]

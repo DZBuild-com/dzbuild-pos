@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-lan-probe"
+description = "Enables the lan_probe command without any pre-configured scope."
+commands.allow = ["lan_probe"]
+
+[[permission]]
+identifier = "deny-lan-probe"
+description = "Denies the lan_probe command without any pre-configured scope."
+commands.deny = ["lan_probe"]

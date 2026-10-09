@@ -1,0 +1,75 @@
+/* DZBuild POS UI tokens (spec §10.1). Tailwind reads them through @theme inline in index.css.
+   An element marked data-theme="light" keeps the light values in dark mode: a page of paper
+   (the print preview) is always white. */
+[data-theme="light"],
+:root {
+  color-scheme: light;
+  --bg: #fbfaf7;
+  --surface: #ffffff;
+  --surface-2: #f3f1eb;
+  --line: #e4e0d6;
+  --ink: #1c1917;
+  --ink-2: #5c5852;
+  --brand: #ffc300;
+  --brand-ink: #1c1917;
+  --brand-soft: #fff3c4;
+  --ok: #1b7f3b;
+  --ok-soft: #ddf3e3;
+  --warn: #9a5b00;
+  --warn-soft: #ffe7b8;
+  --danger: #b42318;
+  --danger-soft: #fbe3e0;
+  --info: #1d4ed8;
+  --info-soft: #dce6fb;
+  --focus: #1d4ed8;
+  /* The one chart series (dataviz validator: lightness band, chroma floor, 3:1 on --surface). */
+  --chart-1: #2a78d6;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #161412;
+  --surface: #1f1c19;
+  --surface-2: #2a2622;
+  --line: #3a3530;
+  --ink: #f5f2ec;
+  --ink-2: #b8b2a8;
+  --brand: #ffc300;
+  --brand-ink: #1c1917;
+  --brand-soft: #3d3110;
+  --ok: #4cc26f;
+  --ok-soft: #12331c;
+  --warn: #f0b34a;
+  --warn-soft: #3a2a0a;
+  --danger: #f0716a;
+  --danger-soft: #3b1512;
+  --info: #7fa6ff;
+  --info-soft: #14213f;
+  --focus: #7fa6ff;
+  --chart-1: #3987e5;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #161412;
+    --surface: #1f1c19;
+    --surface-2: #2a2622;
+    --line: #3a3530;
+    --ink: #f5f2ec;
+    --ink-2: #b8b2a8;
+    --brand: #ffc300;
+    --brand-ink: #1c1917;
+    --brand-soft: #3d3110;
+    --ok: #4cc26f;
+    --ok-soft: #12331c;
+    --warn: #f0b34a;
+    --warn-soft: #3a2a0a;
+    --danger: #f0716a;
+    --danger-soft: #3b1512;
+    --info: #7fa6ff;
+    --info-soft: #14213f;
+    --focus: #7fa6ff;
+    --chart-1: #3987e5;
+  }
+}

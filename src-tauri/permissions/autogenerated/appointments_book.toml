@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-appointments-book"
+description = "Enables the appointments_book command without any pre-configured scope."
+commands.allow = ["appointments_book"]
+
+[[permission]]
+identifier = "deny-appointments-book"
+description = "Denies the appointments_book command without any pre-configured scope."
+commands.deny = ["appointments_book"]

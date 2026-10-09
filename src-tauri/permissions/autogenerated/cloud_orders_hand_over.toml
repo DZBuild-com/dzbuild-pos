@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-cloud-orders-hand-over"
+description = "Enables the cloud_orders_hand_over command without any pre-configured scope."
+commands.allow = ["cloud_orders_hand_over"]
+
+[[permission]]
+identifier = "deny-cloud-orders-hand-over"
+description = "Denies the cloud_orders_hand_over command without any pre-configured scope."
+commands.deny = ["cloud_orders_hand_over"]

@@ -1,0 +1,89 @@
+---
+source: crates/pos-hw/src/slips_tests.rs
+expression: kitchen_layout(&slip)
+---
+{
+  "rtl": true,
+  "rows": [
+    {
+      "row": "text",
+      "text": "*** إلغاء ***",
+      "align": "center",
+      "large": true,
+      "bold": true
+    },
+    {
+      "row": "text",
+      "text": "الشواء",
+      "align": "center",
+      "large": true,
+      "bold": false
+    },
+    {
+      "row": "text",
+      "text": "الطاولة T4",
+      "align": "center",
+      "large": true,
+      "bold": true
+    },
+    {
+      "row": "pair",
+      "start": "Sofiane — 3 أشخاص",
+      "end": "12:00 · الإرسال 2",
+      "large": false,
+      "bold": false
+    },
+    {
+      "row": "rule"
+    },
+    {
+      "row": "text",
+      "text": "2 × شواء مشكل",
+      "align": "start",
+      "large": true,
+      "bold": true
+    },
+    {
+      "row": "text",
+      "text": "   + بطاطا مقلية",
+      "align": "start",
+      "large": false,
+      "bold": false
+    },
+    {
+      "row": "text",
+      "text": "   ! مطهو جيداً",
+      "align": "start",
+      "large": false,
+      "bold": true
+    },
+    {
+      "row": "text",
+      "text": "   المقعد 1",
+      "align": "start",
+      "large": false,
+      "bold": false
+    },
+    {
+      "row": "text",
+      "text": "3 × شربة فريك",
+      "align": "start",
+      "large": true,
+      "bold": true
+    },
+    {
+      "row": "text",
+      "text": "   الدفعة 2",
+      "align": "start",
+      "large": false,
+      "bold": false
+    },
+    {
+      "row": "rule"
+    },
+    {
+      "row": "feed",
+      "lines": 3
+    }
+  ]
+}

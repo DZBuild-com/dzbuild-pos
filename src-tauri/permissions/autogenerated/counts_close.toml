@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-counts-close"
+description = "Enables the counts_close command without any pre-configured scope."
+commands.allow = ["counts_close"]
+
+[[permission]]
+identifier = "deny-counts-close"
+description = "Denies the counts_close command without any pre-configured scope."
+commands.deny = ["counts_close"]

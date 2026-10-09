@@ -1,0 +1,30 @@
+{
+  "total": "Total",
+  "empty": "No rows",
+  "search": "Search",
+  "export": {
+    "title": "Export",
+    "language": "File language",
+    "xlsx": "Excel (xlsx)",
+    "csv": "CSV",
+    "pdf": "PDF",
+    "done": "File saved. Rows: {{rows}}."
+  },
+  "range": {
+    "label": "Period",
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "this_week": "This week",
+    "last_week": "Last week",
+    "this_month": "This month",
+    "last_month": "Last month",
+    "this_year": "This year",
+    "custom": "Period…",
+    "from": "From",
+    "to": "To"
+  },
+  "loadMore": "Load more",
+  "olderRows": "Older rows are not shown yet.",
+  "truncated": "Only the first {{rows}} rows are shown: narrow the search or the filters to see the others.",
+  "truncatedSort": "Sorting is off until the whole list is loaded."
+}

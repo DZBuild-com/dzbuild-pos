@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-vouchers-describe"
+description = "Enables the vouchers_describe command without any pre-configured scope."
+commands.allow = ["vouchers_describe"]
+
+[[permission]]
+identifier = "deny-vouchers-describe"
+description = "Denies the vouchers_describe command without any pre-configured scope."
+commands.deny = ["vouchers_describe"]

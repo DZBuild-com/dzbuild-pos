@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-documents-invoice-deliveries"
+description = "Enables the documents_invoice_deliveries command without any pre-configured scope."
+commands.allow = ["documents_invoice_deliveries"]
+
+[[permission]]
+identifier = "deny-documents-invoice-deliveries"
+description = "Denies the documents_invoice_deliveries command without any pre-configured scope."
+commands.deny = ["documents_invoice_deliveries"]

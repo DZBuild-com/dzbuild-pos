@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-kitchen-station-archive"
+description = "Enables the kitchen_station_archive command without any pre-configured scope."
+commands.allow = ["kitchen_station_archive"]
+
+[[permission]]
+identifier = "deny-kitchen-station-archive"
+description = "Denies the kitchen_station_archive command without any pre-configured scope."
+commands.deny = ["kitchen_station_archive"]

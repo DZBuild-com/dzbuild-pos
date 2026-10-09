@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-catalog-price-levels-set-default"
+description = "Enables the catalog_price_levels_set_default command without any pre-configured scope."
+commands.allow = ["catalog_price_levels_set_default"]
+
+[[permission]]
+identifier = "deny-catalog-price-levels-set-default"
+description = "Denies the catalog_price_levels_set_default command without any pre-configured scope."
+commands.deny = ["catalog_price_levels_set_default"]

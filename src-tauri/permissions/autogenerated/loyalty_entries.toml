@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-loyalty-entries"
+description = "Enables the loyalty_entries command without any pre-configured scope."
+commands.allow = ["loyalty_entries"]
+
+[[permission]]
+identifier = "deny-loyalty-entries"
+description = "Denies the loyalty_entries command without any pre-configured scope."
+commands.deny = ["loyalty_entries"]

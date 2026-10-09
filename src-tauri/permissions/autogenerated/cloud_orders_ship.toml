@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-cloud-orders-ship"
+description = "Enables the cloud_orders_ship command without any pre-configured scope."
+commands.allow = ["cloud_orders_ship"]
+
+[[permission]]
+identifier = "deny-cloud-orders-ship"
+description = "Denies the cloud_orders_ship command without any pre-configured scope."
+commands.deny = ["cloud_orders_ship"]

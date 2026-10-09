@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-reports-catalog"
+description = "Enables the reports_catalog command without any pre-configured scope."
+commands.allow = ["reports_catalog"]
+
+[[permission]]
+identifier = "deny-reports-catalog"
+description = "Denies the reports_catalog command without any pre-configured scope."
+commands.deny = ["reports_catalog"]

@@ -1,0 +1,8 @@
+# DZBuild POS: the public values of the DZBuild OAuth client (spec §4.7).
+# The POS is a public client (PKCE, no client authentication): nothing here is confidential,
+# and `CloudConfig` refuses any key it does not know, so no credential can be added by mistake.
+issuer = "https://dzbuild.com"
+api_base = "https://api.dzbuild.app/v1"
+client_id = "dzbuild-pos-windows"
+signup_url = "https://dzbuild.com/register"
+devices_url = "https://dzbuild.com/dashboard/connected-devices"

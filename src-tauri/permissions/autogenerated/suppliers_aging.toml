@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-suppliers-aging"
+description = "Enables the suppliers_aging command without any pre-configured scope."
+commands.allow = ["suppliers_aging"]
+
+[[permission]]
+identifier = "deny-suppliers-aging"
+description = "Denies the suppliers_aging command without any pre-configured scope."
+commands.deny = ["suppliers_aging"]

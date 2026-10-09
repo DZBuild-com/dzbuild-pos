@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-customers-search"
+description = "Enables the customers_search command without any pre-configured scope."
+commands.allow = ["customers_search"]
+
+[[permission]]
+identifier = "deny-customers-search"
+description = "Denies the customers_search command without any pre-configured scope."
+commands.deny = ["customers_search"]

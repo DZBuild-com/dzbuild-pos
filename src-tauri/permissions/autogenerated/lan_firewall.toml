@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-lan-firewall"
+description = "Enables the lan_firewall command without any pre-configured scope."
+commands.allow = ["lan_firewall"]
+
+[[permission]]
+identifier = "deny-lan-firewall"
+description = "Denies the lan_firewall command without any pre-configured scope."
+commands.deny = ["lan_firewall"]

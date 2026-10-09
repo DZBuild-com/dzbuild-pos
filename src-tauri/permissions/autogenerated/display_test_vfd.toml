@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-display-test-vfd"
+description = "Enables the display_test_vfd command without any pre-configured scope."
+commands.allow = ["display_test_vfd"]
+
+[[permission]]
+identifier = "deny-display-test-vfd"
+description = "Denies the display_test_vfd command without any pre-configured scope."
+commands.deny = ["display_test_vfd"]

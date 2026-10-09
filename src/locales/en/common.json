@@ -1,0 +1,222 @@
+{
+  "appName": "DZBuild POS",
+  "actions": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "close": "Close",
+    "next": "Next",
+    "back": "Back",
+    "edit": "Edit",
+    "create": "Create",
+    "remove": "Remove",
+    "retry": "Try again",
+    "loadMore": "Show more",
+    "logout": "Log out",
+    "openSettings": "Open settings",
+    "confirm": "Confirm",
+    "print": "Print",
+    "reprint": "Reprint",
+    "search": "Search",
+    "add": "Add",
+    "apply": "Apply",
+    "done": "Done"
+  },
+  "languages": { "label": "Language", "ar": "العربية", "fr": "Français", "en": "English" },
+  "theme": {
+    "label": "Change the theme",
+    "system": "Theme: automatic",
+    "light": "Theme: light",
+    "dark": "Theme: dark"
+  },
+  "status": {
+    "loading": "Loading…",
+    "active": "Active",
+    "inactive": "Deactivated",
+    "never": "Never",
+    "you": "(you)"
+  },
+  "comingSoon": {
+    "title": "{{module}}: coming soon",
+    "body": "This module arrives in a next update of DZBuild POS. Meanwhile, prepare your shop in the settings.",
+    "action": "Open settings"
+  },
+  "terminal": { "code": "Terminal {{code}}" },
+  "fatal": {
+    "title": "DZBuild POS cannot open its data",
+    "body": "Your data has not been deleted. Do not move, delete or replace any file in the data folder. Never copy a backup over the file pos.db: you could lose your sales. Copy the whole data folder to a USB stick and contact DZBuild support.",
+    "dataFolder": "Data folder",
+    "openFolder": "Open the data folder"
+  },
+  "nativeFatal": {
+    "body": "DZBuild POS could not start. Your data has not been touched. Restart the computer; if it happens again, contact DZBuild support and send the file crash.log from the logs folder of %APPDATA%\\dev.dzbuild.pos."
+  },
+  "recovery": {
+    "start": "Restore a backup",
+    "newerDatabase": "This data was saved by a newer version of DZBuild POS. Install the latest version.",
+    "download": "Download the latest version",
+    "found": "Backups found",
+    "none": "No backup found. Plug in the USB stick that holds your backups.",
+    "places": {
+      "local": "On this PC",
+      "mirror": "Second copy · {{place}}",
+      "drive": "USB stick · {{place}}"
+    },
+    "check": "Check this backup",
+    "other": "Choose another one",
+    "continue": "Continue",
+    "invalid": "This backup is damaged. Choose another one.",
+    "owner": "Owner",
+    "pin": "Owner's PIN (the one of this backup)",
+    "moveAside": "The damaged files will be moved to the backups folder (corrupt-…), never deleted. DZBuild POS will restart on this backup.",
+    "restore": "Restore and restart",
+    "restarting": "Restarting on the backup of {{date}}…",
+    "keptIn": "Damaged files kept in:",
+    "locked": "Too many wrong PINs. Wait 15 minutes and try again.",
+    "till": {
+      "body": "This PC is a till: its data comes from the main PC. A backup would take it back in time; join the main PC again instead.",
+      "host": "Main PC",
+      "start": "Join the main PC again",
+      "explain": "The damaged files will be moved to the backups folder (corrupt-…), never deleted. DZBuild POS will restart as a new PC: choose \"Till of a shop\", then type the pairing code the main PC shows.",
+      "confirm": "Move the files and restart",
+      "restarting": "Restarting as a new PC…",
+      "unsent_one": "1 operation of this till has not reached the main PC yet: it stays in the backups' corrupt-… folder. Keep that folder and tell support.",
+      "unsent_other": "{{count}} operations of this till have not reached the main PC yet: they stay in the backups' corrupt-… folder. Keep that folder and tell support.",
+      "unsentUnknown": "Sales this till had not sent to the main PC yet stay in the backups' corrupt-… folder, for support.",
+      "unsent_zero": "{{count}} operations of this till have not reached the main PC yet: they stay in the backups' corrupt-… folder. Keep that folder and tell support.",
+      "unsent_two": "{{count}} operations of this till have not reached the main PC yet: they stay in the backups' corrupt-… folder. Keep that folder and tell support.",
+      "unsent_few": "{{count}} operations of this till have not reached the main PC yet: they stay in the backups' corrupt-… folder. Keep that folder and tell support.",
+      "unsent_many": "{{count}} operations of this till have not reached the main PC yet: they stay in the backups' corrupt-… folder. Keep that folder and tell support.",
+      "unsentNone": "This till had sent everything to the main PC: nothing is lost."
+    },
+    "mainPc_one": "This PC is the main PC of a till: a backup would take it back behind that till. Make the till the main PC instead (Settings › Network, \"Make this the main PC\"): it holds the newest copy.",
+    "mainPc_other": "This PC is the main PC of {{count}} tills: a backup would take it back behind them. Make a till the main PC instead (Settings › Network, \"Make this the main PC\"): it holds the newest copy.",
+    "fresh": {
+      "explain": "Don't want to go back to a backup? You can create a new, empty shop. The backups stay in their folder.",
+      "start": "Create a new shop anyway",
+      "confirm": "Yes, create an empty shop and restart",
+      "restarting": "Restarting on a new shop…"
+    },
+    "mainPc_zero": "This PC is the main PC of {{count}} tills: a backup would take it back behind them. Make a till the main PC instead (Settings › Network, \"Make this the main PC\"): it holds the newest copy.",
+    "mainPc_two": "This PC is the main PC of {{count}} tills: a backup would take it back behind them. Make a till the main PC instead (Settings › Network, \"Make this the main PC\"): it holds the newest copy.",
+    "mainPc_few": "This PC is the main PC of {{count}} tills: a backup would take it back behind them. Make a till the main PC instead (Settings › Network, \"Make this the main PC\"): it holds the newest copy.",
+    "mainPc_many": "This PC is the main PC of {{count}} tills: a backup would take it back behind them. Make a till the main PC instead (Settings › Network, \"Make this the main PC\"): it holds the newest copy."
+  },
+  "startup": {
+    "restoreFailed": {
+      "title": "The backup could not be restored",
+      "body": "DZBuild POS kept your current data. The backup file may be damaged or was still in use: try the restore again from Settings, Backups."
+    },
+    "numbersReissued": {
+      "title": "Numbers already printed will be issued again",
+      "body": "The restored backup is older than the last sales: the numbers below were already printed and will be given a second time to other documents. Keep the paper receipts of that period. The restore and these numbers are written in the action log."
+    },
+    "loggingUnavailable": {
+      "title": "Technical logs cannot be written in the data folder",
+      "body": "DZBuild POS works normally. Check the free disk space and that the data folder is not read-only.",
+      "fallback": "The technical logs of this session go to this folder:",
+      "none": "No technical log is written during this session."
+    },
+    "webviewOutdated": {
+      "title": "Windows' display component (WebView2) is too old",
+      "body": "Version {{version}} is installed; {{minimum}} is the minimum. Some screens may not show correctly. Update it (needs the Internet) or reinstall with the offline installer.",
+      "action": "Update WebView2"
+    },
+    "clockMovedBack": {
+      "title": "The PC clock went back",
+      "body": "The last operation is dated {{lastSeen}}; the clock says {{now}}. Fix Windows' date and time: receipts and the action log depend on them. This change is written in the action log."
+    },
+    "appUpdated": {
+      "title": "DZBuild POS was updated",
+      "body": "Version {{from}} → {{to}}. Your data was backed up before the update.",
+      "whatsNew": "See what's new"
+    },
+    "updateNotInstalled": {
+      "title": "The update was not installed",
+      "body": "Windows did not start the setup of version {{version}}, most often because its permission request was refused or this Windows account cannot approve it. DZBuild POS restarted on the current version and your data is intact. To install it, try again and approve the request, with a Windows administrator account if needed."
+    },
+    "datapackSkipped": "The regulatory file {{file}} was not used ({{reason}})."
+  },
+  "tray": {
+    "open": "Open",
+    "quit": "Quit",
+    "tooltip": "DZBuild POS {{version}}",
+    "updateReady": "Update {{version}} ready",
+    "backupProblem": "Backup problem: open Settings › Backups"
+  },
+  "closing": {
+    "saving": "Backing up before closing…"
+  },
+  "backupAlerts": {
+    "failed": {
+      "title": "The automatic backup failed",
+      "body": "Today's data is not protected by a backup. Make a backup in Settings › Backups, or tell the owner."
+    },
+    "stale": {
+      "title": "No recent backup",
+      "body": "The newest backup dates from {{date}}. Make a backup now in Settings › Backups, or tell the owner."
+    },
+    "damaged": {
+      "title": "The shop's data is damaged: stop selling",
+      "body": "A backup copy failed its check, and so did the shop's data file itself. Do not record any more sales. The owner must restore the latest good backup in Settings › Backups, or call DZBuild support.",
+      "acknowledge": "I understand"
+    },
+    "mirror": {
+      "title": "The second copy could not be made",
+      "body": "The PC's backup worked, but not its copy to the stick or the second folder."
+    },
+    "openBackups": "Open the backups"
+  },
+  "backToTop": "Back to top",
+  "updatePill": "Update ready",
+  "updateOffer": {
+    "body": "Version {{version}} is ready. Install it now? DZBuild POS will restart.",
+    "install": "Install now",
+    "later": "Later"
+  },
+  "whatsNew": { "title": "What's new" },
+  "keys": {
+    "enter": "Enter",
+    "escape": "Esc",
+    "delete": "Del",
+    "plus": "+",
+    "minus": "-",
+    "multiply": "*",
+    "arrows": "↑ ↓",
+    "f1": "F1",
+    "f2": "F2",
+    "f3": "F3",
+    "f4": "F4",
+    "f5": "F5",
+    "f6": "F6",
+    "f7": "F7",
+    "f8": "F8",
+    "f9": "F9",
+    "f10": "F10",
+    "f11": "F11",
+    "f12": "F12",
+    "ctrlS": "Ctrl+S",
+    "ctrlD": "Ctrl+D",
+    "ctrlN": "Ctrl+N",
+    "ctrlDigit": "Ctrl+{{digit}}"
+  },
+  "units": { "sizeMb": "{{value}} MB", "sizeGb": "{{value}} GB", "sizeMbWhole": "{{value}} MB" },
+  "answers": {
+    "yes": "Yes",
+    "no": "No"
+  },
+  "demo": {
+    "ribbon": "Demo shop — nothing here is real.",
+    "leave": "Leave the demo",
+    "pins": "Demo: owner {{owner}}, cashier {{cashier}}"
+  },
+  "osk": {
+    "label": "On-screen keyboard",
+    "shift": "Shift",
+    "space": "Space",
+    "erase": "Erase",
+    "enter": "Enter",
+    "toArabic": "عربي",
+    "toAzerty": "AZERTY",
+    "hide": "Hide the keyboard"
+  }
+}

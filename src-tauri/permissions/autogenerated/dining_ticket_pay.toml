@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-dining-ticket-pay"
+description = "Enables the dining_ticket_pay command without any pre-configured scope."
+commands.allow = ["dining_ticket_pay"]
+
+[[permission]]
+identifier = "deny-dining-ticket-pay"
+description = "Denies the dining_ticket_pay command without any pre-configured scope."
+commands.deny = ["dining_ticket_pay"]

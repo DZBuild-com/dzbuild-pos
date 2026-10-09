@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-loyalty-card-lookup"
+description = "Enables the loyalty_card_lookup command without any pre-configured scope."
+commands.allow = ["loyalty_card_lookup"]
+
+[[permission]]
+identifier = "deny-loyalty-card-lookup"
+description = "Denies the loyalty_card_lookup command without any pre-configured scope."
+commands.deny = ["loyalty_card_lookup"]

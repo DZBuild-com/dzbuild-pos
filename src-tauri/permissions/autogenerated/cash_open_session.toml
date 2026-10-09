@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-cash-open-session"
+description = "Enables the cash_open_session command without any pre-configured scope."
+commands.allow = ["cash_open_session"]
+
+[[permission]]
+identifier = "deny-cash-open-session"
+description = "Denies the cash_open_session command without any pre-configured scope."
+commands.deny = ["cash_open_session"]

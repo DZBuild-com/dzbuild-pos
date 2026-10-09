@@ -1,0 +1,52 @@
+{
+  "title": "Encaissement",
+  "pay": "Encaisser",
+  "validate": "Valider",
+  "tenders": {
+    "cash": "Espèces",
+    "card_cib": "Carte CIB",
+    "edahabia": "Edahabia",
+    "baridimob": "BaridiMob",
+    "cheque": "Chèque",
+    "transfer": "Virement",
+    "credit": "Crédit client",
+    "voucher": "Avoir client",
+    "change": "Monnaie rendue"
+  },
+  "needCustomer": "Choisissez d'abord le client (F3) pour payer à crédit ou avec son avoir.",
+  "voucherTile": "Bon d'achat",
+  "typeReference": "Référence",
+  "reference": {
+    "card_cib": "N° d'autorisation ({{method}})",
+    "edahabia": "N° d'autorisation ({{method}})",
+    "baridimob": "N° de transaction ({{method}})",
+    "cheque": "N° du chèque",
+    "transfer": "Référence du virement",
+    "credit": "Référence",
+    "voucher": "N° du bon",
+    "change": "Référence"
+  },
+  "cheque": { "bank": "Banque", "date": "Date du chèque" },
+  "quickNote": "{{value}} DA",
+  "exact": "Montant exact",
+  "totalTtc": "Total TTC",
+  "stampDuty": "Droit de timbre",
+  "totalDue": "Net à payer",
+  "stampHint": "Payer par carte évite ce droit de timbre : ",
+  "missing": "Reste à payer",
+  "change": "Rendu",
+  "unknown": "Montant pas encore calculé : terminez la saisie du paiement",
+  "printLang": "Langue du ticket",
+  "printReceipt": "Imprimer le ticket",
+  "noPrinter": "Aucune imprimante de tickets : réglez-la dans Réglages › Matériel.",
+  "exchangeCredit": "Valeur reprise (échange) :",
+  "shortage": "{{name}} : {{available}} en stock, {{needed}} demandés",
+  "done": {
+    "title": "Vente encaissée",
+    "number": "Ticket",
+    "refunded": "À rendre au client",
+    "printing": "Le ticket s'imprime.",
+    "noReceipt": "Sans ticket imprimé.",
+    "newSale": "Nouvelle vente"
+  }
+}

@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-service-assign"
+description = "Enables the service_assign command without any pre-configured scope."
+commands.allow = ["service_assign"]
+
+[[permission]]
+identifier = "deny-service-assign"
+description = "Denies the service_assign command without any pre-configured scope."
+commands.deny = ["service_assign"]

@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-backup-mirror-clear"
+description = "Enables the backup_mirror_clear command without any pre-configured scope."
+commands.allow = ["backup_mirror_clear"]
+
+[[permission]]
+identifier = "deny-backup-mirror-clear"
+description = "Denies the backup_mirror_clear command without any pre-configured scope."
+commands.deny = ["backup_mirror_clear"]

@@ -1,0 +1,265 @@
+---
+source: crates/pos-docs/src/a4/document.rs
+expression: m
+---
+{
+  "docType": "invoice",
+  "lang": "fr",
+  "rtl": false,
+  "title": "Facture",
+  "number": "FA2026-000045",
+  "date": "28/09/2026",
+  "validUntil": null,
+  "dueDate": "28/10/2026",
+  "seller": {
+    "name": "Supérette El Amel",
+    "nameAlt": "مغازة الأمل",
+    "legalForm": "SARL",
+    "activity": "Commerce de détail en alimentation générale",
+    "activityAlt": "تجارة التجزئة للمواد الغذائية العامة",
+    "capital": 100000000,
+    "address": "12 rue Larbi Ben M'hidi, Alger",
+    "wilaya": "Alger",
+    "phone": "023 45 67 89",
+    "email": null,
+    "ids": [
+      {
+        "kind": "rc",
+        "value": "16/00-1234567B26"
+      },
+      {
+        "kind": "nif",
+        "value": "000116001234567"
+      },
+      {
+        "kind": "nis",
+        "value": "000116001234567"
+      },
+      {
+        "kind": "ai",
+        "value": "16012345678"
+      },
+      {
+        "kind": "rib",
+        "value": "00799999001234567890"
+      }
+    ],
+    "vatExemptRef": null
+  },
+  "counterpart": {
+    "name": "SARL Amine",
+    "nameAlt": null,
+    "legalForm": "SARL",
+    "activity": "Quincaillerie",
+    "activityAlt": null,
+    "capital": null,
+    "address": "5 rue Didouche Mourad, Alger",
+    "wilaya": "Alger",
+    "phone": null,
+    "email": null,
+    "ids": [
+      {
+        "kind": "rc",
+        "value": "16/00-7654321B26"
+      },
+      {
+        "kind": "nif",
+        "value": "000016001234567"
+      },
+      {
+        "kind": "nis",
+        "value": "000016007654321"
+      },
+      {
+        "kind": "ai",
+        "value": "16098765432"
+      }
+    ],
+    "vatExemptRef": null
+  },
+  "counterpartRole": "customer",
+  "showPrices": true,
+  "priceBasisHt": true,
+  "showTax": true,
+  "ifuMention": null,
+  "exemptMention": null,
+  "lines": [
+    {
+      "no": 1,
+      "description": "Ciment 25 kg",
+      "descriptionAlt": null,
+      "qty": 10000,
+      "unit": "pièce",
+      "unitPriceHt": 100000,
+      "unitPriceTtc": 119000,
+      "discount": 59500,
+      "discountBp": 500,
+      "rateBp": 1900,
+      "totalHt": 950000,
+      "totalTtc": 1130500,
+      "components": [],
+      "note": null
+    },
+    {
+      "no": 2,
+      "description": "Sable 1 m3",
+      "descriptionAlt": null,
+      "qty": 2000,
+      "unit": "pièce",
+      "unitPriceHt": 500000,
+      "unitPriceTtc": 545000,
+      "discount": 0,
+      "discountBp": 0,
+      "rateBp": 900,
+      "totalHt": 1000000,
+      "totalTtc": 1090000,
+      "components": [],
+      "note": null
+    },
+    {
+      "no": 3,
+      "description": "Transport Alger – Blida",
+      "descriptionAlt": null,
+      "qty": 1000,
+      "unit": "pièce",
+      "unitPriceHt": 100000,
+      "unitPriceTtc": 119000,
+      "discount": 0,
+      "discountBp": 0,
+      "rateBp": 1900,
+      "totalHt": 100000,
+      "totalTtc": 119000,
+      "components": [],
+      "note": null
+    }
+  ],
+  "totals": {
+    "subtotalHt": 2050000,
+    "discountTotal": 59500,
+    "taxes": [
+      {
+        "rateBp": 1900,
+        "label": "TVA 19 %",
+        "baseHt": 1050000,
+        "tax": 199500
+      },
+      {
+        "rateBp": 900,
+        "label": "TVA 9 %",
+        "baseHt": 1000000,
+        "tax": 90000
+      }
+    ],
+    "taxTotal": 289500,
+    "totalTtc": 2339500,
+    "stampDuty": 5400,
+    "stampAbsorbed": 0,
+    "rounding": 0,
+    "totalDue": 2344900,
+    "paid": 544900,
+    "remaining": 1800000
+  },
+  "inLetters": "Arrêtée la présente facture à la somme de : vingt-trois mille quatre cent quarante-neuf dinars",
+  "payments": [
+    {
+      "method": "cash",
+      "label": "Espèces",
+      "amount": 544900,
+      "reference": null,
+      "chequeBank": null,
+      "chequeDate": null
+    },
+    {
+      "method": "credit",
+      "label": "Crédit client",
+      "amount": 1800000,
+      "reference": null,
+      "chequeBank": null,
+      "chequeDate": null
+    }
+  ],
+  "paymentMode": "Espèces, À terme (règlement le 28/10/2026)",
+  "references": [],
+  "creditKind": null,
+  "reason": null,
+  "note": null,
+  "headerText": null,
+  "footerText": "Merci de votre confiance",
+  "termsText": "Marchandise reprise uniquement par avoir.",
+  "social": [
+    "elamel.dz"
+  ],
+  "legal": [],
+  "stampBox": true,
+  "duplicate": null,
+  "watermark": null,
+  "qr": {
+    "size": 21,
+    "modules": "111111101001001111111100000101000101000001101110100011101011101101110101101101011101101110100110001011101100000100010001000001111111101010101111111000000001000000000000101101110000001001011111001000110100100110110010100110101001010001011010010111010111100001100001000101001000000001100001000000111111101010011010011100000101011101100101101110100011001010011101110101000010000110101110101101000110100100000100011101101000111111101101110001110"
+  },
+  "logo": null,
+  "layout": {
+    "accent": "brand",
+    "showLogo": true,
+    "paper": "a4",
+    "secondLang": null,
+    "showDeliveryPrices": true,
+    "showStampBox": true
+  },
+  "labels": {
+    "number": "N°",
+    "date": "Date",
+    "validUntil": "Valable jusqu'au",
+    "dueDate": "Date de règlement",
+    "seller": "Vendeur",
+    "customer": "Client",
+    "supplier": "Fournisseur",
+    "legalForm": "Forme juridique",
+    "activity": "Activité",
+    "capital": "Capital social",
+    "address": "Adresse",
+    "phone": "Tél.",
+    "email": "E-mail",
+    "rc": "RC",
+    "aeCard": "Carte AE",
+    "nif": "NIF",
+    "nis": "NIS",
+    "ai": "AI",
+    "nin": "NIN",
+    "rib": "RIB",
+    "designation": "Désignation",
+    "qty": "Qté",
+    "unit": "Unité",
+    "unitPriceHt": "P.U. HT",
+    "unitPriceTtc": "P.U. TTC",
+    "discount": "Remise",
+    "vatRate": "TVA",
+    "totalHt": "Montant HT",
+    "totalTtc": "Montant TTC",
+    "subtotalHt": "Total HT",
+    "discountTotal": "Total des remises",
+    "totalTtcLabel": "Total TTC",
+    "stampDuty": "Droit de timbre",
+    "stampAbsorbed": "Droit de timbre pris en charge par le vendeur",
+    "rounding": "Arrondi",
+    "netToPay": "Net à payer",
+    "paymentMode": "Mode de paiement",
+    "paid": "Payé",
+    "remaining": "Reste dû",
+    "references": "Documents cités",
+    "stampBox": "Cachet et signature",
+    "page": "Page",
+    "printedAt": "Imprimé le",
+    "from": "De",
+    "to": "Vers",
+    "driver": "Chauffeur",
+    "vehicle": "Véhicule",
+    "note": "Observations",
+    "terms": "Conditions",
+    "reason": "Motif",
+    "receivedBy": "Reçu par"
+  },
+  "second": null,
+  "transfer": null,
+  "printedAt": "28/09/2026 10:15"
+}

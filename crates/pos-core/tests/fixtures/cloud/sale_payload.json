@@ -1,0 +1,43 @@
+{
+  "apply_stock": false,
+  "business_date": "2026-09-28",
+  "cashier_ref": "[stable]",
+  "channel": "pos",
+  "document_type": "ticket",
+  "external_id": "[stable]",
+  "lines": [
+    {
+      "description": "Sac",
+      "discount": 500,
+      "product_external_id": "[stable]",
+      "quantity": 1,
+      "tax_rate": 19,
+      "total": 4000,
+      "unit_price": 4500
+    }
+  ],
+  "location_id": "loc_1",
+  "number": "TK2026-C1-000001",
+  "occurred_at": "[stable]",
+  "payments": [
+    {
+      "amount": 5000,
+      "method": "cash"
+    },
+    {
+      "amount": -960,
+      "method": "change"
+    }
+  ],
+  "price_mode": "ttc",
+  "tax_regime": "reel",
+  "terminal": "C1",
+  "totals": {
+    "discount": 500,
+    "rounding": 0,
+    "stamp_duty": 40,
+    "subtotal": 4500,
+    "tax": 638.66,
+    "total": 4040
+  }
+}

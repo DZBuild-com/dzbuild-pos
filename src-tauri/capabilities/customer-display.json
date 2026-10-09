@@ -1,0 +1,7 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "customer-display",
+  "description": "Customer screen: reads the current frame and the shop's name and logo, and listens to customer-display-update. No other command, no emission, no filesystem.",
+  "windows": ["customer-display"],
+  "permissions": ["customer-display-commands", "core:event:allow-listen", "core:event:allow-unlisten"]
+}

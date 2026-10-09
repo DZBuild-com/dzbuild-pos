@@ -1,0 +1,308 @@
+/* The printed documents (spec §10, "A4 documents on paper"): white paper, ink text, one accent,
+   logical properties only; `doc-` classes keep the golden HTML readable. */
+
+@page {
+  @bottom-center {
+    font-family: Inter, Cairo, system-ui, sans-serif;
+    font-size: 8pt;
+    color: var(--ink-2);
+  }
+}
+.doc {
+  font-family: Inter, Cairo, system-ui, sans-serif;
+  font-size: 10pt;
+  line-height: 1.4;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+  position: relative;
+  counter-reset: page;
+}
+.doc[dir="rtl"] {
+  font-family: Cairo, Inter, system-ui, sans-serif;
+}
+.doc p,
+.doc h1,
+.doc h2 {
+  margin-block: 2px;
+}
+.doc h2 {
+  font-size: 10pt;
+}
+.doc-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  border-block-end: 2px solid var(--line);
+  padding-block-end: 12px;
+}
+.doc-title {
+  display: inline-block;
+  font-size: 14pt;
+  font-weight: 700;
+  padding-inline: 12px;
+  padding-block: 4px;
+  border-radius: 8px;
+}
+.doc[data-accent="brand"] .doc-title,
+.doc[data-accent="brand"] .doc-due {
+  background: var(--brand);
+  color: var(--brand-ink);
+}
+.doc[data-accent="ink"] .doc-title,
+.doc[data-accent="ink"] .doc-due {
+  border: 2px solid var(--ink);
+}
+.doc[data-accent="info"] .doc-title,
+.doc[data-accent="info"] .doc-due {
+  border: 2px solid var(--info);
+}
+.doc[data-accent="ok"] .doc-title,
+.doc[data-accent="ok"] .doc-due {
+  border: 2px solid var(--ok);
+}
+.doc-logo {
+  max-block-size: 64px;
+  max-inline-size: 160px;
+}
+.doc-parties {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-block: 12px;
+}
+.doc-party {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 8px;
+}
+.doc-ids {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 8px;
+}
+.doc-id {
+  display: contents;
+}
+.doc-lines {
+  inline-size: 100%;
+  border-collapse: collapse;
+  font-size: 9pt;
+}
+.doc-lines thead {
+  display: table-header-group;
+}
+.doc-lines tr {
+  break-inside: avoid;
+}
+.doc-lines th {
+  background: var(--surface-2);
+  text-align: start;
+  font-weight: 600;
+  border-block-end: 1px solid var(--line);
+  padding: 4px 6px;
+}
+.doc-lines td {
+  border-block-end: 1px solid var(--line);
+  padding: 4px 6px;
+  vertical-align: top;
+}
+.doc-lines .doc-num {
+  text-align: end;
+  white-space: nowrap;
+}
+.doc-alt {
+  display: block;
+  color: var(--ink-2);
+  font-size: 0.9em;
+}
+.doc-twin {
+  color: var(--ink-2);
+}
+.doc-totals,
+.doc-payments {
+  margin-inline-start: auto;
+  inline-size: 50%;
+  margin-block-start: 12px;
+}
+.doc-totals div,
+.doc-payments div,
+.doc-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding-block: 2px;
+}
+.doc-due {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 12pt;
+  font-weight: 700;
+  border-radius: 8px;
+  padding: 6px 8px;
+}
+.doc-letters {
+  margin-block: 12px;
+  font-style: italic;
+}
+.doc-legal {
+  font-weight: 600;
+  margin-block: 6px;
+}
+.doc-signs {
+  display: flex;
+  gap: 16px;
+}
+.doc-received,
+.doc-stamp {
+  inline-size: 60mm;
+  block-size: 30mm;
+  border: 1px dashed var(--ink-2);
+  border-radius: 8px;
+  padding: 4px;
+  margin-block-start: 16px;
+}
+.doc-stamp {
+  margin-inline-start: auto;
+}
+.doc-fill p {
+  border-block-end: 1px dotted var(--ink-2);
+  min-block-size: 8mm;
+}
+/* The pack documents (M8): a contract's goods and supporting documents, its clauses, the route
+   sheet's signature column, and the two 40 mm signature boxes that end both. */
+.doc-items {
+  list-style: none;
+  padding: 0;
+  margin-block: 4px;
+}
+.doc-clauses {
+  padding-inline-start: 20px;
+  margin-block: 12px;
+}
+.doc-sign-cell {
+  min-inline-size: 30mm;
+}
+.doc-signatures {
+  display: flex;
+  gap: 16px;
+  margin-block-start: 16px;
+  break-inside: avoid;
+}
+.doc-signature {
+  flex: 1;
+  block-size: 40mm;
+  border: 1px solid var(--ink-2);
+  border-radius: 8px;
+  padding: 4px;
+}
+.doc-foot {
+  margin-block-start: 16px;
+  border-block-start: 1px solid var(--line);
+  padding-block-start: 6px;
+  font-size: 8pt;
+  color: var(--ink-2);
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+.doc-watermark {
+  position: absolute;
+  inset-block-start: 40%;
+  inset-inline: 0;
+  text-align: center;
+  font-size: 28pt;
+  font-weight: 700;
+  color: var(--danger);
+  opacity: 0.25;
+  transform: rotate(-30deg);
+  pointer-events: none;
+}
+.doc-copy,
+.doc-broken {
+  font-weight: 700;
+  color: var(--danger);
+}
+/* DUPLICATA on every sheet of a copy (page 1 also has it in its head): printed only. */
+.doc-copy-mark {
+  display: none;
+}
+@media print {
+  /* Chromium repeats a fixed box on each printed page: the "FACTURE ANNULÉE" mark (décret
+     05-468 art. 10, DOC-007) and the DUPLICATA are on every sheet of a long document. */
+  .doc-watermark {
+    position: fixed;
+    inset-block-start: 40%;
+  }
+  .doc-copy-mark {
+    display: block;
+    position: fixed;
+    inset-block-start: 0;
+    inset-inline-end: 0;
+    font-weight: 700;
+    color: var(--danger);
+    border: 1.5px solid var(--danger);
+    border-radius: 4px;
+    padding-inline: 6px;
+  }
+}
+/* The demo shop's mark (finding 39): on screen after the page, and on every printed sheet. */
+.doc-demo-mark {
+  margin-block: 2mm;
+  text-align: center;
+  font-weight: 700;
+  color: var(--danger);
+  border: 1.5px solid var(--danger);
+  border-radius: 4px;
+  padding-inline: 6px;
+}
+@media print {
+  .doc-demo-mark:not(.doc-demo-inline) {
+    position: fixed;
+    inset-block-end: 0;
+    inset-inline: 0;
+    margin: 0;
+    background: #ffffff;
+  }
+}
+.doc-ok {
+  font-weight: 600;
+  color: var(--ok);
+}
+.doc-qr {
+  inline-size: 22mm;
+  block-size: 22mm;
+  flex: none;
+}
+.doc-receipt {
+  inline-size: 74mm;
+  font-size: 9pt;
+}
+.doc-receipt-head,
+.doc-receipt .doc-title,
+.doc-receipt .doc-copy,
+.doc-receipt .doc-legal,
+.doc-receipt-code {
+  text-align: center;
+}
+.doc-receipt .doc-title {
+  display: block;
+  font-size: 11pt;
+}
+.doc-receipt-lines,
+.doc-receipt-payments {
+  border-block: 1px dashed var(--ink-2);
+  padding-block: 4px;
+  margin-block: 4px;
+}
+/* HW-002: a receipt as a page of its 58 or 80 mm roll; the wrapper sets the column's width. */
+.doc-roll .doc-receipt {
+  inline-size: 100%;
+}
+/* The zakat statement's "not a fatwa" sentence (FIN-007). */
+.doc-disclaimer {
+  border: 1px solid var(--ink-2);
+  border-radius: 8px;
+  padding: 6px 8px;
+  margin-block-start: 12px;
+}

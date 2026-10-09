@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-roles-update"
+description = "Enables the roles_update command without any pre-configured scope."
+commands.allow = ["roles_update"]
+
+[[permission]]
+identifier = "deny-roles-update"
+description = "Denies the roles_update command without any pre-configured scope."
+commands.deny = ["roles_update"]

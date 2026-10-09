@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-labels-save-templates"
+description = "Enables the labels_save_templates command without any pre-configured scope."
+commands.allow = ["labels_save_templates"]
+
+[[permission]]
+identifier = "deny-labels-save-templates"
+description = "Denies the labels_save_templates command without any pre-configured scope."
+commands.deny = ["labels_save_templates"]

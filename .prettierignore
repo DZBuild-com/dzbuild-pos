@@ -1,0 +1,18 @@
+node_modules
+target
+dist
+coverage
+src-tauri/gen
+src-tauri/icons
+src/bindings.ts
+src/bindings-packs.ts
+# Signed data packs (Task 17): a byte changed breaks their signature.
+crates/pos-core/tests/fixtures/datapack
+# Written by `cargo test -p pos-docs write_print_fixtures -- --ignored`, compared byte for byte.
+src/documents/__fixtures__
+# Written by `pnpm exec vitest run src/documents -u`, compared byte for byte.
+src/documents/__golden__
+pnpm-lock.yaml
+assets
+docs
+*.md

@@ -1,0 +1,122 @@
+{
+  "title": "Réparations et services",
+  "tabs": {
+    "label": "Vues des tickets",
+    "tickets": "Tickets",
+    "uncollected": "Non récupérés",
+    "settings": "Réglages"
+  },
+  "kinds": {
+    "repair": "Réparation",
+    "pressing": "Pressing",
+    "tailoring": "Couture",
+    "other": "Autre"
+  },
+  "status": {
+    "received": "Reçu",
+    "diagnosing": "Diagnostic",
+    "waiting_parts": "Attente pièces",
+    "in_progress": "En cours",
+    "ready": "Prêt",
+    "delivered": "Remis",
+    "returned_unrepaired": "Rendu non réparé",
+    "cancelled": "Annulé"
+  },
+  "board": {
+    "label": "Tickets par statut",
+    "kind": "Type",
+    "allKinds": "Tous les types",
+    "search": "Rechercher",
+    "searchHint": "Numéro, appareil, IMEI ou client",
+    "new": "Nouveau dépôt",
+    "empty": "Aucun ticket",
+    "late": "Date promise dépassée",
+    "promised": "Prêt le {{date}}"
+  },
+  "uncollected": {
+    "emptyTitle": "Rien n'attend son client",
+    "emptyBody": "Les articles prêts depuis trop longtemps s'affichent ici, avec les arrhes que la boutique détient encore.",
+    "label": "Articles non récupérés",
+    "number": "N°",
+    "customer": "Client",
+    "item": "Article",
+    "readySince": "Prêt depuis",
+    "deposit": "Arrhes"
+  },
+  "intake": {
+    "title": "Nouveau dépôt",
+    "kind": "Type de dépôt",
+    "item": "Appareil ou article",
+    "brand": "Marque",
+    "model": "Modèle",
+    "serial": "N° de série / IMEI",
+    "accessories": "Accessoires laissés",
+    "condition": "État à la réception",
+    "fault": "Panne ou demande",
+    "estimate": "Devis estimé",
+    "promised": "Prêt le",
+    "technician": "Technicien",
+    "noTechnician": "Pas encore choisi",
+    "lang": "Langue du client",
+    "save": "Enregistrer et imprimer le bon",
+    "customerRequired": "Choisissez le client ou créez-le.",
+    "newCustomer": "Nouveau client",
+    "customerName": "Nom du client",
+    "customerPhone": "Téléphone",
+    "createCustomer": "Créer le client",
+    "saved": "Bon {{number}} enregistré"
+  },
+  "deposit": {
+    "title": "Arrhes",
+    "amount": "Montant",
+    "method": "Moyen de paiement",
+    "reference": "Référence",
+    "duty": "Droit de timbre : {{amount}}",
+    "toReceive": "À encaisser : {{amount}}",
+    "take": "Encaisser les arrhes",
+    "refund": "Rembourser les arrhes",
+    "held": "Arrhes : {{amount}}",
+    "skip": "Sans arrhes",
+    "for": "Bon {{number}} — {{customer}}",
+    "taken": "Arrhes encaissées : le reçu s'imprime.",
+    "refunded": "Arrhes remboursées"
+  },
+  "items": {
+    "title": "Pièces et main-d'œuvre",
+    "add": "Ajouter une pièce",
+    "labour": "Main-d'œuvre",
+    "search": "Pièce ou service du catalogue",
+    "qty": "Quantité",
+    "price": "Prix",
+    "catalogPrice": "Prix du catalogue : {{amount}}",
+    "save": "Enregistrer les pièces",
+    "saved": "Pièces enregistrées",
+    "empty": "Aucune pièce ni main-d'œuvre prévue.",
+    "remove": "Retirer {{name}}"
+  },
+  "ticket": {
+    "back": "Retour au tableau",
+    "details": "Dépôt",
+    "customer": "Client",
+    "timeline": "Historique",
+    "by": "par {{name}}",
+    "next": "Faire passer à",
+    "technician": "Technicien",
+    "closed": "Ce ticket est clos : il ne change plus.",
+    "deposits": "Arrhes détenues"
+  },
+  "ready": {
+    "title": "Message « prêt »",
+    "copy": "Copier le message",
+    "copied": "Message copié",
+    "whatsappYes": "Consentement WhatsApp : oui, depuis le {{date}}",
+    "whatsappNo": "Pas de consentement WhatsApp : appelez le client",
+    "smsYes": "Consentement SMS : oui, depuis le {{date}}",
+    "smsNo": "Pas de consentement SMS",
+    "hint": "Le logiciel n'envoie aucun message : collez-le dans WhatsApp ou dans un SMS."
+  },
+  "pickup": "Remettre au client",
+  "pickupLoaded": "Ticket {{number}} : encaissez la remise au client.",
+  "days": "{{count}} j",
+  "waiting": "Attend depuis {{count}} jours"
+}

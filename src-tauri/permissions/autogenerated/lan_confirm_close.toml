@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-lan-confirm-close"
+description = "Enables the lan_confirm_close command without any pre-configured scope."
+commands.allow = ["lan_confirm_close"]
+
+[[permission]]
+identifier = "deny-lan-confirm-close"
+description = "Denies the lan_confirm_close command without any pre-configured scope."
+commands.deny = ["lan_confirm_close"]

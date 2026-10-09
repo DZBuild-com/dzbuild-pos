@@ -1,0 +1,189 @@
+{
+  "lang": "en",
+  "rtl": false,
+  "title": "Instalment sale contract",
+  "number": "CT2026-000001",
+  "date": "28/09/2026",
+  "seller": {
+    "name": "Supérette El Amel",
+    "nameAlt": "مغازة الأمل",
+    "legalForm": "SARL",
+    "activity": "Commerce de détail en alimentation générale",
+    "activityAlt": "تجارة التجزئة للمواد الغذائية العامة",
+    "capital": 100000000,
+    "address": "12 rue Larbi Ben M'hidi, Alger",
+    "wilaya": "Alger",
+    "phone": "023 45 67 89",
+    "email": null,
+    "ids": [
+      {
+        "kind": "rc",
+        "value": "16/00-1234567B26"
+      },
+      {
+        "kind": "nif",
+        "value": "000116001234567"
+      },
+      {
+        "kind": "nis",
+        "value": "000116001234567"
+      },
+      {
+        "kind": "ai",
+        "value": "16012345678"
+      },
+      {
+        "kind": "rib",
+        "value": "00799999001234567890"
+      }
+    ],
+    "vatExemptRef": null
+  },
+  "buyer": {
+    "name": "Farid Bouzid",
+    "nameAlt": null,
+    "legalForm": null,
+    "activity": "Quincaillerie",
+    "activityAlt": null,
+    "capital": null,
+    "address": "5 rue Didouche Mourad, Alger",
+    "wilaya": "Alger",
+    "phone": null,
+    "email": null,
+    "ids": [
+      {
+        "kind": "rc",
+        "value": "16/00-7654321B26"
+      },
+      {
+        "kind": "nif",
+        "value": "000016001234567"
+      },
+      {
+        "kind": "nis",
+        "value": "000016007654321"
+      },
+      {
+        "kind": "ai",
+        "value": "16098765432"
+      }
+    ],
+    "vatExemptRef": null
+  },
+  "items": [
+    {
+      "name": "Réfrigérateur Condor 400 L",
+      "qty": 1000,
+      "total": 12000000
+    }
+  ],
+  "total": 12000000,
+  "down": 3000000,
+  "financed": 9000000,
+  "count": 6,
+  "dues": [
+    [
+      "31/10/2026",
+      1500000
+    ],
+    [
+      "30/11/2026",
+      1500000
+    ],
+    [
+      "31/12/2026",
+      1500000
+    ],
+    [
+      "31/01/2027",
+      1500000
+    ],
+    [
+      "28/02/2027",
+      1500000
+    ],
+    [
+      "31/03/2027",
+      1500000
+    ]
+  ],
+  "guarantees": [
+    "Pay slip — Farid Bouzid — Fiche de paie août 2026"
+  ],
+  "clauses": [
+    "The seller sells the customer the goods above, new and as described.",
+    "The price is the instalment price shown above; the down payment is paid at signature.",
+    "The customer pays the rest on the schedule's dates, at the shop, by CCP transfer or direct debit, card or payment cheque; every payment gets a receipt.",
+    "Payments are received at the shop or on the account the seller names.",
+    "The customer may pay all or part of the rest early at any time.",
+    "No guarantee cheque is asked for or accepted.",
+    "The goods are handed to the customer at signature."
+  ],
+  "labels": {
+    "items": "Goods sold",
+    "total": "Total price incl. tax",
+    "down": "Down payment",
+    "financed": "Left to pay in instalments",
+    "schedule": "Schedule",
+    "due": "Instalment",
+    "amount": "Amount",
+    "guarantees": "Supporting documents given"
+  },
+  "partyLabels": {
+    "number": "No.",
+    "date": "Date",
+    "validUntil": "Valid until",
+    "dueDate": "Due date",
+    "seller": "Seller",
+    "customer": "Customer",
+    "supplier": "Supplier",
+    "legalForm": "Legal form",
+    "activity": "Activity",
+    "capital": "Share capital",
+    "address": "Address",
+    "phone": "Phone",
+    "email": "Email",
+    "rc": "Trade register (RC)",
+    "aeCard": "Auto-entrepreneur card",
+    "nif": "Tax ID (NIF)",
+    "nis": "Statistical ID (NIS)",
+    "ai": "Tax article (AI)",
+    "nin": "National ID (NIN)",
+    "rib": "Bank account (RIB)",
+    "designation": "Description",
+    "qty": "Qty",
+    "unit": "Unit",
+    "unitPriceHt": "Unit price excl. tax",
+    "unitPriceTtc": "Unit price incl. tax",
+    "discount": "Discount",
+    "vatRate": "VAT",
+    "totalHt": "Amount excl. tax",
+    "totalTtc": "Amount incl. tax",
+    "subtotalHt": "Total excl. tax",
+    "discountTotal": "Total discounts",
+    "totalTtcLabel": "Total incl. tax",
+    "stampDuty": "Stamp duty",
+    "stampAbsorbed": "Stamp duty paid by the seller",
+    "rounding": "Rounding",
+    "netToPay": "Amount due",
+    "paymentMode": "Payment method",
+    "paid": "Paid",
+    "remaining": "Balance due",
+    "references": "Referenced documents",
+    "stampBox": "Stamp and signature",
+    "page": "Page",
+    "printedAt": "Printed on",
+    "from": "From",
+    "to": "To",
+    "driver": "Driver",
+    "vehicle": "Vehicle",
+    "note": "Notes",
+    "terms": "Terms",
+    "reason": "Reason",
+    "receivedBy": "Received by"
+  },
+  "signatures": [
+    "The seller",
+    "The customer (read and approved)"
+  ]
+}

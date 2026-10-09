@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-privacy-dpo"
+description = "Enables the privacy_dpo command without any pre-configured scope."
+commands.allow = ["privacy_dpo"]
+
+[[permission]]
+identifier = "deny-privacy-dpo"
+description = "Denies the privacy_dpo command without any pre-configured scope."
+commands.deny = ["privacy_dpo"]

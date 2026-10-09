@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-returns-returnable"
+description = "Enables the returns_returnable command without any pre-configured scope."
+commands.allow = ["returns_returnable"]
+
+[[permission]]
+identifier = "deny-returns-returnable"
+description = "Denies the returns_returnable command without any pre-configured scope."
+commands.deny = ["returns_returnable"]

@@ -1,0 +1,82 @@
+{
+  "tabs": {
+    "yield": "Cutting",
+    "waste": "Today's waste"
+  },
+  "yield": {
+    "title": "Cutting",
+    "template": "Cutting template",
+    "choose": "Choose a template",
+    "noTemplate": "First create a cutting template: the carcass and its cuts.",
+    "carcass": "Carcass: {{name}}",
+    "weight": "Carcass weight (kg)",
+    "cost": "Carcass cost",
+    "costHint": "Empty: the carcass's average purchase cost (CMUP) × its weight.",
+    "method": "Share the cost",
+    "methods": {
+      "value": "by sale value",
+      "weight": "by weight"
+    },
+    "cuts": "Cuts",
+    "cutWeight": "{{name}} (kg)",
+    "weigh": "Weigh",
+    "weighOf": "Weigh: {{name}}",
+    "preview": "Cutting result",
+    "columns": {
+      "cut": "Cut",
+      "weight": "Weight (kg)",
+      "expected": "Expected (kg)",
+      "yield": "Yield",
+      "cost": "Cost",
+      "unitCost": "Cost per kg"
+    },
+    "loss": "Loss {{rate}}%",
+    "lossQty": "Bone, fat and loss: {{qty}} kg",
+    "inputCost": "Carcass cost: {{amount}}",
+    "run": "Confirm the cutting",
+    "done": "Cutting {{number}} saved",
+    "doneTitle": "Cutting saved",
+    "number": "Cutting no.",
+    "again": "New cutting"
+  },
+  "templates": {
+    "title": "Cutting templates",
+    "new": "New template",
+    "edit": "Edit: {{name}}",
+    "name": "Template name",
+    "carcass": "Carcass",
+    "carcassOf": "Carcass: {{name}}",
+    "cuts": "Cuts",
+    "expected": "Expected yield (%)",
+    "expectedOf": "Expected yield (%): {{name}}",
+    "remove": "Remove {{name}}",
+    "save": "Save the template",
+    "archive": "Archive the template",
+    "saved": "Cutting template saved.",
+    "archived": "Template archived.",
+    "empty": "No cutting template.",
+    "missing": "Choose the carcass, give a name and at least one cut."
+  },
+  "waste": {
+    "title": "Today's waste",
+    "product": "Product",
+    "qty": "Quantity",
+    "qtyOf": "Quantity: {{name}}",
+    "reason": "Reason",
+    "reasonOf": "Reason: {{name}}",
+    "reasons": {
+      "damage": "Breakage",
+      "expiry": "Expiry",
+      "loss": "Loss",
+      "own_use": "Own use"
+    },
+    "remove": "Remove {{name}}",
+    "save": "Save",
+    "saved": "Waste saved.",
+    "nothing": "Add at least one product with its quantity.",
+    "day": "Waste saved today",
+    "empty": "No waste saved today.",
+    "cost": "Cost",
+    "total": "Total at cost: {{amount}}"
+  }
+}

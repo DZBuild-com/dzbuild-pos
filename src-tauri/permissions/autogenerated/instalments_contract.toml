@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-instalments-contract"
+description = "Enables the instalments_contract command without any pre-configured scope."
+commands.allow = ["instalments_contract"]
+
+[[permission]]
+identifier = "deny-instalments-contract"
+description = "Denies the instalments_contract command without any pre-configured scope."
+commands.deny = ["instalments_contract"]

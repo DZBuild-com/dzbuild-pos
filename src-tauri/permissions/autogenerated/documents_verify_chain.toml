@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-documents-verify-chain"
+description = "Enables the documents_verify_chain command without any pre-configured scope."
+commands.allow = ["documents_verify_chain"]
+
+[[permission]]
+identifier = "deny-documents-verify-chain"
+description = "Denies the documents_verify_chain command without any pre-configured scope."
+commands.deny = ["documents_verify_chain"]

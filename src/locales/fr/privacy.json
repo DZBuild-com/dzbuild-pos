@@ -1,0 +1,60 @@
+{
+  "tab": "Données personnelles",
+  "intro": "Ce que le client a accepté, l'export de ses données et l'anonymisation (loi 18-07).",
+  "consent": {
+    "title": "Accords du client",
+    "sms": "SMS",
+    "whatsapp": "WhatsApp",
+    "loyalty": "Fidélité",
+    "granted": "Accepté",
+    "refused": "Refusé",
+    "unknown": "Pas encore demandé",
+    "source": {
+      "label": "Accord recueilli",
+      "counter": "Au comptoir",
+      "form": "Formulaire signé",
+      "import": "Import",
+      "customer_request": "Demande du client"
+    },
+    "history": "Historique",
+    "historyEmpty": "Aucun accord enregistré pour ce client.",
+    "row": "{{channel}} : {{answer}} ({{source}}) — {{name}}",
+    "saved": "Accord du client enregistré"
+  },
+  "export": "Exporter les données du client",
+  "exportHint": "Un fichier de données (JSON, lisible par d'autres logiciels) et un fichier Excel, dans le dossier que vous choisissez.",
+  "exported": "Données enregistrées : {{json}} et {{xlsx}}",
+  "anonymise": {
+    "open": "Anonymiser",
+    "title": "Anonymiser ce client ?",
+    "body": "Son nom, ses téléphones, son e-mail, son adresse, son NIN et ses notes seront effacés pour toujours, et sa fiche archivée.",
+    "kept": "Resteront : les tickets et factures (gardés pour les impôts), les registres légaux, et le journal des opérations, qui ne peut pas être modifié.",
+    "note": "Motif",
+    "confirm": "Anonymiser définitivement",
+    "refused": "Impossible pour l'instant : {{items}}",
+    "done": "Client anonymisé ({{code}})"
+  },
+  "open": {
+    "separator": ", ",
+    "balance": "Solde du compte",
+    "deposits": "arrhes",
+    "orders": "commande en cours",
+    "serviceTickets": "réparation en cours",
+    "vouchers": "bon non épuisé",
+    "appointments": "rendez-vous prévu",
+    "instalmentGuarantees": "pièces d'un contrat à tempérament (noms, numéros de pièce, téléphones), gardées avec le contrat",
+    "voucherBuyer": "nom de l'acheteur sur un bon d'achat"
+  },
+  "dpo": {
+    "title": "Délégué à la protection des données",
+    "intro": "Il est nommé sur le registre de vos traitements de données personnelles, que vous tenez pour l'ANPDP (l'autorité de protection des données personnelles).",
+    "name": "Nom",
+    "email": "E-mail",
+    "phone": "Téléphone",
+    "save": "Enregistrer le délégué",
+    "saved": "Délégué enregistré",
+    "register": "Imprimer le registre des traitements",
+    "registerPrinted": "Registre des traitements envoyé à l'imprimante.",
+    "accessReport": "Voir les accès aux données personnelles"
+  }
+}

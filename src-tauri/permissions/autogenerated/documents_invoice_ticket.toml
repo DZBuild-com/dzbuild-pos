@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-documents-invoice-ticket"
+description = "Enables the documents_invoice_ticket command without any pre-configured scope."
+commands.allow = ["documents_invoice_ticket"]
+
+[[permission]]
+identifier = "deny-documents-invoice-ticket"
+description = "Denies the documents_invoice_ticket command without any pre-configured scope."
+commands.deny = ["documents_invoice_ticket"]

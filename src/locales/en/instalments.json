@@ -1,0 +1,136 @@
+{
+  "title": "Instalment sales",
+  "sale": "Instalment sale",
+  "new": "New instalment sale",
+  "noAccount": "Only users allowed to see customer accounts can see the contracts and their instalments.",
+  "tabs": {
+    "label": "Contracts and reminders",
+    "contracts": "Contracts",
+    "reminders": "Reminders"
+  },
+  "wizard": {
+    "steps": {
+      "customer": "Customer",
+      "goods": "Items",
+      "terms": "Terms",
+      "documents": "Supporting documents",
+      "sign": "Signature"
+    },
+    "progress": "Step {{step}} of {{count}}",
+    "previous": "Previous",
+    "balance": "Account balance",
+    "creditLimit": "Credit limit",
+    "noLimit": "No limit",
+    "available": "Credit still available",
+    "blocked": "This customer is blocked: unblock the file before selling to them on credit.",
+    "goodsHint": "Items are counted at the instalment price.",
+    "noGoods": "Add at least one item.",
+    "qty": "Quantity",
+    "remove": "Remove {{name}}",
+    "down": "Down payment",
+    "downMethod": "Down payment method",
+    "count": "Number of instalments",
+    "firstDue": "First instalment on",
+    "firstDueAfter": "Choose a date after today.",
+    "computing": "Working out the schedule…",
+    "total": "Instalment price: {{amount}}",
+    "schedule": "Schedule",
+    "monthly": "One instalment a month",
+    "toReceive": "To take now: {{amount}}",
+    "financed": "Financed: {{amount}}",
+    "duty": "Stamp duty on the down payment: {{amount}}",
+    "sign": "Sign and take the down payment",
+    "printContract": "Print the contract",
+    "done": "Contract {{number}} signed",
+    "ticket": "Receipt {{number}}.",
+    "printing": "The receipt is printing.",
+    "finish": "Finish"
+  },
+  "guarantees": {
+    "title": "Supporting documents",
+    "kind": "Document type",
+    "holder": "Holder",
+    "reference": "Reference",
+    "phone": "Phone",
+    "add": "Add a document",
+    "added": "Document added to the contract",
+    "remove": "Remove: {{kind}}",
+    "none": "No document yet.",
+    "kinds": {
+      "id_document": "Identity document",
+      "work_certificate": "Work certificate",
+      "pay_slip": "Pay slip",
+      "ccp_account": "CCP statement or RIP",
+      "residence_certificate": "Residence certificate",
+      "guarantor": "Guarantor",
+      "other": "Other document"
+    },
+    "noCheque": "No guarantee cheque is asked for or accepted."
+  },
+  "list": {
+    "label": "Contracts",
+    "number": "Contract",
+    "customer": "Customer",
+    "searchHint": "Contract number or customer name",
+    "empty": "No contracts"
+  },
+  "plan": {
+    "dues": "Instalments",
+    "seq": "No.",
+    "dueOn": "Due on",
+    "amount": "Amount",
+    "state": "State",
+    "total": "Total",
+    "down": "Down payment",
+    "financed": "Financed",
+    "paid": "Paid",
+    "left": "Left",
+    "next": "Next instalment",
+    "late": "Late",
+    "overdueOnly": "Late only",
+    "signedOn": "Signed on {{date}}",
+    "ticket": "Receipt {{number}}",
+    "customerFile": "Customer file",
+    "status": {
+      "paid": "Paid",
+      "partial": "Part paid",
+      "due": "Due today",
+      "overdue": "{{count}} days late",
+      "upcoming": "Upcoming"
+    },
+    "collect": "Collect an instalment",
+    "reprint": "Reprint the contract"
+  },
+  "collect": {
+    "for": "Contract {{number}} — {{customer}}",
+    "amount": "Amount",
+    "method": "Payment method",
+    "reference": "Reference",
+    "duty": "Stamp duty: {{amount}}",
+    "toReceive": "To take: {{amount}}",
+    "submit": "Collect",
+    "done": "Payment taken: receipt {{number}}"
+  },
+  "contract": {
+    "title": "Instalment sale contract",
+    "lang": "Contract language",
+    "printed": "The contract is going to the printer."
+  },
+  "consent": {
+    "whatsappYes": "WhatsApp consent: yes, since {{date}}",
+    "whatsappNo": "No WhatsApp consent: call the customer",
+    "smsYes": "SMS consent: yes, since {{date}}",
+    "smsNo": "No SMS consent"
+  },
+  "reminders": {
+    "title": "Reminders",
+    "prepare": "Prepare the reminder",
+    "copy": "Copy the text",
+    "copied": "Text copied",
+    "note": "Log the reminder",
+    "noted": "Reminder logged",
+    "hint": "The software sends no message: paste the text into WhatsApp or an SMS, or call the customer.",
+    "emptyTitle": "No reminders to send",
+    "emptyBody": "Instalments coming up and late ones will show here."
+  }
+}

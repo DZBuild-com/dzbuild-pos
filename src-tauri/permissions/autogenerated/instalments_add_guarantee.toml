@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-instalments-add-guarantee"
+description = "Enables the instalments_add_guarantee command without any pre-configured scope."
+commands.allow = ["instalments_add_guarantee"]
+
+[[permission]]
+identifier = "deny-instalments-add-guarantee"
+description = "Denies the instalments_add_guarantee command without any pre-configured scope."
+commands.deny = ["instalments_add_guarantee"]

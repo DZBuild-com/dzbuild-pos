@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-suppliers-pay"
+description = "Enables the suppliers_pay command without any pre-configured scope."
+commands.allow = ["suppliers_pay"]
+
+[[permission]]
+identifier = "deny-suppliers-pay"
+description = "Denies the suppliers_pay command without any pre-configured scope."
+commands.deny = ["suppliers_pay"]

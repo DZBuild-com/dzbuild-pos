@@ -1,0 +1,353 @@
+{
+  "title": "Hardware",
+  "print": {
+    "failed": "Receipt {{number}} was not printed",
+    "versementFailed": "Payment receipt {{number}} was not printed",
+    "voucherFailed": "Voucher {{number}} was not printed",
+    "intakeFailed": "Repair ticket {{number}} was not printed",
+    "depositFailed": "Deposit receipt {{number}} was not printed",
+    "kitchenFailed": "The kitchen ticket was not printed",
+    "prebillFailed": "The pre-bill was not printed"
+  },
+  "status": {
+    "ready": "Printer ready",
+    "none": "No receipt printer",
+    "failed": "The last print failed"
+  },
+  "save": "Save the hardware settings",
+  "saved": "Hardware settings saved.",
+  "errors": {
+    "port": "Enter a port between 1 and 65535 (usually 9100)."
+  },
+  "printers": {
+    "title": "Printers",
+    "empty": "No printer. Add this computer's receipt printer.",
+    "add": "Add a printer"
+  },
+  "printer": {
+    "title": "Printer",
+    "defaultName": "Till 1",
+    "name": "Printer name",
+    "connection": "Connection",
+    "kinds": {
+      "windows": "Windows printer (USB)",
+      "tcp": "Network (IP address)",
+      "serial": "Serial port (COM)"
+    },
+    "discover": "Detect printers",
+    "windowsPrinter": "Windows printer",
+    "choose": "Choose…",
+    "likely": "{{name}} (likely a receipt printer)",
+    "host": "IP address",
+    "port": "Port",
+    "serialPort": "COM port",
+    "baud": "Speed (baud)",
+    "paper": "Paper width",
+    "advanced": "Advanced settings",
+    "preset": "Model",
+    "presets": {
+      "generic": "Generic ESC/POS",
+      "xprinter": "Xprinter",
+      "epson": "Epson TM",
+      "rongta": "Rongta"
+    },
+    "render": "Printing",
+    "renders": {
+      "auto": "Automatic (text or image by language)",
+      "text": "Text",
+      "raster": "Image (Arabic)"
+    },
+    "codePage": "Code page",
+    "codePageSelector": "Code page number (ESC t)",
+    "cut": "Paper cut",
+    "cuts": {
+      "partial": "Partial",
+      "full": "Full",
+      "none": "None"
+    },
+    "drawerPin": "Drawer pin",
+    "pins": {
+      "pin2": "Pin 2 (usual)",
+      "pin5": "Pin 5"
+    },
+    "bandRows": "Image band height (dots)",
+    "chineseMode": "Leave Chinese mode first (Xprinter, Rongta)",
+    "test": "Print a test page",
+    "testSent": "Test page sent to {{printer}}.",
+    "keep": "Keep this printer"
+  },
+  "receipt": {
+    "title": "Receipt",
+    "printByDefault": "Print the receipt at every sale",
+    "openDrawerOnCash": "Open the drawer when cash is involved",
+    "drawerBeforePrint": "Open the drawer before printing",
+    "logo": "Print the shop logo",
+    "secondLang": "Bilingual receipt: second language",
+    "none": "None (one language)"
+  },
+  "scanner": {
+    "title": "Barcode scanner",
+    "layout": "Keyboard the scanner sends",
+    "layouts": {
+      "us": "QWERTY (factory setting)",
+      "usHint": "Most scanners ship like this.",
+      "azerty": "French AZERTY",
+      "azertyHint": "If your scanner was set to a French keyboard."
+    },
+    "test": "Test your scanner here",
+    "testHint": "Click in the box, then scan a product.",
+    "read": "Code read: {{code}}"
+  },
+  "unprinted": {
+    "title": "Receipts not printed",
+    "count": "Receipts not printed: {{count}}",
+    "hint": "Reprint prints the original if it never came out, otherwise a DUPLICATE.",
+    "empty": "Every receipt has been printed.",
+    "dismiss": "Dismiss"
+  },
+  "customerDisplay": {
+    "welcome": "Welcome",
+    "due": "To pay",
+    "total": "Total",
+    "paid": "Paid",
+    "change": "Change",
+    "thanks": "Thank you",
+    "weight": "Net weight",
+    "kilos": "{{qty}} kg",
+    "perKilo": "{{price}} per kg",
+    "tare": "Tare {{tare}} kg",
+    "saved": "You save {{amount}}",
+    "orderOnline": "Order online",
+    "payBaridimob": "Scan with BaridiMob to pay"
+  },
+  "hub": {
+    "portRequired": "Choose this device's COM port.",
+    "columnsRange": "Between 16 and 40 columns.",
+    "thanksRange": "Between 2 and 30 seconds.",
+    "fixField": "Fix the field shown on the open tab, then save.",
+    "title": "This till's hardware",
+    "tabs": {
+      "receipt": "Receipt printers",
+      "labels": "Labels",
+      "scale": "Scale",
+      "displays": "Customer displays",
+      "scanners": "Scanners",
+      "drawer": "Drawer"
+    }
+  },
+  "devices": {
+    "off": "Not set up",
+    "connected": "Connected ({{port}})",
+    "disconnected": "Disconnected ({{port}}): {{reason}}",
+    "label": "{{device}}: {{state}}",
+    "names": {
+      "scale": "Scale",
+      "vfd": "Pole display",
+      "serial_scanner": "Serial scanner"
+    },
+    "portOption": "{{port}} ({{description}})"
+  },
+  "labelPrinters": {
+    "title": "Label printers",
+    "empty": "No label printer. Plug it in, then click “Add”.",
+    "add": "Add a label printer",
+    "editTitle": "Label printer",
+    "defaultName": "Labels",
+    "detect": "Detect",
+    "likely": "{{name}} (likely a label printer)",
+    "test": "Print a test label",
+    "tested": "Test label sent to {{printer}}",
+    "keep": "Keep this printer",
+    "default": "Default label printer",
+    "preset": "Model",
+    "presets": {
+      "xprinter": "Xprinter (TSPL)",
+      "tsc": "TSC (TSPL)",
+      "smart_pos": "Smart POS (TSPL)",
+      "zebra": "Zebra (ZPL)",
+      "godex": "Godex (ZPL)"
+    },
+    "dpi": "Resolution",
+    "dpis": {
+      "d203": "203 dpi (8 dots/mm)",
+      "d300": "300 dpi (12 dots/mm)"
+    },
+    "darkness": "Darkness (0–15)",
+    "speed": "Speed (1–6)",
+    "media": "Media sensing",
+    "medias": {
+      "gap": "Gap between labels",
+      "black_mark": "Black mark",
+      "continuous": "Continuous roll"
+    },
+    "offsetX": "Horizontal offset (mm)",
+    "offsetY": "Vertical offset (mm)",
+    "polarity": "Swap black and white in images (change it if labels come out in negative)",
+    "arabicRule": "Labels of food and regulated goods keep Arabic: this rule is chosen in the document settings.",
+    "arabicRuleLink": "Open the document settings"
+  },
+  "scale": {
+    "title": "Checkout scale",
+    "port": "Scale port",
+    "none": "No scale",
+    "detect": "Detect the scale",
+    "notFound": "No scale answered on this port. Check that it is on and set to serial output.",
+    "protocol": "Protocol",
+    "protocols": {
+      "toledo8217": "Mettler Toledo 8217",
+      "cas_ecr": "CAS (ECR)",
+      "continuous": "Continuous stream (generic scales)"
+    },
+    "baud": "Speed",
+    "bits": "Data bits",
+    "parity": "Parity",
+    "parities": {
+      "none": "None",
+      "even": "Even",
+      "odd": "Odd"
+    },
+    "pollMs": "Polling (ms)",
+    "stableReadings": "Equal readings for “stable”",
+    "capacityG": "Capacity (g)",
+    "live": "Live weight",
+    "net": "{{qty}} kg",
+    "waiting": "Waiting for a reading from the saved scale.",
+    "states": {
+      "ok": "Stable",
+      "motion": "Moving",
+      "overload": "Overload",
+      "underload": "Below zero",
+      "disconnected": "Disconnected",
+      "no_response": "Not responding"
+    },
+    "tare": "Tare",
+    "clearTare": "Clear the tare",
+    "zero": "Zero",
+    "codes": {
+      "title": "Weight and price barcodes",
+      "fromPack": "The regulatory pack's default formats (Rongta, ACLAS, Dibal scales).",
+      "add": "Add a format",
+      "reset": "Back to the pack's formats",
+      "save": "Save the formats",
+      "saved": "Formats saved.",
+      "prefix": "Prefix",
+      "pluDigits": "PLU digits",
+      "verifier": "Price check digit",
+      "value": "Content",
+      "values": {
+        "weight": "Weight",
+        "price": "Price",
+        "count": "Count"
+      },
+      "valueDigits": "Value digits",
+      "decimals": "Decimals",
+      "overlap": "The prefix {{prefix}} also starts your in-store codes ({{internal}}): an unregistered in-store code would be read as a weight.",
+      "test": "Scan a scale label",
+      "result": "{{name}}: {{qty}} kg",
+      "resultCount": "{{name}}: {{qty}} pieces",
+      "labelPrice": "Price on the label {{label}}, at the till {{till}}",
+      "notScale": "{{name}}: this code is not a scale label.",
+      "unknown": "No product has this code."
+    }
+  },
+  "display": {
+    "vfd": {
+      "title": "Pole display (VFD)",
+      "enabled": "Use a pole display on a serial port",
+      "commands": "Command set",
+      "commandSets": {
+        "esc_pos": "ESC/POS (Epson)",
+        "cd5220": "CD5220"
+      },
+      "columns": "Characters per line",
+      "rows": "Lines",
+      "latinLang": "Display language",
+      "charset": "Characters",
+      "charsets": {
+        "ascii": "No accents (safest)",
+        "pc858": "With accents (PC858)"
+      },
+      "test": "Test the display",
+      "tested": "Test pattern sent to the display.",
+      "limit": "A pole display shows only Latin letters and digits: an Arabic ticket appears there in French or English."
+    },
+    "screen": {
+      "title": "Customer screen",
+      "enabled": "Show the customer screen",
+      "monitor": "Monitor",
+      "mainWindow": "(the till's screen)",
+      "single": "Only one monitor is connected: the customer screen opens only as a preview.",
+      "logo": "Show the logo",
+      "thanks": "Thank-you duration (seconds)",
+      "preview": "Preview",
+      "closePreview": "Close the preview",
+      "monitorOption": "{{name}} — {{width}}×{{height}}"
+    }
+  },
+  "scanners": {
+    "title": "Barcode scanners",
+    "prefix": "Prefix the scanner sends",
+    "suffix": "End of a scan",
+    "suffixes": {
+      "enter_or_tab": "Enter or Tab",
+      "silence": "None (ends after a pause)"
+    },
+    "learn": {
+      "open": "Learn my scanner",
+      "title": "Learn the scanner",
+      "hint": "Scan the barcode of the printer's test page ({{code}}), or type the digits written under a barcode, then scan it.",
+      "expected": "Expected code",
+      "capture": "Click here, then scan",
+      "found": "Scanner recognised: {{layout}} keyboard, prefix “{{prefix}}”, ending {{suffix}}.",
+      "failed": "This scan does not contain the expected code. Try again without touching the keyboard.",
+      "apply": "Apply"
+    },
+    "serial": {
+      "title": "Serial scanner (USB-COM mode)",
+      "enabled": "Use a scanner on a serial port",
+      "port": "Port",
+      "suffixes": {
+        "cr": "CR",
+        "lf": "LF",
+        "cr_lf": "CR LF",
+        "tab": "Tab",
+        "silence": "None"
+      },
+      "last": "Last code received: {{code}}"
+    }
+  },
+  "drawer": {
+    "title": "Cash drawer",
+    "via": "Opening",
+    "vias": {
+      "printer": "Through the receipt printer (RJ11)",
+      "serial": "Through a USB/COM adapter"
+    },
+    "port": "Port",
+    "kick": "Command",
+    "kicks": {
+      "esc_pos": "ESC/POS bytes",
+      "dtr": "DTR pulse"
+    },
+    "test": "Open the drawer",
+    "sent": "Open command sent to the drawer.",
+    "savedFirst": "The drawer opens with the saved settings, during an open cash session."
+  },
+  "doctor": {
+    "check": "Check the printers",
+    "none": "No problem found.",
+    "issues": {
+      "missing": "Windows no longer finds “{{name}}”. Plug it back in or choose it again.",
+      "driver_changed": "The driver of “{{name}}” changed ({{saved}} → {{now}}): Windows Update may have replaced it. Reinstall the manufacturer's driver, then print a test page.",
+      "offline": "Windows shows “{{name}}” as offline. Check that it is on and plugged in, then put it back online in Windows Settings › Printers."
+    },
+    "status": {
+      "ready": "Ready",
+      "paperOut": "Out of paper",
+      "paperLow": "Paper running low",
+      "coverOpen": "Cover open",
+      "offline": "Offline",
+      "error": "In error"
+    }
+  }
+}

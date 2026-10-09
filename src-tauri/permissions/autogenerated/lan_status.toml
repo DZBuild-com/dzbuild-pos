@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-lan-status"
+description = "Enables the lan_status command without any pre-configured scope."
+commands.allow = ["lan_status"]
+
+[[permission]]
+identifier = "deny-lan-status"
+description = "Denies the lan_status command without any pre-configured scope."
+commands.deny = ["lan_status"]
