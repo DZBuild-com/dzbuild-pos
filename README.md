@@ -13,10 +13,14 @@
 
 <p align="center">
   <a href="https://github.com/DZBuild-com/dzbuild-pos/actions/workflows/ci.yml"><img src="https://github.com/DZBuild-com/dzbuild-pos/actions/workflows/ci.yml/badge.svg?branch=main" alt="CI"></a>
-  <a href="https://github.com/DZBuild-com/dzbuild-pos/releases"><img src="https://img.shields.io/github/v/release/DZBuild-com/dzbuild-pos?label=release&color=F59E0B" alt="Release"></a>
+  <a href="https://github.com/DZBuild-com/dzbuild-pos/releases"><img src="https://img.shields.io/github/v/release/DZBuild-com/dzbuild-pos?label=release&color=2EA043" alt="Release"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-GPL--3.0--or--later-blue" alt="Licence: GPL-3.0-or-later"></a>
   <img src="https://img.shields.io/badge/Windows-10%20%7C%2011-0078D6" alt="Windows 10 | 11">
   <img src="https://img.shields.io/badge/languages-ar%20%C2%B7%20fr%20%C2%B7%20en-FFC300" alt="Arabic, French, English">
+</p>
+
+<p align="center">
+  <img src="assets/screenshots/settings-ar.png" alt="DZBuild POS settings page, Arabic interface, dark theme" width="820">
 </p>
 
 DZBuild POS is a Windows desktop application for shops in Algeria. It handles the till, stock,
