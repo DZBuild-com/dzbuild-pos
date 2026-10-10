@@ -13,10 +13,14 @@
 
 <p align="center">
   <a href="https://github.com/DZBuild-com/dzbuild-pos/actions/workflows/ci.yml"><img src="https://github.com/DZBuild-com/dzbuild-pos/actions/workflows/ci.yml/badge.svg?branch=main" alt="CI"></a>
-  <a href="https://github.com/DZBuild-com/dzbuild-pos/releases"><img src="https://img.shields.io/github/v/release/DZBuild-com/dzbuild-pos?label=version&color=F59E0B" alt="Version"></a>
+  <a href="https://github.com/DZBuild-com/dzbuild-pos/releases"><img src="https://img.shields.io/github/v/release/DZBuild-com/dzbuild-pos?label=version&color=2EA043" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/licence-GPL--3.0--or--later-blue" alt="Licence : GPL-3.0-or-later"></a>
   <img src="https://img.shields.io/badge/Windows-10%20%7C%2011-0078D6" alt="Windows 10 | 11">
   <img src="https://img.shields.io/badge/langues-ar%20%C2%B7%20fr%20%C2%B7%20en-FFC300" alt="Arabe, français, anglais">
+</p>
+
+<p align="center">
+  <img src="assets/screenshots/settings-ar.png" alt="Page des réglages de DZBuild POS, interface en arabe, thème sombre" width="820">
 </p>
 
 DZBuild POS est un logiciel Windows pour les commerces en Algérie : caisse, stock, crédit client
