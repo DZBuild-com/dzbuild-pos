@@ -1150,13 +1150,18 @@ export function createFakeBackend(mode: FakeMode, { lang = "fr", activity }: Fak
       // the till's checkout asks whether a line is a precious-metal piece: none in the fake shop
       case "jewellery_piece_get":
         return null;
-      // M8 Task 30: no employee file nor shift yet; the zakat of an empty shop is below the nisab.
+      // M8 Task 30: no employee file nor shift yet; no zakat until the shop enters its nisab, then
+      // the zakat of an empty shop is below it.
       case "staff_list":
         return [] satisfies StaffProfile[];
       case "staff_shifts":
         return [] satisfies ShiftRow[];
-      case "zakat_preview":
-        return emptyZakat(lang);
+      case "zakat_preview": {
+        const nisab = state.settings["zakat.nisab"];
+        if (typeof nisab !== "number") refuse("zakat_nisab_missing");
+        const source = state.settings["zakat.nisab_source"];
+        return emptyZakat(lang, nisab, typeof source === "string" ? source : "");
+      }
       case "zakat_list":
         return [] satisfies ZakatStatement[];
       // Task 21b: no consent recorded yet, no DPO named, the default keys, no data pack installed
@@ -1172,8 +1177,8 @@ export function createFakeBackend(mode: FakeMode, { lang = "fr", activity }: Fak
   };
 }
 
-/** The zakat of the fake shop: nothing counted, below the data pack's nisab (2 295 000 DA). */
-function emptyZakat(lang: Lang): ZakatPreview {
+/** The zakat of the fake shop: nothing counted, below the `nisab` the shop entered. */
+function emptyZakat(lang: Lang, nisab: number, nisabSource: string): ZakatPreview {
   const hijriLabel = { ar: "17 ربيع الآخر 1448", fr: "17 rabia al-thani 1448", en: "17 Rabi al-Thani 1448" }[
     lang
   ];
@@ -1190,7 +1195,8 @@ function emptyZakat(lang: Lang): ZakatPreview {
     payables: 0,
     otherDebts: 0,
     base: 0,
-    nisab: 229_500_000,
+    nisab,
+    nisabSource,
     rateBp: 250,
     zakatDue: 0,
     belowNisab: true,

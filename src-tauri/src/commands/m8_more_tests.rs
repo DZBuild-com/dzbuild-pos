@@ -21,6 +21,13 @@ fn modules(t: &TestShop, modules: &[Module]) {
         .unwrap();
 }
 
+/// The owner enters the nisab of the year (`nisab` centimes) with its source note.
+fn enter_nisab(t: &TestShop, nisab: i64, source: &str) {
+    let st = &t.st;
+    super::settings::set(st, "zakat.nisab".into(), serde_json::json!(nisab)).unwrap();
+    super::settings::set(st, "zakat.nisab_source".into(), serde_json::json!(source)).unwrap();
+}
+
 /// The receipt printer writes to `<dir>/caisse.bin`.
 fn caisse(t: &TestShop, dir: &std::path::Path) -> std::path::PathBuf {
     let path = dir.join("caisse.bin");
@@ -130,11 +137,22 @@ fn zakat_and_jewellery_run_through_their_commands() {
     jewellery::set_metal_price(st, Metal::Gold, 750, Money(1_450_000)).unwrap();
     assert_eq!(jewellery::board(st).unwrap().len(), 1);
     assert_eq!(jewellery::history(st, Metal::Gold, 750).unwrap().len(), 1);
+    // Nothing is computed or saved until the shop enters the nisab itself.
+    for refused in [
+        staff::preview_zakat(st, staff::zakat_input(Money(300_000_000))).map(drop),
+        staff::save_zakat(st, staff::zakat_input(Money(300_000_000))).map(drop),
+    ] {
+        assert_eq!(refused.unwrap_err().code(), "zakat_nisab_missing");
+    }
+    enter_nisab(&t, 200_000_000, "MARW, 1447");
     let preview = staff::preview_zakat(st, staff::zakat_input(Money(300_000_000))).unwrap();
     assert!(!preview.below_nisab);
+    assert_eq!(preview.nisab, Money(200_000_000));
     let saved = staff::save_zakat(st, staff::zakat_input(Money(300_000_000))).unwrap();
     assert!(saved.number.starts_with("ZK"), "{}", saved.number);
     assert_eq!(staff::list_zakat(st).unwrap().len(), 1);
+    // A later note does not change what the saved statement prints.
+    enter_nisab(&t, 200_000_000, "MARW, 1448");
     let page = staff::zakat_page(st, saved.id.clone(), Lang::Ar).unwrap();
     let HostPage::ZakatStatement(print) = page else {
         panic!("not a zakat statement page");
@@ -142,6 +160,10 @@ fn zakat_and_jewellery_run_through_their_commands() {
     assert!(print.rtl);
     assert_eq!(print.number, saved.number);
     assert_eq!(print.due, saved.preview.zakat_due);
+    assert_eq!(
+        (print.nisab, print.source.as_str()),
+        (Money(200_000_000), "النصاب: MARW, 1447")
+    );
     let cashier = t.cashier();
     t.owner();
     let dup =
@@ -301,6 +323,7 @@ fn routed_pack_values_read_back() {
     back(loyalty::adjust(st, customer.clone(), 600, "Carte papier".into()).unwrap());
     back(loyalty::redeem(st, customer, 500).unwrap().voucher);
     back(staff::zakat_input(Money(300_000_000)));
+    enter_nisab(&t, 229_000_000, "");
     let saved = staff::save_zakat(st, staff::zakat_input(Money(300_000_000))).unwrap();
     back(saved);
     let profile = pos_core::staff::ProfileInput {

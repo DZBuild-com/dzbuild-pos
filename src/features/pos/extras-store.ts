@@ -20,6 +20,9 @@ interface ExtrasState {
   setSerials: (line: number, serials: string[]) => void;
   /** The cart removed line `line`: the later lines' extras move up one. */
   lineRemoved: (line: number) => void;
+  /** Line `line` now sells `qty` milli-units: serials beyond one per whole piece are dropped, so
+   * the checkout does not ask for them again. */
+  lineQtyChanged: (line: number, qty: number) => void;
   setPrescriptions: (prescriptions: PrescriptionInput[]) => void;
   setBuyer: (buyer: BuyerIdentity | null) => void;
   setVan: (van: VanSale | null) => void;
@@ -49,6 +52,16 @@ export const useExtras = create<ExtrasState>()((set, get) => ({
         .filter((p) => p.line !== line)
         .map((p) => (p.line > line ? { ...p, line: p.line - 1 } : p));
       return { serials, prescriptions };
+    }),
+  lineQtyChanged: (line, qty) =>
+    set((s) => {
+      const list = s.serials[line];
+      const pieces = Math.max(0, Math.floor(qty / 1_000));
+      if (!list || list.length <= pieces) return {};
+      const serials = { ...s.serials };
+      if (pieces === 0) delete serials[line];
+      else serials[line] = list.slice(0, pieces);
+      return { serials };
     }),
   setPrescriptions: (prescriptions) => set({ prescriptions }),
   setBuyer: (buyer) => set({ buyer }),

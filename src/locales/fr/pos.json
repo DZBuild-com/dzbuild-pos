@@ -4,6 +4,8 @@
     "label": "Scanner ou rechercher un produit",
     "times": "× {{qty}}",
     "results": "Produits trouvés",
+    "noMatch": "Aucun produit ne correspond à « {{text}} ».",
+    "noMatchCode": "Aucun produit ne correspond à « {{text}} ». Appuyez sur Entrée pour le lire comme un code.",
     "notFound": "Aucun produit pour le code « {{code}} ». Vérifiez le code ou cherchez le produit par son nom.",
     "variantParent": "Ce produit existe en plusieurs variantes : scannez ou choisissez la variante vendue.",
     "closeDialog": "Fermez d'abord cette fenêtre pour ajouter un article.",

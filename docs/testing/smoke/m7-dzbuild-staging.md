@@ -1,6 +1,6 @@
 # M7 DZBuild link — staging checklist
 
-Run on a clean Windows 11 PC with DZBuild POS 0.7.0, against DZBuild staging (`dzbuild.toml` pointed at staging for this run only; never commit it). Tick each line; note the request id DZBuild returns for any failure.
+Run on a clean Windows 11 PC with the current DZBuild POS build, against DZBuild staging (`dzbuild.toml` pointed at staging for this run only; never commit it). Tick each line; note the request id DZBuild returns for any failure.
 
 ## Link
 - [ ] Settings › DZBuild › Lier la boutique opens Edge on dzbuild.com (not a window of the app); sign in with 2FA; the consent lists the scopes in plain words; the page after the redirect says "Connexion réussie" in the till's language.

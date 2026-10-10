@@ -47,7 +47,7 @@ pub struct LicenseEnv {
     pub vault: Arc<dyn SecretStore>,
     pub file: Arc<dyn SecretStore>,
     pub keyring: Keyring,
-    /// The free edition (0.9.0, `license.toml` `free = true`): every PC writes with no key, no
+    /// The free edition (`license.toml` `free = true`): every PC writes with no key, no
     /// store is read and nothing about licences is journaled.
     pub free: bool,
 }
@@ -996,7 +996,7 @@ pub struct LicenseSeller {
 
 const SELLER: &str = include_str!("../license.toml");
 
-/// The edition switch of `license.toml` (0.9.0): `free = true` licenses every PC with no key.
+/// The edition switch of `license.toml`: `free = true` licenses every PC with no key.
 #[derive(Deserialize)]
 struct Edition {
     #[serde(default)]
@@ -1015,7 +1015,7 @@ pub fn free_licence() -> Licence {
     Licence {
         id: "free".into(),
         kind: LicenseKind::Lifetime,
-        // 2026-10-08, the day of 0.9.0.
+        // 2026-10-08, the day the free edition was first built.
         issued_at: 1_791_417_600_000,
         expires_at: None,
         customer: None,

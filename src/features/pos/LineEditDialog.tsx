@@ -1,4 +1,4 @@
-import { type FormEvent, useState } from "react";
+import { type FormEvent, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { NumericInput } from "@/components/numeric-input";
 import { RadioCards } from "@/components/radio-cards";
@@ -14,7 +14,8 @@ import { NamedDiscounts } from "./NamedDiscounts";
 import type { PosContext } from "./PosDialogs";
 
 /** Tap a line (spec §10.5): quantity, price override, discount (% or DA, or a named one in one
- * tap), note, or void it. */
+ * tap), note, or void it. The dialog follows the line it was opened for by its key, not by its
+ * place in the ticket: once that line is gone it closes, and never shows the next one's name. */
 export function LineEditDialog({
   index,
   ctx,
@@ -26,8 +27,11 @@ export function LineEditDialog({
 }) {
   const { t } = useTranslation();
   const lang = useLang();
-  const draft = useCart((s) => s.lines[index]);
+  const [key] = useState(() => useCart.getState().lines[index]?.key ?? null);
+  const draft = useCart((s) => s.lines.find((l) => l.key === key));
   const cart = useCart.getState();
+  /** Where the line is in the ticket right now (-1 once it is gone). */
+  const position = () => useCart.getState().lines.findIndex((l) => l.key === key);
   const decimals = draft?.display.unitDecimals ?? 0;
   const [qty, setQty] = useState(draft ? formatQty(draft.line.qty, lang) : "");
   const [price, setPrice] = useState(
@@ -45,6 +49,11 @@ export function LineEditDialog({
   const [note, setNote] = useState(draft?.line.note ?? "");
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [saving, setSaving] = useState(false);
+  const [removing, setRemoving] = useState(false);
+  const gone = draft === undefined;
+  useEffect(() => {
+    if (gone) onClose();
+  }, [gone, onClose]);
   if (!draft) return null;
   /** Saves the line as typed; `namedBp` is a named discount tapped instead of the typed one. */
   const save = async (namedBp?: number) => {
@@ -66,22 +75,35 @@ export function LineEditDialog({
       found.discount = t(kind === "percent" ? "validation:percentRange" : "validation:amountFormat");
     setErrors(found);
     if (Object.keys(found).length > 0 || parsedQty === null || parsedDiscount === null) return;
+    if (position() < 0) return;
     // Fewer units than rung is a partial void: journaled (and approved when needed) first.
     if (parsedQty < draft.line.qty) {
       setSaving(true);
-      const reduced = await ctx.reduceQty(index, parsedQty);
+      const reduced = await ctx.reduceQty(position(), parsedQty);
       setSaving(false);
       if (!reduced) return;
     } else {
-      cart.setQty(index, parsedQty);
+      cart.setQty(position(), parsedQty);
     }
-    cart.setUnitPrice(index, parsedPrice);
+    const at = position();
+    if (at < 0) return;
+    cart.setUnitPrice(at, parsedPrice);
     cart.setDiscount(
-      index,
+      at,
       parsedDiscount === 0 ? { kind: "none" } : { kind: discountKind, value: parsedDiscount },
     );
-    cart.setNote(index, note.trim() === "" ? null : note.trim());
+    cart.setNote(at, note.trim() === "" ? null : note.trim());
     onClose();
+  };
+  /** Voids the line (journaled, a manager's approval when needed). The dialog stays open, with
+   * what was typed, when the approval is cancelled or the void refused. */
+  const remove = async () => {
+    const at = position();
+    if (at < 0 || removing) return;
+    setRemoving(true);
+    const removed = await ctx.voidLine(at);
+    if (removed) onClose();
+    else setRemoving(false);
   };
   const submit = (event: FormEvent) => {
     event.preventDefault();
@@ -95,13 +117,19 @@ export function LineEditDialog({
       description={draft.display.name}
       footer={
         <>
-          <Button variant="danger" className="me-auto" onClick={() => void ctx.voidLine(index).then(onClose)}>
+          <Button
+            variant="danger"
+            className="me-auto"
+            disabled={removing || saving}
+            aria-busy={removing || undefined}
+            onClick={() => void remove()}
+          >
             {t("pos:edit.void")}
           </Button>
           <Button variant="outline" onClick={onClose}>
             {t("common:actions.cancel")}
           </Button>
-          <Button type="submit" form="line-edit" variant="primary" disabled={saving}>
+          <Button type="submit" form="line-edit" variant="primary" disabled={saving || removing}>
             {t("pos:edit.save")}
           </Button>
         </>

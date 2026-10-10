@@ -8,6 +8,7 @@ use crate::sales::{Cart, CartLine, SaleInput, create_sale, price_cart};
 use crate::staff::{self, AdvanceInput, ProfileInput};
 use crate::testkit::{Shop, shop};
 use crate::zakat::{self, Valuation, ZakatInput};
+use serde_json::json;
 
 fn office() -> Shop {
     let shop = shop();
@@ -167,6 +168,9 @@ fn shifts_come_from_the_cash_sessions() {
 #[test]
 fn zakat_is_two_and_a_half_percent_of_the_base_above_the_nisab() {
     let shop = office();
+    // The figure the ministry published for the year, as the owner typed it.
+    shop.set("zakat.nisab", json!(200_000_000));
+    shop.set("zakat.nisab_source", json!("MARW, 1447"));
     let flour = shop.product("Farine 25 kg", Money(300_000), &shop.tva9).id;
     shop.stock_in(&flour, 500_000);
     let customer = shop.customer("Épicerie Amine").id;
@@ -214,8 +218,9 @@ fn zakat_is_two_and_a_half_percent_of_the_base_above_the_nisab() {
     );
     assert_eq!(
         (p.base, p.nisab, p.rate_bp),
-        (Money(245_100_000), Money(229_500_000), 250)
+        (Money(245_100_000), Money(200_000_000), 250)
     );
+    assert_eq!(p.nisab_source.as_deref(), Some("MARW, 1447"));
     assert_eq!((p.zakat_due, p.below_nisab), (Money(6_127_500), false));
     assert_eq!(
         (p.hijri_date.year, p.hijri_date.month, p.hijri_date.day),
@@ -232,6 +237,16 @@ fn zakat_is_two_and_a_half_percent_of_the_base_above_the_nisab() {
             .write(|tx| Ok(tx.execute_batch("UPDATE zakat_statements SET zakat_due = 0")?))
             .is_err()
     );
+    // A nisab entered later leaves the saved statement as it was computed.
+    shop.set("zakat.nisab", json!(250_000_000));
+    shop.set("zakat.nisab_source", json!("MARW, 1448"));
+    let id = saved.id.clone();
+    let stored = shop.db.read(move |c| zakat::get(c, &id)).unwrap();
+    assert_eq!(
+        (stored.preview.nisab, stored.preview.nisab_source.as_deref()),
+        (Money(200_000_000), Some("MARW, 1447"))
+    );
+    assert_eq!(stored, saved);
     let ctx = shop.owner_till();
     let poor = ZakatInput {
         day: None,
@@ -246,7 +261,54 @@ fn zakat_is_two_and_a_half_percent_of_the_base_above_the_nisab() {
         .read(move |c| zakat::preview(c, &ctx, &poor))
         .unwrap();
     assert_eq!(
-        (p.base, p.zakat_due, p.below_nisab),
-        (Money(145_100_000), Money::ZERO, true)
+        (p.base, p.nisab, p.zakat_due, p.below_nisab),
+        (Money(145_100_000), Money(250_000_000), Money::ZERO, true)
+    );
+}
+
+/// The software never supplies the nisab: until the shop enters the year's figure, nothing is
+/// computed or saved (the data pack's nisab is not a fallback).
+#[test]
+fn zakat_waits_for_the_nisab_the_shop_enters() {
+    let shop = office();
+    let input = ZakatInput {
+        day: Some("2026-09-28".into()),
+        valuation: Valuation::Cost,
+        bank: Money(300_000_000),
+        other_assets: Money::ZERO,
+        other_debts: Money::ZERO,
+        note: None,
+    };
+    let ctx = shop.owner_till();
+    let i = input.clone();
+    let err = shop
+        .db
+        .read(move |c| zakat::preview(c, &ctx, &i))
+        .unwrap_err();
+    assert_eq!(err.code(), "zakat_nisab_missing");
+    let ctx = shop.owner_till();
+    let i = input.clone();
+    let err = shop
+        .db
+        .write(move |tx| zakat::save(tx, &ctx, i))
+        .unwrap_err();
+    assert_eq!(err.code(), "zakat_nisab_missing");
+    assert!(shop.db.read(zakat::list).unwrap().is_empty());
+
+    // With the figure entered and no note, the statement carries an empty source.
+    shop.set("zakat.nisab", json!(229_000_000));
+    let ctx = shop.owner_till();
+    let p = shop
+        .db
+        .read(move |c| zakat::preview(c, &ctx, &input))
+        .unwrap();
+    assert_eq!(
+        (p.nisab, p.nisab_source.as_deref(), p.below_nisab),
+        (Money(229_000_000), Some(""), false)
+    );
+    // 3 000 000 DA in the bank and the 1 000 DA float of the open drawer, at 2.5 %.
+    assert_eq!(
+        (p.base, p.zakat_due),
+        (Money(300_100_000), Money(7_502_500))
     );
 }

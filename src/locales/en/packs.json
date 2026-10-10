@@ -122,7 +122,7 @@
     "gift_vouchers": { "name": "Gift and exchange vouchers", "help": "Sale, payment and voucher register." },
     "jewellery": { "name": "Jewellery", "help": "Price per gram, special register, hallmarks." },
     "staff": { "name": "Employees", "help": "Records, advances, commissions." },
-    "zakat": { "name": "Zakat", "help": "Indicative calculation against the nisab." }
+    "zakat": { "name": "Zakat", "help": "Indicative calculation against the nisab the shop enters." }
   },
   "activities": {
     "general": "Superette / grocery",

@@ -949,7 +949,8 @@
       "due": "Zakat due",
       "belowNisab": "L'assiette est inférieure au nissab : aucune zakat n'est due.",
       "disclaimer": "Calcul indicatif établi par le logiciel. Il ne constitue pas une fatwa ; en cas de doute, consultez un savant ou la direction des affaires religieuses de votre wilaya.",
-      "source": "Nissab : {source}"
+      "source": "Nissab : {source}",
+      "sourceShop": "saisi par la boutique"
     },
     "number": "N°",
     "date": "Date",

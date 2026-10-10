@@ -1,8 +1,12 @@
 //! Zakat on trade goods (master spec §28 FIN-007; research 09 §5.6): an indicative statement —
 //! stock (at cost or at sale price, the owner's choice), cash in the drawers, bank and other
-//! assets, receivables, minus supplier debts and other debts — against the data pack's nisab,
-//! at the pack's rate (2.5 %). The Hijri date is Umm al-Qura (±1 day against the moon sighting
-//! the ministry announces). The statement says it is not a fatwa; it is saved append-only.
+//! assets, receivables, minus supplier debts and other debts — against the nisab the shop
+//! entered for the current Hijri year (`zakat.nisab`, the figure the Ministry of Religious
+//! Affairs publishes), at the pack's rate (2.5 %, fixed by the sharia). The software never
+//! supplies the nisab: until the shop enters it, nothing is computed (`zakat_nisab_missing`);
+//! the nisab older data packs still carry is not read. The Hijri date is Umm al-Qura (±1 day
+//! against the moon sighting the ministry announces). The statement says it is not a fatwa; it
+//! is saved append-only, with the nisab and the shop's note on its source as they were.
 //!
 //! LAN: drawn up on the host, which holds the books of every till.
 
@@ -147,7 +151,13 @@ pub struct ZakatPreview {
     pub other_debts: Money,
     /// Assets minus debts.
     pub base: Money,
+    /// The nisab the shop entered (`zakat.nisab`).
     pub nisab: Money,
+    /// The shop's note on where its nisab comes from (`MARW, 1447`), empty when it wrote none.
+    /// `None` only on a statement saved before the shop entered its own nisab, which was
+    /// computed against the data pack's.
+    #[serde(default)]
+    pub nisab_source: Option<String>,
     pub rate_bp: i32,
     pub zakat_due: Money,
     pub below_nisab: bool,
@@ -202,13 +212,20 @@ fn drawers(conn: &Connection) -> Result<Money, AppError> {
     Ok(total)
 }
 
-/// The statement as it would be saved now, without saving it.
+/// The statement as it would be saved now, without saving it; `zakat_nisab_missing` until the
+/// shop has entered the nisab of the year.
 pub fn preview(
     conn: &Connection,
     ctx: &TillContext,
     input: &ZakatInput,
 ) -> Result<ZakatPreview, AppError> {
     packs::require(conn, Module::Zakat)?;
+    let nisab = crate::settings::get::<Option<i64>>(conn, "zakat.nisab")?
+        .map(Money)
+        .ok_or_else(|| AppError::conflict("zakat_nisab_missing"))?;
+    let nisab_source = crate::settings::get::<String>(conn, "zakat.nisab_source")?
+        .trim()
+        .to_owned();
     for (field, m) in [
         ("bank", input.bank),
         ("otherAssets", input.other_assets),
@@ -240,7 +257,6 @@ pub fn preview(
     let base = assets
         .checked_sub(debts)
         .ok_or_else(|| AppError::validation("otherDebts", "amount_invalid"))?;
-    let nisab = ctx.pack.zakat.nisab;
     let rate_bp = ctx.pack.zakat.rate_bp;
     let below = base < nisab;
     let due = if below {
@@ -263,6 +279,7 @@ pub fn preview(
         other_debts: input.other_debts,
         base,
         nisab,
+        nisab_source: Some(nisab_source),
         rate_bp,
         zakat_due: due,
         below_nisab: below,
@@ -415,6 +432,30 @@ mod tests {
                 Lang::Ar
             ),
             "17 ربيع الآخر 1448"
+        );
+    }
+
+    /// A statement saved before the shop entered its own nisab has no `nisabSource` in its
+    /// details: it reads back as `None`, never as a note the shop did not write.
+    #[test]
+    fn an_older_statement_reads_back_without_a_nisab_source() {
+        let older = r#"{"day":"2026-09-28","hijriDate":{"year":1448,"month":4,"day":17},
+            "hijriLabel":"17 Rabi' al-Thani 1448","valuation":"cost","stockValue":0,"cash":0,
+            "bank":300000000,"otherAssets":0,"receivables":0,"payables":0,"otherDebts":0,
+            "base":300000000,"nisab":229500000,"rateBp":250,"zakatDue":7500000,
+            "belowNisab":false}"#;
+        let p: ZakatPreview = serde_json::from_str(older).unwrap();
+        assert_eq!(
+            (p.nisab, p.nisab_source.as_deref()),
+            (Money(229_500_000), None)
+        );
+        let mut current = p.clone();
+        current.nisab_source = Some(String::new());
+        let json = serde_json::to_string(&current).unwrap();
+        assert!(json.contains(r#""nisabSource":"""#), "{json}");
+        assert_eq!(
+            serde_json::from_str::<ZakatPreview>(&json).unwrap(),
+            current
         );
     }
 }

@@ -98,6 +98,9 @@ pub struct Ifu {
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, Type)]
 #[serde(rename_all = "camelCase")]
 pub struct Zakat {
+    /// Kept so that signed packs (which still carry it) read and verify as before; the zakat
+    /// calculation no longer uses it. The shop enters the nisab of the year itself
+    /// (`zakat.nisab`).
     pub nisab: Money,
     pub hijri_year: u32,
     /// The zakat rate on trade goods, basis points (250 = 2.5 %).

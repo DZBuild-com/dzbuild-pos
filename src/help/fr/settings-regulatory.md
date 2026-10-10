@@ -4,7 +4,8 @@ Réglages › Données réglementaires montre le pack réglementaire que le logi
 
 ## Le pack utilisé
 
-- Les taux de TVA, le barème du droit de timbre, les prix plafonnés, le nissab et les wilayas viennent d'un fichier signé par DZBuild.
+- Les taux de TVA, le barème du droit de timbre, les prix plafonnés, le taux de la zakat et les wilayas viennent d'un fichier signé par DZBuild.
+- Le nissab n'en fait pas partie : la boutique le saisit elle-même à chaque année hégirienne, sur l'écran [Zakat](route:/zakat).
 - L'écran montre son identifiant, sa version, sa date d'entrée en vigueur et ses sources.
 
 ## Installer un nouveau pack

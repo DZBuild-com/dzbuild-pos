@@ -72,6 +72,12 @@ export function usePriceCart() {
   });
 }
 
+/** The backend's figures for a cart and its tenders, asked once: the till's "one method" checkout
+ * reads the exact amount due, then checks that tender covers it, without a payment dialog. */
+export function usePreviewSale() {
+  return useMutation({ mutationFn: (input: PreviewInput) => commands.salesPreview(input) });
+}
+
 /** A ticket moves the drawer, the history, the stock and, on credit or store credit, the
  * customer's account (his balance at the till, his file, his statement). */
 function useRefreshAfterSale() {

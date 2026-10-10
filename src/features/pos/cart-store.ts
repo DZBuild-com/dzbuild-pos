@@ -96,6 +96,15 @@ function update(lines: DraftLine[], index: number, change: (line: CartLine) => C
   return lines.map((d, i) => (i === index ? { ...d, line: change(d.line) } : d));
 }
 
+/** The selection once line `removed` is gone and `left` lines remain: the line that was selected
+ * stays selected; when it is the one removed, the line taking its place (the new last one at the
+ * end of the ticket). */
+function selectionAfterRemoval(selected: number | null, removed: number, left: number): number | null {
+  if (left === 0) return null;
+  if (selected === null || selected === removed) return Math.min(removed, left - 1);
+  return Math.min(selected > removed ? selected - 1 : selected, left - 1);
+}
+
 export const useCart = create<CartState>()((set, get) => ({
   lines: [],
   selected: null,
@@ -188,16 +197,19 @@ export const useCart = create<CartState>()((set, get) => ({
       return { lines, selected: lines.length - 1 };
     }),
 
-  setQty: (index, qty) =>
-    set((s) => (qty > 0 ? { lines: update(s.lines, index, (l) => ({ ...l, qty })) } : {})),
+  setQty: (index, qty) => {
+    if (qty <= 0 || !get().lines[index]) return;
+    set((s) => ({ lines: update(s.lines, index, (l) => ({ ...l, qty })) }));
+    useExtras.getState().lineQtyChanged(index, qty);
+  },
 
-  bump: (index, direction) =>
-    set((s) => {
-      const draft = s.lines[index];
-      if (!draft) return {};
-      const qty = draft.line.qty + direction * 1_000;
-      return qty > 0 ? { lines: update(s.lines, index, (l) => ({ ...l, qty })) } : {};
-    }),
+  bump: (index, direction) => {
+    const draft = get().lines[index];
+    const qty = draft ? draft.line.qty + direction * 1_000 : 0;
+    if (qty <= 0) return;
+    set((s) => ({ lines: update(s.lines, index, (l) => ({ ...l, qty })) }));
+    useExtras.getState().lineQtyChanged(index, qty);
+  },
 
   setUnitPrice: (index, price) =>
     set((s) => ({ lines: update(s.lines, index, (l) => ({ ...l, unitPrice: price })) })),
@@ -209,11 +221,12 @@ export const useCart = create<CartState>()((set, get) => ({
 
   remove: (index) => {
     const removed = get().lines[index] ?? null;
+    if (!removed) return null;
     set((s) => {
       const lines = s.lines.filter((_, i) => i !== index);
-      return { lines, selected: lines.length === 0 ? null : Math.min(index, lines.length - 1) };
+      return { lines, selected: selectionAfterRemoval(s.selected, index, lines.length) };
     });
-    if (removed) useExtras.getState().lineRemoved(index);
+    useExtras.getState().lineRemoved(index);
     return removed;
   },
 
@@ -257,7 +270,8 @@ export const useCart = create<CartState>()((set, get) => ({
           price: line.unitPrice ?? 0,
         },
       })),
-      selected: null,
+      // the last line, as after a scan: Del, + and - act on it at once
+      selected: cart.lines.length === 0 ? null : cart.lines.length - 1,
       priceLevelId: cart.priceLevelId,
       customerId: cart.customerId,
       lang: cart.lang,

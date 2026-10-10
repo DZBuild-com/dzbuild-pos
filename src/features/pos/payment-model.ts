@@ -1,4 +1,4 @@
-import type { PaymentInput, PaymentMethod, TenderType } from "@/lib/ipc/types";
+import type { PaymentInput, PaymentMethod, Settlement, TenderType } from "@/lib/ipc/types";
 import { parseAmount } from "@/lib/numeric";
 
 /** Spec §10.5 tender tiles. */
@@ -17,6 +17,19 @@ export const TENDER_METHODS: PaymentMethod[] = [
  * customer chosen (F3). */
 export function onAccount(method: PaymentMethod): boolean {
   return method === "credit" || method === "voucher";
+}
+
+/** What one more tender of `method` must bring for the backend's `settlement` to be paid: cash
+ * pays what is missing (the duty and the cash rounding included); any other tender the rest of the
+ * TTC, since it gives no change (PAY-017) and carries no duty where the pack exempts it. With no
+ * tender typed the backend counts the whole amount as cash, so this is the exact amount. */
+export function exactAmount(method: PaymentMethod, settlement: Settlement): number {
+  return method === "cash" ? settlement.missing : restOfTtc(settlement);
+}
+
+/** The TTC not yet covered by the tenders (and the store credit) the backend settled. */
+export function restOfTtc(settlement: Settlement): number {
+  return Math.max(0, settlement.totalTtc - settlement.paidTotal);
 }
 
 /** Quick cash notes in centimes (SAL-050). */

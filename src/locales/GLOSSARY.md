@@ -234,7 +234,7 @@ Add a row before introducing a new business word in any catalogue.
 | 227 | Employee | Employé | الموظف | Employee | |
 | 228 | Salary advance | Avance sur salaire | تسبيق على الأجر | Salary advance | |
 | 229 | Zakat | Zakat | الزكاة | Zakat | not a fatwa |
-| 230 | Nisab | Nissab | النصاب | Nisab | data pack |
+| 230 | Nisab | Nissab | النصاب | Nisab | entered by the shop each Hijri year (Ministry of Religious Affairs figure); never supplied by the software |
 | 231 | Hijri date | Date hégirienne | التاريخ الهجري | Hijri date | Umm al-Qura, ±1 day |
 | 232 | Department key | Touche rayon | زر القسم | Department key | price typed at the till |
 | 233 | Regulated price | Prix plafonné (subventionné) | سعر مسقف (مدعم) | Regulated price | |

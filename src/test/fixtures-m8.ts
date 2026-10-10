@@ -666,8 +666,8 @@ export function staffProfile(overrides: Partial<StaffProfile> = {}): StaffProfil
 }
 
 /** The zakat of 28 September 2026 (17 Rabi' al-Akhir 1448), stock at cost: a base of 3 330 000 DA
- * above the data pack's nisab of 2 295 000 DA, 83 250 DA due (2.5 %). The Hijri label is the
- * backend's, in Arabic. */
+ * above the nisab of 2 295 000 DA the shop entered (noted "MARW, 1447"), 83 250 DA due (2.5 %).
+ * The Hijri label is the backend's, in Arabic. */
 export function zakatPreview(overrides: Partial<ZakatPreview> = {}): ZakatPreview {
   return {
     day: "2026-09-28",
@@ -683,6 +683,7 @@ export function zakatPreview(overrides: Partial<ZakatPreview> = {}): ZakatPrevie
     otherDebts: 0,
     base: 333_000_000,
     nisab: 229_500_000,
+    nisabSource: "MARW, 1447",
     rateBp: 250,
     zakatDue: 8_325_000,
     belowNisab: false,

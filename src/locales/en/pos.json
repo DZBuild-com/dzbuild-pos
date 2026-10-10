@@ -4,6 +4,8 @@
     "label": "Scan or search a product",
     "times": "× {{qty}}",
     "results": "Products found",
+    "noMatch": "No product matches \"{{text}}\".",
+    "noMatchCode": "No product matches \"{{text}}\". Press Enter to read it as a code.",
     "notFound": "No product for the code \"{{code}}\". Check the code or search the product by name.",
     "variantParent": "This product comes in several variants: scan or pick the variant sold.",
     "closeDialog": "Close this window first to add an item.",

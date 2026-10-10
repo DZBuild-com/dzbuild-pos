@@ -144,7 +144,7 @@ describe("updates", () => {
     mockCommands({ ...settings, updates_status: () => status() });
     renderWithProviders(<UpdatesSettings session={ownerSession} />);
     expect(await screen.findByText("تصحيح طباعة التذاكر العربية")).toBeInTheDocument();
-    renderWithProviders(<WhatsNewDialog version="0.7.0" onClose={() => undefined} />);
+    renderWithProviders(<WhatsNewDialog version="1.0.0" onClose={() => undefined} />);
     expect(await screen.findByRole("dialog")).toBeInTheDocument();
     expect(within(screen.getByRole("dialog")).getAllByRole("listitem").length).toBeGreaterThan(3);
   });

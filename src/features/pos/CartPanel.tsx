@@ -10,6 +10,7 @@ import { useErrorText } from "@/lib/use-error-text";
 import { useLang } from "@/lib/use-language";
 import { cn } from "@/lib/utils";
 import { type DraftLine } from "./cart-store";
+import type { PricedCartLine } from "./use-cart-preview";
 
 /** End column (spec §10.5): lines, totals, the amount-due band, the pay button and the POS
  * buttons. Every figure comes from the backend's preview; before it answers, a line shows "…". */
@@ -17,6 +18,8 @@ export function CartPanel({
   lines,
   selected,
   preview,
+  priced,
+  stale = false,
   error,
   onSelect,
   onEdit,
@@ -30,6 +33,10 @@ export function CartPanel({
   lines: DraftLine[];
   selected: number | null;
   preview: PaymentPreview | undefined;
+  /** The backend's figures of each of `lines` (`usePricedLines`), none for a line not priced yet. */
+  priced: readonly (PricedCartLine | undefined)[];
+  /** `preview` is the previous cart's while this one is priced: its totals are about to change. */
+  stale?: boolean;
   error: unknown;
   onSelect: (index: number) => void;
   onEdit: (index: number) => void;
@@ -48,6 +55,8 @@ export function CartPanel({
   const totals = preview?.cart.totals;
   const ht = preview?.cart.priceMode === "ht";
   const settlement = preview?.settlement;
+  // a slow answer dims the figures about to change; a quick one never shows the dimming
+  const pending = stale ? "opacity-60 transition-opacity delay-300" : "transition-opacity";
   return (
     <aside className="flex w-[440px] shrink-0 flex-col border-s border-line bg-surface max-[1100px]:w-[400px]">
       <div className="flex items-center justify-between border-b border-line px-4 py-3">
@@ -58,7 +67,7 @@ export function CartPanel({
       <ul aria-label={t("pos:cart.title")} className="min-h-0 flex-1 overflow-y-auto">
         {lines.length === 0 ? <li className="p-6 text-ink-2">{t("pos:cart.empty")}</li> : null}
         {lines.map((draft, index) => {
-          const priced = preview?.cart.lines[index];
+          const figures = priced[index];
           return (
             <li key={draft.key}>
               <button
@@ -77,48 +86,48 @@ export function CartPanel({
                   <span className="font-semibold">
                     {t("pos:cart.line", {
                       qty: formatQty(draft.line.qty, lang),
-                      name: priced?.description ?? draft.display.name,
+                      name: figures?.description ?? draft.display.name,
                     })}
                   </span>
-                  {priced && priced.amounts.discountAmount !== 0 ? (
+                  {figures && figures.amounts.discountAmount !== 0 ? (
                     <span className="text-sm text-ok">
                       {/* PRM-005/006, PRC-003: an automatic discount says where it comes from */}
                       <span>
-                        {priced.autoDiscount
-                          ? (priced.autoDiscount.label ?? t("pos:cart.customerDiscount"))
+                        {figures.autoDiscount
+                          ? (figures.autoDiscount.label ?? t("pos:cart.customerDiscount"))
                           : t("pos:cart.discount")}
                       </span>{" "}
-                      <Amount value={-priced.amounts.discountAmount} />
+                      <Amount value={-figures.amounts.discountAmount} />
                     </span>
                   ) : null}
-                  {priced?.priceChanged ? (
+                  {figures?.priceChanged ? (
                     <span className="text-sm text-warn">{t("pos:cart.priceChanged")}</span>
                   ) : null}
                   {/* M8: a regulated staple's ceiling (SAL-030), the customer's agreed price, a
                       wholesale minimum not reached */}
-                  {priced?.regulated ? (
+                  {figures?.regulated ? (
                     <span
                       className={cn(
                         "w-fit rounded-sm px-1 text-sm",
-                        priced.regulated.above ? "bg-danger-soft text-danger" : "text-ink-2",
+                        figures.regulated.above ? "bg-danger-soft text-danger" : "text-ink-2",
                       )}
                     >
-                      {t("pos:cart.regulated", { ceiling: formatDZD(priced.regulated.ceiling, lang) })}{" "}
-                      {priced.regulated.above ? <span>{t("pos:cart.above")}</span> : null}
+                      {t("pos:cart.regulated", { ceiling: formatDZD(figures.regulated.ceiling, lang) })}{" "}
+                      {figures.regulated.above ? <span>{t("pos:cart.above")}</span> : null}
                     </span>
                   ) : null}
-                  {priced?.customerPrice ? (
+                  {figures?.customerPrice ? (
                     <span className="text-sm text-info">{t("pos:cart.customerPrice")}</span>
                   ) : null}
-                  {priced?.minOrder ? (
+                  {figures?.minOrder ? (
                     <span className="w-fit rounded-sm bg-warn-soft px-1 text-sm text-warn">
-                      {t("pos:cart.minOrder", { qty: formatQty(priced.minOrder, lang) })}
+                      {t("pos:cart.minOrder", { qty: formatQty(figures.minOrder, lang) })}
                     </span>
                   ) : null}
                 </span>
                 <span className="text-2xl font-bold">
-                  {priced ? (
-                    <Amount value={priced.amounts.totalTtc} />
+                  {figures ? (
+                    <Amount value={figures.amounts.totalTtc} />
                   ) : (
                     <span aria-label={t("pos:cart.pricing")}>…</span>
                   )}
@@ -147,7 +156,8 @@ export function CartPanel({
       <dl
         role="group"
         aria-label={t("pos:cart.totals")}
-        className="grid gap-1 border-t border-line px-4 py-3"
+        aria-busy={stale || undefined}
+        className={cn("grid gap-1 border-t border-line px-4 py-3", pending)}
       >
         <div className="flex justify-between">
           <dt>{t("pos:cart.items")}</dt>
@@ -191,10 +201,14 @@ export function CartPanel({
       <div
         role="status"
         aria-label={t("pos:cart.due")}
+        aria-busy={stale || undefined}
         className="flex items-baseline justify-between bg-brand px-4 py-3 text-brand-ink"
       >
         <span className="text-lg font-semibold">{t("pos:cart.due")}</span>
-        <Amount value={settlement?.totalDue ?? 0} className="text-5xl leading-none font-bold" />
+        <Amount
+          value={settlement?.totalDue ?? 0}
+          className={cn("text-5xl leading-none font-bold", pending)}
+        />
       </div>
       <div className="flex flex-col gap-2 p-3">
         {payButton}

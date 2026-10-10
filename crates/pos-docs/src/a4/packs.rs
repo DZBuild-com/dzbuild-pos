@@ -320,7 +320,7 @@ pub struct ZakatStatementPrint {
     /// The "no zakat is due" sentence when the base is below the nisab.
     pub below_nisab: Option<String>,
     pub disclaimer: String,
-    /// "Nissab : <the data pack's source>".
+    /// "Nissab : MARW, 1447": the shop's note on the nisab it entered.
     pub source: String,
     pub labels: ZakatLabels,
     /// The words of the seller's card (RC, NIF, address…).
@@ -340,15 +340,23 @@ fn short_percent(bp: i32, lang: Lang) -> String {
 }
 
 /// The print of a saved zakat `statement` for `seller` (built by the command layer from M3's
-/// print context), with the data pack's `nisab_source`, in `lang`.
+/// print context), in `lang`. The nisab line names the shop's own note on its source, or says
+/// the shop entered it when it wrote none; `pack_source` (the data pack's) is printed only for
+/// a statement saved before the shop entered its own nisab, which was computed against the
+/// pack's.
 pub fn build_zakat(
     statement: &ZakatStatement,
     seller: PartyBlock,
-    nisab_source: &str,
+    pack_source: &str,
     lang: Lang,
 ) -> ZakatStatementPrint {
     let w = |k: &str| word(lang, &format!("a4.zakat.{k}"));
     let p = &statement.preview;
+    let nisab_source = match p.nisab_source.as_deref().map(str::trim) {
+        None => pack_source.to_owned(),
+        Some("") => w("sourceShop"),
+        Some(note) => note.to_owned(),
+    };
     let stock = match p.valuation {
         Valuation::Cost => w("stockCost"),
         Valuation::SalePrice => w("stockSale"),
@@ -376,7 +384,7 @@ pub fn build_zakat(
         due: p.zakat_due,
         below_nisab: p.below_nisab.then(|| w("belowNisab")),
         disclaimer: w("disclaimer"),
-        source: w("source").replace("{source}", nisab_source),
+        source: w("source").replace("{source}", &nisab_source),
         labels: ZakatLabels {
             base: w("base"),
             nisab: w("nisab"),
@@ -590,7 +598,7 @@ mod fixtures {
     }
 
     /// The statement of 2026-09-28 (17 Rabi' al-Thani 1448): a base of 2 451 000 DA above the
-    /// nisab, 61 275 DA due.
+    /// nisab the shop entered (noted "MARW, 1447"), 61 275 DA due.
     pub(super) fn zakat() -> ZakatStatement {
         ZakatStatement {
             id: "00000000-0000-7000-8000-000000000030".into(),
@@ -613,6 +621,7 @@ mod fixtures {
                 other_debts: Money(5_000_000),
                 base: Money(245_100_000),
                 nisab: Money(229_500_000),
+                nisab_source: Some("MARW, 1447".into()),
                 rate_bp: 250,
                 zakat_due: Money(6_127_500),
                 below_nisab: false,
@@ -848,13 +857,33 @@ mod tests {
                 crate::locales::text(lang.as_str(), "a4.zakat.disclaimer").unwrap()
             );
         }
-        let fr = build_zakat(&fixtures::zakat(), fixtures::seller(), "MARW", Lang::Fr);
+        let pack = "Ministère des Affaires religieuses et des Wakfs";
+        let fr = build_zakat(&fixtures::zakat(), fixtures::seller(), pack, Lang::Fr);
         assert_eq!(
             (fr.title.as_str(), fr.hijri.as_str()),
             ("Calcul de la zakat", "17 Rabi' al-Thani 1448")
         );
         assert_eq!((fr.rate.as_str(), fr.below_nisab), ("2,5 %", None));
-        assert_eq!(fr.source, "Nissab : MARW");
+        assert_eq!(fr.source, "Nissab : MARW, 1447", "the shop's own note");
+        // No note: the nisab is still the shop's, and the page says so.
+        let mut unnoted = fixtures::zakat();
+        unnoted.preview.nisab_source = Some("  ".into());
+        for (lang, line) in [
+            (Lang::Fr, "Nissab : saisi par la boutique"),
+            (Lang::En, "Nisab: entered by the shop"),
+            (Lang::Ar, "النصاب: أدخله المحل"),
+        ] {
+            let print = build_zakat(&unnoted, fixtures::seller(), pack, lang);
+            assert_eq!(print.source, line);
+        }
+        // A statement saved before the shop entered its nisab was computed against the pack's.
+        let mut older = fixtures::zakat();
+        older.preview.nisab_source = None;
+        let print = build_zakat(&older, fixtures::seller(), pack, Lang::Fr);
+        assert_eq!(
+            print.source,
+            "Nissab : Ministère des Affaires religieuses et des Wakfs"
+        );
         assert_eq!(
             fr.party_labels,
             super::document_labels(Lang::Fr),

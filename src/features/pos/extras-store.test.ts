@@ -43,6 +43,23 @@ describe("the sale's pack extras", () => {
     ]);
   });
 
+  it("keep one serial per piece still sold when a line's quantity goes down", () => {
+    const extras = useExtras.getState();
+    extras.setSerials(0, ["356938035643809", "490154203237518", "353918057112230"]);
+    extras.setSerials(1, ["352099001761481"]);
+    extras.lineQtyChanged(0, 2_000);
+    expect(useExtras.getState().serials).toEqual({
+      0: ["356938035643809", "490154203237518"],
+      1: ["352099001761481"],
+    });
+    // more pieces: the serials given stay, the checkout asks for the others
+    useExtras.getState().lineQtyChanged(0, 5_000);
+    expect(useExtras.getState().serials[0]).toHaveLength(2);
+    // under one piece (a part of a unit), none is left
+    useExtras.getState().lineQtyChanged(1, 500);
+    expect(useExtras.getState().serials).toEqual({ 0: ["356938035643809", "490154203237518"] });
+  });
+
   it("are cleared with the cart, but a van sale lasts until the till goes back to the shop", () => {
     const extras = useExtras.getState();
     extras.setSerials(0, ["356938035643809"]);

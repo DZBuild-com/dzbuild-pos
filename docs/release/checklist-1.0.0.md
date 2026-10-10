@@ -4,7 +4,7 @@ The copy of `docs/release-checklist.md` for 1.0.0. Each line is marked **OK**, *
 needs) when it is run; a line left `[ ]` with no mark has not been run yet.
 
 1.0.0 is the free long-term-support edition: free forever, no licence, no key, no subscription
-(`src-tauri/license.toml` `free = true`). What changed since 0.8.0:
+(`src-tauri/license.toml` `free = true`). What changed since the last internal build:
 
 - **No licence.** Every PC sells right after the install: no activation screen, no read-only mode, no
   Settings › Licence, and no owner licence tool (`pnpm release:build` no longer builds `dzpos-license` for the
@@ -25,7 +25,7 @@ needs) when it is run; a line left `[ ]` with no mark has not been run yet.
 Machines: **A** a clean Windows 10 22H2 x64 VM, 4 GB RAM, no Internet after the WebView2 step;
 **A32** a clean 32-bit Windows 10 22H2 VM (x86), 2–4 GB RAM; **B** the reference PC (Celeron J1900, 4 GB, HDD,
 1024×768 touch) with the 80 mm printer, the drawer, a USB scanner on AZERTY and on Arabic, a USB stick; **C** a
-Windows 11 PC with 0.8.0 or 0.9.0 installed and a month of data.
+Windows 11 PC with an earlier internal build installed and a month of data.
 
 ## 1. Build and gates (build PC)
 
@@ -33,7 +33,7 @@ Windows 11 PC with 0.8.0 or 0.9.0 installed and a month of data.
 - [ ] `pnpm check` exits 0; `pnpm perf:bundle` ≤ 300 kB; `pnpm test:tooling` green.
 - [ ] `pnpm e2e` (local, Edge) green, ar/fr/en screenshots looked at (1024×768 and 1366×768).
 - [ ] `pnpm release:build` (x64): `DZBuildPOS-1.0.0-setup.exe` ≤ 15 MiB with its `.sig`, `DZBuildPOS-1.0.0-offline-setup.exe` about 215 MiB, `SHA256SUMS.txt`; the log ends with `owner tool: not built (free edition, no licence to issue)` then `done:`. With the certificate, both show `Get-AuthenticodeSignature` → `Valid` and a timestamp.
-- [ ] `pnpm release:build --arch x86` (`rustup target add i686-pc-windows-msvc` once): `DZBuildPOS-1.0.0-x86-setup.exe` ≤ 15 MiB with its `.sig`, `DZBuildPOS-1.0.0-x86-offline-setup.exe` ≥ 100 MiB (the x86 WebView2 runtime inside); `SHA256SUMS.txt` lists the **four** setups and matches `Get-FileHash` for each. The first i686 attempt (0.9.0) stopped at "can't open main binary … Access is denied (os error 5)" right after linking: the script now runs `pnpm tauri build` again by itself on that error or `LNK1104` (5 tries, 3 s apart; the log says `the exe was locked (try n of 5)`). If all five fail, exclude `target\i686-pc-windows-msvc` from the antivirus scan for the build and run it again.
+- [ ] `pnpm release:build --arch x86` (`rustup target add i686-pc-windows-msvc` once): `DZBuildPOS-1.0.0-x86-setup.exe` ≤ 15 MiB with its `.sig`, `DZBuildPOS-1.0.0-x86-offline-setup.exe` ≥ 100 MiB (the x86 WebView2 runtime inside); `SHA256SUMS.txt` lists the **four** setups and matches `Get-FileHash` for each. The first i686 attempt stopped at "can't open main binary … Access is denied (os error 5)" right after linking: the script now runs `pnpm tauri build` again by itself on that error or `LNK1104` (5 tries, 3 s apart; the log says `the exe was locked (try n of 5)`). If all five fail, exclude `target\i686-pc-windows-msvc` from the antivirus scan for the build and run it again.
 - [ ] Each `pnpm release:build` makes two release builds (about 40 minutes for x64, more for a first i686 build). Start it from a terminal of its own, or detached with its output in a log file read until `done:`.
 - [ ] The release binaries (`target\release\dzbuild-pos.exe`, `target\i686-pc-windows-msvc\release\dzbuild-pos.exe`) scanned for `dzas_`, `dzpk_live_`, `dzpk_test_`, `client_secret`, `BEGIN PRIVATE`, `AGE-SECRET-KEY`, `dzbuild.dev`: only the known refusal and redaction patterns, no key material, no developer URL shown to users.
 - [ ] `pnpm release:manifest` writes `dist-release\1.0.0\updates\stable\latest.json` and `…\beta\latest.json`; notes in the three languages; `platforms` holds `windows-x86_64`, `windows-x86_64-nsis` (URL `…/1.0.0/DZBuildPOS-1.0.0-setup.exe`) and `windows-i686`, `windows-i686-nsis` (URL `…/1.0.0/DZBuildPOS-1.0.0-x86-setup.exe`), each with its own signature, `sha256` and `size`. Without the x86 `.sig` only the x64 pair is written (and the reverse). Needs the owner's certificate for the stable channel.
@@ -52,9 +52,9 @@ Windows 11 PC with 0.8.0 or 0.9.0 installed and a month of data.
 - [ ] Point C to the staging manifest: Réglages › Mises à jour › "Rechercher maintenant" finds 1.0.0 with its notes in the UI language.
 - [ ] With a drawer open: "Installer maintenant" is disabled and names the till; no download starts by itself.
 - [ ] Close the Z, install: a `pre_migration` backup appears (and on the USB stick), the setup runs in passive mode, the app restarts on 1.0.0, "Voir les nouveautés" shows the 1.0.0 notes, the journal has `update.downloaded`, `update.install_started`, `app.updated`. Schema stays 9.
-- [ ] An x86 install of 0.9.0 (or a 1.0.0 x86 build pointed at a staging 1.0.1 manifest) takes the **x86** setup: the downloaded file's digest is the `windows-i686` one.
+- [ ] An x86 install of an earlier internal build (or a 1.0.0 x86 build pointed at a staging 1.0.1 manifest) takes the **x86** setup: the downloaded file's digest is the `windows-i686` one.
 - [ ] Every sale, Z and journal row of the month is still there; the action log check (Réglages › Journal des opérations › "Vérifier") is clean.
-- [ ] A shop that used the managed online backup in 0.8.0: no backup card or notice about it remains, its old journal rows still read with their labels, local backups go on.
+- [ ] A shop that used the managed online backup of an earlier internal build: no backup card or notice about it remains, its old journal rows still read with their labels, local backups go on.
 - [ ] A manifest with `"paused": true` is not offered; one with a wrong `sha256` downloads and is refused as "incomplete or altered".
 
 ## 4. Data safety (machine B)
@@ -113,7 +113,7 @@ Windows 11 PC with 0.8.0 or 0.9.0 installed and a month of data.
 
 - [ ] A new install never shows the activation screen, the licence banner or Settings › Licence, in the three languages.
 - [ ] The clock moved 8 days ahead: sales go on (no trial, no read-only mode).
-- [ ] An install of 0.8.0 holding a trial or a lifetime licence, updated to 1.0.0: sells, no licence screen, its data intact.
+- [ ] An install of an earlier internal build holding a trial or a lifetime licence, updated to 1.0.0: sells, no licence screen, its data intact.
 - [ ] `dist-owner\1.0.0\` does not exist after both builds; no licence key, seller number or internal DZBuild URL in the app or the setups.
 
 ## 12. Vertical packs (M8)
