@@ -1,0 +1,20 @@
+{
+  "fr": [
+    "Zakat : le nissab n'est plus pré-rempli. La boutique saisit elle-même le montant publié par le ministère des Affaires religieuses pour l'année hégirienne en cours, avec une note sur sa source ; rien n'est calculé avant.",
+    "Caisse : dans Paramètres › Paiements, choisissez un seul mode de paiement (la vente se termine d'un coup sur Encaisser) ou la liste des modes proposés, le premier étant pré-rempli.",
+    "Caisse : la recherche de produit suit ce que vous tapez, Entrée ajoute le premier résultat, Échap ferme la liste.",
+    "Caisse : supprimer une ligne n'affiche plus le nom d'une autre ligne, et la fenêtre de modification ne se ferme que si la suppression a bien eu lieu."
+  ],
+  "ar": [
+    "الزكاة: لم يعد النصاب مملوءًا مسبقًا. يُدخل المحل بنفسه المبلغ الذي تنشره وزارة الشؤون الدينية للسنة الهجرية الجارية مع ملاحظة عن مصدره، ولا يُحسب شيء قبل ذلك.",
+    "الصندوق: في الإعدادات › الدفع، اختر طريقة دفع واحدة (تنتهي البيعة مباشرة عند الضغط على تحصيل) أو قائمة الطرق المعروضة، وتكون الأولى مملوءة مسبقًا.",
+    "الصندوق: بحث المنتج يتبع ما تكتبه، وزر الإدخال يضيف النتيجة الأولى، وزر الخروج يغلق القائمة.",
+    "الصندوق: حذف سطر لم يعد يُظهر اسم سطر آخر، ونافذة التعديل لا تُغلق إلا إذا تم الحذف فعلًا."
+  ],
+  "en": [
+    "Zakat: the nisab is no longer filled in for you. The shop enters the amount the Ministry of Religious Affairs publishes for the current Hijri year, with a note on its source; nothing is computed before that.",
+    "Till: in Settings › Payments, choose one payment method (the sale finishes at once on Pay) or the list of methods offered, with the first one pre-filled.",
+    "Till: product search follows what you type, Enter adds the first result, Esc closes the list.",
+    "Till: removing a line no longer shows another line's name, and the edit window closes only once the removal went through."
+  ]
+}

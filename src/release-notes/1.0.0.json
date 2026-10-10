@@ -1,19 +1,19 @@
 {
   "fr": [
     "La version 1.0.0 est la première version à support long terme (LTS) de l'édition gratuite : sans licence, sans clé et sans abonnement.",
-    "La sauvegarde en ligne DZBuild est supprimée. Les sauvegardes sur ce PC, la copie sur clé USB et la restauration fonctionnent comme avant.",
+    "Vos données restent sur votre PC : sauvegardes locales, copie sur clé USB et restauration guidée.",
     "Téléchargement et assistance sur dzbuild.com/pos. Un installateur pour Windows 32 bits est maintenant disponible.",
     "Des textes plus simples dans toute l'application, et un bouton « Revenir en haut » sur chaque page."
   ],
   "ar": [
     "الإصدار 1.0.0 هو أول إصدار بدعم طويل المدى (LTS) من النسخة المجانية: بلا رخصة ولا مفتاح ولا اشتراك.",
-    "حُذف النسخ الاحتياطي عبر الإنترنت لدى DZBuild. النسخ الاحتياطي على هذا الجهاز والنسخة على مفتاح USB باقيان، وكذلك الاسترجاع.",
+    "بياناتك تبقى على جهازك: نسخ احتياطي محلي، ونسخة على مفتاح USB، واسترجاع مُوجَّه.",
     "التحميل والمساعدة على dzbuild.com/pos. صار متوفرًا برنامج تثبيت لويندوز 32 بت.",
     "كلمات أبسط في كل البرنامج، وزر «العودة إلى الأعلى» في كل صفحة."
   ],
   "en": [
     "Version 1.0.0 is the first long-term-support (LTS) version of the free edition: no licence, no key, no subscription.",
-    "The DZBuild online backup is removed. Backups on this PC, the USB copy and restore work as before.",
+    "Your data stays on your PC: local backups, a USB copy and guided restore.",
     "Download and support at dzbuild.com/pos. A 32-bit Windows installer is now available.",
     "Simpler wording across the app, and a “Back to top” button on every page."
   ]

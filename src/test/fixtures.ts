@@ -181,12 +181,28 @@ export const settingsValues: Record<string, unknown> = {
   "cash.blind_close": false,
   "sales.max_change": 0,
   "payments.cheque_requires_customer": false,
+  // the till asks how the customer pays, every tender allowed
+  "payments.till_mode": "ask",
+  "payments.fixed_method": "cash",
+  "payments.allowed_methods": [
+    "cash",
+    "card_cib",
+    "edahabia",
+    "baridimob",
+    "cheque",
+    "transfer",
+    "credit",
+    "voucher",
+  ],
   "stock.expired_lots": "warn",
   "stock.expiry_alert_days": 30,
   "promotions.soldes_windows": [],
   "products.internal_ean_prefix": "200",
   "company.nin": "",
   "company.social": {},
+  // the zakat nisab: never supplied by the software, unset until the shop enters it
+  "zakat.nisab": null,
+  "zakat.nisab_source": "",
   // M6 backups, updates and support at their backend defaults.
   "backup.keep_daily": 14,
   "backup.keep_weekly": 8,

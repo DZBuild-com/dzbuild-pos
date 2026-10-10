@@ -1,6 +1,6 @@
 {
   "title": "Zakat",
-  "intro": "An estimate of the zakat on your trade goods: the figures the software knows, plus what you add.",
+  "intro": "An estimate of the zakat on your trade goods: the figures the software knows, plus what you add, against the nisab you enter.",
   "inputs": "What you add",
   "day": "Calculation date",
   "hijri": "Hijri date",
@@ -27,6 +27,23 @@
   "base": "Base",
   "nisab": "Nisab",
   "nisabSource": "Source: {{source}}",
+  "nisabByShop": "entered by the shop",
+  "nisabCard": {
+    "title": "Nisab of the year",
+    "help": "Enter the nisab the Ministry of Religious Affairs publishes for the current Hijri year. The software never fills it in: the calculation uses only the figure you type. Update it each new Hijri year.",
+    "amount": "Nisab (DA)",
+    "notSet": "Not entered yet.",
+    "source": "Source",
+    "sourceHint": "For your records, for example “Ministry of Religious Affairs, 1447”.",
+    "save": "Save the nisab",
+    "saved": "Nisab saved.",
+    "ownerOnly": "Only a user allowed to change the shop's settings can enter the nisab.",
+    "mainPcOnly": "The nisab is entered on the main PC."
+  },
+  "nisabMissing": {
+    "title": "Enter the nisab first",
+    "body": "The calculation starts once the nisab of the current Hijri year is entered in “Nisab of the year”."
+  },
   "rate": "Rate",
   "due": "Zakat due",
   "belowNisab": "The base is below the nisab: no zakat is due.",

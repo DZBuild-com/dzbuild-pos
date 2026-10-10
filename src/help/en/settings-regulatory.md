@@ -4,7 +4,8 @@ Settings › Regulatory data shows the regulatory pack the software uses and ins
 
 ## The pack in use
 
-- VAT rates, the stamp duty scale, regulated prices, the nisab and the wilayas come from a file signed by DZBuild.
+- VAT rates, the stamp duty scale, regulated prices, the zakat rate and the wilayas come from a file signed by DZBuild.
+- The nisab is not in this list: the shop enters it itself each Hijri year, on the [Zakat](route:/zakat) screen.
 - The screen shows its identifier, version, date in force and sources.
 
 ## Install a new pack

@@ -1,6 +1,4 @@
 import { type ReactNode, Suspense, lazy } from "react";
-import { useTranslation } from "react-i18next";
-import { toast } from "sonner";
 import type { Hotkey } from "@/lib/hotkeys";
 import type {
   ExchangeDone,
@@ -16,11 +14,11 @@ import { UnprintedSheet } from "@/app/PrintFailures";
 import { OpenSessionDialog } from "@/features/cash/OpenSessionDialog";
 import { LoadQuoteDialog } from "@/features/documents/LoadQuoteDialog";
 import { loadBackOffice } from "@/lib/i18n";
-import { useLinkSale } from "@/lib/ipc/billing";
 import { toCart, useCart } from "./cart-store";
 import { useExtras } from "./extras-store";
 import { CustomerPicker } from "./CustomerPicker";
 import { DiscountDialog } from "./DiscountDialog";
+import { useCommitDone } from "./finish-sale";
 import { HeldTicketsSheet } from "./HeldTicketsSheet";
 import { HelpDialog } from "./HelpDialog";
 import { HoldDialog } from "./HoldDialog";
@@ -29,6 +27,7 @@ import { NoSaleDialog } from "./NoSaleDialog";
 import { OpenItemDialog } from "./OpenItemDialog";
 import { PackDialog } from "./pack-slots";
 import { PaymentDialog } from "./PaymentDialog";
+import type { Tender } from "./payment-model";
 import { PosMenu } from "./PosMenu";
 import { PriceCheckDialog } from "./PriceCheckDialog";
 import { SaleDoneDialog } from "./SaleDoneDialog";
@@ -99,7 +98,9 @@ export type PosDialog =
   | { kind: "menu" }
   | { kind: "help" }
   | { kind: "openSession" }
-  | { kind: "pay" }
+  /** The payment dialog; the till's "one method" checkout opens it on the tenders it tried and
+   * the backend's answer when it could not finish the sale at once. */
+  | { kind: "pay"; tenders?: Tender[]; error?: unknown }
   | { kind: "return"; number?: string }
   | { kind: "unprinted" }
   | { kind: "quote" }
@@ -145,7 +146,9 @@ export interface PosContext {
   session: Session;
   preview: PaymentPreview | undefined;
   run: <T>(action: () => Promise<T>) => Promise<T>;
-  voidLine: (index: number) => Promise<void>;
+  /** Voids line `index`, journaled (`sales.void_line`, a manager's approval when needed).
+   * Resolves `true` once the line is gone, `false` when refused or cancelled. */
+  voidLine: (index: number) => Promise<boolean>;
   /** Lowers line `index` to `qty` milli-units, journaled as a partial void (`sales.void_line`,
    * a manager's approval when needed). Resolves `false` when refused or cancelled. */
   reduceQty: (index: number, qty: number) => Promise<boolean>;
@@ -167,7 +170,8 @@ export interface PosContext {
   actions: readonly TillAction[];
   /** Adds a catalogue product as a scan does (a variant picked in the grid, a generic). */
   addProduct: (product: TillProduct, qty: number, unitDecimals: number) => void;
-  /** The checkout's pack steps are done: the payment dialog opens. */
+  /** The checkout's pack steps are done: the payment dialog opens (or, with one payment method
+   * set, the sale is finished at once). */
   checkoutDone: () => void;
   /** Department keys in place of the product grid, or back (Ctrl+5). */
   toggleDepartments: () => void;
@@ -182,8 +186,7 @@ export function PosDialogs({
   onClose: () => void;
   ctx: PosContext;
 }): ReactNode {
-  const { t } = useTranslation();
-  const linkSale = useLinkSale();
+  const commitDone = useCommitDone((done) => ctx.open({ kind: "done", done }));
   switch (dialog?.kind) {
     case "customer":
       return <CustomerPicker ctx={ctx} onClose={onClose} />;
@@ -211,28 +214,9 @@ export function PosDialogs({
       return (
         <PaymentDialog
           onClose={onClose}
-          onDone={(done) => {
-            // the ticket is committed: its lines and its return leave the cart now, not on
-            // "Nouvelle vente", so a lock or a logout on the change screen cannot bring them
-            // back to be sold or refunded twice (the done dialog reads only `done.result`)
-            const state = useCart.getState();
-            const quote = state.fromQuote;
-            state.clear(state.lang);
-            // SAL-046: the ticket is recorded as made from the quote; the sale stands if it fails
-            const ticket =
-              done.kind === "sale"
-                ? done.result.sale.document
-                : done.kind === "exchange"
-                  ? done.result.exchange.sale.document
-                  : null;
-            if (quote && ticket) {
-              linkSale.mutate(
-                { quoteId: quote.id, ticketId: ticket.id },
-                { onError: () => toast.warning(t("billing:offer.linkFailed")) },
-              );
-            }
-            ctx.open({ kind: "done", done });
-          }}
+          initialTenders={dialog.tenders}
+          initialError={dialog.error}
+          onDone={commitDone}
         />
       );
     case "return":

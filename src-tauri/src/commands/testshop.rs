@@ -896,6 +896,14 @@ impl TestShop {
             Money(1_450_000),
         )
         .unwrap();
+        // the nisab of the year, entered by the owner on the main PC (the software has none)
+        super::settings::set(st, "zakat.nisab".into(), serde_json::json!(229_000_000)).unwrap();
+        super::settings::set(
+            st,
+            "zakat.nisab_source".into(),
+            serde_json::json!("MARW, 1447"),
+        )
+        .unwrap();
         super::packs::seed_regulated(st).unwrap();
         super::wholesale::van_create(
             st,
@@ -1535,7 +1543,8 @@ impl TestShop {
         Money(300_000)
     }
 
-    /// FIN-007: the zakat statement, numbered `ZK…`. No money moves.
+    /// FIN-007: the zakat statement (against the nisab `stock_every_pack` entered), numbered
+    /// `ZK…`. No money moves.
     pub(crate) fn day_zakat(&self) -> Money {
         let saved =
             super::staff::save_zakat(&self.st, super::staff::zakat_input(Money(300_000_000)))

@@ -248,7 +248,8 @@ pub(crate) fn shifts(
         .read(move |c| staff::shifts(c, &from, &to, user_id.as_deref()))
 }
 
-/// The figures as they would be saved now (the nisab and the rate from the data pack).
+/// The figures as they would be saved now: the nisab the shop entered (`zakat_nisab_missing`
+/// until it has), the rate from the data pack.
 pub(crate) fn preview_zakat(st: &AppState, input: ZakatInput) -> Result<ZakatPreview, AppError> {
     let ctx = st.till(Permission::ReportsProfit)?;
     st.db.read(move |c| zakat::preview(c, &ctx, &input))
@@ -288,7 +289,9 @@ pub(crate) fn get_zakat(st: &AppState, id: String) -> Result<ZakatStatement, App
 }
 
 /// The A4 page of the statement `id` in `lang`: the shop's identity, both dates, the seven
-/// figures, the base against the nisab of the data pack, and the "not a fatwa" disclaimer.
+/// figures, the base against the nisab the shop entered with its own note on the source (the
+/// data pack's source only for a statement saved before the shop entered its nisab), and the
+/// "not a fatwa" disclaimer.
 pub(crate) fn zakat_page(st: &AppState, id: String, lang: Lang) -> Result<HostPage, AppError> {
     st.require(Permission::ReportsProfit)?;
     let statement = get_zakat(st, id)?;

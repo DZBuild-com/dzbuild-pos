@@ -1,6 +1,6 @@
 {
   "title": "Zakat",
-  "intro": "Une estimation de la zakat sur vos marchandises : les chiffres que le logiciel connaît, plus ce que vous ajoutez.",
+  "intro": "Une estimation de la zakat sur vos marchandises : les chiffres que le logiciel connaît, plus ce que vous ajoutez, face au nissab que vous saisissez.",
   "inputs": "Ce que vous ajoutez",
   "day": "Date du calcul",
   "hijri": "Date hégirienne",
@@ -27,6 +27,23 @@
   "base": "Assiette",
   "nisab": "Nissab",
   "nisabSource": "Source : {{source}}",
+  "nisabByShop": "saisi par la boutique",
+  "nisabCard": {
+    "title": "Nissab de l'année",
+    "help": "Saisissez le nissab publié par le ministère des Affaires religieuses pour l'année hégirienne en cours. Le logiciel ne le remplit jamais : le calcul utilise uniquement le montant que vous saisissez. Mettez-le à jour à chaque nouvelle année hégirienne.",
+    "amount": "Nissab (DA)",
+    "notSet": "Pas encore saisi.",
+    "source": "Source",
+    "sourceHint": "Pour vos archives, par exemple « Ministère des Affaires religieuses, 1447 ».",
+    "save": "Enregistrer le nissab",
+    "saved": "Nissab enregistré.",
+    "ownerOnly": "Seul un utilisateur autorisé à modifier les réglages de la boutique peut saisir le nissab.",
+    "mainPcOnly": "Le nissab se saisit sur le poste principal."
+  },
+  "nisabMissing": {
+    "title": "Saisissez d'abord le nissab",
+    "body": "Le calcul démarre dès que le nissab de l'année hégirienne en cours est saisi dans « Nissab de l'année »."
+  },
   "rate": "Taux",
   "due": "Zakat due",
   "belowNisab": "L'assiette est inférieure au nissab : aucune zakat n'est due.",

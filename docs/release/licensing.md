@@ -14,7 +14,7 @@ the key.
 
 The licence key **`k1` was made on 2026-10-04** in `%USERPROFILE%\DZBuild POS licence key\`, and its
 public half is in `crates/pos-license/src/keys.rs` (`PUBLIC_KEYS`, `KEYRING_SHA256`): every release
-since 0.8.0 accepts the licences it signs. **Never run `keygen` again**, except for a rotation with a
+accepts the licences it signs. **Never run `keygen` again**, except for a rotation with a
 new id (`--id k2`, § Rotation). The tool refuses an id the release already has (a second, different
 `k1` would refuse every licence the first one signed) and, when the release has keys, prints a snippet
 that **appends** to `PUBLIC_KEYS` instead of replacing it.

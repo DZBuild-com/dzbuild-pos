@@ -20,6 +20,7 @@ import {
   taxRatesFixture,
 } from "@/test/fixtures-m1";
 import { lanTillStatusFixture } from "@/test/fixtures-m5";
+import type { ProductHit } from "@/lib/ipc/types";
 import { type Handler, mockCommands, renderWithProviders } from "@/test/render";
 import { scanDigits } from "@/test/scan";
 
@@ -780,5 +781,347 @@ describe("SaleScreen", () => {
     expect(await screen.findByRole("button", { name: /زيت إليو 5 لتر/ })).toBeInTheDocument();
     await act(async () => scan(field, "6130000000017"));
     expect(await screen.findByText("1 × حليب كانديا 1 لتر")).toBeInTheDocument();
+  });
+});
+/** A promise the test settles by hand. */
+function deferred<T>() {
+  let resolve: (value: T) => void = () => {};
+  const promise = new Promise<T>((r) => {
+    resolve = r;
+  });
+  return { promise, resolve };
+}
+
+const [milkHit, oilHit] = productHitsFixture as [ProductHit, ProductHit];
+
+/** The backend's search: the products with a word of the French name or the reference starting
+ * with the text. */
+function searchByName({ query }: Record<string, unknown>) {
+  const text = (query as { text: string }).text.toLowerCase();
+  return productHitsFixture.filter((h) =>
+    [...h.nameFr.toLowerCase().split(" "), h.reference?.toLowerCase() ?? ""].some((w) => w.startsWith(text)),
+  );
+}
+
+const cartNames = () => useCart.getState().lines.map((d) => [d.display.name, d.line.qty]);
+
+describe("SaleScreen: searching a product by name", () => {
+  beforeEach(() => {
+    useCart.getState().clear("fr");
+    vi.spyOn(HTMLElement.prototype, "offsetWidth", "get").mockReturnValue(800);
+    vi.spyOn(HTMLElement.prototype, "offsetHeight", "get").mockReturnValue(700);
+  });
+
+  it("Enter adds the first product found; the arrows move through the list, round its ends", async () => {
+    mockPos({ products_search: () => productHitsFixture });
+    const user = userEvent.setup();
+    renderWithProviders(<SaleScreen session={cashierSession} />, {
+      route: "/pos",
+    });
+    const field = await screen.findByLabelText("Scanner ou rechercher un produit");
+    await user.type(field, "ca");
+    const list = await screen.findByRole("listbox", {
+      name: "Produits trouvés",
+    });
+    const options = within(list).getAllByRole("option");
+    expect(options.map((o) => o.getAttribute("aria-selected"))).toEqual(["true", "false"]);
+    expect(field).toHaveAttribute("aria-expanded", "true");
+    expect(field).toHaveAttribute("aria-activedescendant", options[0]?.id);
+    await user.keyboard("{Enter}");
+    expect(cartNames()).toEqual([["Lait Candia 1 L", 1_000]]);
+    expect(field).toHaveValue("");
+    expect(screen.queryByRole("listbox")).toBeNull();
+    expect(field).toHaveFocus();
+
+    await user.type(field, "ca");
+    await screen.findByRole("listbox");
+    const selected = () =>
+      within(screen.getByRole("listbox"))
+        .getAllByRole("option")
+        .map((o) => o.getAttribute("aria-selected"));
+    await user.keyboard("{ArrowDown}");
+    expect(selected()).toEqual(["false", "true"]);
+    await user.keyboard("{ArrowDown}");
+    expect(selected()).toEqual(["true", "false"]);
+    await user.keyboard("{ArrowUp}");
+    expect(selected()).toEqual(["false", "true"]);
+    await user.keyboard("{Enter}");
+    expect(cartNames()).toEqual([
+      ["Lait Candia 1 L", 1_000],
+      ["Huile Elio 5 L", 1_000],
+    ]);
+  });
+
+  it("never shows the last search's results for the next text typed", async () => {
+    const lait = deferred<ProductHit[]>();
+    mockPos({
+      products_search: (args) =>
+        (args.query as { text: string }).text.toLowerCase().startsWith("la")
+          ? lait.promise
+          : searchByName(args),
+    });
+    const user = userEvent.setup();
+    renderWithProviders(<SaleScreen session={cashierSession} />, {
+      route: "/pos",
+    });
+    const field = await screen.findByLabelText("Scanner ou rechercher un produit");
+    await user.type(field, "hu");
+    expect(await screen.findByRole("option", { name: /Huile Elio 5 L/ })).toBeInTheDocument();
+    await user.keyboard("{Enter}");
+    expect(cartNames()).toEqual([["Huile Elio 5 L", 1_000]]);
+    // the next product: the oil found a moment ago must not come back under "la"
+    await user.type(field, "la");
+    expect(screen.queryByRole("listbox")).toBeNull();
+    await new Promise((resolve) => setTimeout(resolve, 300));
+    expect(screen.queryByRole("listbox")).toBeNull();
+    await act(async () => lait.resolve([milkHit]));
+    const list = await screen.findByRole("listbox");
+    expect(within(list).getAllByRole("option")).toHaveLength(1);
+    expect(within(list).getByRole("option")).toHaveTextContent("Lait Candia 1 L");
+  });
+
+  it("Enter pressed before the results are in waits for them and adds the first product", async () => {
+    const huile = deferred<ProductHit[]>();
+    const calls = mockPos({
+      products_search: (args) =>
+        (args.query as { text: string }).text === "huile" ? huile.promise : searchByName(args),
+    });
+    const user = userEvent.setup();
+    renderWithProviders(<SaleScreen session={cashierSession} />, {
+      route: "/pos",
+    });
+    const field = await screen.findByLabelText("Scanner ou rechercher un produit");
+    await user.type(field, "huile{Enter}");
+    expect(useCart.getState().lines).toHaveLength(0);
+    await act(async () => huile.resolve([oilHit, milkHit]));
+    await waitFor(() => expect(cartNames()).toEqual([["Huile Elio 5 L", 1_000]]));
+    expect(field).toHaveValue("");
+    expect(calls).not.toContain("products_find_by_code");
+    expect(screen.queryByRole("alert")).toBeNull();
+  });
+
+  it("a name nothing matches stays in the field, said quietly; a word with digits is read as a code", async () => {
+    const codes: unknown[] = [];
+    mockPos({
+      products_search: () => [],
+      products_find_by_code: ({ code }) => {
+        codes.push(code);
+        return null;
+      },
+    });
+    const user = userEvent.setup();
+    renderWithProviders(<SaleScreen session={cashierSession} />, {
+      route: "/pos",
+    });
+    const field = await screen.findByLabelText("Scanner ou rechercher un produit");
+    await user.type(field, "huile olive");
+    expect(await screen.findByText("Aucun produit ne correspond à « huile olive ».")).toBeInTheDocument();
+    await user.keyboard("{Enter}");
+    expect(field).toHaveValue("huile olive");
+    expect(codes).toEqual([]);
+    expect(screen.queryByRole("alert")).toBeNull();
+
+    await user.clear(field);
+    await user.type(field, "BA2026-000001");
+    expect(
+      await screen.findByText(
+        "Aucun produit ne correspond à « BA2026-000001 ». Appuyez sur Entrée pour le lire comme un code.",
+      ),
+    ).toBeInTheDocument();
+    await user.keyboard("{Enter}");
+    await waitFor(() => expect(codes).toEqual(["BA2026-000001"]));
+  });
+
+  it("Esc drops the text and its list without opening the menu; a second Esc opens it", async () => {
+    mockPos({ products_search: () => productHitsFixture });
+    const user = userEvent.setup();
+    renderWithProviders(<SaleScreen session={cashierSession} />, {
+      route: "/pos",
+    });
+    const field = await screen.findByLabelText("Scanner ou rechercher un produit");
+    await user.type(field, "ca");
+    await screen.findByRole("listbox");
+    await user.keyboard("{Escape}");
+    expect(screen.queryByRole("listbox")).toBeNull();
+    expect(field).toHaveValue("");
+    expect(screen.queryByRole("dialog", { name: "Menu" })).toBeNull();
+    await user.keyboard("{Escape}");
+    expect(await screen.findByRole("dialog", { name: "Menu" })).toBeInTheDocument();
+  });
+
+  it("the pointer moves the highlight, a click adds the product and the field keeps the focus", async () => {
+    mockPos({ products_search: () => productHitsFixture });
+    const user = userEvent.setup();
+    renderWithProviders(<SaleScreen session={cashierSession} />, {
+      route: "/pos",
+    });
+    const field = await screen.findByLabelText("Scanner ou rechercher un produit");
+    await user.type(field, "ca");
+    const oil = await screen.findByRole("option", { name: /Huile Elio 5 L/ });
+    fireEvent.pointerMove(oil);
+    expect(oil).toHaveAttribute("aria-selected", "true");
+    await user.click(oil);
+    expect(cartNames()).toEqual([["Huile Elio 5 L", 1_000]]);
+    expect(field).toHaveValue("");
+    expect(field).toHaveFocus();
+  });
+
+  it("a tap on a tile clears the text typed and closes the list", async () => {
+    mockPos({ products_search: () => productHitsFixture });
+    const user = userEvent.setup();
+    renderWithProviders(<SaleScreen session={cashierSession} />, {
+      route: "/pos",
+    });
+    const field = await screen.findByLabelText("Scanner ou rechercher un produit");
+    await user.type(field, "ca");
+    await screen.findByRole("listbox");
+    await user.click(screen.getByRole("button", { name: /Huile Elio 5 L/ }));
+    expect(cartNames()).toEqual([["Huile Elio 5 L", 1_000]]);
+    expect(field).toHaveValue("");
+    expect(screen.queryByRole("listbox")).toBeNull();
+  });
+
+  it("a product found by name takes its unit's decimals, as a scanned one does", async () => {
+    const olives = {
+      ...oilHit,
+      id: "p-olives",
+      nameFr: "Olives vertes",
+      unitCode: "ctn",
+    };
+    const calls = mockPos({
+      products_search: () => [olives],
+      catalog_units_list: () => [
+        {
+          id: "u-ctn",
+          code: "ctn",
+          nameAr: "كرتون",
+          nameFr: "Carton",
+          nameEn: "Carton",
+          decimals: 0,
+          archived: false,
+        },
+      ],
+    });
+    const user = userEvent.setup();
+    renderWithProviders(<SaleScreen session={cashierSession} />, {
+      route: "/pos",
+    });
+    const field = await screen.findByLabelText("Scanner ou rechercher un produit");
+    await waitFor(() => expect(calls).toContain("catalog_units_list"));
+    await user.type(field, "ol");
+    await screen.findByRole("listbox");
+    await user.keyboard("{Enter}");
+    expect(useCart.getState().lines[0]?.display.unitDecimals).toBe(0);
+  });
+});
+
+describe("SaleScreen: removing a line", () => {
+  beforeEach(() => {
+    useCart.getState().clear("fr");
+    vi.spyOn(HTMLElement.prototype, "offsetWidth", "get").mockReturnValue(800);
+    vi.spyOn(HTMLElement.prototype, "offsetHeight", "get").mockReturnValue(700);
+  });
+
+  const PRICES: Record<string, number> = { "p-milk": 15_000, "p-oil": 65_000 };
+
+  /** The echo preview with each line's own total, so a line showing another's figures shows. */
+  function pricedEcho(args: Record<string, unknown>) {
+    const base = echoPreview(args);
+    return {
+      ...base,
+      cart: {
+        ...base.cart,
+        lines: base.cart.lines.map((l) => ({
+          ...l,
+          amounts: { ...l.amounts, totalTtc: PRICES[l.productId ?? ""] ?? 0 },
+        })),
+      },
+    };
+  }
+
+  it("right after a void, the line left shows its own name and total while the cart is repriced", async () => {
+    let slow: Promise<unknown> | null = null;
+    let release = () => {};
+    mockPos({
+      sales_record_event: () => null,
+      sales_preview: (args) => (slow ? slow.then(() => pricedEcho(args)) : pricedEcho(args)),
+    });
+    const user = userEvent.setup();
+    renderWithProviders(<SaleScreen session={voider} />, { route: "/pos" });
+    const field = await screen.findByLabelText("Scanner ou rechercher un produit");
+    scan(field, "6130000000017");
+    await screen.findByText("1 × Lait Candia 1 L");
+    await user.click(await screen.findByRole("button", { name: /Huile Elio 5 L/ }));
+    const cart = screen.getByRole("list", { name: "Ticket" });
+    await waitFor(() => expect(within(cart).getAllByRole("listitem")[1]).toHaveTextContent("650,00"));
+    // the next preview takes its time: the previous cart's figures stay on screen meanwhile
+    slow = new Promise((resolve) => {
+      release = () => resolve(null);
+    });
+    field.focus();
+    await user.keyboard("{ArrowUp}{Delete}");
+    await waitFor(() => expect(within(cart).getAllByRole("listitem")).toHaveLength(1));
+    const [left] = within(cart).getAllByRole("listitem");
+    expect(left).toHaveTextContent("1 × Huile Elio 5 L");
+    expect(left).toHaveTextContent("650,00");
+    expect(within(cart).queryByText(/Lait Candia/)).toBeNull();
+    expect(screen.getByRole("status", { name: "À payer" })).toHaveAttribute("aria-busy", "true");
+    await act(async () => release());
+    await waitFor(() =>
+      expect(screen.getByRole("status", { name: "À payer" })).not.toHaveAttribute("aria-busy"),
+    );
+    // the oil line is the selected one: Delete, + and - go on with it
+    expect(useCart.getState().selected).toBe(0);
+  });
+
+  it("'Supprimer la ligne' keeps the dialog open when the manager's approval is cancelled", async () => {
+    let approved = false;
+    mockPos({
+      sales_record_event: () =>
+        approved
+          ? null
+          : Promise.reject({
+              code: "insufficient_permission",
+              details: { permission: "sales.void_line" },
+            }),
+      auth_manager_override: () => {
+        approved = true;
+        return {
+          approverId: "u-owner",
+          approverName: "Amine Benali",
+          permission: "sales.void_line",
+          grantedAt: 1,
+          discountLimitBp: 10_000,
+        };
+      },
+      promotions_presets: () => [],
+    });
+    const user = userEvent.setup();
+    renderWithProviders(<SaleScreen session={cashierSession} />, {
+      route: "/pos",
+    });
+    const field = await screen.findByLabelText("Scanner ou rechercher un produit");
+    scan(field, "6130000000017");
+    await user.click(await screen.findByText("1 × Lait Candia 1 L"));
+    const edit = await screen.findByRole("dialog", {
+      name: "Modifier la ligne",
+    });
+    await user.type(within(edit).getByLabelText(/Note/), "sans sucre");
+    await user.click(within(edit).getByRole("button", { name: "Supprimer la ligne" }));
+    const approval = await screen.findByRole("dialog", {
+      name: "Accord d'un responsable",
+    });
+    await user.click(within(approval).getByRole("button", { name: "Annuler" }));
+    await waitFor(() => expect(screen.queryByRole("dialog", { name: "Accord d'un responsable" })).toBeNull());
+    expect(screen.getByRole("dialog", { name: "Modifier la ligne" })).toBeInTheDocument();
+    expect(within(edit).getByLabelText(/Note/)).toHaveValue("sans sucre");
+    expect(useCart.getState().lines).toHaveLength(1);
+    // approved this time: the line goes, and the dialog with it
+    await user.click(within(edit).getByRole("button", { name: "Supprimer la ligne" }));
+    await user.click(await screen.findByRole("button", { name: /Amine Benali/ }));
+    await user.keyboard("2580");
+    await user.click(screen.getByRole("button", { name: "Autoriser" }));
+    await waitFor(() => expect(screen.queryByRole("dialog", { name: "Modifier la ligne" })).toBeNull());
+    expect(useCart.getState().lines).toHaveLength(0);
   });
 });

@@ -18,9 +18,8 @@ import { toAppError } from "@/lib/ipc/client";
 import { useCustomer } from "@/lib/ipc/customers";
 import { useHardwareConfig } from "@/lib/ipc/hardware";
 import { usePackModules } from "@/lib/ipc/pack-state";
-import { useExchange } from "@/lib/ipc/returns";
 import { useTillPaymentTypes } from "@/lib/ipc/completion";
-import { useCreateSale, useTicketPreview } from "@/lib/ipc/sales";
+import { useTicketPreview } from "@/lib/ipc/sales";
 import type { Lang } from "@/lib/i18n";
 import type { Module, PaymentInput, PaymentMethod, PaymentType, SaleExtras } from "@/lib/ipc/types";
 import { localizedName } from "@/lib/names";
@@ -28,22 +27,23 @@ import { formatQty, parseAmount } from "@/lib/numeric";
 import { useErrorText } from "@/lib/use-error-text";
 import { useLang } from "@/lib/use-language";
 import { cn } from "@/lib/utils";
-import { toCart, useCart } from "./cart-store";
+import { useCart } from "./cart-store";
 import { CreditFigures, CustomerName } from "./CustomerPicker";
-import { useExtras } from "./extras-store";
+import { receiptByDefault, useFinishSale } from "./finish-sale";
 import { PaymentTiles, PointsLine } from "./pack-slots";
 import {
   QUICK_NOTES,
-  TENDER_METHODS,
   type Tender,
+  exactAmount,
   needsReference,
   newTender,
   onAccount,
   pressKey,
-  tenderTypes,
+  restOfTtc,
   toInputs,
 } from "./payment-model";
 import type { Done } from "./PosDialogs";
+import { type TillTender, useTillPayment } from "./till-payment";
 import { useCartPreview } from "./use-cart-preview";
 
 const KEYPAD = ["7", "8", "9", "4", "5", "6", "1", "2", "3", "00", "0", ","] as const;
@@ -94,6 +94,7 @@ export function PaymentDialog({
   ticket,
   onPay,
   initialTenders,
+  initialError,
 }: {
   onClose: () => void;
   onDone?: (done: Done) => void;
@@ -102,8 +103,12 @@ export function PaymentDialog({
    * with the sale's pack part (serials, register entries, buyer, the tenders' payment types, by
    * the index of each payment in `payments`); a `Done` it resolves with goes to `onDone`. */
   onPay?: (payments: PaymentInput[], printReceipt: boolean, extras: SaleExtras) => Promise<Done | void>;
-  /** The tenders the dialog opens with (the last one active); one cash tender by default. */
+  /** The tenders the dialog opens with (the last one active). By default one tender of the
+   * till's first payment method (Settings › Payments): cash, empty, unless the shop chose one
+   * method or narrowed the list, when it opens with the exact amount typed. */
   initialTenders?: Tender[];
+  /** What the backend answered when the till's "one method" checkout tried these tenders. */
+  initialError?: unknown;
 }) {
   const { t } = useTranslation();
   const lang = useLang();
@@ -125,15 +130,41 @@ export function PaymentDialog({
   // M8: the voucher reader and the custom payment types (a table ticket keeps M1b's tenders)
   const modules = usePackModules();
   const vouchers = !ticket && modules.some((m) => VOUCHER_MODULES.includes(m));
-  const types = useTillPaymentTypes(!ticket);
+  const payment = useTillPayment();
+  // Settings › Payments: the tiles the shop allows; a custom type follows the method it rides
+  const methods = payment.allowed;
+  const allTypes = useTillPaymentTypes(!ticket);
+  const types = useMemo(
+    () => allTypes.filter((type) => methods.includes(type.baseMethod)),
+    [allTypes, methods],
+  );
   const [voucherOpen, setVoucherOpen] = useState(false);
+  /** The tender the dialog opens on: the till's one method, else the first allowed method this
+   * sale can use (credit and store credit need a customer; the voucher reader is not a tender). */
+  const start = (): TillTender => {
+    if (payment.fixed) return ticket ? { method: payment.fixed.method, type: null } : payment.fixed;
+    const usable = methods.find(
+      (m) => !(onAccount(m) && customerId === null) && !(m === "voucher" && vouchers),
+    );
+    return { method: usable ?? methods[0] ?? "cash", type: null };
+  };
+  const startTender = ({ method, type }: TillTender, amount: string): Tender => {
+    const tender = newTender(method, amount);
+    return type ? { ...tender, type: { id: type.id, name: localizedName(type, lang) } } : tender;
+  };
   // UX-004: the receipt starts in the language of the customer's file, when it has one
   const customerLang = ticket ? null : (customer.data?.lang ?? null);
   useEffect(() => {
     if (customerLang) useCart.getState().setLang(customerLang);
   }, [customerLang]);
-  const [tenders, setTenders] = useState<Tender[]>(() => initialTenders ?? [newTender("cash")]);
+  const [tenders, setTenders] = useState<Tender[]>(
+    () => initialTenders ?? [startTender(payment.known ? start() : { method: "cash", type: null }, "")],
+  );
   const [active, setActive] = useState(() => Math.max(0, (initialTenders?.length ?? 1) - 1));
+  // the opening tender gets its method and exact amount once the settings and the figures are in
+  const [seeded, setSeeded] = useState(initialTenders !== undefined);
+  // the exact amount was typed for the cashier: the first key or note replaces it
+  const [fresh, setFresh] = useState(false);
   const configured = Boolean(hardware.data?.receiptPrinterId);
   // The receipt's second language, when it is not the one chosen for this sale.
   const configuredSecond = hardware.data?.receipt?.secondLang ?? null;
@@ -141,19 +172,16 @@ export function PaymentDialog({
   // the shop's default until the cashier ticks or unticks it (SAL-052), even when the
   // hardware settings arrive after the dialog opened
   const [printChoice, setPrintChoice] = useState<boolean | null>(null);
-  const printReceipt = configured && (printChoice ?? hardware.data?.receipt?.printByDefault ?? true);
-  const [error, setError] = useState<unknown>(null);
+  const printReceipt = printChoice === null ? receiptByDefault(hardware.data) : configured && printChoice;
+  const [error, setError] = useState<unknown>(initialError ?? null);
   const inputs = useMemo(() => toInputs(tenders), [tenders]);
   const tillPreview = useCartPreview(inputs ?? [], exchange?.value ?? null, ticket === undefined);
   const ticketPreview = useTicketPreview(ticket?.id ?? null, inputs ?? []);
   const preview = ticket ? ticketPreview : tillPreview;
   const settlement = preview.data?.settlement;
-  const createSale = useCreateSale();
-  const createExchange = useExchange();
   const approval = useApproval();
-  // a pack flow's own command (`onPay`: a pickup, a table ticket's payment) is in flight
-  const [paying, setPaying] = useState(false);
-  const busy = createSale.isPending || createExchange.isPending || paying;
+  const finishSale = useFinishSale(approval.run);
+  const busy = finishSale.busy;
   const ready =
     inputs !== null &&
     settlement !== undefined &&
@@ -162,8 +190,10 @@ export function PaymentDialog({
     !preview.isFetching &&
     !busy;
 
-  const setAmount = (index: number, amount: string) =>
+  const setAmount = (index: number, amount: string) => {
+    setFresh(false);
     setTenders((all) => all.map((t, i) => (i === index ? { ...t, amount } : t)));
+  };
   const update = (index: number, change: Partial<Tender>) =>
     setTenders((all) => all.map((t, i) => (i === index ? { ...t, ...change } : t)));
   const cashIndex = () => {
@@ -177,31 +207,76 @@ export function PaymentDialog({
   // the rest of the TTC after what is already typed: card payments give no change (PAY-017);
   // nothing is proposed while the backend has no settlement for these tenders (an older one
   // would count a tender twice)
-  const rest = settlement ? Math.max(0, settlement.totalTtc - settlement.paidTotal) : 0;
+  const rest = settlement ? restOfTtc(settlement) : 0;
+  /** What a new tender of `method` is proposed with: the rest, and store credit up to what the
+   * customer has (PAY-011; the backend checks it again). */
+  const proposedFor = (method: PaymentMethod) =>
+    method === "voucher" ? Math.min(rest, customer.data?.storeCredit ?? 0) : rest;
   const add = (tender: Tender) => {
+    setFresh(false);
     setTenders((all) => [...all, tender]);
     setActive(tenders.length);
   };
+
+  // The opening tender gets its method and its exact amount once the settings and the figures are
+  // in: adjusted while rendering, as React does for state that follows new data.
+  const opening = payment.known ? start() : null;
+  // store credit is proposed up to the customer's: his file is waited for
+  const waitsForCustomer =
+    payment.prefill && opening?.method === "voucher" && customerId !== null && !customer.data;
+  if (!seeded && opening && settlement && !preview.isFetching && !preview.error && !waitsForCustomer) {
+    setSeeded(true);
+    // only an untouched opening tender is replaced
+    const untouched = tenders.length === 1 && tenders[0]?.amount === "";
+    if (untouched && !payment.prefill && tenders[0]?.method !== opening.method) {
+      setTenders([startTender(opening, "")]);
+    } else if (untouched && payment.prefill) {
+      const blocked = onAccount(opening.method) && customerId === null;
+      // with no tender typed the backend counts the whole amount as cash: `missing` is the exact
+      // cash amount, the duty and the rounding included
+      const amount = blocked
+        ? 0
+        : opening.method === "cash"
+          ? settlement.missing
+          : proposedFor(opening.method);
+      setTenders([startTender(opening, amount > 0 ? formatAmountInput(amount, lang) : "")]);
+      setActive(0);
+      setFresh(amount > 0);
+    }
+  }
+
+  // a typed exact amount is selected, so that typing the note handed over replaces it
+  useEffect(() => {
+    if (!fresh) return;
+    const input = document.getElementById("tender-0");
+    if (input instanceof HTMLInputElement) input.select();
+  }, [fresh]);
   /** A tender of `method`, or of a custom payment type riding it (core Task 16). */
   const pick = (method: PaymentMethod, type?: PaymentType) => {
     if (method === "cash") {
       setActive(cashIndex());
       return;
     }
-    // store credit pays up to what the customer has (PAY-011); the backend checks it again
-    const proposed = method === "voucher" ? Math.min(rest, customer.data?.storeCredit ?? 0) : rest;
+    const proposed = proposedFor(method);
     const tender = newTender(method, proposed > 0 ? formatAmountInput(proposed, lang) : "");
     add(type ? { ...tender, type: { id: type.id, name: localizedName(type, lang) } } : tender);
   };
-  const key = (k: (typeof KEYPAD)[number]) => setAmount(active, pressKey(tenders[active]?.amount ?? "", k));
+  const key = (k: (typeof KEYPAD)[number]) =>
+    setAmount(active, pressKey(fresh ? "" : (tenders[active]?.amount ?? ""), k));
+  // the notes are cash: a till that takes no cash has none
+  const takesCash = methods.includes("cash");
   const quick = (note: number) => {
     const index = cashIndex();
-    setAmount(index, formatAmountInput(typed(index) + note, lang));
+    setAmount(index, formatAmountInput((fresh && index === 0 ? 0 : typed(index)) + note, lang));
     setActive(index);
   };
+  /** Cash takes what is missing; at a till without cash, the tender being typed takes the rest. */
   const exact = () => {
-    const index = cashIndex();
-    if (settlement) setAmount(index, formatAmountInput(typed(index) + settlement.missing, lang));
+    const index = takesCash ? cashIndex() : active;
+    const method = tenders[index]?.method ?? "cash";
+    if (settlement) {
+      setAmount(index, formatAmountInput(typed(index) + exactAmount(method, settlement), lang));
+    }
     setActive(index);
   };
 
@@ -209,33 +284,9 @@ export function PaymentDialog({
     event?.preventDefault();
     if (!ready || inputs === null) return;
     setError(null);
-    const cart = toCart(useCart.getState());
-    // M8: the sale's pack part (serials, prescriptions, the buyer, the van) and its payment types
-    const extras = { ...useExtras.getState().toExtras(), paymentTypes: tenderTypes(tenders) };
     try {
-      if (onPay) {
-        setPaying(true);
-        const done = await approval
-          .run(() => onPay(inputs, printReceipt, extras))
-          .finally(() => setPaying(false));
-        if (done) onDone?.(done);
-      } else if (exchange) {
-        const result = await approval.run(() =>
-          createExchange.mutateAsync({
-            ret: exchange.input,
-            sale: { cart, payments: inputs },
-            printReceipt,
-            returnExtras: exchange.extras,
-            saleExtras: extras,
-          }),
-        );
-        onDone?.({ kind: "exchange", result });
-      } else {
-        const result = await approval.run(() =>
-          createSale.mutateAsync({ sale: { cart, payments: inputs }, printReceipt, extras }),
-        );
-        onDone?.({ kind: "sale", result });
-      }
+      const done = await finishSale.finish({ tenders, inputs, printReceipt, exchange, onPay });
+      if (done) onDone?.(done);
     } catch (e) {
       if (!isApprovalCancelled(e)) setError(e);
     }
@@ -326,7 +377,7 @@ export function PaymentDialog({
               </div>
             ) : null}
             <div className="grid grid-cols-4 gap-2">
-              {TENDER_METHODS.map((method) => {
+              {methods.map((method) => {
                 // M8: the voucher tile reads a voucher or a deposit, customer or not
                 const reader = method === "voucher" && vouchers;
                 const blocked = onAccount(method) && customerId === null && !reader;
@@ -455,7 +506,7 @@ export function PaymentDialog({
               ))}
             </ul>
             <div className="grid grid-cols-3 gap-2">
-              {QUICK_NOTES.map((note) => (
+              {(takesCash ? QUICK_NOTES : []).map((note) => (
                 <Button
                   key={note}
                   variant="outline"

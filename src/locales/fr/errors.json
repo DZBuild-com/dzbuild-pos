@@ -372,6 +372,7 @@
   "advance_repay_too_much": "Ce montant dépasse ce que l'employé doit encore sur ses avances.",
   "month_invalid": "Choisissez le mois de salaire (AAAA-MM).",
   "zakat_statement_not_found": "Ce calcul de zakat n'existe plus.",
+  "zakat_nisab_missing": "Saisissez d'abord le nissab de l'année hégirienne en cours sur l'écran Zakat.",
   "payment_type_not_found": "Ce type de paiement n'existe plus.",
   "payment_type_code_taken": "Un autre type de paiement a déjà ce code.",
   "payment_type_mismatch": "Ce type de paiement ne correspond pas au mode de règlement choisi.",

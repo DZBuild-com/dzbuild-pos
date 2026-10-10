@@ -131,7 +131,7 @@
     "gift_vouchers": { "name": "Bons cadeaux et d'échange", "help": "Vente, paiement et registre des bons." },
     "jewellery": { "name": "Bijouterie", "help": "Prix au gramme, registre spécial, poinçons." },
     "staff": { "name": "Employés", "help": "Fiches, avances, commissions." },
-    "zakat": { "name": "Zakat", "help": "Calcul indicatif face au nissab." }
+    "zakat": { "name": "Zakat", "help": "Calcul indicatif face au nissab saisi par la boutique." }
   },
   "activities": {
     "general": "Supérette / épicerie",

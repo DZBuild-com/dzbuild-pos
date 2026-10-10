@@ -37,6 +37,18 @@ export function useCustomer(id: string | null) {
   });
 }
 
+/** The customer's file, from the cache while it is fresh: for a checkout that opens no dialog and
+ * still prints in the customer's language. */
+export function useFetchCustomer() {
+  const client = useQueryClient();
+  return (id: string) =>
+    client.fetchQuery({
+      queryKey: qk.customer(id),
+      queryFn: () => commands.customersGet(id),
+      staleTime: 30_000,
+    });
+}
+
 /** A typed or read phone number is looked up every time (CRM-001). */
 export function useFindCustomerByPhone() {
   return useMutation({ mutationFn: (phone: string) => commands.customersFindByPhone(phone) });

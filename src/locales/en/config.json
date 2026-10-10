@@ -62,6 +62,27 @@
     }
   },
   "payments": {
+    "till": {
+      "title": "Payment at the till",
+      "intro": "Choose whether the cashier picks how each customer pays, or the till always takes the same method.",
+      "mode": "How the till takes payment",
+      "modes": {
+        "ask": "Choose at the till",
+        "fixed": "One method"
+      },
+      "modeHints": {
+        "ask": "Pay (F12) opens the payment window with the methods ticked below.",
+        "fixed": "Pay (F12) or Enter finishes the sale at once for the exact amount, without the payment window."
+      },
+      "method": "Method used",
+      "methodHint": "Cheque, transfer, customer credit and store credit need details or a customer: they stay in the payment window.",
+      "allowed": "Methods offered at the till",
+      "allowedHint": "When some methods are unticked, the first ticked one opens with the exact amount: Enter validates. A payment type shows with the method it counts as.",
+      "allowedEmpty": "Tick at least one method.",
+      "typeGone": "The payment type chosen is no longer available. Cash is shown: save to confirm, or choose another method.",
+      "save": "Save",
+      "saved": "Payment at the till saved"
+    },
     "types": {
       "title": "Payment types",
       "intro": "Extra payment buttons for the till. Each one is counted as one of the usual methods (for example, a CCP direct debit counted as a transfer).",
@@ -101,7 +122,7 @@
   },
   "regulatory": {
     "title": "Regulatory pack",
-    "intro": "VAT rates, the stamp duty scale, regulated prices, the nisab and the wilayas come from a file signed by DZBuild. A new pack is installed from a USB stick and applies at the next start.",
+    "intro": "VAT rates, the stamp duty scale, regulated prices, the zakat rate and the wilayas come from a file signed by DZBuild (the shop enters the nisab itself, on the Zakat screen). A new pack is installed from a USB stick and applies at the next start.",
     "inUse": "Pack in use",
     "id": "Identifier",
     "version": "Version",

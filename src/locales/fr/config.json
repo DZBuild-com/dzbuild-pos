@@ -62,6 +62,27 @@
     }
   },
   "payments": {
+    "till": {
+      "title": "Encaissement à la caisse",
+      "intro": "Choisissez si le caissier choisit le mode de paiement à chaque client, ou si la caisse encaisse toujours avec le même mode.",
+      "mode": "Façon d'encaisser",
+      "modes": {
+        "ask": "Choisir à la caisse",
+        "fixed": "Un seul mode"
+      },
+      "modeHints": {
+        "ask": "Encaisser (F12) ouvre la fenêtre de paiement avec les modes cochés ci-dessous.",
+        "fixed": "Encaisser (F12) ou Entrée termine la vente aussitôt pour le montant exact, sans la fenêtre de paiement."
+      },
+      "method": "Mode utilisé",
+      "methodHint": "Chèque, virement, crédit client et avoir client demandent des détails ou un client : ils restent dans la fenêtre de paiement.",
+      "allowed": "Modes proposés à la caisse",
+      "allowedHint": "Quand des modes sont décochés, le premier mode coché s'ouvre avec le montant exact : Entrée valide. Un type de paiement apparaît avec le mode auquel il est compté.",
+      "allowedEmpty": "Cochez au moins un mode.",
+      "typeGone": "Le type de paiement choisi n'est plus disponible. Espèces est affiché : enregistrez pour confirmer, ou choisissez un autre mode.",
+      "save": "Enregistrer",
+      "saved": "Encaissement à la caisse enregistré"
+    },
     "types": {
       "title": "Types de paiement",
       "intro": "Des boutons de paiement en plus pour la caisse. Chacun est compté comme un mode habituel (par exemple, un prélèvement CCP compté comme un virement).",
@@ -101,7 +122,7 @@
   },
   "regulatory": {
     "title": "Pack réglementaire",
-    "intro": "Taux de TVA, barème du droit de timbre, prix plafonnés, nissab et wilayas viennent d'un fichier signé par DZBuild. Un nouveau pack s'installe depuis une clé USB et s'applique au prochain démarrage.",
+    "intro": "Taux de TVA, barème du droit de timbre, prix plafonnés, taux de la zakat et wilayas viennent d'un fichier signé par DZBuild (la boutique saisit elle-même le nissab, sur l'écran Zakat). Un nouveau pack s'installe depuis une clé USB et s'applique au prochain démarrage.",
     "inUse": "Pack utilisé",
     "id": "Identifiant",
     "version": "Version",

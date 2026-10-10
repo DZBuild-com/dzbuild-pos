@@ -372,6 +372,7 @@
   "advance_repay_too_much": "هذا المبلغ يتجاوز ما بقي على الموظف من تسبيقات.",
   "month_invalid": "اختر شهر الأجر (سنة-شهر).",
   "zakat_statement_not_found": "حساب الزكاة هذا لم يعد موجوداً.",
+  "zakat_nisab_missing": "أدخل أولاً نصاب السنة الهجرية الجارية في شاشة الزكاة.",
   "payment_type_not_found": "نوع الدفع هذا لم يعد موجوداً.",
   "payment_type_code_taken": "لنوع دفع آخر هذا الرمز.",
   "payment_type_mismatch": "نوع الدفع هذا لا يوافق طريقة الدفع المختارة.",

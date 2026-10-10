@@ -83,7 +83,13 @@ export type SettingKey =
   | "vouchers.validity_months"
   | "jewellery.authorisation"
   | "jewellery.max_cash"
+  | "zakat.nisab"
+  | "zakat.nisab_source"
   | "payments.baridpay_qr"
+  // how the till takes payment (Settings › Payments)
+  | "payments.till_mode"
+  | "payments.fixed_method"
+  | "payments.allowed_methods"
   // M6 rows (core Task 17): the business-day cut-off, the hourly copies, the DPO
   | "sales.day_cutoff_hour"
   | "backup.keep_hourly"

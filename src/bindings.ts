@@ -9545,6 +9545,11 @@ export type ZReport_Serialize = {
 };
 
 export type Zakat = {
+	/**
+	 *  Kept so that signed packs (which still carry it) read and verify as before; the zakat
+	 *  calculation no longer uses it. The shop enters the nisab of the year itself
+	 *  (`zakat.nisab`).
+	 */
 	nisab: Money,
 	hijriYear: number,
 	/**  The zakat rate on trade goods, basis points (250 = 2.5 %). */
@@ -9592,7 +9597,14 @@ export type ZakatPreview = {
 	otherDebts: Money,
 	/**  Assets minus debts. */
 	base: Money,
+	/**  The nisab the shop entered (`zakat.nisab`). */
 	nisab: Money,
+	/**
+	 *  The shop's note on where its nisab comes from (`MARW, 1447`), empty when it wrote none.
+	 *  `None` only on a statement saved before the shop entered its own nisab, which was
+	 *  computed against the data pack's.
+	 */
+	nisabSource?: string | null,
 	rateBp: number,
 	zakatDue: Money,
 	belowNisab: boolean,
@@ -9637,7 +9649,7 @@ export type ZakatStatementPrint = {
 	/**  The "no zakat is due" sentence when the base is below the nisab. */
 	belowNisab: string | null,
 	disclaimer: string,
-	/**  "Nissab : <the data pack's source>". */
+	/**  "Nissab : MARW, 1447": the shop's note on the nisab it entered. */
 	source: string,
 	labels: ZakatLabels,
 	/**  The words of the seller's card (RC, NIF, address…). */

@@ -118,7 +118,7 @@ function tomlString(toml, key) {
   return "";
 }
 
-/** The free edition (0.9.0): `free = true` in src-tauri/license.toml. */
+/** The free edition: `free = true` in src-tauri/license.toml. */
 export function isFreeEdition(toml) {
   return toml.split(/\r?\n/).some((line) => /^free\s*=\s*true\b/.test(line.trim()));
 }
@@ -127,7 +127,7 @@ export function isFreeEdition(toml) {
  * that a new customer's activation screen offers a way to buy (the QR opens a WhatsApp chat with the
  * device code). `null` when it does, else why the build stops. */
 export function sellerContactProblem(toml) {
-  // 0.9.0: the free edition never shows the activation screen, so no contact is needed.
+  // The free edition never shows the activation screen, so no contact is needed.
   if (isFreeEdition(toml)) return null;
   if (tomlString(toml, "whatsapp") || tomlString(toml, "phone")) return null;
   return "src-tauri/license.toml has neither whatsapp nor phone: put the sales number there before building a release, or every customer's activation screen offers only a web address";

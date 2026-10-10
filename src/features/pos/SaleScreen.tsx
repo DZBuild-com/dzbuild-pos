@@ -10,15 +10,17 @@ import { useApproval } from "@/components/manager-approval";
 import { Button } from "@/components/ui/button";
 import { isApprovalCancelled } from "@/lib/approval";
 import { useCurrentSession } from "@/lib/ipc/cash";
+import { useUnits } from "@/lib/ipc/catalog";
 import { useCompany } from "@/lib/ipc/company";
 import { useSerialScans } from "@/lib/ipc/devices";
 import { useHardwareConfig, useScannerOptions } from "@/lib/ipc/hardware";
 import { useSearchHost, useSyncNow, useTillLink } from "@/lib/ipc/lan";
 import { usePackModules } from "@/lib/ipc/pack-state";
+import { useFetchCustomer } from "@/lib/ipc/customers";
 import { useFindByCode } from "@/lib/ipc/products";
-import { useHeldCarts, useRecallCart, useRecordCartEvent } from "@/lib/ipc/sales";
+import { useHeldCarts, usePreviewSale, useRecallCart, useRecordCartEvent } from "@/lib/ipc/sales";
 import type { Module, ProductHit, ScanHit, Session } from "@/lib/ipc/types";
-import { formatDZD } from "@/lib/format";
+import { formatAmountInput, formatDZD } from "@/lib/format";
 import { type Hotkey, useCtrlHotkey, useHotkeys } from "@/lib/hotkeys";
 import { DEFAULT_KEYS, type TillAction, ariaKey, keyLabel, useKeyMap } from "@/lib/key-map";
 import { localizedName } from "@/lib/names";
@@ -37,13 +39,17 @@ import { CartPanel } from "./CartPanel";
 import { toCart, useCart } from "./cart-store";
 import { CustomerStrip } from "./CustomerPicker";
 import { useExtras } from "./extras-store";
+import { receiptByDefault, useCommitDone, useFinishSale } from "./finish-sale";
 import { loadRecalled } from "./HeldTicketsSheet";
 import { DepartmentKeysPanel, LineNotices, VanBanner, loadTillPacks } from "./pack-slots";
+import { type Tender, exactAmount, newTender, toInputs } from "./payment-model";
 import { type PosContext, type PosDialog, PosDialogs, type TillProduct } from "./PosDialogs";
 import { ProductGrid } from "./ProductGrid";
 import type { WeighedAdd } from "./ScalePanel";
 import { ScanField } from "./ScanField";
-import { useCartPreview } from "./use-cart-preview";
+import { useTillPayment } from "./till-payment";
+import { unitDecimalsOf } from "./unit-decimals";
+import { useCartPreview, usePricedLines } from "./use-cart-preview";
 import { useCustomerDisplayFeed, type Weighing } from "./use-customer-display";
 
 interface Notice {
@@ -99,7 +105,16 @@ export function SaleScreen({ session, withTables = false }: { session: Session; 
   const recall = useRecallCart();
   const approval = useApproval();
   const preview = useCartPreview();
+  const units = useUnits().data;
+  // Settings › Payments: how this till takes payment (asked, or one method at once)
+  const tillPayment = useTillPayment();
+  const finishSale = useFinishSale(approval.run);
+  const previewSale = usePreviewSale().mutateAsync;
+  const fetchCustomer = useFetchCustomer();
+  const quickPaying = useRef(false);
+  const [quickBusy, setQuickBusy] = useState(false);
   const lines = useCart((s) => s.lines);
+  const priced = usePricedLines(lines, preview);
   const selected = useCart((s) => s.selected);
   const multiplier = useCart((s) => s.multiplier);
   const lastScan = useCart((s) => s.lastScan);
@@ -206,7 +221,7 @@ export function SaleScreen({ session, withTables = false }: { session: Session; 
   // label whose weight, to the gram, costs a few centimes more or less at the till says so (HW-030).
   const addHit = useCallback(
     (hit: ScanHit) => {
-      addProduct(hit.product, hit.packQty, hit.product.unitDecimals, hit.scale !== null);
+      addProduct(hit.product, hit.packQty, unitDecimalsOf(hit.product, units), hit.scale !== null);
       if (hit.scale && hit.scale.difference !== 0) {
         notify(
           "info",
@@ -214,7 +229,7 @@ export function SaleScreen({ session, withTables = false }: { session: Session; 
         );
       }
     },
-    [addProduct, lang, notify, t],
+    [addProduct, lang, notify, t, units],
   );
   const addWeighed = useCallback(
     ({ product, reading }: WeighedAdd) => {
@@ -224,8 +239,16 @@ export function SaleScreen({ session, withTables = false }: { session: Session; 
     [addProduct],
   );
   const addTile = useCallback(
-    (hit: ProductHit) => addProduct(hit, 1_000, hit.unitCode === "pc" ? 0 : 3),
-    [addProduct],
+    (hit: ProductHit) => addProduct(hit, 1_000, unitDecimalsOf(hit, units)),
+    [addProduct, units],
+  );
+  // a product picked from the search results or the grid: whatever was typed is done with
+  const pickProduct = useCallback(
+    (hit: ProductHit) => {
+      setText("");
+      addTile(hit);
+    },
+    [addTile],
   );
 
   const lookup = useCallback(
@@ -276,6 +299,11 @@ export function SaleScreen({ session, withTables = false }: { session: Session; 
   // read scans in their own fields (`ScanInput`).
   const onScan = (code: string) => {
     if (approval.pending) return;
+    // the "one method" checkout is finishing the cart on screen: a code read now would be lost
+    if (quickPaying.current) {
+      beep("error");
+      return;
+    }
     if (dialog === null) {
       void lookup(code);
     } else if (dialog.kind === "done") {
@@ -300,10 +328,10 @@ export function SaleScreen({ session, withTables = false }: { session: Session; 
   const runApproved = approval.run;
 
   const voidLine = useCallback(
-    async (index: number) => {
+    async (index: number): Promise<boolean> => {
       const state = useCart.getState();
       const draft = state.lines[index];
-      if (!draft || journaling.current) return;
+      if (!draft || journaling.current) return false;
       const event = { kind: "line_voided", cart: toCart(state), index } as const;
       journaling.current = true;
       try {
@@ -311,8 +339,10 @@ export function SaleScreen({ session, withTables = false }: { session: Session; 
         const now = useCart.getState();
         const at = now.lines.findIndex((l) => l.key === draft.key);
         if (at >= 0) now.remove(at);
+        return true;
       } catch (error) {
         if (!isApprovalCancelled(error)) notify("error", errorText(error));
+        return false;
       } finally {
         journaling.current = false;
       }
@@ -400,12 +430,67 @@ export function SaleScreen({ session, withTables = false }: { session: Session; 
     else openDialog({ kind: "hold" });
   };
 
+  const commitDone = useCommitDone((done) => setDialog({ kind: "done", done }));
+
+  // Settings › Payments, "one method": the sale is finished at once in that method, for the exact
+  // amount the backend asks (in cash, the stamp duty and the cash rounding included), through the
+  // same path as the payment dialog's Valider. A pending exchange (its store credit), an unknown
+  // printer default or a method that cannot settle the whole amount opens the dialog instead; a
+  // refusal opens it on the tender tried, with the backend's answer.
+  const takePayment = async () => {
+    const fixed = tillPayment.fixed;
+    if (quickPaying.current) return;
+    if (!fixed || useCart.getState().exchange || !hardware.isSuccess) {
+      setDialog({ kind: "pay" });
+      return;
+    }
+    quickPaying.current = true;
+    setQuickBusy(true);
+    let tenders: Tender[] | undefined;
+    try {
+      // UX-004: the receipt in the language of the customer's file, as the dialog prints it
+      const customerId = useCart.getState().customerId;
+      const customerLang = customerId ? (await fetchCustomer(customerId)).lang : null;
+      if (customerLang) useCart.getState().setLang(customerLang);
+      const cart = toCart(useCart.getState());
+      const due = await previewSale({ cart, tenders: [], storeCredit: null });
+      const tender = newTender(
+        fixed.method,
+        formatAmountInput(exactAmount(fixed.method, due.settlement), lang),
+      );
+      tenders = [
+        fixed.type
+          ? { ...tender, type: { id: fixed.type.id, name: localizedName(fixed.type, lang) } }
+          : tender,
+      ];
+      const inputs = toInputs(tenders) ?? [];
+      const check = await previewSale({ cart, tenders: inputs, storeCredit: null });
+      if (check.settlement.missing !== 0) {
+        setDialog({ kind: "pay", tenders });
+        return;
+      }
+      const done = await finishSale.finish({
+        tenders,
+        inputs,
+        printReceipt: receiptByDefault(hardware.data),
+        exchange: null,
+      });
+      if (done) commitDone(done);
+    } catch (error) {
+      if (!isApprovalCancelled(error)) setDialog({ kind: "pay", tenders, error });
+    } finally {
+      quickPaying.current = false;
+      setQuickBusy(false);
+    }
+  };
+
   // "Encaisser": with a pack module that asks something of the sale (serials, a prescription, the
   // buyer of a jewel), its checkout steps come first (`till-packs.tsx`), then the payment
   const pay = () => {
-    if (useCart.getState().lines.length === 0 || preview.error) return;
+    if (useCart.getState().lines.length === 0 || preview.error || quickPaying.current) return;
     const steps = modules.some((m) => CHECKOUT_MODULES.includes(m));
-    setDialog(steps ? { kind: "pack", view: { kind: "checkout" } } : { kind: "pay" });
+    if (steps) setDialog({ kind: "pack", view: { kind: "checkout" } });
+    else void takePayment();
   };
 
   const toggleDepartments = () => {
@@ -446,7 +531,7 @@ export function SaleScreen({ session, withTables = false }: { session: Session; 
   const bound = (Object.keys(DEFAULT_KEYS) as TillAction[]).filter((action) => handlers[action]);
   const hotkeys: Partial<Record<Hotkey, () => void>> = { F11: () => setDialog({ kind: "scale" }) };
   for (const action of bound) hotkeys[keys[action]] = handlers[action];
-  useHotkeys(hotkeys, dialog === null && !approval.pending);
+  useHotkeys(hotkeys, dialog === null && !approval.pending && !quickBusy);
   /** A button's keycap from the key map. */
   const cap = (action: TillAction) => ({
     shortcut: ariaKey(keys[action]),
@@ -476,7 +561,10 @@ export function SaleScreen({ session, withTables = false }: { session: Session; 
     keys,
     actions: bound,
     addProduct,
-    checkoutDone: () => setDialog({ kind: "pay" }),
+    checkoutDone: () => {
+      setDialog(null);
+      void takePayment();
+    },
     toggleDepartments,
   };
 
@@ -484,8 +572,7 @@ export function SaleScreen({ session, withTables = false }: { session: Session; 
   const replaceLine = async (index: number, generic: TillProduct) => {
     const draft = useCart.getState().lines[index];
     if (!draft) return;
-    await voidLine(index);
-    if (!useCart.getState().lines.some((l) => l.key === draft.key)) addProduct(generic, draft.line.qty, 0);
+    if (await voidLine(index)) addProduct(generic, draft.line.qty, unitDecimalsOf(generic, units));
   };
 
   // Focus goes back to the scan field after every tap on the screen (a tile, a line, a chip), so
@@ -582,10 +669,9 @@ export function SaleScreen({ session, withTables = false }: { session: Session; 
               onValueChange={setText}
               multiplier={multiplier}
               onCode={(code) => void lookup(code)}
-              onPick={(hit) => {
-                setText("");
-                addTile(hit);
-              }}
+              // with one payment method set, Enter on the empty field pays like F12
+              onEmptyEnter={tillPayment.fixed ? pay : undefined}
+              onPick={pickProduct}
               onMultiplier={(qty) => useCart.getState().setMultiplier(qty)}
               onBump={(direction) => {
                 const state = useCart.getState();
@@ -641,13 +727,15 @@ export function SaleScreen({ session, withTables = false }: { session: Session; 
                 <DepartmentKeysPanel />
               </Suspense>
             ) : (
-              <ProductGrid onPick={addTile} category={category} onCategory={setCategory} />
+              <ProductGrid onPick={pickProduct} category={category} onCategory={setCategory} />
             )}
           </main>
           <CartPanel
             lines={lines}
             selected={selected}
             preview={preview.data}
+            priced={priced}
+            stale={preview.isPlaceholderData}
             error={preview.error}
             customer={<CustomerStrip session={session} onOpen={() => setDialog({ kind: "customer" })} />}
             onSelect={(index) => useCart.getState().select(index)}
@@ -677,7 +765,7 @@ export function SaleScreen({ session, withTables = false }: { session: Session; 
               <Button
                 variant="primary"
                 className="min-h-16 w-full text-2xl"
-                disabled={lines.length === 0 || Boolean(preview.error)}
+                disabled={lines.length === 0 || Boolean(preview.error) || quickBusy}
                 onClick={pay}
                 {...cap("checkout")}
               >

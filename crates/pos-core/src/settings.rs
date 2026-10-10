@@ -274,6 +274,24 @@ pub const REGISTRY: &[SettingDef] = &[
         default: || Value::Null,
         validate: |v| v.is_null() || v.as_i64().is_some_and(|n| n > 0),
     },
+    // Zakat: the nisab of the current Hijri year as the shop typed it (centimes, the figure the
+    // Ministry of Religious Affairs publishes), `null` until entered: the software never fills
+    // it in. Its source is the shop's own short note ("MARW, 1447").
+    SettingDef {
+        key: "zakat.nisab",
+        permission: Some(Permission::SettingsCompany),
+        default: || Value::Null,
+        validate: |v| v.is_null() || v.as_i64().is_some_and(|n| n > 0),
+    },
+    SettingDef {
+        key: "zakat.nisab_source",
+        permission: Some(Permission::SettingsCompany),
+        default: || json!(""),
+        validate: |v| {
+            v.as_str()
+                .is_some_and(|s| s.chars().count() <= 120 && !s.chars().any(char::is_control))
+        },
+    },
     // Frozen once a document is numbered (`set_value`).
     SettingDef {
         key: "numbering.restart_yearly",
@@ -342,6 +360,39 @@ pub const REGISTRY: &[SettingDef] = &[
                     (10..=512).contains(&s.chars().count()) && !s.chars().any(char::is_control)
                 })
         },
+    },
+    // How the till takes payment (Settings › Payments): "ask" opens the payment dialog with the
+    // allowed methods as tiles; "fixed" finishes the sale at once in the one method, which never
+    // needs details nor a customer (cash, card, Edahabia, BaridiMob, or `type:<id>`, a custom
+    // payment type riding one of them).
+    SettingDef {
+        key: "payments.till_mode",
+        permission: Some(Permission::SettingsCompany),
+        default: || json!("ask"),
+        validate: |v| matches!(v.as_str(), Some("ask" | "fixed")),
+    },
+    SettingDef {
+        key: "payments.fixed_method",
+        permission: Some(Permission::SettingsCompany),
+        default: || json!("cash"),
+        validate: fixed_method_ok,
+    },
+    SettingDef {
+        key: "payments.allowed_methods",
+        permission: Some(Permission::SettingsCompany),
+        default: || {
+            json!([
+                "cash",
+                "card_cib",
+                "edahabia",
+                "baridimob",
+                "cheque",
+                "transfer",
+                "credit",
+                "voucher"
+            ])
+        },
+        validate: allowed_methods_ok,
     },
     SettingDef {
         key: "stock.expired_lots",
@@ -679,6 +730,37 @@ fn is_soldes_windows(v: &Value) -> bool {
     })
 }
 
+/// The till's one payment method: cash, CIB card, Edahabia or BaridiMob, or `type:<id>` (a custom
+/// payment type, which the till checks is still live and rides one of those).
+fn fixed_method_ok(v: &Value) -> bool {
+    match v.as_str() {
+        Some("cash" | "card_cib" | "edahabia" | "baridimob") => true,
+        Some(s) => s.strip_prefix("type:").is_some_and(|id| {
+            (1..=64).contains(&id.len())
+                && id
+                    .bytes()
+                    .all(|b| b.is_ascii_alphanumeric() || b == b'-' || b == b'_')
+        }),
+        None => false,
+    }
+}
+
+/// The tenders the payment dialog offers: at least one, each a known tender once (never the
+/// change, which no one pays with).
+fn allowed_methods_ok(v: &Value) -> bool {
+    v.as_array().is_some_and(|items| {
+        let mut seen = std::collections::BTreeSet::new();
+        !items.is_empty()
+            && items.iter().all(|m| {
+                m.as_str()
+                    .and_then(crate::payments::PaymentMethod::parse)
+                    .is_some_and(|method| {
+                        method != crate::payments::PaymentMethod::Change && seen.insert(method)
+                    })
+            })
+    })
+}
+
 /// `null`, or exactly `{ "number": 1–40 characters, "date": "YYYY-MM-DD" }` (CFG-003).
 fn bl_as_invoice_ok(v: &Value) -> bool {
     if v.is_null() {
@@ -958,6 +1040,161 @@ mod tests {
             def("shop.activity").unwrap().permission,
             Some(Permission::SettingsCompany)
         );
+    }
+
+    /// The nisab is the shop's own figure (the ministry's for the Hijri year): unset until the
+    /// owner types it, then a positive amount; its source is a short free note.
+    #[test]
+    fn the_zakat_nisab_is_unset_until_the_shop_enters_it() {
+        let db = Db::open_memory().unwrap();
+        assert_eq!(
+            db.read(|c| get::<Option<i64>>(c, "zakat.nisab")).unwrap(),
+            None
+        );
+        assert_eq!(
+            db.read(|c| get::<String>(c, "zakat.nisab_source")).unwrap(),
+            ""
+        );
+        for d in [
+            def("zakat.nisab").unwrap(),
+            def("zakat.nisab_source").unwrap(),
+        ] {
+            assert_eq!(d.permission, Some(Permission::SettingsCompany), "{}", d.key);
+        }
+        db.write(|tx| {
+            set_value(tx, &Actor::default(), "zakat.nisab", json!(229_500_000))?;
+            set_value(
+                tx,
+                &Actor::default(),
+                "zakat.nisab_source",
+                json!("MARW, 1447"),
+            )
+        })
+        .unwrap();
+        assert_eq!(
+            db.read(|c| get::<Option<i64>>(c, "zakat.nisab")).unwrap(),
+            Some(229_500_000)
+        );
+        assert_eq!(
+            db.read(|c| get::<String>(c, "zakat.nisab_source")).unwrap(),
+            "MARW, 1447"
+        );
+        db.write(|tx| set_value(tx, &Actor::default(), "zakat.nisab", Value::Null))
+            .unwrap();
+        for (key, bad) in [
+            ("zakat.nisab", json!(0)),
+            ("zakat.nisab", json!(-1)),
+            ("zakat.nisab", json!("229500000")),
+            ("zakat.nisab", json!(2_295_000.5)),
+            ("zakat.nisab_source", json!("x".repeat(121))),
+            ("zakat.nisab_source", json!("MARW\n1447")),
+            ("zakat.nisab_source", Value::Null),
+        ] {
+            let err = db
+                .write(move |tx| set_value(tx, &Actor::default(), key, bad))
+                .unwrap_err();
+            assert_eq!(err.code(), "value_invalid", "{key}");
+        }
+        db.write(|tx| {
+            set_value(
+                tx,
+                &Actor::default(),
+                "zakat.nisab_source",
+                json!("م".repeat(120)),
+            )
+        })
+        .unwrap();
+    }
+
+    /// How the till takes payment (Settings › Payments): asked at the till by default, with every
+    /// method allowed; the one method of the "fixed" mode never needs details nor a customer.
+    #[test]
+    fn the_till_payment_mode_asks_by_default_and_refuses_bad_lists() {
+        let db = Db::open_memory().unwrap();
+        assert_eq!(
+            db.read(|c| get::<String>(c, "payments.till_mode")).unwrap(),
+            "ask"
+        );
+        assert_eq!(
+            db.read(|c| get::<String>(c, "payments.fixed_method"))
+                .unwrap(),
+            "cash"
+        );
+        assert_eq!(
+            db.read(|c| get::<Vec<String>>(c, "payments.allowed_methods"))
+                .unwrap(),
+            [
+                "cash",
+                "card_cib",
+                "edahabia",
+                "baridimob",
+                "cheque",
+                "transfer",
+                "credit",
+                "voucher"
+            ]
+        );
+        for key in [
+            "payments.till_mode",
+            "payments.fixed_method",
+            "payments.allowed_methods",
+        ] {
+            assert_eq!(
+                def(key).unwrap().permission,
+                Some(Permission::SettingsCompany),
+                "{key}"
+            );
+        }
+        for (key, good) in [
+            ("payments.till_mode", json!("fixed")),
+            ("payments.fixed_method", json!("edahabia")),
+            (
+                "payments.fixed_method",
+                json!("type:0192f0c1-7a2b-7c3d-8e4f-123456789abc"),
+            ),
+            ("payments.allowed_methods", json!(["card_cib"])),
+            (
+                "payments.allowed_methods",
+                json!(["credit", "cash", "cheque"]),
+            ),
+        ] {
+            db.write(move |tx| set_value(tx, &Actor::default(), key, good))
+                .unwrap();
+        }
+        assert_eq!(
+            db.read(|c| get::<Vec<String>>(c, "payments.allowed_methods"))
+                .unwrap(),
+            ["credit", "cash", "cheque"]
+        );
+        for (key, bad) in [
+            ("payments.till_mode", json!("auto")),
+            ("payments.till_mode", Value::Null),
+            // cheque, transfer, credit and voucher need details or a customer
+            ("payments.fixed_method", json!("cheque")),
+            ("payments.fixed_method", json!("transfer")),
+            ("payments.fixed_method", json!("credit")),
+            ("payments.fixed_method", json!("voucher")),
+            ("payments.fixed_method", json!("change")),
+            ("payments.fixed_method", json!("type:")),
+            ("payments.fixed_method", json!("type:a b")),
+            (
+                "payments.fixed_method",
+                json!(format!("type:{}", "a".repeat(65))),
+            ),
+            ("payments.fixed_method", json!(1)),
+            ("payments.allowed_methods", json!([])),
+            ("payments.allowed_methods", json!(["cash", "cash"])),
+            ("payments.allowed_methods", json!(["change"])),
+            ("payments.allowed_methods", json!(["cash", "bitcoin"])),
+            ("payments.allowed_methods", json!(["cash", 1])),
+            ("payments.allowed_methods", json!("cash")),
+            ("payments.allowed_methods", Value::Null),
+        ] {
+            let err = db
+                .write(move |tx| set_value(tx, &Actor::default(), key, bad))
+                .unwrap_err();
+            assert_eq!(err.code(), "value_invalid", "{key}");
+        }
     }
 
     #[test]

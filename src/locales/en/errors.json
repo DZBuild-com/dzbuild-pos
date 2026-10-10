@@ -372,6 +372,7 @@
   "advance_repay_too_much": "This amount is more than the employee still owes on advances.",
   "month_invalid": "Choose the salary month (YYYY-MM).",
   "zakat_statement_not_found": "This zakat calculation no longer exists.",
+  "zakat_nisab_missing": "Enter the nisab of the current Hijri year on the Zakat screen first.",
   "payment_type_not_found": "This payment type no longer exists.",
   "payment_type_code_taken": "Another payment type already has this code.",
   "payment_type_mismatch": "This payment type does not match the tender chosen.",

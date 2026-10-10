@@ -4,6 +4,8 @@ import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 import { NumericInput } from "@/components/numeric-input";
 import { QrCode } from "@/components/qr-code";
+import { RadioCards } from "@/components/radio-cards";
+import { Splash } from "@/components/splash";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -13,6 +15,8 @@ import { Field } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { NativeSelect } from "@/components/ui/native-select";
 import { HostOnlyNote } from "@/features/network/HostOnlyNote";
+import { TENDER_METHODS } from "@/features/pos/payment-model";
+import { FIXED_METHODS, TYPE_PREFIX, allowedOf, quickType } from "@/features/pos/till-payment";
 import {
   useArchivePaymentType,
   useBaridpayQr,
@@ -21,8 +25,8 @@ import {
   useSetBaridpayQr,
 } from "@/lib/ipc/completion";
 import { useTillLink } from "@/lib/ipc/lan";
-import { useSetting } from "@/lib/ipc/settings";
-import type { PaymentMethod, PaymentType } from "@/lib/ipc/types";
+import { type SettingKey, useSetSetting, useSetting } from "@/lib/ipc/settings";
+import type { JsonValue, PaymentMethod, PaymentType } from "@/lib/ipc/types";
 import { localizedName } from "@/lib/names";
 import { useErrorText } from "@/lib/use-error-text";
 import { useLang } from "@/lib/use-language";
@@ -32,16 +36,185 @@ const BASE_METHODS: readonly PaymentMethod[] = ["card_cib", "edahabia", "baridim
 const CODE = /^[a-z0-9_]{1,24}$/;
 const QR_MIN = 10;
 const QR_MAX = 512;
+const TILL_MODES = ["ask", "fixed"] as const;
+type TillMode = (typeof TILL_MODES)[number];
+const TILL_PAYMENT_KEYS = [
+  "payments.till_mode",
+  "payments.fixed_method",
+  "payments.allowed_methods",
+] as const satisfies readonly SettingKey[];
+type TillPaymentKey = (typeof TILL_PAYMENT_KEYS)[number];
 
-/** Settings › Paiements (PAY-006, PAY-007, HW-042): the custom payment types and the BaridPay QR
- * the customer screen shows. The main PC's master data: read-only on a till. */
+/** Settings › Paiements (PAY-006, PAY-007, HW-042): how the till takes payment, the custom
+ * payment types and the BaridPay QR the customer screen shows. The main PC's master data:
+ * read-only on a till. */
 export function PaymentsSettings() {
   return (
     <div className="flex flex-col gap-6">
       <HostOnlyNote />
+      <TillPaymentCard />
       <PaymentTypes />
       <BaridpayQr />
     </div>
+  );
+}
+
+/** The settings of the till's payment card, as stored (the backend's defaults when unset). */
+interface TillPaymentStored {
+  mode: unknown;
+  fixed: unknown;
+  allowed: unknown;
+}
+
+/** How the till takes payment: the cashier chooses among the allowed methods at each sale, or the
+ * till finishes every sale at once in one method that needs no details nor customer. The main
+ * PC's setting: read-only on a till, where it arrives with the others. */
+function TillPaymentCard() {
+  const mode = useSetting("payments.till_mode");
+  const fixed = useSetting("payments.fixed_method");
+  const allowed = useSetting("payments.allowed_methods");
+  if (mode.isPending || fixed.isPending || allowed.isPending) return <Splash inline />;
+  return <TillPaymentForm stored={{ mode: mode.data, fixed: fixed.data, allowed: allowed.data }} />;
+}
+
+function TillPaymentForm({ stored }: { stored: TillPaymentStored }) {
+  const { t } = useTranslation();
+  const lang = useLang();
+  const errorText = useErrorText();
+  const till = useTillLink();
+  const types = usePaymentTypes(false);
+  const setSetting = useSetSetting();
+  const [mode, setMode] = useState<TillMode>(stored.mode === "fixed" ? "fixed" : "ask");
+  const [fixed, setFixed] = useState(typeof stored.fixed === "string" ? stored.fixed : "cash");
+  const [allowed, setAllowed] = useState<PaymentMethod[]>(() => allowedOf(stored.allowed));
+  const [failure, setFailure] = useState<unknown>(null);
+  const [saving, setSaving] = useState(false);
+  const choices = [
+    ...FIXED_METHODS.map((m) => ({ value: m as string, label: t(`payments:tenders.${m}`) })),
+    ...(types.data ?? [])
+      .filter(quickType)
+      .map((type) => ({ value: `${TYPE_PREFIX}${type.id}`, label: localizedName(type, lang) })),
+  ];
+  // a custom type archived or changed since: cash until the shop chooses again
+  const gone = types.isSuccess && !choices.some((c) => c.value === fixed);
+  const chosen = gone ? "cash" : fixed;
+  const empty = allowed.length === 0;
+
+  const submit = async (event: FormEvent) => {
+    event.preventDefault();
+    if (empty) return;
+    setFailure(null);
+    const next: Record<TillPaymentKey, JsonValue> = {
+      "payments.till_mode": mode,
+      "payments.fixed_method": chosen,
+      "payments.allowed_methods": allowed,
+    };
+    const before: Record<TillPaymentKey, unknown> = {
+      "payments.till_mode": stored.mode,
+      "payments.fixed_method": stored.fixed,
+      "payments.allowed_methods": stored.allowed,
+    };
+    setSaving(true);
+    try {
+      // only what changed: each save is an audit row
+      for (const key of TILL_PAYMENT_KEYS) {
+        if (JSON.stringify(next[key]) === JSON.stringify(before[key])) continue;
+        await setSetting.mutateAsync({ key, value: next[key] });
+      }
+      toast.success(t("config:payments.till.saved"));
+    } catch (error) {
+      setFailure(error);
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  return (
+    <Card aria-labelledby="till-payment-title">
+      <h2 id="till-payment-title" className="text-xl font-bold">
+        {t("config:payments.till.title")}
+      </h2>
+      <p className="text-ink-2">{t("config:payments.till.intro")}</p>
+      <form noValidate onSubmit={(event) => void submit(event)} className="flex flex-col gap-4">
+        <fieldset disabled={till.isTill} className="contents">
+          <RadioCards<TillMode>
+            legend={t("config:payments.till.mode")}
+            name="till-payment-mode"
+            value={mode}
+            onChange={setMode}
+            options={TILL_MODES.map((m) => ({
+              value: m,
+              label: t(`config:payments.till.modes.${m}`),
+              hint: t(`config:payments.till.modeHints.${m}`),
+            }))}
+          />
+          {mode === "fixed" ? (
+            <Field
+              id="till-payment-method"
+              label={t("config:payments.till.method")}
+              hint={t("config:payments.till.methodHint")}
+            >
+              <NativeSelect
+                id="till-payment-method"
+                className="max-w-80"
+                value={chosen}
+                onChange={(event) => setFixed(event.target.value)}
+              >
+                {choices.map((c) => (
+                  <option key={c.value} value={c.value}>
+                    {c.label}
+                  </option>
+                ))}
+              </NativeSelect>
+            </Field>
+          ) : (
+            <fieldset className="flex flex-col gap-2" aria-describedby="till-payment-allowed-hint">
+              <legend className="mb-1 font-semibold">{t("config:payments.till.allowed")}</legend>
+              <p id="till-payment-allowed-hint" className="text-sm text-ink-2">
+                {t("config:payments.till.allowedHint")}
+              </p>
+              <div className="grid gap-x-6 gap-y-1 sm:grid-cols-2 md:grid-cols-4">
+                {TENDER_METHODS.map((m) => (
+                  <label key={m} className="flex min-h-11 items-center gap-3">
+                    <Checkbox
+                      checked={allowed.includes(m)}
+                      onCheckedChange={(value) =>
+                        setAllowed((all) =>
+                          TENDER_METHODS.filter((x) => (x === m ? value === true : all.includes(x))),
+                        )
+                      }
+                    />
+                    <span>{t(`payments:tenders.${m}`)}</span>
+                  </label>
+                ))}
+              </div>
+              {empty ? (
+                <p role="alert" className="text-danger">
+                  {t("config:payments.till.allowedEmpty")}
+                </p>
+              ) : null}
+            </fieldset>
+          )}
+          {mode === "fixed" && gone ? (
+            <p role="note" className="rounded-control bg-warn-soft p-3 text-warn">
+              {t("config:payments.till.typeGone")}
+            </p>
+          ) : null}
+        </fieldset>
+        {failure ? (
+          <p role="alert" className="text-danger">
+            {errorText(failure)}
+          </p>
+        ) : null}
+        {till.isTill ? null : (
+          <div>
+            <Button type="submit" variant="primary" disabled={saving || empty}>
+              {t("config:payments.till.save")}
+            </Button>
+          </div>
+        )}
+      </form>
+    </Card>
   );
 }
 

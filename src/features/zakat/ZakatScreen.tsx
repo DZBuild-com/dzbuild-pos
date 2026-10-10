@@ -1,9 +1,10 @@
-import { Printer } from "lucide-react";
+import { Printer, Scale } from "lucide-react";
 import { useMemo, useState } from "react";
 import { Controller, useForm, useWatch } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 import { Amount } from "@/components/amount";
+import { EmptyState } from "@/components/empty-state";
 import { LanguageToggle } from "@/components/language-toggle";
 import { NumericInput } from "@/components/numeric-input";
 import { Button } from "@/components/ui/button";
@@ -14,7 +15,7 @@ import { NativeSelect } from "@/components/ui/native-select";
 import { dayToMs, isDay, today } from "@/lib/dates";
 import { formatDate } from "@/lib/format";
 import type { Lang } from "@/lib/i18n";
-import { useDatapack } from "@/lib/ipc/app";
+import { toAppError } from "@/lib/ipc/client";
 import { useTillLink } from "@/lib/ipc/lan";
 import { usePrintZakat, useSaveZakat, useZakatPreview, useZakatStatements } from "@/lib/ipc/staff";
 import type { Valuation, ZakatInput, ZakatPreview } from "@/lib/ipc/types";
@@ -22,6 +23,7 @@ import { formatRate, parseAmount } from "@/lib/numeric";
 import { useDebounced } from "@/lib/use-debounced";
 import { useErrorText } from "@/lib/use-error-text";
 import { useLang } from "@/lib/use-language";
+import { NisabCard } from "./NisabCard";
 
 const VALUATIONS: readonly Valuation[] = ["cost", "sale_price"];
 
@@ -62,10 +64,11 @@ function toInput(v: ZakatForm): ZakatInput | null {
 }
 
 /**
- * `/zakat` (FIN-007): the day with its Hijri date, how the stock is valued, what the books do not
- * hold (bank, other assets, other debts); the live statement from the backend (every line, the
- * base against the nisab of the data pack, the rate, the zakat due), never a fatwa; then the
- * saved statements (`ZK…`), each printable in any of the three languages.
+ * `/zakat` (FIN-007): the nisab of the year the shop enters itself (the software never supplies
+ * it); the day with its Hijri date, how the stock is valued, what the books do not hold (bank,
+ * other assets, other debts); the live statement from the backend (every line, the base against
+ * the shop's nisab, the rate, the zakat due), never a fatwa, or what to do first while no nisab
+ * is entered; then the saved statements (`ZK…`), each printable in any of the three languages.
  */
 export function ZakatScreen() {
   const { t } = useTranslation();
@@ -104,6 +107,7 @@ export function ZakatScreen() {
           {t("zakat:mainPcOnly")}
         </p>
       ) : null}
+      <NisabCard />
       <div className="grid gap-6 lg:grid-cols-2">
         <Card>
           <h2 className="text-xl font-bold">{t("zakat:inputs")}</h2>
@@ -172,7 +176,13 @@ export function ZakatScreen() {
           <h2 id="zakat-preview-title" className="text-xl font-bold">
             {t("zakat:preview")}
           </h2>
-          {preview.error ? (
+          {preview.error && toAppError(preview.error).code === "zakat_nisab_missing" ? (
+            <EmptyState
+              icon={Scale}
+              title={t("zakat:nisabMissing.title")}
+              body={t("zakat:nisabMissing.body")}
+            />
+          ) : preview.error ? (
             <p role="alert" className="text-danger">
               {errorText(preview.error)}
             </p>
@@ -189,12 +199,14 @@ export function ZakatScreen() {
   );
 }
 
-/** The backend's figures: the seven lines, the base, the nisab with its source, the rate and
- * the zakat due (or the below-nisab sentence). */
+/** The backend's figures: the seven lines, the base, the nisab the shop entered with its note on
+ * the source, the rate and the zakat due (or the below-nisab sentence). */
 function Statement({ preview }: { preview: ZakatPreview }) {
   const { t } = useTranslation();
   const lang = useLang();
-  const source = useDatapack().data?.zakat?.source;
+  // `null` only on a statement saved before the shop entered its own nisab (never a preview)
+  const note = preview.nisabSource?.trim();
+  const source = note === undefined ? null : note === "" ? t("zakat:nisabByShop") : note;
   const lines: Array<[string, number]> = [
     [t("zakat:lines.stock", { valuation: t(`zakat:valuation.${preview.valuation}`) }), preview.stockValue],
     [t("zakat:lines.cash"), preview.cash],

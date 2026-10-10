@@ -494,6 +494,7 @@ pub const KNOWN_CODES: &[&str] = &[
     "advance_repay_too_much",
     "month_invalid",
     "zakat_statement_not_found",
+    "zakat_nisab_missing",
     // M8 MVP completion: custom payment types, Code 39 and ITF labels
     "payment_type_not_found",
     "payment_type_code_taken",

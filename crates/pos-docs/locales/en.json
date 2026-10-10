@@ -949,7 +949,8 @@
       "due": "Zakat due",
       "belowNisab": "The base is below the nisab: no zakat is due.",
       "disclaimer": "An indicative calculation made by the software. It is not a fatwa; when in doubt, ask a scholar or your wilaya's religious affairs directorate.",
-      "source": "Nisab: {source}"
+      "source": "Nisab: {source}",
+      "sourceShop": "entered by the shop"
     },
     "number": "No.",
     "date": "Date",
