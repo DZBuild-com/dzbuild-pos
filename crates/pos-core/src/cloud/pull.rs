@@ -20,10 +20,11 @@ use super::payloads::ProductSnapshot;
 use super::store::{self, CloudLink, CloudNoticeKind, CloudSettings, MapEntity};
 use super::wire::{ApiMoney, ApiTime, IdString, de_id, iso_time, parse_time};
 use crate::audit::{self, Actor};
-use crate::catalog::products::{self, Barcode, ProductInput};
+use crate::catalog::products::{self, Barcode, Product, ProductInput, ProductKind};
+use crate::company::PriceMode;
 use crate::db::Db;
 use crate::error::AppError;
-use crate::money::Qty;
+use crate::money::{Money, Qty, Rate};
 use rusqlite::{Connection, OptionalExtension, Transaction, params};
 use serde::de::DeserializeOwned;
 use serde::{Deserialize, Serialize};
@@ -31,6 +32,7 @@ use serde_json::json;
 use serde_json::value::RawValue;
 use sha2::{Digest, Sha256};
 use specta::Type;
+use std::collections::BTreeMap;
 
 pub const FLAG_THRESHOLD: i64 = 70;
 const EVENTS: &str = "cloud:events";
@@ -83,9 +85,65 @@ pub struct RemoteProduct {
     pub has_variants: bool,
     #[serde(default)]
     pub updated_at: Option<ApiTime>,
+    /// The variant family (contract v1.12); a block this version cannot read is none.
+    #[serde(default, deserialize_with = "de_variants")]
+    pub variants: Option<RemoteVariants>,
+}
+
+#[derive(Debug, Clone, Deserialize)]
+pub struct RemoteVariants {
+    pub axes: Vec<RemoteAxis>,
+    #[serde(default)]
+    pub stock_mode: String,
+    pub items: Vec<RemoteVariantItem>,
+}
+
+#[derive(Debug, Clone, Deserialize)]
+pub struct RemoteAxis {
+    pub name: String,
+    pub values: Vec<String>,
+}
+
+#[derive(Debug, Clone, Deserialize)]
+pub struct RemoteVariantItem {
+    pub key: String,
+    #[serde(default)]
+    pub external_id: Option<String>,
+    #[serde(default)]
+    pub sku: Option<String>,
+    #[serde(default)]
+    pub barcode: Option<String>,
+    pub price: ApiMoney,
+    pub attributes: BTreeMap<String, String>,
+    #[serde(default)]
+    pub stock: Option<i64>,
+    #[serde(default = "active_by_default")]
+    pub active: bool,
+}
+
+fn active_by_default() -> bool {
+    true
+}
+
+/// Read from the raw text (amounts are exact decimals), so a malformed block fails alone.
+fn de_variants<'de, D: serde::Deserializer<'de>>(d: D) -> Result<Option<RemoteVariants>, D::Error> {
+    let raw: Option<Box<RawValue>> = Option::deserialize(d)?;
+    Ok(raw.and_then(|r| match serde_json::from_str(r.get()) {
+        Ok(variants) => Some(variants),
+        Err(e) => {
+            tracing::warn!(target: "cloud", error = %e, "a variants block this version cannot read");
+            None
+        }
+    }))
 }
 
 impl RemoteProduct {
+    /// The family the till can hold: one to three axes and 1 to 200 items (`variants::generate`).
+    fn family(&self) -> Option<&RemoteVariants> {
+        self.variants
+            .as_ref()
+            .filter(|v| (1..=3).contains(&v.axes.len()) && (1..=200).contains(&v.items.len()))
+    }
     fn sku(&self) -> Option<&str> {
         self.sku
             .as_deref()
@@ -117,6 +175,11 @@ struct StockEvent {
     /// The online order that moved the stock (`source` `order`), when DZBuild names it.
     #[serde(default)]
     order_number: Option<IdString>,
+    /// The variant whose stock moved (contract v1.12); none at product level.
+    #[serde(default)]
+    variant_key: Option<String>,
+    #[serde(default)]
+    variant_external_id: Option<String>,
 }
 
 #[derive(Debug, Deserialize)]
@@ -644,15 +707,26 @@ fn apply_one(
             if !settings.stock_pull || (event.source == "order" && settings.orders_intake) {
                 return Ok("ignored");
             }
-            let local = local_product(
-                tx,
-                link,
-                event.external_id.as_deref(),
-                event.product_id.as_ref().map(|i| i.0.as_str()),
-            )?;
+            let remote_id = event.product_id.as_ref().map(|i| i.0.as_str());
+            let local = match (&event.variant_external_id, &event.variant_key) {
+                (None, None) => local_product(tx, link, event.external_id.as_deref(), remote_id)?,
+                (child, key) => match child.as_deref().filter(|id| products::get(tx, id).is_ok()) {
+                    Some(id) => Some(id.to_owned()),
+                    None => match (remote_id, key) {
+                        (Some(remote), Some(key)) => {
+                            super::variants::map_local(tx, &link.store_id, remote, key)?
+                        }
+                        _ => None,
+                    },
+                },
+            };
             let Some(local) = local else {
                 return Ok("ignored");
             };
+            if products::get(tx, &local)?.kind == ProductKind::VariantParent {
+                tracing::debug!(target: "cloud", "a stock event of a variant model: its children hold the stock");
+                return Ok("ignored");
+            }
             let delta = event
                 .delta
                 .or_else(|| event.new?.checked_sub(event.old?))
@@ -800,6 +874,25 @@ pub fn apply_remote_product(
         return Ok(ProductOutcome::Unmapped);
     };
     let product = products::get(tx, &local_id)?;
+    let family = remote.family();
+    if family.is_some() && product.kind != ProductKind::VariantParent {
+        tracing::info!(target: "cloud", kind = product.kind.as_str(),
+            "a product with variants online is not a variant model here; the owner converts it");
+        return Ok(ProductOutcome::Unchanged);
+    }
+    let children = match family {
+        Some(family) => reconcile_children(
+            tx,
+            link,
+            actor,
+            &product,
+            &remote.id,
+            family,
+            prices_pull,
+            now,
+        )?,
+        None => 0,
+    };
     let online = ProductSnapshot {
         name: remote.name.clone(),
         price: remote.pricing.price.0,
@@ -824,7 +917,11 @@ pub fn apply_remote_product(
     };
     let Some(last) = last else {
         remember(tx)?;
-        return Ok(ProductOutcome::Unchanged);
+        return Ok(if children > 0 {
+            ProductOutcome::Updated { conflicts: 0 }
+        } else {
+            ProductOutcome::Unchanged
+        });
     };
     let waiting: bool = tx.query_row(
         "SELECT EXISTS (SELECT 1 FROM sync_outbox WHERE target = 'cloud' AND kind = 'product_upsert' AND entity_id = ?1
@@ -836,7 +933,7 @@ pub fn apply_remote_product(
     // the name as the push would send it now (store language, with the same fallback)
     let local_name = super::payloads::name_for(&product, link.store_language);
     let mut conflicts: Vec<&str> = Vec::new();
-    let mut changed = false;
+    let mut changed = children > 0;
     if online.name != last.name && !online.name.trim().is_empty() {
         if waiting && local_name != last.name {
             conflicts.push("name");
@@ -1084,7 +1181,8 @@ pub fn pull_orders(ctx: &PullContext<'_>) -> Result<PullReport, CallError> {
 pub struct ImportReport {
     pub imported: usize,
     pub matched: usize,
-    /// Variant families are not imported in this version (deferred row).
+    /// Products with variants the till cannot hold: no readable family, more than three axes,
+    /// none listed, a family refused here, or a simple product here.
     pub skipped_variants: usize,
 }
 
@@ -1134,6 +1232,27 @@ fn import_page(
     let rate = crate::catalog::tax_rates::by_code(tx, "TVA19")?
         .ok_or_else(|| AppError::not_found("tax_rate"))?;
     for remote in items {
+        if let Some(family) = remote.family() {
+            let outcome = isolated(tx, "product", Some(Refusal::product(remote)), now, || {
+                import_family(
+                    tx,
+                    link,
+                    actor,
+                    company.price_mode,
+                    &rate,
+                    remote,
+                    family,
+                    now,
+                )
+            })?;
+            match outcome {
+                Some(FamilyImport::Imported) => report.imported += 1,
+                Some(FamilyImport::Matched) => report.matched += 1,
+                Some(FamilyImport::Known) => {}
+                Some(FamilyImport::Skipped) | None => report.skipped_variants += 1,
+            }
+            continue;
+        }
         if remote.has_variants {
             report.skipped_variants += 1;
             continue;
@@ -1162,37 +1281,13 @@ fn import_page(
                 .optional()?,
             (None, None) => None,
         };
-        let snapshot = serde_json::to_value(ProductSnapshot {
-            name: remote.name.clone(),
-            price: remote.pricing.price.0,
-            status: remote.status.clone(),
-        })?;
         let local_id = match by_code {
             Some(id) => {
                 report.matched += 1;
                 id
             }
             None => {
-                let price = match company.price_mode {
-                    crate::company::PriceMode::Ttc => remote.pricing.price.0,
-                    crate::company::PriceMode::Ht => remote
-                        .pricing
-                        .price
-                        .0
-                        .mul_div(10_000, 10_000 + i64::from(rate.rate_bp.0))
-                        .unwrap_or(remote.pricing.price.0),
-                };
-                let mut input = ProductInput::simple(
-                    &remote.name,
-                    crate::catalog::UNIT_PIECE_ID,
-                    &rate.id,
-                    price,
-                );
-                if link.store_language == crate::lang::Lang::Ar {
-                    input.name_ar = remote.name.clone();
-                    input.name_fr = String::new();
-                }
-                input.reference = remote.sku().map(str::to_owned);
+                let mut input = online_input(link, &rate, company.price_mode, remote);
                 input.barcodes = remote
                     .barcode()
                     .map(|b| {
@@ -1251,31 +1346,7 @@ fn import_page(
                 created.id
             }
         };
-        if remote.status == "archived" {
-            // off the storefront online: not published here either, and the mapping below makes
-            // `publish_decision` keep it archived instead of listing it again
-            tx.execute(
-                "INSERT INTO cloud_publish (product_id, publish, updated_at) VALUES (?1, 0, ?2)
-                 ON CONFLICT (product_id) DO UPDATE SET publish = 0, updated_at = excluded.updated_at",
-                params![local_id, now],
-            )?;
-        } else {
-            tx.execute(
-                "INSERT INTO cloud_publish (product_id, publish, online_status, updated_at) VALUES (?1, 1, ?2, ?3)
-                 ON CONFLICT (product_id) DO UPDATE SET publish = 1, online_status = excluded.online_status",
-                params![local_id, if remote.status == "draft" { "draft" } else { "active" }, now],
-            )?;
-        }
-        store::map_put(
-            tx,
-            &link.store_id,
-            MapEntity::Product,
-            &local_id,
-            &remote.id,
-            Some(&snapshot),
-            None,
-            now,
-        )?;
+        adopt(tx, link, remote, &local_id, now)?;
     }
     let step = PullReport {
         products: report.imported + report.matched,
@@ -1283,6 +1354,332 @@ fn import_page(
     };
     summary(tx, actor, &step)?;
     Ok(report)
+}
+
+/// Publishes an imported product as it is online and maps it, with the online fields as the
+/// last snapshot.
+fn adopt(
+    tx: &Transaction<'_>,
+    link: &CloudLink,
+    remote: &RemoteProduct,
+    local_id: &str,
+    now: i64,
+) -> Result<(), AppError> {
+    let snapshot = serde_json::to_value(ProductSnapshot {
+        name: remote.name.clone(),
+        price: remote.pricing.price.0,
+        status: remote.status.clone(),
+    })?;
+    if remote.status == "archived" {
+        // off the storefront online: not published here either, and the mapping below makes
+        // `publish_decision` keep it archived instead of listing it again
+        tx.execute(
+            "INSERT INTO cloud_publish (product_id, publish, updated_at) VALUES (?1, 0, ?2)
+             ON CONFLICT (product_id) DO UPDATE SET publish = 0, updated_at = excluded.updated_at",
+            params![local_id, now],
+        )?;
+    } else {
+        tx.execute(
+            "INSERT INTO cloud_publish (product_id, publish, online_status, updated_at) VALUES (?1, 1, ?2, ?3)
+             ON CONFLICT (product_id) DO UPDATE SET publish = 1, online_status = excluded.online_status",
+            params![local_id, if remote.status == "draft" { "draft" } else { "active" }, now],
+        )?;
+    }
+    store::map_put(
+        tx,
+        &link.store_id,
+        MapEntity::Product,
+        local_id,
+        &remote.id,
+        Some(&snapshot),
+        None,
+        now,
+    )?;
+    Ok(())
+}
+
+/// A local product for an online one: its name in the store's language, its SKU, its price in
+/// the shop's price mode.
+fn online_input(
+    link: &CloudLink,
+    rate: &crate::catalog::tax_rates::TaxRate,
+    mode: PriceMode,
+    remote: &RemoteProduct,
+) -> ProductInput {
+    let mut input = ProductInput::simple(
+        &remote.name,
+        crate::catalog::UNIT_PIECE_ID,
+        &rate.id,
+        shop_price(mode, rate.rate_bp, remote.pricing.price.0),
+    );
+    if link.store_language == crate::lang::Lang::Ar {
+        input.name_ar = remote.name.clone();
+        input.name_fr = String::new();
+    }
+    input.reference = remote.sku().map(str::to_owned);
+    input
+}
+
+/// An online price (TTC) in the shop's price mode.
+fn shop_price(mode: PriceMode, rate: Rate, online: Money) -> Money {
+    match mode {
+        PriceMode::Ttc => online,
+        PriceMode::Ht => online
+            .mul_div(10_000, 10_000 + i64::from(rate.0))
+            .unwrap_or(online),
+    }
+}
+
+enum FamilyImport {
+    Imported,
+    Matched,
+    /// Mapped already: its children were brought in line.
+    Known,
+    Skipped,
+}
+
+/// One online family: a new model and its children, or the shop's model with the same reference
+/// (its children matched by their values), or the mapped model brought in line.
+#[allow(clippy::too_many_arguments)]
+fn import_family(
+    tx: &Transaction<'_>,
+    link: &CloudLink,
+    actor: &Actor,
+    mode: PriceMode,
+    rate: &crate::catalog::tax_rates::TaxRate,
+    remote: &RemoteProduct,
+    family: &RemoteVariants,
+    now: i64,
+) -> Result<FamilyImport, AppError> {
+    let local = match local_product(tx, link, remote.external_id.as_deref(), Some(&remote.id))? {
+        Some(id) => Some((products::get(tx, &id)?, FamilyImport::Known)),
+        None => match remote.sku() {
+            Some(sku) => tx
+                .query_row(
+                    "SELECT id FROM products WHERE reference = ?1 AND archived_at IS NULL",
+                    [sku],
+                    |r| r.get::<_, String>(0),
+                )
+                .optional()?
+                .map(|id| products::get(tx, &id).map(|p| (p, FamilyImport::Matched)))
+                .transpose()?,
+            None => None,
+        },
+    };
+    let (parent, outcome) = match local {
+        Some((parent, _)) if parent.kind != ProductKind::VariantParent => {
+            tracing::info!(target: "cloud", kind = parent.kind.as_str(),
+                "an online family whose product here is not a variant model; left out");
+            return Ok(FamilyImport::Skipped);
+        }
+        Some(found) => found,
+        None => {
+            let mut input = online_input(link, rate, mode, remote);
+            input.kind = ProductKind::VariantParent;
+            input.track_stock = false;
+            let parent = products::create(tx, actor, input.clone()).or_else(|e| {
+                if e.code() == "reference_taken" {
+                    products::create(
+                        tx,
+                        actor,
+                        ProductInput {
+                            reference: None,
+                            ..input
+                        },
+                    )
+                } else {
+                    Err(e)
+                }
+            })?;
+            (parent, FamilyImport::Imported)
+        }
+    };
+    reconcile_children(tx, link, actor, &parent, &remote.id, family, false, now)?;
+    if !matches!(outcome, FamilyImport::Known) {
+        adopt(tx, link, remote, &parent.id, now)?;
+    }
+    Ok(outcome)
+}
+
+/// Brings the children of a mapped model in line with its online items: a key not mapped yet
+/// adopts the shop's child with the same values or becomes a new child, a mapped key takes a
+/// changed online price only with `prices_pull` in a TTC shop, and a key gone online keeps its
+/// child and loses its map row. Gives the number of children created or repriced.
+#[allow(clippy::too_many_arguments)]
+fn reconcile_children(
+    tx: &Transaction<'_>,
+    link: &CloudLink,
+    actor: &Actor,
+    parent: &Product,
+    remote_id: &str,
+    family: &RemoteVariants,
+    prices_pull: bool,
+    now: i64,
+) -> Result<usize, AppError> {
+    let mode = crate::company::get(tx)?
+        .ok_or_else(|| AppError::conflict("setup_required"))?
+        .price_mode;
+    let mapped = super::variants::map_children(tx, &link.store_id, &parent.id)?;
+    let own: Vec<(String, String)> = {
+        let mut stmt = tx.prepare(
+            "SELECT id FROM products WHERE parent_id = ?1 AND archived_at IS NULL ORDER BY rowid",
+        )?;
+        let ids = stmt
+            .query_map([&parent.id], |r| r.get::<_, String>(0))?
+            .collect::<Result<Vec<_>, _>>()?;
+        ids.into_iter()
+            .map(|id| {
+                let key = super::variants::variant_key(&super::variants::attributes_of(tx, &id)?);
+                Ok((key, id))
+            })
+            .collect::<Result<_, AppError>>()?
+    };
+    let mut changed = 0;
+    for item in &family.items {
+        let known = mapped.iter().find(|r| r.variant_key == item.key);
+        let local_id = match (known, own.iter().find(|(key, _)| *key == item.key)) {
+            (Some(row), _) => {
+                if prices_pull && mode == PriceMode::Ttc && row.price_online != Some(item.price.0) {
+                    let level = crate::catalog::price_levels::default_level(tx)?;
+                    products::set_price(tx, actor, &row.local_id, &level.id, item.price.0)?;
+                    changed += 1;
+                }
+                row.local_id.clone()
+            }
+            (None, Some((_, id))) => id.clone(),
+            (None, None) => {
+                changed += 1;
+                create_child(tx, link, actor, parent, family, item, mode, now)?
+            }
+        };
+        super::variants::map_put(
+            tx,
+            &link.store_id,
+            &super::variants::VariantMapRow {
+                local_id,
+                parent_id: parent.id.clone(),
+                remote_product_id: remote_id.to_owned(),
+                variant_key: item.key.clone(),
+                price_online: Some(item.price.0),
+                updated_at: now,
+            },
+        )?;
+    }
+    for gone in mapped
+        .iter()
+        .filter(|r| !family.items.iter().any(|i| i.key == r.variant_key))
+    {
+        tracing::info!(target: "cloud", key = %gone.variant_key,
+            "a variant gone online keeps its product here, unmapped");
+        super::variants::map_forget(tx, &link.store_id, &gone.local_id)?;
+    }
+    Ok(changed)
+}
+
+/// A child for an online item, made as `variants::generate` makes one: the model's name and the
+/// item's values in axis order, the online SKU (else a generated reference) and barcode (a taken
+/// one is left out), the online price, the axis values as attributes, the online stock as opening
+/// stock and as the confirmed baseline when the item has one.
+#[allow(clippy::too_many_arguments)]
+fn create_child(
+    tx: &Transaction<'_>,
+    link: &CloudLink,
+    actor: &Actor,
+    parent: &Product,
+    family: &RemoteVariants,
+    item: &RemoteVariantItem,
+    mode: PriceMode,
+    now: i64,
+) -> Result<String, AppError> {
+    let values: Vec<String> = family
+        .axes
+        .iter()
+        .filter_map(|a| item.attributes.get(&a.name).cloned())
+        .collect();
+    let generated = || -> Result<Option<String>, AppError> {
+        match &parent.reference {
+            Some(r) => Ok(Some(crate::catalog::variants::reference(tx, r, &values)?)),
+            None => Ok(None),
+        }
+    };
+    let mut input = ProductInput::from(parent);
+    input.kind = ProductKind::Variant;
+    input.parent_id = Some(parent.id.clone());
+    input.track_stock = true;
+    input.name_ar = crate::catalog::variants::named(&parent.name_ar, &values)?;
+    input.name_fr = crate::catalog::variants::named(&parent.name_fr, &values)?;
+    input.name_en = crate::catalog::variants::named(&parent.name_en, &values)?;
+    input.sell_price = shop_price(mode, parent.tax_rate_bp, item.price.0);
+    input.plu = None;
+    input.image = None;
+    input.components = Vec::new();
+    input.reference = match item.sku.as_deref().map(str::trim).filter(|s| !s.is_empty()) {
+        Some(sku) => Some(sku.to_owned()),
+        None => generated()?,
+    };
+    input.barcodes = item
+        .barcode
+        .as_deref()
+        .map(str::trim)
+        .filter(|b| !b.is_empty())
+        .map(|b| {
+            vec![Barcode {
+                barcode: b.to_owned(),
+                pack_qty: Qty::ONE,
+                label: None,
+            }]
+        })
+        .unwrap_or_default();
+    let child = match products::create(tx, actor, input.clone()) {
+        Err(e)
+            if matches!(
+                e.code().as_str(),
+                "barcode_taken" | "barcode_invalid" | "reference_taken"
+            ) =>
+        {
+            products::create(
+                tx,
+                actor,
+                ProductInput {
+                    barcodes: Vec::new(),
+                    reference: generated()?,
+                    ..input
+                },
+            )?
+        }
+        other => other?,
+    };
+    crate::catalog::extras::set_quiet(
+        tx,
+        &child.id,
+        crate::catalog::extras::ProductExtrasInput {
+            attributes: item.attributes.clone(),
+            ..crate::catalog::extras::ProductExtrasInput::default()
+        },
+    )?;
+    if let Some(pieces) = item.stock.filter(|q| *q > 0) {
+        crate::stock::adjust(
+            tx,
+            actor,
+            crate::stock::AdjustInput {
+                product_id: child.id.clone(),
+                location_id: None,
+                qty_delta: Qty(pieces.saturating_mul(1_000)),
+                reason: crate::stock::AdjustReason::Opening,
+                unit_cost: None,
+                note: None,
+            },
+            now,
+        )?;
+    }
+    if let Some(stock) = item.stock {
+        tx.execute(
+            "INSERT INTO cloud_stock (store_id, product_id, confirmed, updated_at) VALUES (?1, ?2, ?3, ?4)
+             ON CONFLICT (store_id, product_id) DO UPDATE SET confirmed = excluded.confirmed",
+            params![link.store_id, child.id, stock.max(0), now],
+        )?;
+    }
+    Ok(child.id)
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Type)]
@@ -2379,6 +2776,566 @@ mod tests {
                 .read(move |c| crate::stock::on_hand(c, &id))
                 .unwrap(),
             crate::money::Qty(8_000)
+        );
+    }
+
+    // Variant families (contract v1.12): the import and the feed.
+
+    fn import_items(shop: &Shop, link: &CloudLink, items: serde_json::Value) -> ImportReport {
+        let dz = MockDz::start();
+        dz.mount(Mock::given(path("/v1/products")).respond_with(ok(
+            json!({ "items": items, "next_cursor": null, "has_more": false }),
+        )));
+        let remote = remote_for_test(&dz, link, ManualClock::at(NOON));
+        let settings = shop.db.read(cloud_settings).unwrap();
+        import_online(&ctx(shop, link, &remote, &settings)).unwrap()
+    }
+
+    /// Shoes in sizes: (size, barcode, price in dinars, online stock) per item.
+    fn shoes(sizes: &[(&str, &str, i64, Option<i64>)]) -> serde_json::Value {
+        let items: Vec<serde_json::Value> = sizes
+            .iter()
+            .map(|(size, barcode, price, stock)| {
+                json!({ "key": format!("taille={size}"), "external_id": null, "sku": format!("SHOE-1-{size}"),
+                        "barcode": barcode, "price": price, "attributes": { "Taille": size }, "stock": stock,
+                        "active": true })
+            })
+            .collect();
+        json!({ "id": 10, "name": "حذاء", "sku": "SHOE-1", "pricing": { "price": 6000 }, "status": "active",
+                "has_variants": true, "variants": {
+                    "axes": [{ "name": "Taille", "values": sizes.iter().map(|s| s.0).collect::<Vec<_>>() }],
+                    "stock_mode": "variant", "items": items } })
+    }
+
+    /// A T-shirt in two colours by two sizes, the white M without online stock.
+    fn shirts(colours: &[&str]) -> serde_json::Value {
+        let mut items = Vec::new();
+        for colour in colours {
+            for size in ["S", "M"] {
+                let stock = if *colour == "Blanc" && size == "M" {
+                    None
+                } else {
+                    Some(2)
+                };
+                items.push(json!({
+                    "key": format!("couleur={}|taille={}", colour.to_lowercase(), size.to_lowercase()),
+                    "sku": null, "barcode": null, "price": 1500, "stock": stock,
+                    "attributes": { "Couleur": colour, "Taille": size }
+                }));
+            }
+        }
+        json!({ "id": 20, "name": "قميص", "sku": "TS01", "pricing": { "price": 1500 }, "status": "active",
+                "has_variants": true, "variants": {
+                    "axes": [{ "name": "Couleur", "values": colours }, { "name": "Taille", "values": ["S", "M"] }],
+                    "stock_mode": "variant", "items": items } })
+    }
+
+    /// The children of the local product referenced `reference`: (id, name, reference, price,
+    /// on hand in pieces), by reference.
+    fn children_of(
+        shop: &Shop,
+        reference: &'static str,
+    ) -> Vec<(String, String, Option<String>, i64, i64)> {
+        shop.db
+            .read(move |c| {
+                let mut stmt = c.prepare(
+                    "SELECT p.id, p.name_ar, p.reference, p.sell_price FROM products p
+                     JOIN products parent ON parent.id = p.parent_id
+                     WHERE parent.reference = ?1 AND p.kind = 'variant' ORDER BY p.rowid",
+                )?;
+                let rows = stmt
+                    .query_map([reference], |r| {
+                        Ok((r.get(0)?, r.get(1)?, r.get(2)?, r.get(3)?))
+                    })?
+                    .collect::<Result<Vec<(String, String, Option<String>, i64)>, _>>()?;
+                rows.into_iter()
+                    .map(|(id, name, reference, price)| {
+                        let pieces = crate::stock::on_hand(c, &id)?.0 / 1_000;
+                        Ok((id, name, reference, price, pieces))
+                    })
+                    .collect()
+            })
+            .unwrap()
+    }
+
+    fn parent_id(shop: &Shop, reference: &'static str) -> String {
+        shop.db
+            .read(move |c| {
+                Ok(c.query_row(
+                    "SELECT id FROM products WHERE reference = ?1 AND kind = 'variant_parent'",
+                    [reference],
+                    |r| r.get(0),
+                )?)
+            })
+            .unwrap()
+    }
+
+    fn mapped_keys(shop: &Shop, parent: &str) -> Vec<(String, String, Option<Money>)> {
+        let parent = parent.to_owned();
+        shop.db
+            .read(move |c| crate::cloud::variants::map_children(c, "141", &parent))
+            .unwrap()
+            .into_iter()
+            .map(|r| (r.variant_key, r.local_id, r.price_online))
+            .collect()
+    }
+
+    #[test]
+    fn the_variants_block_reads_tolerantly() {
+        let read = |variants: &str| -> RemoteProduct {
+            serde_json::from_str(&format!(
+                r#"{{"id": 1, "name": "x", "pricing": {{"price": 10}}, "status": "active", "has_variants": true, "variants": {variants}}}"#
+            ))
+            .unwrap()
+        };
+        assert!(read("null").variants.is_none());
+        assert!(read(r#""oops""#).variants.is_none(), "garbage is no family");
+        assert!(read(r#"{"axes": 3}"#).variants.is_none());
+        let family = read(
+            r#"{"axes": [{"name": "Taille", "values": ["41"]}], "stock_mode": "none", "later": 1,
+                "items": [{"key": "taille=41", "price": "4500.50", "attributes": {"Taille": "41"}, "stock": null}]}"#,
+        )
+        .variants
+        .unwrap();
+        let item = &family.items[0];
+        assert_eq!(
+            (item.price.0, item.stock, item.active, item.sku.as_deref()),
+            (Money(450_050), None, true, None),
+            "an unknown field is ignored, absent fields take their defaults"
+        );
+    }
+
+    #[test]
+    fn a_one_axis_family_is_imported_as_a_parent_and_its_children() {
+        let (shop, link) = linked_shop();
+        let report = import_items(
+            &shop,
+            &link,
+            json!([
+                shoes(&[
+                    ("40", "6130000000401", 6000, Some(3)),
+                    ("41", "6130000000418", 6500, Some(0))
+                ]),
+                { "id": 2, "name": "حقيبة", "sku": "SAC-1", "pricing": { "price": 4500 }, "status": "active",
+                  "has_variants": false, "variants": null }
+            ]),
+        );
+        assert_eq!(
+            report,
+            ImportReport {
+                imported: 2,
+                matched: 0,
+                skipped_variants: 0
+            }
+        );
+        let parent = parent_id(&shop, "SHOE-1");
+        let id = parent.clone();
+        let model = shop
+            .db
+            .read(move |c| crate::catalog::products::get(c, &id))
+            .unwrap();
+        assert_eq!(
+            (
+                model.name_ar.as_str(),
+                model.sell_price,
+                model.track_stock,
+                model.barcodes.len()
+            ),
+            ("حذاء", Money(600_000), false, 0),
+            "the model holds no stock and no barcode"
+        );
+        let children = children_of(&shop, "SHOE-1");
+        let shown: Vec<(&str, Option<&str>, i64, i64)> = children
+            .iter()
+            .map(|(_, name, reference, price, pieces)| {
+                (name.as_str(), reference.as_deref(), *price, *pieces)
+            })
+            .collect();
+        assert_eq!(
+            shown,
+            [
+                ("حذاء 40", Some("SHOE-1-40"), 600_000, 3),
+                ("حذاء 41", Some("SHOE-1-41"), 650_000, 0)
+            ]
+        );
+        let first = children[0].0.clone();
+        let (barcodes, attributes) = shop
+            .db
+            .read(move |c| {
+                let p = crate::catalog::products::get(c, &first)?;
+                Ok((
+                    p.barcodes,
+                    crate::cloud::variants::attributes_of(c, &first)?,
+                ))
+            })
+            .unwrap();
+        assert_eq!(
+            barcodes,
+            [Barcode {
+                barcode: "6130000000401".into(),
+                pack_qty: Qty::ONE,
+                label: None
+            }]
+        );
+        assert_eq!(attributes["Taille"], "40");
+        assert_eq!(
+            shop.count("SELECT COUNT(*) FROM cloud_stock WHERE product_id IN (SELECT id FROM products WHERE kind = 'variant')"),
+            2
+        );
+        assert_eq!(
+            shop.count("SELECT confirmed FROM cloud_stock WHERE product_id IN (SELECT id FROM products WHERE reference = 'SHOE-1-40')"),
+            3
+        );
+        assert_eq!(
+            mapped_keys(&shop, &parent),
+            [
+                (
+                    "taille=40".to_owned(),
+                    children[0].0.clone(),
+                    Some(Money(600_000))
+                ),
+                (
+                    "taille=41".to_owned(),
+                    children[1].0.clone(),
+                    Some(Money(650_000))
+                )
+            ]
+        );
+        let id = parent.clone();
+        assert_eq!(
+            shop.db
+                .read(move |c| store::map_get(c, "141", MapEntity::Product, &id))
+                .unwrap()
+                .unwrap()
+                .remote_id,
+            "10"
+        );
+        assert_eq!(
+            shop.count("SELECT COUNT(*) FROM cloud_publish WHERE publish = 1 AND product_id IN (SELECT id FROM products WHERE kind = 'variant_parent')"),
+            1
+        );
+        assert_eq!(
+            shop.count("SELECT COUNT(*) FROM cloud_publish WHERE product_id IN (SELECT id FROM products WHERE kind = 'variant')"),
+            0,
+            "the children go online with their parent"
+        );
+    }
+
+    #[test]
+    fn a_two_axis_family_imports_once_and_a_key_gone_online_keeps_its_child() {
+        let (shop, link) = linked_shop();
+        let page = json!([shirts(&["Noir", "Blanc"])]);
+        assert_eq!(import_items(&shop, &link, page.clone()).imported, 1);
+        let children = children_of(&shop, "TS01");
+        let names: Vec<(&str, Option<&str>)> = children
+            .iter()
+            .map(|(_, name, reference, ..)| (name.as_str(), reference.as_deref()))
+            .collect();
+        assert_eq!(
+            names,
+            [
+                ("قميص Noir S", Some("TS01-NOIR-S")),
+                ("قميص Noir M", Some("TS01-NOIR-M")),
+                ("قميص Blanc S", Some("TS01-BLANC-S")),
+                ("قميص Blanc M", Some("TS01-BLANC-M"))
+            ],
+            "the values in axis order; no online SKU: the generated reference"
+        );
+        assert_eq!(
+            shop.count("SELECT COUNT(*) FROM cloud_stock WHERE product_id IN (SELECT id FROM products WHERE kind = 'variant')"),
+            3,
+            "the white M has no online stock to follow"
+        );
+        assert_eq!(
+            import_items(&shop, &link, page),
+            ImportReport::default(),
+            "the same page again"
+        );
+        assert_eq!(
+            shop.count("SELECT COUNT(*) FROM products WHERE kind = 'variant'"),
+            4
+        );
+        // the white is gone online
+        import_items(&shop, &link, json!([shirts(&["Noir"])]));
+        assert_eq!(children_of(&shop, "TS01").len(), 4, "every child stays");
+        let parent = parent_id(&shop, "TS01");
+        let keys: Vec<String> = mapped_keys(&shop, &parent)
+            .into_iter()
+            .map(|(key, ..)| key)
+            .collect();
+        assert_eq!(keys, ["couleur=noir|taille=m", "couleur=noir|taille=s"]);
+    }
+
+    #[test]
+    fn a_local_family_is_matched_by_its_reference_and_its_children_by_their_values() {
+        let (shop, link) = linked_shop();
+        let mut model = crate::catalog::products::ProductInput::simple(
+            "T-shirt",
+            crate::catalog::UNIT_PIECE_ID,
+            &shop.tva19,
+            Money(150_000),
+        );
+        model.kind = crate::catalog::products::ProductKind::VariantParent;
+        model.track_stock = false;
+        model.reference = Some("TS01".into());
+        let model = shop.product_with(model);
+        let (actor, id) = (shop.owner.actor(), model.id.clone());
+        shop.db
+            .write(move |tx| {
+                crate::catalog::variants::generate(
+                    tx,
+                    &actor,
+                    &id,
+                    crate::catalog::variants::VariantsInput {
+                        axes: vec![
+                            crate::catalog::variants::VariantAxis {
+                                name: "Taille".into(),
+                                values: vec!["S".into(), "M".into()],
+                            },
+                            crate::catalog::variants::VariantAxis {
+                                name: "Couleur".into(),
+                                values: vec!["Noir".into()],
+                            },
+                        ],
+                        sell_price: None,
+                        cost_price: None,
+                        internal_barcodes: false,
+                    },
+                )
+            })
+            .unwrap();
+        let report = import_items(&shop, &link, json!([shirts(&["Noir", "Blanc"])]));
+        assert_eq!(
+            report,
+            ImportReport {
+                imported: 0,
+                matched: 1,
+                skipped_variants: 0
+            }
+        );
+        assert_eq!(
+            shop.count("SELECT COUNT(*) FROM products WHERE kind = 'variant'"),
+            4,
+            "the two black ones are the shop's, the two white ones are new"
+        );
+        assert_eq!(mapped_keys(&shop, &model.id).len(), 4);
+    }
+
+    #[test]
+    fn a_family_this_version_cannot_take_is_skipped_and_the_page_goes_on() {
+        let (shop, link) = linked_shop();
+        let four_axes: Vec<serde_json::Value> = ["A", "B", "C", "D"]
+            .iter()
+            .map(|a| json!({ "name": a, "values": ["1"] }))
+            .collect();
+        // more than the till's 200 combinations
+        let too_many: Vec<serde_json::Value> = (0..201)
+            .map(|n| json!({ "key": format!("n={n}"), "price": 100, "attributes": { "N": n.to_string() } }))
+            .collect();
+        let report = import_items(
+            &shop,
+            &link,
+            json!([
+                { "id": 31, "name": "a", "pricing": { "price": 100 }, "status": "active", "has_variants": true,
+                  "variants": { "axes": "garbage" } },
+                { "id": 32, "name": "b", "pricing": { "price": 100 }, "status": "active", "has_variants": true,
+                  "variants": { "axes": four_axes, "stock_mode": "none", "items": [
+                      { "key": "a=1|b=1|c=1|d=1", "price": 100, "attributes": { "A": "1", "B": "1", "C": "1", "D": "1" } }
+                  ] } },
+                { "id": 33, "name": "c", "pricing": { "price": 100 }, "status": "active", "has_variants": true,
+                  "variants": { "axes": [{ "name": "Taille", "values": [] }], "stock_mode": "none", "items": [] } },
+                { "id": 34, "name": "d", "pricing": { "price": 100 }, "status": "active", "has_variants": true },
+                { "id": 36, "name": "f", "pricing": { "price": 100 }, "status": "active", "has_variants": true,
+                  "variants": { "axes": [{ "name": "N", "values": [] }], "stock_mode": "none", "items": too_many } },
+                { "id": 35, "name": "e", "sku": "E-1", "pricing": { "price": 100 }, "status": "active", "has_variants": false }
+            ]),
+        );
+        assert_eq!(
+            report,
+            ImportReport {
+                imported: 1,
+                matched: 0,
+                skipped_variants: 5
+            }
+        );
+        assert_eq!(
+            shop.count("SELECT COUNT(*) FROM products WHERE kind != 'simple'"),
+            0
+        );
+    }
+
+    fn feed(
+        shop: &Shop,
+        link: &CloudLink,
+        dz: &MockDz,
+        events: serde_json::Value,
+        cursor: &str,
+    ) -> PullReport {
+        let remote = remote_for_test(dz, link, ManualClock::at(NOON));
+        let settings = shop.db.read(cloud_settings).unwrap();
+        apply_events(&ctx(shop, link, &remote, &settings), &page(events, cursor)).unwrap()
+    }
+
+    #[test]
+    fn a_family_updated_online_gets_its_new_children_and_prices() {
+        let (shop, link) = linked_shop();
+        shop.set("cloud.prices.pull", json!(true));
+        import_items(
+            &shop,
+            &link,
+            json!([shoes(&[("40", "6130000000401", 6000, Some(3))])]),
+        );
+        let dz = MockDz::start();
+        dz.mount(
+            Mock::given(path("/v1/products/10")).respond_with(ok(shoes(&[
+                ("40", "6130000000401", 6200, Some(3)),
+                ("42", "6130000000425", 6000, Some(5)),
+            ]))),
+        );
+        let report = feed(
+            &shop,
+            &link,
+            &dz,
+            json!([{ "id": "u1", "type": "product.updated", "data": { "id": 10 } }]),
+            "c1",
+        );
+        assert_eq!(report.products, 1);
+        let shown: Vec<(String, i64, i64)> = children_of(&shop, "SHOE-1")
+            .into_iter()
+            .map(|(_, name, _, price, pieces)| (name, price, pieces))
+            .collect();
+        assert_eq!(
+            shown,
+            [
+                ("حذاء 40".to_owned(), 620_000, 3),
+                ("حذاء 42".to_owned(), 600_000, 5)
+            ],
+            "the new size comes in with its stock; the online price follows (cloud.prices.pull)"
+        );
+        let parent = parent_id(&shop, "SHOE-1");
+        assert_eq!(mapped_keys(&shop, &parent).len(), 2);
+    }
+
+    #[test]
+    fn a_simple_product_that_became_a_family_online_is_left_alone() {
+        let dz = MockDz::start();
+        let (shop, link) = linked_shop();
+        let bag = shop.product("Sac", Money(450_000), &shop.tva19);
+        pushed(&shop, &bag.id, "Sac", 450_000);
+        let mut family = shoes(&[("40", "6130000000401", 6000, Some(3))]);
+        family["id"] = json!(88121);
+        family["name"] = json!("Sac cuir");
+        dz.mount(Mock::given(path("/v1/products/88121")).respond_with(ok(family)));
+        let report = feed(
+            &shop,
+            &link,
+            &dz,
+            json!([{ "id": "u2", "type": "product.updated", "data": { "id": 88121 } }]),
+            "c2",
+        );
+        assert_eq!(report.products, 0);
+        let id = bag.id.clone();
+        let now = shop
+            .db
+            .read(move |c| crate::catalog::products::get(c, &id))
+            .unwrap();
+        assert_eq!(
+            (now.name_ar.as_str(), now.kind),
+            ("", crate::catalog::products::ProductKind::Simple),
+            "the owner turns it into a family by hand"
+        );
+        assert_eq!(
+            shop.count("SELECT COUNT(*) FROM products WHERE kind = 'variant'"),
+            0
+        );
+    }
+
+    #[test]
+    fn a_stock_event_of_a_variant_moves_the_child_and_the_parent_level_one_is_ignored() {
+        let (shop, link) = linked_shop();
+        import_items(
+            &shop,
+            &link,
+            json!([shoes(&[
+                ("40", "6130000000401", 6000, Some(3)),
+                ("41", "6130000000418", 6000, Some(0))
+            ])]),
+        );
+        let children = children_of(&shop, "SHOE-1");
+        let (forty, forty_one) = (children[0].0.clone(), children[1].0.clone());
+        let dz = MockDz::start();
+        let report = feed(
+            &shop,
+            &link,
+            &dz,
+            json!([
+                { "id": "s1", "type": "inventory.level_changed",
+                  "data": { "product_id": 10, "external_id": null, "variant_key": "taille=40",
+                            "variant_external_id": null, "old": 3, "new": 1, "source": "dashboard" } },
+                { "id": "s2", "type": "inventory.level_changed",
+                  "data": { "product_id": 10, "variant_key": "taille=41", "variant_external_id": forty_one,
+                            "old": 0, "new": 5, "source": "dashboard" } },
+                { "id": "s3", "type": "inventory.level_changed",
+                  "data": { "product_id": 10, "old": 6, "new": 4, "source": "dashboard" } }
+            ]),
+            "c3",
+        );
+        assert_eq!(report.stock_moves, 2);
+        let pieces: Vec<i64> = children_of(&shop, "SHOE-1")
+            .into_iter()
+            .map(|c| c.4)
+            .collect();
+        assert_eq!(pieces, [1, 5]);
+        let confirmed = |id: String| {
+            shop.db
+                .read(move |c| {
+                    Ok(c.query_row(
+                        "SELECT confirmed FROM cloud_stock WHERE product_id = ?1",
+                        [id],
+                        |r| r.get::<_, i64>(0),
+                    )?)
+                })
+                .unwrap()
+        };
+        assert_eq!((confirmed(forty), confirmed(forty_one)), (1, 5));
+        let parent = parent_id(&shop, "SHOE-1");
+        assert_eq!(
+            shop.db
+                .read(move |c| Ok(c.query_row(
+                    "SELECT COUNT(*) FROM stock_movements WHERE product_id = ?1",
+                    [parent],
+                    |r| r.get::<_, i64>(0)
+                )?))
+                .unwrap(),
+            0,
+            "the parent holds no stock"
+        );
+        assert_eq!(
+            shop.count(
+                "SELECT COUNT(*) FROM cloud_inbox WHERE event_id = 's3' AND outcome = 'ignored'"
+            ),
+            1
+        );
+    }
+
+    #[test]
+    fn a_family_imported_in_an_ht_shop_takes_its_prices_ht() {
+        let (shop, link) = linked_ht_shop();
+        import_items(
+            &shop,
+            &link,
+            json!([shoes(&[("40", "6130000000401", 5950, None)])]),
+        );
+        let id = parent_id(&shop, "SHOE-1");
+        let model = shop
+            .db
+            .read(move |c| crate::catalog::products::get(c, &id))
+            .unwrap();
+        let child = &children_of(&shop, "SHOE-1")[0];
+        assert_eq!(
+            (model.sell_price, child.3),
+            (Money(504_202), 500_000),
+            "6000 and 5950 TTC at 19 %"
         );
     }
 }

@@ -96,7 +96,7 @@ fn slug(values: &[String]) -> String {
 
 /// The model's name followed by the values. Too long for a product name is the axes' fault
 /// (`axes` / `too_long`), not a name error on a field the variants form does not show.
-fn named(base: &str, values: &[String]) -> Result<String, AppError> {
+pub(crate) fn named(base: &str, values: &[String]) -> Result<String, AppError> {
     if base.is_empty() {
         return Ok(String::new());
     }
@@ -125,7 +125,11 @@ fn cut(text: &str, max: usize) -> String {
 /// values leave nothing to slug, such as Arabic values), cut to `CODE_MAX`, then `-2`, `-3`, …
 /// while it is taken. Variants made earlier in the same call are already rows of this
 /// transaction, so one lookup covers both.
-fn reference(tx: &Transaction<'_>, model: &str, values: &[String]) -> Result<String, AppError> {
+pub(crate) fn reference(
+    tx: &Transaction<'_>,
+    model: &str,
+    values: &[String],
+) -> Result<String, AppError> {
     let s = slug(values);
     let stem = if s.is_empty() {
         model.to_owned()
