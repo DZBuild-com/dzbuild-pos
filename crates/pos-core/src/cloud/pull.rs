@@ -1578,8 +1578,8 @@ fn reconcile_children(
 
 /// A child for an online item, made as `variants::generate` makes one: the model's name and the
 /// item's values in axis order, the online SKU (else a generated reference) and barcode (a taken
-/// one is left out), the online price, the axis values as attributes, the online stock as opening
-/// stock and as the confirmed baseline when the item has one.
+/// one is left out), the online price, the axis values as attributes and, when the item has an
+/// online stock, stock tracking with it as opening stock and as the confirmed baseline.
 #[allow(clippy::too_many_arguments)]
 fn create_child(
     tx: &Transaction<'_>,
@@ -1605,7 +1605,8 @@ fn create_child(
     let mut input = ProductInput::from(parent);
     input.kind = ProductKind::Variant;
     input.parent_id = Some(parent.id.clone());
-    input.track_stock = true;
+    // no stock online (`stock_mode` none): none kept here either, so no push the platform refuses
+    input.track_stock = item.stock.is_some();
     input.name_ar = crate::catalog::variants::named(&parent.name_ar, &values)?;
     input.name_fr = crate::catalog::variants::named(&parent.name_fr, &values)?;
     input.name_en = crate::catalog::variants::named(&parent.name_en, &values)?;
@@ -2858,6 +2859,23 @@ mod tests {
             .unwrap()
     }
 
+    /// (reference, tracks stock, has a `cloud_stock` row) of the variants, by reference.
+    fn tracking(shop: &Shop) -> Vec<(String, bool, bool)> {
+        shop.db
+            .read(|c| {
+                let mut stmt = c.prepare(
+                    "SELECT p.reference, p.track_stock,
+                            EXISTS (SELECT 1 FROM cloud_stock s WHERE s.product_id = p.id)
+                     FROM products p WHERE p.kind = 'variant' ORDER BY p.reference",
+                )?;
+                let rows = stmt
+                    .query_map([], |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?)))?
+                    .collect::<Result<Vec<_>, _>>()?;
+                Ok(rows)
+            })
+            .unwrap()
+    }
+
     fn parent_id(shop: &Shop, reference: &'static str) -> String {
         shop.db
             .read(move |c| {
@@ -2914,7 +2932,8 @@ mod tests {
             json!([
                 shoes(&[
                     ("40", "6130000000401", 6000, Some(3)),
-                    ("41", "6130000000418", 6500, Some(0))
+                    ("41", "6130000000418", 6500, Some(0)),
+                    ("42", "6130000000425", 6500, None)
                 ]),
                 { "id": 2, "name": "حقيبة", "sku": "SAC-1", "pricing": { "price": 4500 }, "status": "active",
                   "has_variants": false, "variants": null }
@@ -2955,8 +2974,18 @@ mod tests {
             shown,
             [
                 ("حذاء 40", Some("SHOE-1-40"), 600_000, 3),
-                ("حذاء 41", Some("SHOE-1-41"), 650_000, 0)
+                ("حذاء 41", Some("SHOE-1-41"), 650_000, 0),
+                ("حذاء 42", Some("SHOE-1-42"), 650_000, 0)
             ]
+        );
+        assert_eq!(
+            tracking(&shop),
+            [
+                ("SHOE-1-40".to_owned(), true, true),
+                ("SHOE-1-41".to_owned(), true, true),
+                ("SHOE-1-42".to_owned(), false, false)
+            ],
+            "no online stock: no stock kept here, nothing to push"
         );
         let first = children[0].0.clone();
         let (barcodes, attributes) = shop
@@ -2997,6 +3026,11 @@ mod tests {
                 (
                     "taille=41".to_owned(),
                     children[1].0.clone(),
+                    Some(Money(650_000))
+                ),
+                (
+                    "taille=42".to_owned(),
+                    children[2].0.clone(),
                     Some(Money(650_000))
                 )
             ]
@@ -3045,6 +3079,15 @@ mod tests {
             shop.count("SELECT COUNT(*) FROM cloud_stock WHERE product_id IN (SELECT id FROM products WHERE kind = 'variant')"),
             3,
             "the white M has no online stock to follow"
+        );
+        assert_eq!(
+            tracking(&shop),
+            [
+                ("TS01-BLANC-M".to_owned(), false, false),
+                ("TS01-BLANC-S".to_owned(), true, true),
+                ("TS01-NOIR-M".to_owned(), true, true),
+                ("TS01-NOIR-S".to_owned(), true, true)
+            ]
         );
         assert_eq!(
             import_items(&shop, &link, page),
