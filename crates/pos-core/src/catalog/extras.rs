@@ -172,6 +172,8 @@ pub fn set_quiet(
     input: ProductExtrasInput,
 ) -> Result<ProductExtras, AppError> {
     let e = clean(tx, product_id, input)?;
+    let before = get(tx, product_id)?.attributes;
+    let now = now_ms();
     tx.execute(
         "INSERT INTO product_extras (product_id, brand, supplier_ref, alt_refs, tags, attributes,
              min_price, track_lots, track_serials, preferred_supplier_id, updated_at, warranty_months)
@@ -193,10 +195,17 @@ pub fn set_quiet(
             e.track_lots,
             e.track_serials,
             e.preferred_supplier_id,
-            now_ms(),
+            now,
             e.warranty_months
         ],
     )?;
+    if before != e.attributes {
+        // a variant's axis values go online inside its model's item, which follows product rows
+        tx.execute(
+            "UPDATE products SET updated_at = ?2 WHERE id = ?1",
+            params![product_id, now],
+        )?;
+    }
     products::refresh_search_text(tx, product_id)?;
     get(tx, product_id)
 }
