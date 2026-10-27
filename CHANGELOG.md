@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.2.0 — 2026-10-28
+
+One database migration (0010): the online variant map.
+
+### Features
+- **dzbuild**: a variant model goes online as one product with its sizes and colours; each variant carries its reference, barcode, price and stock, and a change to one of them sends the model again.
+- **dzbuild**: importing the online store's products brings the ones with variants as a model with its variants; products whose options are only add-ons, or that have more than three option groups, are still left aside.
+- **dzbuild**: stock per variant in both directions: a sale at the till lowers that variant online, an online order or a stock change on DZBuild lowers it at the till.
+- **dzbuild**: an online order line shows the exact size or colour sold, and fulfilling it at the till takes the stock of that variant.
+
 ## 1.1.0 — 2026-10-10
 
 No database change.

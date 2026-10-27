@@ -1,0 +1,20 @@
+{
+  "fr": [
+    "Boutique en ligne : les produits à déclinaisons sont publiés avec chaque taille et chaque couleur, leur référence, leur code-barres, leur prix et leur stock.",
+    "Boutique en ligne : l'import de vos produits en ligne reprend aussi ceux qui ont des tailles ou des couleurs, prêts à vendre à la caisse.",
+    "Boutique en ligne : une vente au magasin baisse le stock de cette taille ou de cette couleur en ligne, et une commande en ligne le baisse ici.",
+    "Boutique en ligne : une commande en ligne indique la taille ou la couleur exacte choisie par le client."
+  ],
+  "ar": [
+    "المتجر الإلكتروني: تُنشر المنتجات ذات المتغيرات بكل مقاس وكل لون، مع المرجع والرمز الشريطي والسعر والمخزون لكل منها.",
+    "المتجر الإلكتروني: استيراد منتجاتك من المتجر يجلب أيضًا المنتجات ذات المقاسات أو الألوان، جاهزة للبيع في الصندوق.",
+    "المتجر الإلكتروني: البيع في المحل يُنقص مخزون ذلك المقاس أو اللون على الإنترنت، والطلبية الواردة من الإنترنت تُنقصه هنا.",
+    "المتجر الإلكتروني: تُظهر الطلبية الواردة من الإنترنت المقاس أو اللون الذي اختاره الزبون بالضبط."
+  ],
+  "en": [
+    "Online store: products with sizes and colours are published with each size and colour, its reference, barcode, price and stock.",
+    "Online store: importing your online products now brings the ones with sizes or colours too, ready to sell at the till.",
+    "Online store: a sale in the shop lowers the stock of that size or colour online, and an online order lowers it here.",
+    "Online store: an online order shows the exact size or colour the customer chose."
+  ]
+}
