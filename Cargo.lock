@@ -1477,7 +1477,7 @@ checksum = "d0881ea181b1df73ff77ffaaf9c7544ecc11e82fba9b5f27b262a3c73a332555"
 
 [[package]]
 name = "dzbuild-pos"
-version = "1.1.0"
+version = "1.2.0"
 dependencies = [
  "base64 0.23.1",
  "crossbeam-channel",
@@ -4255,7 +4255,7 @@ dependencies = [
 
 [[package]]
 name = "pos-core"
-version = "1.1.0"
+version = "1.2.0"
 dependencies = [
  "aho-corasick",
  "argon2",
@@ -4293,7 +4293,7 @@ dependencies = [
 
 [[package]]
 name = "pos-docs"
-version = "1.1.0"
+version = "1.2.0"
 dependencies = [
  "calamine",
  "chardetng",
@@ -4317,7 +4317,7 @@ dependencies = [
 
 [[package]]
 name = "pos-hw"
-version = "1.1.0"
+version = "1.2.0"
 dependencies = [
  "barcoders",
  "base64 0.23.1",
@@ -4343,7 +4343,7 @@ dependencies = [
 
 [[package]]
 name = "pos-license"
-version = "1.1.0"
+version = "1.2.0"
 dependencies = [
  "base64 0.23.1",
  "ed25519-dalek",
@@ -4363,7 +4363,7 @@ dependencies = [
 
 [[package]]
 name = "pos-license-cli"
-version = "1.1.0"
+version = "1.2.0"
 dependencies = [
  "age",
  "ed25519-dalek",
@@ -4379,7 +4379,7 @@ dependencies = [
 
 [[package]]
 name = "pos-server"
-version = "1.1.0"
+version = "1.2.0"
 dependencies = [
  "axum",
  "crossbeam-channel",
