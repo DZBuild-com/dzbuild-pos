@@ -297,7 +297,7 @@
     "relinkTitle": "اربط من جديد",
     "relinkHelp": "اختر المتجر نفسه: يُرسل من جديد كل ما ينتظر.",
     "what": {
-      "catalogue": "تُنشر المنتجات التي تختارها على الإنترنت مع صورها.",
+      "catalogue": "تُنشر المنتجات التي تختارها على الإنترنت مع صورها ومقاساتها وألوانها.",
       "stock": "يبقى مخزون المحلّ ومخزون المتجر الإلكتروني متطابقين.",
       "sales": "تظهر مبيعات المحلّ وإقفالات الصندوق في لوحة تحكّم DZBuild.",
       "orders": "تصل الطلبيات الإلكترونية إلى الصندوق لتحضيرها."
@@ -412,7 +412,7 @@
     "cloud_request_invalid": "{{subject}}: رفض DZBuild \u200f{{count}} إرسال، انظر أدناه.",
     "cloud_event_unreadable": "تعذّر على هذا الإصدار قراءة تغيير أرسله DZBuild فتجاوزه. حدّث DZBuild POS.",
     "cloud_product_refused": "عُدّل «{{subject}}» على DZBuild لكن الصندوق لم يأخذ التعديل: صحّحه على DZBuild. السبب: {{reason}}",
-    "cloud_variant_refused": "رفض DZBuild \u200f{{count}} من متغيرات «{{product}}»: صحّحها في بطاقة المنتج وسيعيد الصندوق إرساله. السبب: {{reason}}",
+    "cloud_variant_refused": "لم يقبل DZBuild \u200f{{count}} من متغيرات «{{product}}». السبب: {{reason}}",
     "cloud_order_refused": "تعذّر تسجيل الطلبية {{subject}} الواردة من DZBuild في الصندوق: تحقّق منها على DZBuild. السبب: {{reason}}",
     "cloud_event_refused": "لم يتمكّن الصندوق من أخذ ما أرسله DZBuild ({{event}}). السبب: {{reason}}",
     "stock_double_applied": "خصم DZBuild أيضاً مخزون بيع تمّ في المحلّ: سيُعاد إرسال مخزون منتجاته."

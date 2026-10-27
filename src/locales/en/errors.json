@@ -81,6 +81,7 @@
   "payment_insufficient": "The payment does not cover the amount due (stamp duty included). Add the rest.",
   "stock_insufficient": "Not enough stock for some products. Lower the quantity or adjust the stock.",
   "stock_location_not_found": "This stock location does not exist or was archived.",
+  "variant_stock_mode": "On DZBuild this product keeps its stock per option. Switch it to stock per combination on DZBuild, then change one of its variants here so the till sends them again.",
   "product_not_stocked": "This product has no stock (a service, a model or a kit).",
   "stock_not_zero": "This product still has stock. Bring its stock to zero (count or stock-out) before archiving it or stopping stock tracking.",
   "product_archived": "This product is archived. Restore it before changing its stock.",
