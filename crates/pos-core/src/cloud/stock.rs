@@ -35,11 +35,14 @@ impl StockReason {
     }
 }
 
-/// One item of `POST /v1/inventory/adjustments/batch`.
+/// One item of `POST /v1/inventory/adjustments/batch`. A variant child goes under its parent
+/// (`target: "variant"`, the child's id in `variant_external_id`).
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct StockItem {
     pub product_external_id: String,
     pub target: String,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub variant_external_id: Option<String>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub set: Option<i64>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -57,10 +60,10 @@ pub enum ItemOutcome {
     Refused,
 }
 
-/// The online level of a product in whole pieces, or `None` when it has none online (a weight,
-/// an untracked product, a kit, a service).
+/// The online level of a product or a variant child in whole pieces, or `None` when it has none
+/// online (a weight, an untracked product, a variant model, a kit, a service).
 pub fn online_pieces(conn: &Connection, product: &Product) -> Result<Option<i64>, AppError> {
-    if !product.track_stock || product.unit_decimals != 0 || product.kind != ProductKind::Simple {
+    if !product.track_stock || product.unit_decimals != 0 || !product.kind.holds_stock() {
         return Ok(None);
     }
     let on_hand = crate::stock::on_hand(conn, &product.id)?;
@@ -143,9 +146,14 @@ pub fn plan(
         )?;
         r.confirmed = None;
     }
+    let (external_id, kind, variant) = match (product.kind, &product.parent_id) {
+        (ProductKind::Variant, Some(parent)) => (parent, "variant", Some(product.id.clone())),
+        _ => (&product.id, "product", None),
+    };
     let item = |set: Option<i64>, delta: Option<i64>| StockItem {
-        product_external_id: product.id.clone(),
-        target: "product".into(),
+        product_external_id: external_id.clone(),
+        target: kind.into(),
+        variant_external_id: variant.clone(),
         set,
         delta,
         reason,
@@ -176,7 +184,7 @@ pub fn plan(
 }
 
 /// DZBuild answered a batch: applied items move `confirmed`, refused ones release their share and
-/// request a reset.
+/// request a reset. A variant item settles its child.
 pub fn on_answer(
     tx: &Transaction<'_>,
     store: &str,
@@ -185,7 +193,10 @@ pub fn on_answer(
     now: i64,
 ) -> Result<(), AppError> {
     for (item, outcome) in items.iter().zip(outcomes) {
-        let id = &item.product_external_id;
+        let id = item
+            .variant_external_id
+            .as_ref()
+            .unwrap_or(&item.product_external_id);
         match (outcome, item.set, item.delta) {
             (ItemOutcome::Applied, Some(v), _) => tx.execute(
                 "UPDATE cloud_stock SET confirmed = ?3, set_in_flight = NULL, updated_at = ?4
@@ -295,6 +306,36 @@ mod tests {
             Just(Op::Plan),
             any::<bool>().prop_map(Op::Answer),
         ]
+    }
+
+    #[test]
+    fn a_simple_products_stock_item_keeps_its_shape() {
+        let (shop, link) = linked_shop();
+        let milk = shop.product("Lait", Money(10_000), &shop.tva19);
+        publish(&shop, &milk.id);
+        shop.stock_in(&milk.id, 3_000);
+        let (store, product) = (link.store_id.clone(), milk.clone());
+        let item = shop
+            .db
+            .write(move |tx| {
+                plan(
+                    tx,
+                    &store,
+                    &product,
+                    StockReason::Restock,
+                    "b1:0",
+                    Some("loc_1"),
+                )
+            })
+            .unwrap()
+            .unwrap();
+        assert_eq!(
+            serde_json::to_string(&item).unwrap(),
+            format!(
+                r#"{{"product_external_id":"{}","target":"product","set":3,"reason":"restock","ref":"b1:0","location_id":"loc_1"}}"#,
+                milk.id
+            )
+        );
     }
 
     proptest! {

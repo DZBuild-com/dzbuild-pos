@@ -6,7 +6,7 @@ use super::config::CloudConfig;
 use super::http::{ApiErrorBody, Call, CallError, Endpoint, Http, Lane, Reply};
 use super::oauth::{Metadata, RemoteStore};
 use super::tokens::TokenManager;
-use super::wire::{ApiTime, IdString, de_id};
+use super::wire::{ApiMoney, ApiTime, IdString, de_id};
 use crate::error::AppError;
 use serde::de::DeserializeOwned;
 use serde::{Deserialize, Serialize};
@@ -329,6 +329,23 @@ pub struct BatchItemAnswer {
     pub reference: Option<String>,
     #[serde(default)]
     pub status: Option<String>,
+    #[serde(default)]
+    pub error: Option<ApiErrorBody>,
+    /// A variant family's children as DZBuild answered them (v1.12).
+    #[serde(default)]
+    pub variants: Option<Vec<VariantAnswer>>,
+}
+
+#[derive(Debug, Clone, Deserialize)]
+pub struct VariantAnswer {
+    #[serde(default)]
+    pub external_id: Option<String>,
+    #[serde(default)]
+    pub key: Option<String>,
+    #[serde(default)]
+    pub status: Option<String>,
+    #[serde(default)]
+    pub price_online: Option<ApiMoney>,
     #[serde(default)]
     pub error: Option<ApiErrorBody>,
 }

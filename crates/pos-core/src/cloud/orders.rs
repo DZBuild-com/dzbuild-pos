@@ -102,6 +102,11 @@ pub struct RemoteOrderItem {
     pub variant_name: Option<String>,
     #[serde(default)]
     pub sku: Option<String>,
+    /// The variant child the line sold (v1.12): its local id, and its key under `product_id`.
+    #[serde(default)]
+    pub variant_external_id: Option<String>,
+    #[serde(default)]
+    pub variant_key: Option<String>,
     pub price: ApiMoney,
     pub quantity: i64,
     pub total: ApiMoney,
@@ -169,6 +174,16 @@ fn resolve_product(
     store_id: &str,
     item: &RemoteOrderItem,
 ) -> Result<Option<String>, AppError> {
+    if let Some(id) = item.variant_external_id.as_deref()
+        && products::get(conn, id).is_ok()
+    {
+        return Ok(Some(id.to_owned()));
+    }
+    if let (Some(remote), Some(key)) = (&item.product_id, item.variant_key.as_deref())
+        && let Some(child) = super::variants::map_local(conn, store_id, &remote.0, key)?
+    {
+        return Ok(Some(child));
+    }
     if let Some(id) = item.external_id.as_deref()
         && products::get(conn, id).is_ok()
     {

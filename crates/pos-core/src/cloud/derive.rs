@@ -5,6 +5,7 @@
 //! repeats nothing; every item's key is deterministic, so even a replayed feed adds no twin.
 
 use super::outbox::{self, NewItem, OutboxKind};
+use super::payloads;
 use super::stock::{self, StockItem, StockReason};
 use super::store::{self, CloudLink, CloudNoticeKind, CloudSettings, MapEntity};
 use crate::catalog::products::{self, Product, ProductKind};
@@ -46,7 +47,8 @@ impl OnlineStatus {
     }
 }
 
-/// `None`: the product stays home. Variant families are not published in M7 (deferred row).
+/// `None`: the product stays home. A variant model goes online with its live children inside its
+/// own item (wire contract v1.12); a child never has an item of its own.
 pub fn publish_decision(
     conn: &Connection,
     store_id: &str,
@@ -61,11 +63,15 @@ pub fn publish_decision(
         )
         .optional()?;
     let wanted = flag.as_ref().map_or(settings.publish_all, |(p, _)| *p);
-    let eligible = !product.archived
-        && matches!(
-            product.kind,
-            ProductKind::Simple | ProductKind::Composite | ProductKind::Service
-        );
+    let eligible = !product.archived && match product.kind {
+        ProductKind::Simple | ProductKind::Composite | ProductKind::Service => true,
+        ProductKind::VariantParent => conn.query_row(
+            "SELECT EXISTS (SELECT 1 FROM products WHERE parent_id = ?1 AND archived_at IS NULL)",
+            [&product.id],
+            |r| r.get(0),
+        )?,
+        ProductKind::Variant => false,
+    };
     if wanted && eligible {
         let draft = flag.is_some_and(|(_, s)| s == "draft");
         return Ok(Some(if draft {
@@ -221,8 +227,16 @@ fn enqueue_product(
     if status == OnlineStatus::Archived {
         return Ok(());
     }
-    if stock::online_pieces(tx, &product)?.is_some() && settings.stock_push {
-        stock::track(tx, &link.store_id, &product.id, now)?;
+    if settings.stock_push {
+        let stocked = match product.kind {
+            ProductKind::VariantParent => payloads::live_children(tx, &product.id)?,
+            _ => vec![product.clone()],
+        };
+        for p in &stocked {
+            if stock::online_pieces(tx, p)?.is_some() {
+                stock::track(tx, &link.store_id, &p.id, now)?;
+            }
+        }
     }
     if let (true, Some(image)) = (settings.images_push, product.image.as_deref()) {
         let sent = store::map_get(tx, &link.store_id, MapEntity::Media, &product.id)?
@@ -268,10 +282,15 @@ fn plan_stock(
         let Ok(product) = products::get(tx, id) else {
             continue;
         };
-        if !matches!(
-            publish_decision(tx, &link.store_id, &product, settings)?,
-            Some(OnlineStatus::Active | OnlineStatus::Draft)
-        ) {
+        // a live child's level is online while its model is
+        let decided = match (product.archived, product.parent_id.as_deref()) {
+            (false, Some(parent)) => match products::get(tx, parent) {
+                Ok(parent) => publish_decision(tx, &link.store_id, &parent, settings)?,
+                Err(_) => None,
+            },
+            _ => publish_decision(tx, &link.store_id, &product, settings)?,
+        };
+        if !matches!(decided, Some(OnlineStatus::Active | OnlineStatus::Draft)) {
             continue;
         }
         let reason = match reasons.len() {
@@ -512,7 +531,17 @@ pub fn derive(
             _ => {}
         }
     }
-    for id in &touched {
+    // a child's change goes in its model's item: one row per family
+    let mut items = BTreeSet::new();
+    let mut parent_of = tx.prepare_cached("SELECT parent_id FROM products WHERE id = ?1")?;
+    for id in touched {
+        let parent: Option<String> = parent_of
+            .query_row([&id], |r| r.get(0))
+            .optional()?
+            .flatten();
+        items.insert(parent.unwrap_or(id));
+    }
+    for id in &items {
         enqueue_product(tx, link, settings, id, &mut report, now)?;
     }
     plan_stock(tx, link, settings, &stock_moves, &mut report, now)?;

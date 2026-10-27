@@ -6,13 +6,14 @@
 //! exceeds it; a 4xx fails the item for the owner; a network error on DZBuild's API stops the
 //! cycle without charging an attempt (on a photo's storage host it only reschedules the photo).
 
-use super::api::{BatchAnswer, CreatedRecord, MediaTicket, Remote};
+use super::api::{BatchAnswer, CreatedRecord, MediaTicket, Remote, VariantAnswer};
 use super::derive::{OnlineStatus, publish_decision};
 use super::http::{Call, CallError, Endpoint, Lane};
 use super::outbox::{self, OutboxItem, OutboxKind};
 use super::payloads::{self, PayloadContext, ProductSnapshot};
 use super::stock::{self, ItemOutcome, StockItem};
 use super::store::{self, CloudLink, CloudNoticeKind, CloudSettings, MapEntity};
+use super::variants::{self, VariantMapRow};
 use crate::db::Db;
 use crate::error::AppError;
 use rusqlite::{Connection, Transaction};
@@ -669,9 +670,18 @@ fn apply_product_answer(
                     now,
                 )?;
                 outbox::mark_sent(tx, &b.item.id, Some(&remote_id), now)?;
+                apply_variant_answers(
+                    tx,
+                    store_id,
+                    b,
+                    Some(&remote_id),
+                    a.variants.as_deref(),
+                    now,
+                )?;
                 sent += 1;
             }
             Some(a) => {
+                apply_variant_answers(tx, store_id, b, None, a.variants.as_deref(), now)?;
                 let error = a.error.clone();
                 let code = error
                     .as_ref()
@@ -688,6 +698,69 @@ fn apply_product_answer(
         }
     }
     Ok((sent, failed, later))
+}
+
+/// A family's children as DZBuild answered them. Refused ones raise one notice per family; once
+/// the family is applied (`remote_id`), each child it holds is mapped by its key and a child no
+/// longer sent loses its row (the family online was replaced without it).
+fn apply_variant_answers(
+    tx: &Transaction<'_>,
+    store_id: &str,
+    b: &Built,
+    remote_id: Option<&str>,
+    answers: Option<&[VariantAnswer]>,
+    now: i64,
+) -> Result<(), AppError> {
+    let Some(sent) = &b.product.variants else {
+        return Ok(());
+    };
+    let answers = answers.unwrap_or_default();
+    let refused = |v: &&VariantAnswer| v.error.is_some() || v.status.as_deref() == Some("error");
+    let rejected: Vec<&VariantAnswer> = answers.iter().filter(refused).collect();
+    if let Some(first) = rejected.first() {
+        store::raise_notice(
+            tx,
+            CloudNoticeKind::FailedItems,
+            "cloud_variant_refused",
+            &b.product.external_id,
+            json!({
+                "product": b.product.name,
+                "count": rejected.len(),
+                "reason": first.error.as_ref().map(|e| e.code.as_str()),
+            }),
+            now,
+        )?;
+    }
+    let Some(remote_id) = remote_id else {
+        return Ok(());
+    };
+    let is_sent = |id: &str| sent.items.iter().any(|i| i.external_id == id);
+    for v in answers.iter().filter(|v| !refused(v)) {
+        // only a child this item sent: an answer never maps another product
+        let (Some(local), Some(key)) = (v.external_id.as_deref(), v.key.as_deref()) else {
+            continue;
+        };
+        if is_sent(local) {
+            variants::map_put(
+                tx,
+                store_id,
+                &VariantMapRow {
+                    local_id: local.to_owned(),
+                    parent_id: b.product.external_id.clone(),
+                    remote_product_id: remote_id.to_owned(),
+                    variant_key: key.to_owned(),
+                    price_online: v.price_online.map(|p| p.0),
+                    updated_at: now,
+                },
+            )?;
+        }
+    }
+    for row in variants::map_children(tx, store_id, &b.product.external_id)? {
+        if !is_sent(&row.local_id) {
+            variants::map_forget(tx, store_id, &row.local_id)?;
+        }
+    }
+    Ok(())
 }
 
 /// Each stock batch as frozen at derive time, under `stock:<row id>`. Every item's answer by its
