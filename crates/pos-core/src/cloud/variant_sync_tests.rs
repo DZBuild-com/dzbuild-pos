@@ -252,6 +252,53 @@ fn a_published_family_is_sent_once_with_its_variants_and_again_when_a_child_chan
 }
 
 #[test]
+fn a_childs_new_size_resends_its_family_once() {
+    let dz = MockDz::start();
+    let (shop, link) = linked_shop();
+    let (parent, children) = family(&shop);
+    publish(&shop, &parent);
+    derive_now(&shop, &link);
+    dz.mount(Mock::given(path("/v1/products/batch")).respond_with(FamilyAccepted));
+    dz.mount(
+        Mock::given(path("/v1/inventory/adjustments/batch"))
+            .respond_with(ok(json!({ "items": [] }))),
+    );
+    push(&shop, &link, &dz, NOON);
+
+    let (actor, id) = (shop.owner.actor(), children[3].id.clone());
+    shop.db
+        .write(move |tx| {
+            let mut input = crate::catalog::extras::ProductExtrasInput::from(
+                &crate::catalog::extras::get(tx, &id)?,
+            );
+            input.attributes.insert("Taille".into(), "L".into());
+            crate::catalog::extras::set(tx, &actor, &id, input).map(drop)
+        })
+        .unwrap();
+    assert_eq!(derive_now(&shop, &link).products, 1);
+    let p = parent.clone();
+    let queued: i64 = shop
+        .db
+        .read(move |c| {
+            Ok(c.query_row(
+                "SELECT COUNT(*) FROM sync_outbox
+                 WHERE kind = 'product_upsert' AND status = 'pending' AND entity_id = ?1",
+                [&p],
+                |r| r.get(0),
+            )?)
+        })
+        .unwrap();
+    assert_eq!(queued, 1, "one row for the family");
+    assert_eq!(push(&shop, &link, &dz, NOON + 1).sent, 1);
+    let bodies = product_bodies(&dz);
+    assert_eq!(bodies.len(), 2);
+    assert_eq!(
+        bodies[1]["items"][0]["variants"]["items"][3]["attributes"],
+        json!({ "Couleur": "Blanc", "Taille": "L" })
+    );
+}
+
+#[test]
 fn a_family_without_live_children_stays_home_and_an_archived_child_leaves_the_block() {
     let dz = MockDz::start();
     let (shop, link) = linked_shop();
