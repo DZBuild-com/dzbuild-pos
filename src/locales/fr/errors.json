@@ -81,6 +81,7 @@
   "payment_insufficient": "Le paiement ne couvre pas le net à payer (droit de timbre compris). Ajoutez le reste.",
   "stock_insufficient": "Stock insuffisant pour certains produits. Réduisez la quantité ou ajustez le stock.",
   "stock_location_not_found": "Cet emplacement de stock n'existe pas ou a été archivé.",
+  "variant_stock_mode": "Sur DZBuild, ce produit garde son stock par option. Passez-le en stock par combinaison sur DZBuild, puis modifiez une de ses déclinaisons ici pour que la caisse les renvoie.",
   "product_not_stocked": "Ce produit n'a pas de stock (service, modèle ou produit composé).",
   "stock_not_zero": "Ce produit a encore du stock. Mettez son stock à zéro (inventaire ou sortie de stock) avant de l'archiver ou d'arrêter son suivi.",
   "product_archived": "Ce produit est archivé. Restaurez-le avant de modifier son stock.",
