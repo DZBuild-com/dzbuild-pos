@@ -30,6 +30,8 @@ mod refused_tests;
 pub(crate) mod testkit;
 #[cfg(test)]
 mod unreadable_tests;
+#[cfg(test)]
+mod variant_sync_tests;
 
 pub use config::CloudConfig;
 pub use engine::{SyncHandle, SyncStatus};

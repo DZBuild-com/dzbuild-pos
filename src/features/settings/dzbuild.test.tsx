@@ -374,6 +374,11 @@ const engineNotices: CloudNotice[] = [
   notice("n13", "conflict", "cloud_conflict_online_wins", "p1", { fields: ["name"], product: "Sac cuir" }),
   // what the events feed and the dated pulls refuse here (pos-core `pull::Refusal`)
   notice("n14", "failed_items", "cloud_product_refused", "Sac cuir", { reason: "too_long" }),
+  notice("n24", "failed_items", "cloud_variant_refused", "p5", {
+    product: "T-shirt",
+    count: 2,
+    reason: "validation_error",
+  }),
   notice("n15", "failed_items", "cloud_order_refused", "1044", { reason: "constraint_violation" }),
   notice("n16", "failed_items", "cloud_event_refused", "inventory.level_changed", {
     reason: "stock_location_not_found",

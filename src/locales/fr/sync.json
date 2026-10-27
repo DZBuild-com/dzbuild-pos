@@ -412,6 +412,7 @@
     "cloud_request_invalid": "{{subject}} : {{count}} envoi(s) refusé(s) par DZBuild, voir ci-dessous.",
     "cloud_event_unreadable": "Cette version n'a pas pu lire une modification envoyée par DZBuild et l'a ignorée. Mettez DZBuild POS à jour.",
     "cloud_product_refused": "« {{subject}} » a été modifié sur DZBuild mais la caisse ne l'a pas repris : corrigez-le sur DZBuild. Motif : {{reason}}",
+    "cloud_variant_refused": "DZBuild a refusé {{count}} déclinaison(s) de « {{product}} » : corrigez-les dans la fiche produit, la caisse le renverra. Motif : {{reason}}",
     "cloud_order_refused": "La commande {{subject}} reçue de DZBuild n'a pas pu être enregistrée à la caisse : vérifiez-la sur DZBuild. Motif : {{reason}}",
     "cloud_event_refused": "DZBuild a envoyé {{event}} que la caisse n'a pas pu reprendre. Motif : {{reason}}",
     "stock_double_applied": "DZBuild a aussi déduit le stock d'une vente du magasin : le stock de ses produits sera renvoyé."

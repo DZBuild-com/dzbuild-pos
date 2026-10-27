@@ -412,6 +412,7 @@
     "cloud_request_invalid": "{{subject}}: DZBuild refused {{count}} upload(s), see below.",
     "cloud_event_unreadable": "This version could not read a change sent by DZBuild, so it skipped it. Update DZBuild POS.",
     "cloud_product_refused": "“{{subject}}” was edited on DZBuild but the till did not take the change: correct it on DZBuild. Reason: {{reason}}",
+    "cloud_variant_refused": "DZBuild refused {{count}} variant(s) of “{{product}}”: correct them in the product and the till sends it again. Reason: {{reason}}",
     "cloud_order_refused": "Order {{subject}} from DZBuild could not be recorded at the till: check it on DZBuild. Reason: {{reason}}",
     "cloud_event_refused": "DZBuild sent {{event}} that the till could not take. Reason: {{reason}}",
     "stock_double_applied": "DZBuild also deducted the stock of an in-store sale: the stock of its products will be sent again."

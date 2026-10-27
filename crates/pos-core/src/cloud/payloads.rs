@@ -7,7 +7,7 @@ use super::derive::OnlineStatus;
 use super::store::{CloudLink, CloudSettings};
 use super::wire::{ApiMoney, ApiQty, ApiRate, ApiTime};
 use crate::cash::closing::ZReport;
-use crate::catalog::products::Product;
+use crate::catalog::products::{Product, ProductKind};
 use crate::company::{self, PriceMode, TaxRegime};
 use crate::documents::{DocType, Document};
 use crate::error::AppError;
@@ -17,6 +17,7 @@ use crate::tax::tva::{Discount, LineInput, compute_line};
 use rusqlite::{Connection, OptionalExtension};
 use serde::Serialize;
 use sha2::{Digest, Sha256};
+use std::collections::BTreeMap;
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct PayloadContext {
@@ -127,6 +128,33 @@ pub struct ProductItem {
     pub status: &'static str,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub category: Option<CategoryRef>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub variants: Option<VariantsBlock>,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize)]
+pub struct AxisOut {
+    pub name: String,
+    pub values: Vec<String>,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize)]
+pub struct VariantItemOut {
+    pub external_id: String,
+    pub attributes: BTreeMap<String, String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub sku: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub barcode: Option<String>,
+    pub price: ApiMoney,
+    pub track_stock: bool,
+}
+
+/// A variant model's family (wire contract v1.12): DZBuild replaces the product's variants with it.
+#[derive(Debug, Clone, PartialEq, Eq, Serialize)]
+pub struct VariantsBlock {
+    pub axes: Vec<AxisOut>,
+    pub items: Vec<VariantItemOut>,
 }
 
 /// The fields the owner may also edit online, as last pushed (compared by the pull, Task 11).
@@ -145,6 +173,55 @@ impl ProductItem {
             status: self.status.to_owned(),
         }
     }
+}
+
+/// A variant model's children that are not archived, in the order they were made.
+pub(crate) fn live_children(conn: &Connection, parent_id: &str) -> Result<Vec<Product>, AppError> {
+    let mut stmt = conn.prepare_cached(
+        "SELECT id FROM products WHERE parent_id = ?1 AND archived_at IS NULL ORDER BY created_at, rowid",
+    )?;
+    let ids = stmt
+        .query_map([parent_id], |r| r.get::<_, String>(0))?
+        .collect::<Result<Vec<_>, _>>()?;
+    ids.iter()
+        .map(|id| crate::catalog::products::get(conn, id))
+        .collect()
+}
+
+/// A variant model's block: its live children, and as axes their attribute names in alphabetical
+/// order, each with its values in the order the children first show them; `None` without a child.
+fn variants_block(
+    conn: &Connection,
+    parent: &Product,
+    mode: PriceMode,
+) -> Result<Option<VariantsBlock>, AppError> {
+    let mut axes: BTreeMap<String, Vec<String>> = BTreeMap::new();
+    let mut items = Vec::new();
+    for child in live_children(conn, &parent.id)? {
+        let attributes = super::variants::attributes_of(conn, &child.id)?;
+        for (name, value) in &attributes {
+            let values = axes.entry(name.clone()).or_default();
+            if !values.contains(value) {
+                values.push(value.clone());
+            }
+        }
+        items.push(VariantItemOut {
+            external_id: child.id.clone(),
+            attributes,
+            sku: child.reference.clone(),
+            barcode: unit_barcode(&child),
+            price: ApiMoney(consumer_price(&child, mode)?),
+            track_stock: super::stock::online_pieces(conn, &child)?.is_some(),
+        });
+    }
+    if items.is_empty() {
+        return Ok(None);
+    }
+    let axes = axes
+        .into_iter()
+        .map(|(name, values)| AxisOut { name, values })
+        .collect();
+    Ok(Some(VariantsBlock { axes, items }))
 }
 
 pub fn product_item(
@@ -166,6 +243,10 @@ pub fn product_item(
         None => None,
     };
     let online_stock = super::stock::online_pieces(conn, product)?.is_some();
+    let variants = match product.kind {
+        ProductKind::VariantParent => variants_block(conn, product, ctx.price_mode)?,
+        _ => None,
+    };
     Ok(ProductItem {
         external_id: product.id.clone(),
         name: name_for(product, ctx.store_language),
@@ -181,6 +262,7 @@ pub fn product_item(
         },
         status: status.as_str(),
         category,
+        variants,
     })
 }
 
