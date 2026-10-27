@@ -19,6 +19,7 @@ pub mod secrets;
 pub mod stock;
 pub mod store;
 pub mod tokens;
+pub mod variants;
 pub mod wire;
 
 #[cfg(test)]

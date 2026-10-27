@@ -81,6 +81,7 @@ fn the_link_tables_exist() {
         "cloud_map",
         "sync_outbox",
         "cloud_stock",
+        "cloud_variant_map",
         "cloud_publish",
         "cloud_inbox",
         "cloud_endpoints",

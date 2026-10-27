@@ -139,7 +139,7 @@ const LOT_ROWS: &str = "
 #[test]
 fn per_lot_count_lines_belong_to_their_product_line_and_freeze_with_the_count() {
     let db = Db::open_memory().unwrap();
-    assert_eq!(db.report().schema_version, 9);
+    assert_eq!(db.report().schema_version, 10);
     exec(&db, LOT_ROWS).unwrap();
     let refused = [
         (
@@ -222,7 +222,7 @@ fn the_pre_0009_fixture_upgrades_in_place_after_a_backup() {
     std::fs::copy(fixture_path(), &path).unwrap();
     let db = Db::open(&path, DbOptions::default()).unwrap();
     let report = db.report().clone();
-    assert_eq!((report.schema_version, report.migrations_applied), (9, 1));
+    assert_eq!((report.schema_version, report.migrations_applied), (10, 2));
     let backup = report
         .pre_migration_backup
         .expect("a backup before migrating");

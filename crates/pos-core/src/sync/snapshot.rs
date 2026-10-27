@@ -40,6 +40,7 @@ pub const SCRUB: &[&str] = &[
     "app_meta",
     "cloud_links",
     "cloud_map",
+    "cloud_variant_map",
     "sync_outbox",
     "cloud_stock",
     "cloud_publish",

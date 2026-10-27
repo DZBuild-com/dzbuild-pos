@@ -15,7 +15,7 @@ fn count(db: &Db, sql: &'static str) -> i64 {
 #[test]
 fn migrations_are_valid() {
     migrations::MIGRATIONS.validate().unwrap();
-    assert_eq!(migrations::LATEST_VERSION, 9);
+    assert_eq!(migrations::LATEST_VERSION, 10);
 }
 
 #[test]
@@ -54,6 +54,7 @@ fn open_memory_creates_exactly_the_tables_up_to_m8() {
             "cloud_notices",
             "cloud_publish",
             "cloud_stock",
+            "cloud_variant_map",
             "company",
             "controlled_register",
             "cost_history",
@@ -192,7 +193,7 @@ fn file_db_applies_the_pragmas() {
         .write(|tx| Ok(tx.pragma_query_value(None, "synchronous", |r| r.get(0))?))
         .unwrap();
     assert_eq!(sync, 2, "synchronous=FULL on the writer");
-    assert_eq!(db.report().schema_version, 9);
+    assert_eq!(db.report().schema_version, 10);
 }
 
 #[test]
@@ -361,8 +362,8 @@ fn open_describes_paths_and_report() {
     let fresh = OpenReport {
         unclean_shutdown: false,
         integrity_ok: true,
-        schema_version: 9,
-        migrations_applied: 9,
+        schema_version: 10,
+        migrations_applied: 10,
         pre_migration_backup: None,
     };
     assert_eq!(db.report(), &fresh);
@@ -399,7 +400,7 @@ fn open_describes_paths_and_report() {
 
     let memory = Db::open_memory().unwrap();
     assert_eq!((memory.path(), memory.backup_dir()), (None, None));
-    assert_eq!(memory.report().migrations_applied, 9);
+    assert_eq!(memory.report().migrations_applied, 10);
 }
 
 #[test]

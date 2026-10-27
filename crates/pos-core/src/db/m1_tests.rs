@@ -485,7 +485,7 @@ fn the_m0_fixture_upgrades_in_place_after_a_backup() {
     std::fs::copy(fixture_path(), &path).unwrap();
     let db = Db::open(&path, DbOptions::default()).unwrap();
     let report = db.report().clone();
-    assert_eq!((report.schema_version, report.migrations_applied), (9, 8));
+    assert_eq!((report.schema_version, report.migrations_applied), (10, 9));
     assert!(!report.unclean_shutdown);
     // pre_migration_backup_is_taken (owed by M0): the copy is the untouched M0 database.
     let backup = report

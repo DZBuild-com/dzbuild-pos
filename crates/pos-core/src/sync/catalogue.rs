@@ -324,6 +324,7 @@ pub const TABLES: &[TableSpec] = &[
     with_class("remote_customer_flags", SyncClass::LocalOnly),
     with_class("cloud_backup_keys", SyncClass::LocalOnly),
     with_class("cloud_backups", SyncClass::LocalOnly),
+    with_class("cloud_variant_map", SyncClass::LocalOnly),
     // M8 vertical packs, from the `-- LAN:` intent above each table of 0008_packs.sql, under
     // Every balance-bearing ledger (the flexy float, deposits, vouchers,
     // salary advances, instalment contracts) is written on the main PC only (its commands are

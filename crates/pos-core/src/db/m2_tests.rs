@@ -53,7 +53,7 @@ fn table_exists(db: &Db, name: &'static str) -> bool {
 #[test]
 fn the_back_office_tables_and_seeds_exist() {
     let db = Db::open_memory().unwrap();
-    assert_eq!(db.report().schema_version, 9);
+    assert_eq!(db.report().schema_version, 10);
     for name in [
         "customers",
         "customer_ledger",
@@ -722,7 +722,7 @@ fn the_m1_fixture_upgrades_in_place_after_a_backup() {
     std::fs::copy(m1_fixture_path(), &path).unwrap();
     let db = Db::open(&path, DbOptions::default()).unwrap();
     let report = db.report().clone();
-    assert_eq!((report.schema_version, report.migrations_applied), (9, 7));
+    assert_eq!((report.schema_version, report.migrations_applied), (10, 8));
     assert!(!report.unclean_shutdown);
     let backup = report
         .pre_migration_backup
