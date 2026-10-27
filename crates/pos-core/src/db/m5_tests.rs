@@ -41,7 +41,7 @@ const HASH_A: &str = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 #[test]
 fn the_lan_tables_exist_and_this_pc_starts_standalone() {
     let db = Db::open_memory().unwrap();
-    assert_eq!(db.report().schema_version, 9);
+    assert_eq!(db.report().schema_version, 10);
     for name in [
         "changelog",
         "sync_cursors",
@@ -330,8 +330,8 @@ fn the_previous_release_upgrades_standalone_with_an_empty_feed() {
         },
     )
     .unwrap();
-    assert_eq!(db.report().schema_version, 9);
-    assert_eq!(db.report().migrations_applied, 9 - schema);
+    assert_eq!(db.report().schema_version, 10);
+    assert_eq!(db.report().migrations_applied, 10 - schema);
     assert_eq!(count(&db, "SELECT COUNT(*) FROM changelog"), 0);
     assert_eq!(count(&db, "SELECT COUNT(*) FROM lan_outbox"), 0);
     assert_eq!(

@@ -104,7 +104,7 @@ const BASE: &str = "
 #[test]
 fn the_pack_tables_units_and_seeds_exist() {
     let db = Db::open_memory().unwrap();
-    assert_eq!(db.report().schema_version, 9);
+    assert_eq!(db.report().schema_version, 10);
     for name in [
         "open_price_products",
         "department_keys",
@@ -487,7 +487,7 @@ fn the_pre_m8_fixture_upgrades_in_place_after_a_backup() {
     std::fs::copy(fixture_path(), &path).unwrap();
     let db = Db::open(&path, DbOptions::default()).unwrap();
     let report = db.report().clone();
-    assert_eq!((report.schema_version, report.migrations_applied), (9, 4));
+    assert_eq!((report.schema_version, report.migrations_applied), (10, 5));
     let backup = report
         .pre_migration_backup
         .expect("a backup before migrating");

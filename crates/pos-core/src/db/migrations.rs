@@ -14,6 +14,7 @@ pub(crate) const LIST: &[M<'static>] = &[
     M::up(include_str!(
         "../../migrations/0009_count_lots_order_payment.sql"
     )),
+    M::up(include_str!("../../migrations/0010_dzbuild_variants.sql")),
 ];
 
 pub const MIGRATIONS: Migrations<'static> = Migrations::from_slice(LIST);

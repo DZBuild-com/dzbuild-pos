@@ -137,7 +137,7 @@ fn validated(db: &Db, doc_type: DocType) -> String {
 #[test]
 fn the_m3_tables_and_columns_exist() {
     let db = Db::open_memory().unwrap();
-    assert_eq!(db.report().schema_version, 9);
+    assert_eq!(db.report().schema_version, 10);
     for (table, column) in [
         ("documents", "valid_until"),
         ("documents", "due_date"),
@@ -657,7 +657,7 @@ fn the_m2_fixture_upgrades_in_place_after_a_backup() {
     )
     .unwrap();
     let report = db.report().clone();
-    assert_eq!((report.schema_version, report.migrations_applied), (9, 6));
+    assert_eq!((report.schema_version, report.migrations_applied), (10, 7));
     assert!(
         report.pre_migration_backup.is_some(),
         "backed up before 0004"

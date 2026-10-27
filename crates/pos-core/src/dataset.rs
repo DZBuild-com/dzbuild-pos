@@ -145,6 +145,7 @@ pub const SKIPPED_TABLES: &[&str] = &[
     "lan_inbox",
     "lan_commits",
     "cloud_map",
+    "cloud_variant_map",
     "sync_outbox",
     "cloud_stock",
     "cloud_inbox",
