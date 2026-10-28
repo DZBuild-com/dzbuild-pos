@@ -3939,7 +3939,10 @@ export type ImportProgressEvent = ImportProgress;
 export type ImportReport = {
 	imported: number,
 	matched: number,
-	/**  Variant families are not imported in this version (deferred row). */
+	/**
+	 *  Products with variants the till cannot hold: no readable family, more than three axes,
+	 *  none listed, a family refused here, or a simple product here.
+	 */
 	skippedVariants: number,
 };
 
