@@ -4,7 +4,7 @@
 //! leaves unless the owner turned `cloud.customers.sync` on; costs never leave.
 
 use super::derive::OnlineStatus;
-use super::store::{CloudLink, CloudSettings};
+use super::store::{CloudLink, CloudSettings, MapEntity};
 use super::wire::{ApiMoney, ApiQty, ApiRate, ApiTime};
 use crate::cash::closing::ZReport;
 use crate::catalog::products::{Product, ProductKind};
@@ -21,6 +21,7 @@ use std::collections::BTreeMap;
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct PayloadContext {
+    pub store_id: String,
     pub store_language: Lang,
     pub price_mode: PriceMode,
     pub tax_regime: TaxRegime,
@@ -36,6 +37,7 @@ impl PayloadContext {
     ) -> Result<PayloadContext, AppError> {
         let company = company::get(conn)?.ok_or_else(|| AppError::conflict("setup_required"))?;
         Ok(PayloadContext {
+            store_id: link.store_id.clone(),
             store_language: link.store_language,
             price_mode: company.price_mode,
             tax_regime: company.tax_regime,
@@ -118,6 +120,10 @@ pub struct CategoryRef {
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub struct ProductItem {
     pub external_id: String,
+    /// The online product this till holds a map for (imported or answered before), so DZBuild
+    /// never creates a twin of it (wire contract v1.12).
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub id: Option<String>,
     pub name: String,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub sku: Option<String>,
@@ -247,8 +253,12 @@ pub fn product_item(
         ProductKind::VariantParent => variants_block(conn, product, ctx.price_mode)?,
         _ => None,
     };
+    let id = super::store::map_get(conn, &ctx.store_id, MapEntity::Product, &product.id)?
+        .map(|m| m.remote_id)
+        .filter(|id| !id.is_empty());
     Ok(ProductItem {
         external_id: product.id.clone(),
+        id,
         name: name_for(product, ctx.store_language),
         sku: product.reference.clone(),
         barcode: unit_barcode(product),

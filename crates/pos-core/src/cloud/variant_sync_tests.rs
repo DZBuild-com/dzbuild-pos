@@ -200,6 +200,10 @@ fn a_published_family_is_sent_once_with_its_variants_and_again_when_a_child_chan
     );
     assert_eq!(bodies[0]["items"][0]["external_id"], parent);
     assert_eq!(bodies[0]["items"][0]["sku"], "TS01");
+    assert!(
+        bodies[0]["items"][0].get("id").is_none(),
+        "never mapped: no online product to name"
+    );
     let mapped = mapped_children(&shop, &parent);
     assert_eq!(mapped.len(), 4);
     assert!(mapped.iter().all(|r| r.remote_product_id == "88121"
@@ -236,6 +240,10 @@ fn a_published_family_is_sent_once_with_its_variants_and_again_when_a_child_chan
     let bodies = product_bodies(&dz);
     assert_eq!(bodies.len(), 2);
     assert_eq!(
+        bodies[1]["items"][0]["id"], "88121",
+        "the product it answered"
+    );
+    assert_eq!(
         bodies[1]["items"][0]["variants"]["items"][2]["price"],
         "1650.00"
     );
@@ -249,6 +257,51 @@ fn a_published_family_is_sent_once_with_its_variants_and_again_when_a_child_chan
         .read(move |c| variants::map_get(c, "141", &id))
         .unwrap();
     assert_eq!(row.and_then(|r| r.price_online), Some(Money(165_000)));
+}
+
+#[test]
+fn an_imported_family_names_its_online_product_on_its_first_push() {
+    let dz = MockDz::start();
+    let (shop, link) = linked_shop();
+    let (parent, _) = family(&shop);
+    let p = parent.clone();
+    shop.db
+        .write(move |tx| {
+            store::map_put(tx, "141", MapEntity::Product, &p, "70412", None, None, NOON)
+        })
+        .unwrap();
+    publish(&shop, &parent);
+    derive_now(&shop, &link);
+    dz.mount(Mock::given(path("/v1/products/batch")).respond_with(FamilyAccepted));
+    dz.mount(
+        Mock::given(path("/v1/inventory/adjustments/batch"))
+            .respond_with(ok(json!({ "items": [] }))),
+    );
+    push(&shop, &link, &dz, NOON);
+    let bodies = product_bodies(&dz);
+    assert_eq!(bodies.len(), 1);
+    assert_eq!(bodies[0]["items"][0]["external_id"], parent);
+    assert_eq!(bodies[0]["items"][0]["id"], "70412");
+}
+
+#[test]
+fn a_map_row_without_a_remote_id_names_no_online_product() {
+    let dz = MockDz::start();
+    let (shop, link) = linked_shop();
+    let milk = shop.product("Lait", Money(10_000), &shop.tva19);
+    let id = milk.id.clone();
+    shop.db
+        .write(move |tx| store::map_put(tx, "141", MapEntity::Product, &id, "", None, None, NOON))
+        .unwrap();
+    publish(&shop, &milk.id);
+    derive_now(&shop, &link);
+    dz.mount(Mock::given(path("/v1/products/batch")).respond_with(FamilyAccepted));
+    dz.mount(
+        Mock::given(path("/v1/inventory/adjustments/batch"))
+            .respond_with(ok(json!({ "items": [] }))),
+    );
+    push(&shop, &link, &dz, NOON);
+    assert!(product_bodies(&dz)[0]["items"][0].get("id").is_none());
 }
 
 #[test]
