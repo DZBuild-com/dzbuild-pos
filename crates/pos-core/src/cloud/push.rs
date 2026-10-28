@@ -659,6 +659,15 @@ fn apply_product_answer(
                 let remote_id = a.id.as_ref().map(|i| i.0.clone()).unwrap_or_default();
                 let snapshot: ProductSnapshot = b.product.snapshot();
                 let snapshot = serde_json::to_value(snapshot)?;
+                // the next build names this remote id: its hash is the "unchanged" one
+                let next_id = Some(remote_id.clone()).filter(|id| !id.is_empty());
+                let hash = if b.product.id == next_id {
+                    b.hash.clone()
+                } else {
+                    let mut named = b.product.clone();
+                    named.id = next_id;
+                    payloads::body_hash(&named)?
+                };
                 store::map_put(
                     tx,
                     store_id,
@@ -666,7 +675,7 @@ fn apply_product_answer(
                     &b.product.external_id,
                     &remote_id,
                     Some(&snapshot),
-                    Some(&b.hash),
+                    Some(&hash),
                     now,
                 )?;
                 outbox::mark_sent(tx, &b.item.id, Some(&remote_id), now)?;
@@ -1650,25 +1659,30 @@ mod tests {
         };
         derive_now(&shop, &link);
         assert_eq!(push_at(&shop, &link, &remote, NOON).unwrap().sent, 1);
+        price(11_000); // mapped now: the body names the online product
+        assert_eq!(
+            push_at(&shop, &link, &remote, NOON + 30_000).unwrap().sent,
+            1
+        );
         let first = batches.storefront.lock().unwrap().clone();
         price(12_000); // a typo …
         assert_eq!(
             push_at(&shop, &link, &remote, NOON + 60_000).unwrap().sent,
             1
         );
-        price(10_000); // … fixed within the hour: the same body as the first push
+        price(11_000); // … fixed within the hour: the same body as the second push
         assert_eq!(
             push_at(&shop, &link, &remote, NOON + 120_000).unwrap().sent,
             1
         );
         let keys = batch_keys(&dz);
-        assert_eq!(keys.len(), 3);
+        assert_eq!(keys.len(), 4);
         assert!(
             keys.iter()
                 .all(|k| k.starts_with("products:") && k.len() == 41),
             "{keys:?}"
         );
-        assert_ne!(keys[2], keys[0], "a new edit is a new request: {keys:?}");
+        assert_ne!(keys[3], keys[1], "a new edit is a new request: {keys:?}");
         assert_eq!(
             *batches.storefront.lock().unwrap(),
             first,
