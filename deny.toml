@@ -14,7 +14,16 @@ all-features = true
 [advisories]
 version = 2
 unmaintained = "workspace"
-ignore = []
+# Advisories that do not reach our code, kept out until the fixed crates arrive through their dependents:
+#   zip 8 (calamine and rust_xlsxwriter pin it; pos-docs reads entries by name and writes archives, it never
+#   calls `extract`, the only path the three advisories concern); crypto-bigint 0.5 comes through age 0.12 (p256)
+#   in pos-license-cli alone, and age has no release on the 0.7 line yet.
+ignore = [
+  { id = "RUSTSEC-2026-0367", reason = "zip extract() is never called; zip 8 stays through calamine and rust_xlsxwriter" },
+  { id = "RUSTSEC-2026-0368", reason = "zip extract() is never called; zip 8 stays through calamine and rust_xlsxwriter" },
+  { id = "RUSTSEC-2026-0369", reason = "zip extract() is never called; zip 8 stays through calamine and rust_xlsxwriter" },
+  { id = "RUSTSEC-2026-0387", reason = "crypto-bigint 0.5 comes through age 0.12 in pos-license-cli; no age release on 0.7 yet" },
+]
 
 # The code is GPL-3.0-or-later: every dependency must carry a licence compatible with it.
 # A crate under several licences ("MIT OR Apache-2.0") passes when one of them is allowed.
