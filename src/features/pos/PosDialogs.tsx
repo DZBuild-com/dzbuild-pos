@@ -10,6 +10,8 @@ import type {
   Session,
 } from "@/lib/ipc/types";
 import type { TillAction } from "@/lib/key-map";
+import { localizedName } from "@/lib/names";
+import { useLang } from "@/lib/use-language";
 import { UnprintedSheet } from "@/app/PrintFailures";
 import { OpenSessionDialog } from "@/features/cash/OpenSessionDialog";
 import { LoadQuoteDialog } from "@/features/documents/LoadQuoteDialog";
@@ -25,6 +27,7 @@ import { HoldDialog } from "./HoldDialog";
 import { LineEditDialog } from "./LineEditDialog";
 import { NoSaleDialog } from "./NoSaleDialog";
 import { OpenItemDialog } from "./OpenItemDialog";
+import { OpenPriceDialog } from "./OpenPriceDialog";
 import { PackDialog } from "./pack-slots";
 import { PaymentDialog } from "./PaymentDialog";
 import type { Tender } from "./payment-model";
@@ -89,6 +92,8 @@ export type Done =
 export type PosDialog =
   | { kind: "customer" }
   | { kind: "edit"; index: number }
+  /** An open-price product (a department key, a top-up, a service): its price is typed first. */
+  | { kind: "openPrice"; product: TillProduct; unitDecimals: number }
   | { kind: "discount" }
   | { kind: "hold" }
   | { kind: "held" }
@@ -140,6 +145,8 @@ export interface TillProduct {
   nameAr: string;
   nameFr: string;
   nameEn: string;
+  /** Priced when it is sold: the till asks for the price before adding the line. */
+  openPrice: boolean;
 }
 
 export interface PosContext {
@@ -187,11 +194,40 @@ export function PosDialogs({
   ctx: PosContext;
 }): ReactNode {
   const commitDone = useCommitDone((done) => ctx.open({ kind: "done", done }));
+  const lang = useLang();
   switch (dialog?.kind) {
     case "customer":
       return <CustomerPicker ctx={ctx} onClose={onClose} />;
     case "edit":
       return <LineEditDialog index={dialog.index} ctx={ctx} onClose={onClose} />;
+    case "openPrice":
+      return (
+        <OpenPriceDialog
+          title={localizedName(dialog.product, lang)}
+          unitDecimals={dialog.unitDecimals}
+          onAdd={(unitPrice, qty) =>
+            useCart.getState().addLine(
+              {
+                productId: dialog.product.id,
+                description: null,
+                qty,
+                unitPrice,
+                discount: { kind: "none" },
+                taxRateId: null,
+                note: null,
+                expectedUnitPrice: null,
+              },
+              {
+                name: localizedName(dialog.product, lang),
+                unitCode: dialog.product.unitCode,
+                unitDecimals: dialog.unitDecimals,
+                price: unitPrice,
+              },
+            )
+          }
+          onClose={onClose}
+        />
+      );
     case "discount":
       return <DiscountDialog onClose={onClose} />;
     case "hold":

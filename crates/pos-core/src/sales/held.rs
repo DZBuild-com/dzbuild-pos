@@ -2,9 +2,9 @@
 //! (SAL-040/041, AUD-001: line voids and cancelled carts). Holding touches neither stock nor
 //! cash; a recalled cart is priced again with today's prices.
 
-use super::cart::{self, Cart, RepricedCart};
+use super::cart::{self, Cart, CartLine, RepricedCart};
 use crate::audit;
-use crate::catalog::clean_opt;
+use crate::catalog::{clean_opt, products};
 use crate::error::AppError;
 use crate::ids::new_id;
 use crate::money::{Money, Qty};
@@ -209,6 +209,14 @@ pub fn discard(tx: &Transaction<'_>, ctx: &TillContext, id: &str) -> Result<(), 
     Ok(())
 }
 
+/// Line `index` of `cart`, or `value_invalid` when the cart has no such line.
+fn line_at(cart: &Cart, index: u32) -> Result<&CartLine, AppError> {
+    usize::try_from(index)
+        .ok()
+        .and_then(|i| cart.lines.get(i))
+        .ok_or_else(|| AppError::validation("index", "value_invalid"))
+}
+
 /// Line `index` of `cart` valued alone, at the quantity it has in `cart`.
 fn value_line(
     tx: &Transaction<'_>,
@@ -216,11 +224,7 @@ fn value_line(
     cart: &Cart,
     index: u32,
 ) -> Result<cart::PricedLine, AppError> {
-    let line = usize::try_from(index)
-        .ok()
-        .and_then(|i| cart.lines.get(i))
-        .cloned()
-        .ok_or_else(|| AppError::validation("index", "value_invalid"))?;
+    let line = line_at(cart, index)?.clone();
     let alone = Cart {
         lines: vec![line],
         ..cart.clone()
@@ -232,9 +236,68 @@ fn value_line(
         .ok_or_else(|| AppError::validation("index", "value_invalid"))
 }
 
-/// Journals a line void or a cancelled cart (the command checks `sales.void_line`) with the
-/// backend's figures: the voided line is valued alone (another line's refusal cannot block the
-/// void), the cancelled cart as a whole, both as they stand ([`cart::value_cart`]).
+/// Whether `err` only means a line cannot be priced: an open-price product rung without its price,
+/// a free line without a tax rate, a product archived meanwhile. A void or a cancellation is
+/// journaled anyway, with what the cart still says; a database, I/O or internal failure is not
+/// swallowed.
+fn unpriceable(err: &AppError) -> bool {
+    matches!(
+        err,
+        AppError::Validation { .. } | AppError::NotFound { .. } | AppError::Conflict { .. }
+    )
+}
+
+/// What the journal keeps of a line the backend cannot price: its product, its name (the open
+/// item's, else the catalogue's in the ticket's language) and the amount its typed price gives
+/// (nothing when it has none).
+fn described_line(
+    conn: &Connection,
+    cart: &Cart,
+    line: &CartLine,
+) -> (Option<String>, String, Money) {
+    let description = line
+        .description
+        .clone()
+        .or_else(|| {
+            line.product_id
+                .as_deref()
+                .and_then(|id| products::get(conn, id).ok())
+                .map(|product| product.name_in(cart.lang).to_owned())
+        })
+        .or_else(|| line.product_id.clone())
+        .unwrap_or_default();
+    let amount = line
+        .unit_price
+        .and_then(|price| price.mul_qty(line.qty))
+        .unwrap_or(Money::ZERO);
+    (line.product_id.clone(), description, amount)
+}
+
+/// The cart's total as far as it can be priced: a line the backend refuses is left out.
+fn valueable_total(
+    tx: &Transaction<'_>,
+    ctx: &TillContext,
+    cart: &Cart,
+) -> Result<Money, AppError> {
+    let mut amounts = Vec::with_capacity(cart.lines.len());
+    for index in 0..cart.lines.len() {
+        let index = u32::try_from(index).unwrap_or(u32::MAX);
+        match value_line(tx, ctx, cart, index) {
+            Ok(line) => amounts.push(line.amounts.total_ttc),
+            Err(err) if unpriceable(&err) => {}
+            Err(err) => return Err(err),
+        }
+    }
+    Ok(Money::checked_sum(amounts).unwrap_or(Money::ZERO))
+}
+
+/// Journals a line void, a lowered quantity or a cancelled cart (the command checks
+/// `sales.void_line`) with the backend's figures: the voided line is valued alone (another line's
+/// refusal cannot block the void), the cancelled cart as a whole, both as they stand
+/// ([`cart::value_cart`]). A line that can no longer be priced — an open-price product rung
+/// without its price — is still journaled, with its name, its quantity and the amount its typed
+/// price gives: a cart that cannot be sold must stay voidable and cancellable (SAL-040/041,
+/// AUD-001), as [`discard`] already does for a held ticket.
 pub fn record_cart_event(
     tx: &Transaction<'_>,
     ctx: &TillContext,
@@ -242,49 +305,71 @@ pub fn record_cart_event(
 ) -> Result<(), AppError> {
     let event = match input {
         CartEventInput::LineVoided { cart, index } => {
-            let line = value_line(tx, ctx, &cart, index)?;
+            let line = line_at(&cart, index)?;
+            let (product_id, description, amount) = match value_line(tx, ctx, &cart, index) {
+                Ok(priced) => (
+                    priced.product_id,
+                    priced.description,
+                    priced.amounts.total_ttc,
+                ),
+                Err(err) if unpriceable(&err) => described_line(tx, &cart, line),
+                Err(err) => return Err(err),
+            };
             CartEvent::LineVoided {
-                product_id: line.product_id,
-                description: line.description,
+                product_id,
+                description,
                 qty: line.qty,
-                amount: line.amounts.total_ttc,
+                amount,
             }
         }
         CartEventInput::CartCancelled { cart } => {
-            let valued = cart::value_cart(tx, ctx, &cart)?;
+            let total = match cart::value_cart(tx, ctx, &cart) {
+                Ok(valued) => valued.totals.total_ttc,
+                Err(err) if unpriceable(&err) => valueable_total(tx, ctx, &cart)?,
+                Err(err) => return Err(err),
+            };
             CartEvent::CartCancelled {
-                lines: u32::try_from(valued.lines.len()).unwrap_or(u32::MAX),
-                total: valued.totals.total_ttc,
+                lines: u32::try_from(cart.lines.len()).unwrap_or(u32::MAX),
+                total,
             }
         }
         CartEventInput::QtyReduced { cart, index, qty } => {
-            let before = value_line(tx, ctx, &cart, index)?;
+            let line = line_at(&cart, index)?;
             if !qty.is_positive() {
                 return Err(AppError::validation("qty", "qty_invalid"));
             }
-            if qty >= before.qty {
+            if qty >= line.qty {
                 return Err(AppError::validation("qty", "value_invalid"));
             }
-            let mut lowered = cart.clone();
-            if let Some(line) = usize::try_from(index)
-                .ok()
-                .and_then(|i| lowered.lines.get_mut(i))
-            {
-                line.qty = qty;
-            }
-            let after = value_line(tx, ctx, &lowered, index)?;
-            let removed = Qty(before.qty.0 - qty.0);
-            let amount = before
-                .amounts
-                .total_ttc
-                .checked_sub(after.amounts.total_ttc)
-                .ok_or_else(|| AppError::validation("qty", "value_invalid"))?;
+            let amount = match value_line(tx, ctx, &cart, index) {
+                Ok(before) => {
+                    let mut lowered = cart.clone();
+                    if let Some(line) = usize::try_from(index)
+                        .ok()
+                        .and_then(|i| lowered.lines.get_mut(i))
+                    {
+                        line.qty = qty;
+                    }
+                    match value_line(tx, ctx, &lowered, index) {
+                        Ok(after) => before
+                            .amounts
+                            .total_ttc
+                            .checked_sub(after.amounts.total_ttc)
+                            .ok_or_else(|| AppError::validation("qty", "value_invalid"))?,
+                        Err(err) if unpriceable(&err) => Money::ZERO,
+                        Err(err) => return Err(err),
+                    }
+                }
+                Err(err) if unpriceable(&err) => Money::ZERO,
+                Err(err) => return Err(err),
+            };
+            let (product_id, description, _) = described_line(tx, &cart, line);
             CartEvent::QtyReduced {
-                product_id: before.product_id,
-                description: before.description,
-                qty_before: before.qty,
+                product_id,
+                description,
+                qty_before: line.qty,
                 qty_after: qty,
-                removed_qty: removed,
+                removed_qty: Qty(line.qty.0 - qty.0),
                 amount,
             }
         }
@@ -436,6 +521,65 @@ mod tests {
         assert_eq!(
             event_of(&shop, "sale.cancelled"),
             json!({ "kind": "cart_cancelled", "lines": 2, "total": 50_000 })
+        );
+    }
+
+    /// An open-price product rung from the grid without its price cannot be valued, but a cart the
+    /// till can no longer price must stay voidable, cancellable and reducible (SAL-040/041,
+    /// AUD-001): the journal keeps its name, its quantity and no amount.
+    #[test]
+    fn an_unpriced_open_price_line_does_not_block_a_void_or_a_cancellation() {
+        let shop = shop();
+        let milk = shop.product("Lait", Money(10_000), &shop.tva19);
+        let divers = shop.department_key("Divers");
+        let cart = Cart::new(
+            Lang::Fr,
+            vec![
+                CartLine::product(&milk.id, Qty(1_000)),
+                CartLine::product(&divers, Qty(2_000)),
+            ],
+        );
+        let ctx = shop.till();
+        let (voided, lowered, cancelled) = (cart.clone(), cart.clone(), cart);
+        shop.db
+            .write(move |tx| {
+                // the line has no price yet: the cart as a whole cannot be priced
+                assert!(cart::value_cart(tx, &ctx, &voided).is_err());
+                record_cart_event(
+                    tx,
+                    &ctx,
+                    CartEventInput::LineVoided {
+                        cart: voided,
+                        index: 1,
+                    },
+                )?;
+                record_cart_event(
+                    tx,
+                    &ctx,
+                    CartEventInput::QtyReduced {
+                        cart: lowered,
+                        index: 1,
+                        qty: Qty(1_000),
+                    },
+                )?;
+                record_cart_event(tx, &ctx, CartEventInput::CartCancelled { cart: cancelled })
+            })
+            .unwrap();
+        assert_eq!(
+            event_of(&shop, "sale.line_voided"),
+            json!({ "kind": "line_voided", "productId": divers, "description": "Divers", "qty": 2_000, "amount": 0 })
+        );
+        assert_eq!(
+            event_of(&shop, "sale.qty_reduced"),
+            json!({
+                "kind": "qty_reduced", "productId": divers, "description": "Divers",
+                "qtyBefore": 2_000, "qtyAfter": 1_000, "removedQty": 1_000, "amount": 0
+            })
+        );
+        // the priced line still counts; the unpriced one is left out of the total
+        assert_eq!(
+            event_of(&shop, "sale.cancelled"),
+            json!({ "kind": "cart_cancelled", "lines": 2, "total": 10_000 })
         );
     }
 

@@ -38,7 +38,9 @@
     "regulated": "Prix plafonné {{ceiling}}",
     "above": "au-dessus du plafond",
     "customerPrice": "Prix client",
-    "minOrder": "Minimum {{qty}}"
+    "minOrder": "Minimum {{qty}}",
+    "priceRequired": "Saisissez son prix",
+    "setPrice": "Saisir le prix"
   },
   "actions": {
     "customer": "Client",
@@ -150,6 +152,12 @@
     "price": "Prix unitaire TTC",
     "taxRate": "TVA",
     "submit": "Ajouter au ticket"
+  },
+  "openPrice": {
+    "hint": "Cet article se vend au prix saisi.",
+    "price": "Prix unitaire",
+    "qty": "Quantité",
+    "add": "Ajouter au ticket"
   },
   "menu": {
     "title": "Menu",

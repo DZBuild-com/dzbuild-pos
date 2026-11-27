@@ -534,7 +534,7 @@ fn price_line(
             let unit_price = if open_price {
                 line.unit_price
                     .filter(|p| p.is_positive())
-                    .ok_or_else(|| AppError::validation("unitPrice", "required"))?
+                    .ok_or_else(|| AppError::validation("unitPrice", "open_price_required"))?
             } else {
                 line.unit_price.unwrap_or(catalogue)
             };

@@ -1253,6 +1253,7 @@ export const oxfordShirt: ProductHit = {
   image: null,
   archived: false,
   availableAtTill: true,
+  openPrice: false,
 };
 
 /** The backend's preview of the cart sent: its lines echoed, the ticket at `tillTotal`, the

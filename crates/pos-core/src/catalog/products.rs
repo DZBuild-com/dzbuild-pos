@@ -118,6 +118,9 @@ pub struct Product {
     pub allow_negative_stock: bool,
     pub is_weighed: bool,
     pub available_at_till: bool,
+    /// Priced when it is sold (a department key, a top-up, an open-price service), never from a
+    /// catalogue price: the till asks for the price before the line enters the cart.
+    pub open_price: bool,
     pub plu: Option<u32>,
     pub image: Option<String>,
     pub archived: bool,
@@ -243,7 +246,8 @@ impl From<&Product> for ProductInput {
 const SELECT: &str = "SELECT p.id, p.reference, p.name_ar, p.name_fr, p.name_en, p.category_id,
         p.unit_id, u.code, u.decimals, p.tax_rate_id, t.rate_bp, p.kind, p.parent_id, p.sell_price,
         p.cost_price, p.min_stock, p.track_stock, p.allow_negative_stock, p.is_weighed,
-        p.available_at_till, p.plu, p.image, p.archived_at IS NOT NULL, p.updated_at
+        p.available_at_till, p.plu, p.image, p.archived_at IS NOT NULL, p.updated_at,
+        EXISTS (SELECT 1 FROM open_price_products o WHERE o.product_id = p.id)
      FROM products p JOIN units u ON u.id = p.unit_id JOIN tax_rates t ON t.id = p.tax_rate_id";
 
 fn map(row: &Row<'_>) -> rusqlite::Result<Product> {
@@ -272,6 +276,7 @@ fn map(row: &Row<'_>) -> rusqlite::Result<Product> {
         image: row.get(21)?,
         archived: row.get(22)?,
         updated_at: row.get(23)?,
+        open_price: row.get(24)?,
         barcodes: Vec::new(),
         prices: Vec::new(),
         components: Vec::new(),

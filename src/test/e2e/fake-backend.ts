@@ -379,6 +379,7 @@ function hitOf(product: Product): ProductHit {
     image: null,
     archived: false,
     availableAtTill: true,
+    openPrice: false,
   };
 }
 

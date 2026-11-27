@@ -45,6 +45,7 @@ export function VariantPicker({
       nameAr: `${parent.nameAr} ${suffix}`,
       nameFr: `${parent.nameFr} ${suffix}`,
       nameEn: `${parent.nameEn} ${suffix}`,
+      openPrice: false,
     });
   };
   return (
