@@ -41,6 +41,7 @@ export function LineNotices({
                 nameAr: generic.name,
                 nameFr: generic.name,
                 nameEn: generic.name,
+                openPrice: false,
               })
             }
           >

@@ -98,6 +98,7 @@
   "free_line_not_allowed": "Vous ne pouvez pas vendre un article hors catalogue. Demandez l'accord d'un gérant.",
   "discount_not_allowed": "Vous ne pouvez pas faire de remise. Demandez l'accord d'un gérant.",
   "discount_above_limit": "Cette remise dépasse votre limite. Demandez l'accord d'un gérant.",
+  "open_price_required": "Ce produit se vend au prix saisi : ouvrez sa ligne et saisissez son prix.",
   "held_cart_not_found": "Ce ticket en attente n'existe plus sur cette caisse.",
   "return_original_invalid": "Ce document ne peut pas être retourné : scannez un ticket de caisse validé.",
   "return_line_invalid": "Cette ligne ne fait pas partie du ticket d'origine.",

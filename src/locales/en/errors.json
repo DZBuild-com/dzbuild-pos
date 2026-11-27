@@ -98,6 +98,7 @@
   "free_line_not_allowed": "You cannot sell an item outside the catalogue. Ask a manager to approve.",
   "discount_not_allowed": "You cannot give a discount. Ask a manager to approve.",
   "discount_above_limit": "This discount is above your limit. Ask a manager to approve.",
+  "open_price_required": "This product is sold at a price typed at the till: open its line and enter the price.",
   "held_cart_not_found": "This held ticket no longer exists on this till.",
   "return_original_invalid": "This document cannot be returned: scan a validated receipt.",
   "return_line_invalid": "This line is not part of the original receipt.",

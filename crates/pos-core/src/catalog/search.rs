@@ -30,6 +30,9 @@ pub struct ProductHit {
     pub image: Option<String>,
     pub archived: bool,
     pub available_at_till: bool,
+    /// Priced when it is sold (a department key, a top-up, an open-price service): the till asks
+    /// for its price before the line enters the cart.
+    pub open_price: bool,
 }
 
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, Type)]
@@ -59,7 +62,8 @@ const HIT_COLUMNS: &str =
     (SELECT b.barcode FROM product_barcodes b WHERE b.product_id = p.id ORDER BY b.rowid LIMIT 1),
     COALESCE((SELECT SUM(l.qty) FROM stock_levels l JOIN stock_locations s ON s.id = l.location_id
               WHERE l.product_id = p.id AND s.kind = 'storage'), 0),
-    p.image, p.archived_at IS NOT NULL, p.available_at_till";
+    p.image, p.archived_at IS NOT NULL, p.available_at_till,
+    EXISTS (SELECT 1 FROM open_price_products o WHERE o.product_id = p.id)";
 
 fn map_hit(row: &Row<'_>) -> rusqlite::Result<ProductHit> {
     Ok(ProductHit {
@@ -77,6 +81,7 @@ fn map_hit(row: &Row<'_>) -> rusqlite::Result<ProductHit> {
         image: row.get(11)?,
         archived: row.get(12)?,
         available_at_till: row.get(13)?,
+        open_price: row.get(14)?,
     })
 }
 

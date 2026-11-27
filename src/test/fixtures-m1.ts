@@ -131,6 +131,7 @@ export const productFixture: Product = {
   allowNegativeStock: false,
   isWeighed: false,
   availableAtTill: true,
+  openPrice: false,
   plu: null,
   image: null,
   archived: false,
@@ -156,6 +157,7 @@ export const productHitsFixture: ProductHit[] = [
     image: null,
     archived: false,
     availableAtTill: true,
+    openPrice: false,
   },
   {
     id: "p-oil",
@@ -172,6 +174,7 @@ export const productHitsFixture: ProductHit[] = [
     image: null,
     archived: false,
     availableAtTill: true,
+    openPrice: false,
   },
 ];
 

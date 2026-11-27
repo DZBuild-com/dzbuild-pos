@@ -169,6 +169,8 @@ pub const KNOWN_CODES: &[&str] = &[
     "free_line_not_allowed",
     "discount_not_allowed",
     "discount_above_limit",
+    // a product priced when it is sold (a department key, a top-up) needs its price first
+    "open_price_required",
     // M1 held tickets
     "held_cart_not_found",
     // M1 returns

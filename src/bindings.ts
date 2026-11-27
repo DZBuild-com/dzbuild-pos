@@ -552,6 +552,11 @@ export const commands = {
 	allowNegativeStock: boolean,
 	isWeighed: boolean,
 	availableAtTill: boolean,
+	/**
+	 *  Priced when it is sold (a department key, a top-up, an open-price service), never from a
+	 *  catalogue price: the till asks for the price before the line enters the cart.
+	 */
+	openPrice: boolean,
 	plu: number | null,
 	image: string | null,
 	archived: boolean,
@@ -6092,6 +6097,11 @@ export type Product = {
 	allowNegativeStock: boolean,
 	isWeighed: boolean,
 	availableAtTill: boolean,
+	/**
+	 *  Priced when it is sold (a department key, a top-up, an open-price service), never from a
+	 *  catalogue price: the till asks for the price before the line enters the cart.
+	 */
+	openPrice: boolean,
 	plu: number | null,
 	image: string | null,
 	archived: boolean,
@@ -6150,6 +6160,11 @@ export type ProductHit = {
 	image: string | null,
 	archived: boolean,
 	availableAtTill: boolean,
+	/**
+	 *  Priced when it is sold (a department key, a top-up, an open-price service): the till asks
+	 *  for its price before the line enters the cart.
+	 */
+	openPrice: boolean,
 };
 
 export type ProductInput = {

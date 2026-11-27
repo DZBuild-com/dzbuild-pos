@@ -35,7 +35,9 @@
     "regulated": "Regulated price {{ceiling}}",
     "above": "above the ceiling",
     "customerPrice": "Customer price",
-    "minOrder": "Minimum {{qty}}"
+    "minOrder": "Minimum {{qty}}",
+    "priceRequired": "Enter its price",
+    "setPrice": "Enter the price"
   },
   "actions": {
     "customer": "Customer",
@@ -143,6 +145,12 @@
     "price": "Unit price incl. tax",
     "taxRate": "VAT",
     "submit": "Add to the ticket"
+  },
+  "openPrice": {
+    "hint": "This item is sold at the price typed at the till.",
+    "price": "Unit price",
+    "qty": "Quantity",
+    "add": "Add to the ticket"
   },
   "menu": {
     "title": "Menu",

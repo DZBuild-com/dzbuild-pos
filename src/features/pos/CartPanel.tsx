@@ -4,6 +4,7 @@ import { Amount } from "@/components/amount";
 import { Button } from "@/components/ui/button";
 import { approvalPermission } from "@/lib/approval";
 import { formatDZD } from "@/lib/format";
+import { toAppError } from "@/lib/ipc/client";
 import type { PaymentPreview } from "@/lib/ipc/types";
 import { formatQty } from "@/lib/numeric";
 import { useErrorText } from "@/lib/use-error-text";
@@ -57,6 +58,10 @@ export function CartPanel({
   const settlement = preview?.settlement;
   // a slow answer dims the figures about to change; a quick one never shows the dimming
   const pending = stale ? "opacity-60 transition-opacity delay-300" : "transition-opacity";
+  // an open-price product whose price is not typed yet: the line says so, and a tap opens it
+  const failure = error ? toAppError(error) : null;
+  const field = failure?.code === "open_price_required" ? /^lines\.(\d+)\./.exec(failure.field ?? "") : null;
+  const openPriceAt = field && lines[Number(field[1])] ? Number(field[1]) : -1;
   return (
     <aside className="flex w-[440px] shrink-0 flex-col border-s border-line bg-surface max-[1100px]:w-[400px]">
       <div className="flex items-center justify-between border-b border-line px-4 py-3">
@@ -103,6 +108,9 @@ export function CartPanel({
                   {figures?.priceChanged ? (
                     <span className="text-sm text-warn">{t("pos:cart.priceChanged")}</span>
                   ) : null}
+                  {index === openPriceAt ? (
+                    <span className="text-sm font-semibold text-danger">{t("pos:cart.priceRequired")}</span>
+                  ) : null}
                   {/* M8: a regulated staple's ceiling (SAL-030), the customer's agreed price, a
                       wholesale minimum not reached */}
                   {figures?.regulated ? (
@@ -144,6 +152,11 @@ export function CartPanel({
           className="flex flex-col gap-2 border-t border-danger bg-danger-soft px-4 py-3 text-danger"
         >
           <p>{errorText(error)}</p>
+          {openPriceAt >= 0 ? (
+            <Button variant="outline" onClick={() => onEdit(openPriceAt)}>
+              {t("pos:cart.setPrice")}
+            </Button>
+          ) : null}
           {approvalPermission(error) ? (
             <Button variant="danger" onClick={onApproval}>
               {t("pos:cart.askApproval")}

@@ -51,8 +51,8 @@ describe("till pack extensions", () => {
     await screen.findByRole("button", { name: /Touches rayon/ });
     await user.keyboard("{Control>}5{/Control}");
     await user.click(await screen.findByRole("button", { name: "Légumes" }));
-    await user.type(screen.getByLabelText("Prix"), "235");
-    await user.click(screen.getByRole("button", { name: "Ajouter" }));
+    await user.type(screen.getByLabelText("Prix unitaire"), "235");
+    await user.click(screen.getByRole("button", { name: "Ajouter au ticket" }));
     await waitFor(() =>
       expect(useCart.getState().lines[0]?.line).toMatchObject({ productId: "op-veg", unitPrice: 23_500 }),
     );

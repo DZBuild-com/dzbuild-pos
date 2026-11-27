@@ -198,6 +198,13 @@ export function SaleScreen({ session, withTables = false }: { session: Session; 
         notify("error", t("pos:scan.variantParent"));
         return;
       }
+      // SAL-019: an open-price product (a department key, a top-up, an open-price service) is
+      // priced when it is sold. Its price is typed before the line enters the cart: with no price
+      // the backend refuses to price the line, and the sale could be neither paid nor voided.
+      if (product.openPrice && !separate) {
+        setDialog({ kind: "openPrice", product, unitDecimals });
+        return;
+      }
       useCart.getState().addProduct({
         productId: product.id,
         qty,
